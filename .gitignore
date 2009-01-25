@@ -10,12 +10,8 @@ webroot/files/**/*
 webroot/img/catalog/*
 webroot/img/catalog/s/*
 webroot/img/catalog/b/*
+webroot/img/gallery/*
 webroot/img/gallery/s/*
 webroot/img/gallery/b/*
-webroot/img/gallery/*
-!s/empty
-!s/.gitignore
-!b/empty
-!b/.gitignore
 !empty
 !.gitignore
