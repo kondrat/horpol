@@ -30,8 +30,6 @@
 								?>
 																
 							</div>
-<<<<<<< HEAD:views/elements/news/twoNews.ctp
+
 							<div style="clear:both;"></div>
-=======
-							<div style="clear:both"></div>
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/elements/news/twoNews.ctp
+

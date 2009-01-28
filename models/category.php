@@ -18,29 +18,7 @@ class Category extends AppModel {
 																	)
 												)
 						);
-<<<<<<< HEAD:models/category.php
-	//--------------------------------------------------------------------
-	/*
-	var $hasAndBelongsToMany = array(
-			'Brand' => array('className' => 'Brand',
-						'joinTable' => 'brands_categories',
-						'foreignKey' => 'category_id',
-						'associationForeignKey' => 'brand_id',
-						'unique' => true,
-						'conditions' => '',
-						'fields' => '',
-						'order' => '',
-						'limit' => '',
-						'offset' => '',
-						'finderQuery' => '',
-						'deleteQuery' => '',
-						'insertQuery' => ''
-						)
 
-					);
-	*/
-=======
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:models/category.php
 
 //--------------------------------------------------------------------
     var $hasMany = array(

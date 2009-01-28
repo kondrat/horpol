@@ -371,11 +371,7 @@ h1 {
 
 .catimg {
 	position: relative;
-<<<<<<< HEAD:webroot/css/style.css
-	top: -10px;
-=======
 	top: -5px;
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:webroot/css/style.css
 	left: 40px;
 }
 
@@ -394,10 +390,6 @@ h1 {
 .cat ul li {
 	float: left;	
 	width: 330px;
-<<<<<<< HEAD:webroot/css/style.css
-=======
-	/*margin-bottom: 10px;*/
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:webroot/css/style.css
 }
 
 .cat ul li a:hover {
@@ -417,11 +409,8 @@ h1 {
 	display: inline;
 	margin-right: 20px;
 }
-<<<<<<< HEAD:webroot/css/style.css
-
-=======
 */
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:webroot/css/style.css
+
 .catalogmenu {
 	font-family: Verdana, Arial;
 	text-decoration: none;
@@ -432,11 +421,8 @@ h1 {
 	text-decoration: none;
 	color: #901c3b;
 }
-<<<<<<< HEAD:webroot/css/style.css
-*/
-=======
 
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:webroot/css/style.css
+
 #catalog-link {
 	color: #901c3b;
 }

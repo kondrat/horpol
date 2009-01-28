@@ -79,10 +79,7 @@ class PagesController extends AppController {
 	function display() {
 		
 		$this->cacheAction = "100 hours";
-<<<<<<< HEAD:controllers/pages_controller.php
-=======
 
->>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:controllers/pages_controller.php
 		//debug($this->params);
 		$path = func_get_args();
 
