@@ -5,7 +5,6 @@
 <h2>Список товаров&nbsp;<span style="font-size: smaller;">
 							<?php //echo $html->link('все товары', array('action' => 'index') );?>
 						</span></h2>
-
 	<?php if ( isset($this->params['pass'][0]) && (int)$this->params['pass'][0] != null ): ?>
  			<table cellpadding="4" cellspacing="0" border="1" style=" width: 550px;">
 				<tr>

@@ -18,6 +18,7 @@
 		<?php endif ?>
 	<?php endforeach ?>	
 	<div style="clear:both"></div>
+
 	
 	<div class="maincontent">
 	</div>	

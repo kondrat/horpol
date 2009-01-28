@@ -44,4 +44,5 @@
 >>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:index.php
  */
 require 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
+
 ?>

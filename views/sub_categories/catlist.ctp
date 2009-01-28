@@ -5,7 +5,6 @@
 >>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/sub_categories/catlist.ctp
 <?php //echo $form->input('category_id', array( 'type' => 'select', 'empty' => 'None',  'options' => $categories, 'label' => 'Список Категорий') );?>
 <div class="products form">
-
 	<fieldset>
  		<legend>Выберете категорию</legend>
  		<div style="line-height: 1.5em;">

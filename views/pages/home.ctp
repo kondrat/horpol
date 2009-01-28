@@ -1,7 +1,6 @@
 <?php $this->pageTitle = 'Главная страница'; ?>
 
 <?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
-
 	
 <div class="maincontent">
 						

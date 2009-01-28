@@ -1,4 +1,5 @@
 <div class="">
+
 <?php echo $form->create('Category');?>
 	<fieldset>
  		<legend>Редактировать категорию</legend>

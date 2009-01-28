@@ -28,8 +28,7 @@
 									$i++;
 									endforeach 
 								?>
-								
-								
+																
 							</div>
 <<<<<<< HEAD:views/elements/news/twoNews.ctp
 							<div style="clear:both;"></div>

@@ -1,5 +1,4 @@
 <?php //debug($cat);?>
-
 <div class="categorys index">
 <h2>Основные категории (меню с левой стороны)</h2>
 <p><?php echo $html->link('Создать новую категорию', array('action'=>'add')); ?></p>
