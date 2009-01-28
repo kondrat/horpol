@@ -17,8 +17,8 @@
 	</ul>
 		
 </div>
-	<div style="margin-bottom: 10px;clear:both;"></div>
-	<hr />
+	<div style="clear:both;"></div>
+	<hr style="margin-top: 20px;" />
 <div class="maincontent">	
 	<?php if (isset($products) ) : ?>	
 		<h1><?php echo $products['SubCategory']['name'];?></h1>
