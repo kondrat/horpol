@@ -1,7 +1,6 @@
 <div class="cat">
 	<?php //debug($brand); ?>
-	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>
-	
+	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>	
 	<br />
 	<?php //debug($subCat);?>
 	<ul>

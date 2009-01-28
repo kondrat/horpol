@@ -28,7 +28,8 @@ class Category extends AppModel {
             'order'    => '',
             'limit'        => '',
         )
-    );  
+    );
+      
 /**
  *Cleaning the cached left menu element after save
  *

@@ -76,6 +76,7 @@ class Product extends AppModel {
 											)
 							);
 
+
 //--------------------------------------------------------------------	
 	function beforedelete () {
 		$productToDel = array();

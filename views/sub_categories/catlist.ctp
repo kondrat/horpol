@@ -2,7 +2,6 @@
 <?php //debug($this->params);?>
 <?php //echo $form->input('category_id', array( 'type' => 'select', 'empty' => 'None',  'options' => $categories, 'label' => 'Список Категорий') );?>
 <div class="products form">
-
 	<fieldset>
  		<legend>Выберете категорию</legend>
  		<div style="line-height: 1.5em;">

@@ -21,4 +21,5 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 require 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
+
 ?>

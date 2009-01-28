@@ -77,6 +77,7 @@ class PagesController extends AppController {
  * @access public
  */
 	function display() {
+		
 		$this->cacheAction = "100 hours";
 
 		//debug($this->params);

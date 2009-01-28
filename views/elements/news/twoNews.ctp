@@ -28,7 +28,6 @@
 									$i++;
 									endforeach 
 								?>
-								
-								
+																
 							</div>
 							<div style="clear:both"></div>
