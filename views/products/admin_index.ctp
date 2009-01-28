@@ -20,6 +20,7 @@
  					<td><?php echo '<p style="margin-top: 20px; font-size: larger; font-weight: bold;">'.$dataToShow['0']['subCategory']['name'].'</p>';?></td>
 				</tr>
 			</table>
+<<<<<<< HEAD:views/products/admin_index.ctp
 						
 		<div class="actions">
 			<ul>
@@ -27,6 +28,15 @@
 		
 			</ul>
 		</div>						
+=======
+			<p><?php echo $html->link('Назад в подраздел <em style="color: red;">'.$dataToShow['0']['subCategory']['name'].'</em>',array('controller' => 'sub_categories', 'action'=>'index','category:'.$dataToShow['0']['subCategory']['category_id']),false,false,false );?>		
+			<div class="actions">
+				<ul>
+					<li><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['subCategory']['category_id'],'brand:'.$dataToShow['0']['subCategory']['brand_id'],'cat:'.$dataToShow['0']['subCategory']['id'],'cache:'.false )); ?></li>
+			
+				</ul>
+			</div>						
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/products/admin_index.ctp
 			
 	<?php endif ?>
 	
@@ -53,7 +63,11 @@
 
 <table cellpadding="4" cellspacing="0" border="1">
 <tr>
+<<<<<<< HEAD:views/products/admin_index.ctp
 	<th><input type="checkbox" id="selectall"></th>
+=======
+	<th style=" width: 20px;"><input type="checkbox" id="selectall" style="margin: 3px 0 4px 10px;"></th>
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/products/admin_index.ctp
 	<th><?php echo $paginator->sort('name');?></th>
 	<th>logo</th>
 	<th class="actions">Действия</th>
@@ -68,7 +82,11 @@ foreach ($products as $product):
 ?>
 	<tr<?php echo $class;?>>
 
+<<<<<<< HEAD:views/products/admin_index.ctp
 		<td><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id'] ) ); ?></td>	
+=======
+		<td><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id'], 'style' => 'margin: 35px 5px 10px 5px;' ) ); ?></td>	
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/products/admin_index.ctp
 		<td>
 			<p style="margin-top: 20px; font-size: larger; font-weight: bold;"><?php echo $product['Product']['name']; ?></p>
 		</td>

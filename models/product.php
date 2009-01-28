@@ -27,14 +27,20 @@ class Product extends AppModel {
 												),							
 
 							'name' => array(
+<<<<<<< HEAD:models/product.php
 											/*
+=======
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:models/product.php
 												'isUnique' => array(
 																'rule' => 'isUnique',
 																'required' => true,
 																'message' => 'Это название уже занято ',
 																
 																),
+<<<<<<< HEAD:models/product.php
 											*/
+=======
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:models/product.php
 												'notEmpty' => array(
 																	'rule' => 'notEmpty',
 																	'required' => true,

@@ -18,6 +18,7 @@ class Category extends AppModel {
 																	)
 												)
 						);
+<<<<<<< HEAD:models/category.php
 	//--------------------------------------------------------------------
 	/*
 	var $hasAndBelongsToMany = array(
@@ -38,6 +39,8 @@ class Category extends AppModel {
 
 					);
 	*/
+=======
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:models/category.php
 
 //--------------------------------------------------------------------
     var $hasMany = array(

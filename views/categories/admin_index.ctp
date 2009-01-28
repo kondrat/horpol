@@ -4,6 +4,21 @@
 <h2>Основные категории (меню с левой стороны)</h2>
 <p><?php echo $html->link('Создать новую категорию', array('action'=>'add')); ?></p>
 <br />
+<<<<<<< HEAD:views/categories/admin_index.ctp
+=======
+	<?php if( isset($this->params['paging']['Category']['pageCount']) && $this->params['paging']['Category']['pageCount'] > 1 ): ?>
+		<p><?php echo $paginator->counter(array('format' => __('Страница %page% из %pages%.', true)));?></p>
+		<div class="paging">
+			<table>
+				<tr>
+					<td><?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?></td>
+		  			<td><?php echo $paginator->numbers();?></td>
+					<td><?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?></td>
+				</tr>
+			</table>
+		</div>
+	<? endif ?>
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/categories/admin_index.ctp
 <table cellpadding="4" cellspacing="0" border="1">
 <tr>
 	<th><?php echo $paginator->sort('name');?></th>

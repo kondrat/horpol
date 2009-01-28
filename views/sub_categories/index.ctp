@@ -17,8 +17,13 @@
 	</ul>
 		
 </div>
+<<<<<<< HEAD:views/sub_categories/index.ctp
 	<div style="margin-bottom: 10px;clear:both;"></div>
 	<hr />
+=======
+	<div style="clear:both;"></div>
+	<hr style="margin-top: 20px;" />
+>>>>>>> ec844de8c47dabe98e93be055f311ebd25476b91:views/sub_categories/index.ctp
 <div class="maincontent">	
 	<?php if (isset($products) ) : ?>	
 		<h1><?php echo $products['SubCategory']['name'];?></h1>
