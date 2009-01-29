@@ -1,5 +1,6 @@
 	
 	<h1><?php echo $cat['Category']['name'];?></h1>
+	<div class="slogan">Здесь только лучшее от природы и производителя. Каждая фабрика яркая индивидуальность.</div>
 	<?php foreach($brands as $brand): ?>
 		<div class="tumb2">
 			<?php echo $html->link( $html->image( 'catalog/'.$brand['Brand']['logo'], array('alt' => $brand['Brand']['name'])), array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['Brand']['id']),null, null, false ); ?>
