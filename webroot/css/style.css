@@ -586,3 +586,15 @@ div.tumbAlbum p span {
 	color: #000000;
 	
 }
+/**
+ * Slogan
+ */
+.slogan {
+	font-family: Verdana, Arial;
+	font-size: 10pt; 
+	font-style: normal;
+	font-weight: bold; 
+	text-align: center; 
+	text-decoration: none;
+	color: #000000;
+}

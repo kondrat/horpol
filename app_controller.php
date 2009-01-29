@@ -1,6 +1,6 @@
 <?php
 class AppController extends Controller {
-	var $components      = array( 'Auth', 'RequestHandler', 'Email', 'Cookie');
+	var $components      = array( 'Auth', 'RequestHandler', 'Email', 'Cookie','DebugKit.Toolbar');
     var $helpers         = array('Javascript', 'Html', 'Form', 'Menu', 'Tree', 'Cache');
     var $publicControllers = array('pages', 'test');
    	var $uses = array('Category');
