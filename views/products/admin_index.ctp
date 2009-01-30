@@ -31,6 +31,11 @@
 			
 	<?php endif ?>
 	
+		<?php 
+			$toPage[0] = $this->params['pass']['0'];
+			$this->passedArgs = $toPage;	 
+			$paginator->options(array('url' => $this->passedArgs )); 			
+		?>	
 	
 
 		<?php if( isset($this->params['paging']['Product']['pageCount']) && $this->params['paging']['Product']['pageCount'] > 1 ): ?>
