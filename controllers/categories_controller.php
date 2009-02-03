@@ -16,7 +16,7 @@ class CategoriesController extends AppController {
 
 	function index() {
 		$this->Category->recursive = -1;
-		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.id' => 'asc'), 'fields' => array('id','name'), 'limit' => 12 ) );		
+		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.id' => 'asc'), 'fields' => array('id','name'), 'limit' => 20 ) );		
 		//debug($a);
 		
 		if (isset($this->params['requested'])) {

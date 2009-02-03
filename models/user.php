@@ -82,9 +82,9 @@ class User extends AppModel {
     }
 //--------------------------------------------------------------------	
 	function getUserData( $userName=null ) {
-		$userDataOutput = false;
+		$userDataOutput = array();
  		$this->recursive = 0;
-		$userData = $this->findByUsername( $userName, array('fildes' =>  'User.username' ) );
+		$userData = $this->find('first', array('conditions' => array('User.username' => $userName), 'fields' => array('id') ) );
 		if ( $userData ) {
 			$userDataOutput['ID'] = $userData['User']['id'];
 		} else {
@@ -104,6 +104,6 @@ class User extends AppModel {
  		}
   		return substr( Security::hash( Configure::read('Security.salt') . $this->field('created') . date('Ymd') ), 0, 8 );
     }
-//--------------------------------------------------------------------
+
 }
 ?>
