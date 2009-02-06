@@ -39,7 +39,5 @@
 			<?php echo $brand['Brand']['body'];?>
 		<?php endif ?>
 	
-	
-	</div>
 </div>
 

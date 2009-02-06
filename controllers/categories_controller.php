@@ -16,7 +16,7 @@ class CategoriesController extends AppController {
 
 	function index() {
 		$this->Category->recursive = -1;
-		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.id' => 'asc'), 'fields' => array('id','name'), 'limit' => 20 ) );		
+		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.id' => 'asc'), 'fields' => array('id','name'), 'limit' => 50 ) );		
 		//debug($a);
 		
 		if (isset($this->params['requested'])) {
@@ -34,24 +34,35 @@ class CategoriesController extends AppController {
 		App::import('Sanitize');
 		$id = (int)Sanitize::paranoid($id);
 		if ( $id != null ) { 
-			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id), 'contain' => false) );
+			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','name','body'), 'contain' => false) );
 		} else {
 			$this->Session->setFlash(__('Не выбран пункт меню', true));
 			$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
-		}		
+		}	
+		
+		switch($cat['Category']['type']) {
+			case 2:
+				$products = $this->Category->SubCategory->find('first', array('conditions' => array('SubCategory.category_id' => $id ),'fields' => array('id', 'category_id'),'contain' => array('Product') ) );
+				$this->set('cat', $cat);
+				$this->set('products', $products);
+				$this->render('case2');				
+			break;
+			default:
 					/*
 					$this->Category->recursive = 1;	
 					$a = $this->Category->find('first', array( 'conditions' => array('Category.id' => $id ) ) );
 					*/
 					//$a = $this->SubCategory->find('all', array( 'conditions' => array('SubCategory.category_id' => $id), 'contain' => array('Brand') )  );
-		$a = $this->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $id);
-		//debug($a);
-		if ( $a == array() ) {
-			$this->Session->setFlash('В данной категории отсутствуют товары.');
-			$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
-		}
-			$this->set('cat', $cat);
-			$this->set('brands',$a);		
+			$a = $this->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $id);
+			//debug($a);
+			if ( $a == array() ) {
+				$this->Session->setFlash('В данной категории отсутствуют товары.');
+				$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
+			}
+				$this->set('cat', $cat);
+				$this->set('brands',$a);	
+		}//end switch	
+	
 	}
 
 //--------------------------------------------------------------------
@@ -74,7 +85,7 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_add() {
 		if (!empty($this->data)) {
-			
+			debug($this->data);
 			$this->Category->create();
 			if ($this->Category->save($this->data)) {
 				$this->Session->setFlash('Категория была сохранена');
