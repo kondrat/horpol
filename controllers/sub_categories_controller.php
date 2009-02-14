@@ -38,9 +38,11 @@ class subCategoriesController extends AppController {
 		 */		
 		$category = array();
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
+			$t = $this->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
+			//$this->set('t',$t);
 			$category = $this->params['named']['category'];
 			$this->set('category',$category);
-			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'] ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => false ) );				
+			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'] ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => array('Category'=> array('fields'=>array('Category.id','Category.type') ) ) ) );				
 			if ( $subCat != array() ) {
 				$this->set('subCat', $subCat);
 			} else {
@@ -57,8 +59,11 @@ class subCategoriesController extends AppController {
 		 */		
 		$products = array();
 		if ( isset($this->params['named']['cat']) && (int)Sanitize::paranoid($this->params['named']['cat']) != null ) {
-			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['cat']), 'contain' => array('Product') ) );
+			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['cat']),'fields'=>array('id','name'), 'contain' => array('Product'=>array('fields'=>array('Product.name','Product.logo','Product.content1') ) ) ) );
 			$this->set('products', $products);
+			if($subCat['0']['Category']['type'] == 3) {
+				$this->render('indexType3');
+			}
 		} elseif( !isset($this->params['named']['cat']) ) {
 			//$brandInfo= $this->Brand->find('first', array('conditions' => array('SubCategory.id' => $subCat['0']['SubCategory']['id']), 'contain' => array('Product') ) );		
 		} 

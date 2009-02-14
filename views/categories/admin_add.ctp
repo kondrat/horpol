@@ -1,3 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="products form">
 <?php echo $form->create('Category');?>
 	<fieldset>
@@ -5,9 +26,8 @@
 	<?php
 		echo $form->input('name', array('label' => 'Имя Категории') );
 		echo $form->input('body',array('label'=>'Описание'));
-		echo $form->select('Category.type', array( 1 => 'first', 2 => 'second',3 => 'third') , array(3), array('label'=>'тип'),false
-						);
-		//array( 1 => 'first', 2 => 'second',3 => 'third')
+		echo $form->input('Category.type', array('options' => array( 1 => 'first', 2 => 'second',3 => 'third') , 'selected' => '3','label'=>'тип'
+						) );
 	?>
 	</fieldset>
 	<hr />

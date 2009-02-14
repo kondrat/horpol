@@ -20,6 +20,7 @@ class ProductsController extends AppController {
 			$this->set('dataToShow',$this->Product->find('all', array('conditions' => $conditions, 
 																	'contain'=> array('subCategory.name' => 
 																												array('Category.name',
+																														'Category.type',
 																														'Brand.name',
 																														'Brand.logo',
 																														'Brand.id'
@@ -90,7 +91,7 @@ class ProductsController extends AppController {
 			$this->data['Product']['brand_id'] = $this->params['named']['brand'];
 			$this->Session->write('CatBrandData.ses', true );
 			$this->Session->write('CatBrandData.subcatFinal.id', $this->params['named']['cat']);
-			$currentSubCat = $this->SubCategory->find('first', array( 'conditions' => array('subCategory.id' => $this->params['named']['cat'] ), 'fields' => array('subCategory.name') ) );	
+			$currentSubCat = $this->SubCategory->find('first', array( 'conditions' => array('subCategory.id' => $this->params['named']['cat'] ), 'fields' => array('subCategory.name'), 'contain'=>false ) );	
 			//debug($currentSubCat);
 			$this->Session->write('CatBrandData.subcatFinal.id', $this->params['named']['cat'] );	
 			$this->Session->write('CatBrandData.subcatFinal.name', $currentSubCat['subCategory']['name'] );
@@ -140,8 +141,9 @@ class ProductsController extends AppController {
 				 * no data saved in session yet
 				 */
 				if ( $skip == false ) {
-					$catName = $this->Category->find('first', array('conditions' => array( 'Category.id' => $this->Session->read('CatBrandData.category.id') ), 'contain' => false, 'fields' => array('id','name') ) );
+					$catName = $this->Category->find('first', array('conditions' => array( 'Category.id' => $this->Session->read('CatBrandData.category.id') ), 'contain' => false, 'fields' => array('id','name','type') ) );
 					$this->Session->write('CatBrandData.category.name',$catName['Category']['name'] );
+					$this->Session->write('CatBrandData.category.type',$catName['Category']['type'] );
 					
 					$brandName = $this->Brand->find('first', array('conditions' => array( 'Brand.id' => $this->Session->read('CatBrandData.brand.id') ), 'contain' => false, 'fields' => array('id','logo','name') ) );	
 					$this->Session->write('CatBrandData.brand.name', $brandName['Brand']['name'] );	
@@ -305,7 +307,9 @@ class ProductsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Product->read(null, $id);
+			$toEdit = $this->Product->find('first',array('conditions' => array('Product.id'=>$id),'fields'=>array('Product.id','Product.name','Product.logo','Product.subcategory_id','Product.content1'),'contain'=>array('subCategory' => array('fields'=>array('id'),'Category.type') ) ) );
+			$this->data = $toEdit;
+			$this->set('catType',$toEdit['subCategory']);
 		}
 
 	}

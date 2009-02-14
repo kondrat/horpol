@@ -62,6 +62,9 @@
 	<th style=" width: 20px;"><input type="checkbox" id="selectall" style="margin: 3px 0 4px 10px;"></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th>logo</th>
+	<?php if ($dataToShow[0]['subCategory']['Category']['type'] == 3): ?>
+		<th>Описание</th>
+	<?php endif ?>
 	<th class="actions">Действия</th>
 </tr>
 <?php
@@ -80,7 +83,11 @@ foreach ($products as $product):
 		<td>
 			<?php echo $html->image('catalog/'.$product['Product']['logo']); ?>
 		</td>
-
+		<?php if ($dataToShow[0]['subCategory']['Category']['type'] == 3): ?>
+			<td>
+				<?php echo $product['Product']['content1']; ?>
+			</td>
+		<?php endif ?>
 		<td class="actions">
 			<?php //echo $html->link(__('View', true), array('action'=>'view', $product['Product']['id'])); ?>
 			<?php echo $html->link('Редактировать', array('action'=>'edit', $product['Product']['id'])); ?>

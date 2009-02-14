@@ -11,6 +11,9 @@
 		echo $form->input('name',array('label' => 'Название товара') );
 		echo $form->input('logo', array('type' => 'hidden') );
 		echo $form->input('subcategory_id', array('type' => 'hidden') );
+		if (isset($catType['Category']['type']) && $catType['Category']['type'] ==3 ) {
+			echo $form->input('content1',array('label' => 'Описание товара'));
+		}
 		//echo $form->input('url');
 		//echo $form->input('price');
 	?>

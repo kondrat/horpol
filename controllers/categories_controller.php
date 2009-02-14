@@ -85,7 +85,6 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_add() {
 		if (!empty($this->data)) {
-			debug($this->data);
 			$this->Category->create();
 			if ($this->Category->save($this->data)) {
 				$this->Session->setFlash('Категория была сохранена');

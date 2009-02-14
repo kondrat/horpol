@@ -297,12 +297,25 @@ body {
 	text-decoration: none;
 	color: #000000;
 }
+/*
 .maincontent {
 	position: relative;
 	top: 11px;
 	width: 700px;
 	text-align: justify;
 }
+*/
+maincontent {
+       position: relative;
+       top: 11px;
+       width: 700px;
+       text-align: justify;
+       font-family: Verdana, Arial;
+       text-decoration: none;
+       font-size: 12px;
+       color: #000000;
+}
+
 h1 {
 	position: relative;
 	top: 10px;
@@ -597,4 +610,20 @@ div.tumbAlbum p span {
 	text-align: center; 
 	text-decoration: none;
 	color: #000000;
+}
+
+cl {
+       width: 698px;
+}
+cl img {
+       float: left;
+       margin-right: 20px;
+       text-align: justify;
+       font-family: Verdana, Arial;
+       font-size: 8pt;
+       font-style: normal;
+       font-weight: bold;
+       text-align: center;
+       text-decoration: none;
+       color: #ffffff;
 }

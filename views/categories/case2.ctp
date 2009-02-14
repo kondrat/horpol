@@ -3,7 +3,7 @@
 	<div class="slogan"><br/>Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/></div>
 	
 <div class="maincontent">	
-	<?php if (isset($products) ) : ?>	
+	<?php if ( isset($products) && $products != array() ) : ?>	
 			<?php foreach($products['Product'] as $product): ?>
 			<div class="tumb">
 				<?php 
@@ -16,7 +16,7 @@
 			</div>
 			<?php endforeach ?>
 		<?php else: ?>
-			<?php echo $brand['Brand']['body'];?>
+			<?php echo 'В данном разделе отсутствуют товары'; ?>
 		<?php endif ?>
 	
 	

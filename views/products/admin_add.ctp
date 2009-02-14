@@ -59,6 +59,9 @@
  				echo '</div>';
 		}
 		echo $form->input('name',array('label'=>'Название товара'));
+		if ( $session->read('CatBrandData.category.type') && $session->read('CatBrandData.category.type') == 3 ) {
+			echo $form->input('content1',array('label'=>'Описание товара'));
+		}
 		echo $form->input('Product.userfile', array('label' => 'Загрузка Логотипа:', 'type'=>'file') );
 		// echo $form->input('url');	
 	?>
