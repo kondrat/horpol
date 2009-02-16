@@ -5,7 +5,7 @@
 		<br/>
 	</div>
 	
-<div class="maincontent">	
+<div class="maincontent-case2">	
 	<?php if ( isset($products) && $products != array() ) : ?>	
 			<?php foreach($products['Product'] as $product): ?>
 			<div class="tumb">
@@ -21,6 +21,4 @@
 		<?php else: ?>
 			<?php echo 'В данном разделе отсутствуют товары'; ?>
 		<?php endif ?>
-	
-	
 </div>

@@ -297,15 +297,15 @@ body {
 	text-decoration: none;
 	color: #000000;
 }
-/*
+
 .maincontent {
 	position: relative;
 	top: 11px;
 	width: 700px;
 	text-align: justify;
 }
-*/
-maincontent {
+
+maincontent-case2 {
        position: relative;
        top: 11px;
        width: 700px;
