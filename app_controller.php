@@ -26,7 +26,6 @@ class AppController extends Controller {
 	}
 	
 	function isAuthorized() {
-
             if ($this->Auth->user('role') == 'admin') {
                 return true;
             } else {

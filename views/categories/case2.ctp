@@ -1,6 +1,9 @@
 	
 	<h1><?php echo $cat['Category']['name'];?></h1>
-	<div class="slogan"><br/>Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/></div>
+	<div class="slogan"><br/>
+		Подробную информацию по терасcной доске Вы можете посмотреть на сайте <a href="www.teraska.ru">www.teraska.ru</a>
+		<br/>
+	</div>
 	
 <div class="maincontent">	
 	<?php if ( isset($products) && $products != array() ) : ?>	

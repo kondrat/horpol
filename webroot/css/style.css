@@ -613,17 +613,19 @@ div.tumbAlbum p span {
 }
 
 cl {
-       width: 698px;
+	width: 698px;
 }
-cl img {
-       float: left;
-       margin-right: 20px;
-       text-align: justify;
-       font-family: Verdana, Arial;
-       font-size: 8pt;
-       font-style: normal;
-       font-weight: bold;
-       text-align: center;
-       text-decoration: none;
-       color: #ffffff;
+.cl img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+
+	text-align: justify;
+	font-family: Verdana, Arial;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
 }
