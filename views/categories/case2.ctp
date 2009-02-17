@@ -1,7 +1,7 @@
 	
 	<h1><?php echo $cat['Category']['name'];?></h1>
 	<div class="slogan"><br/>
-		Подробную информацию по терасcной доске Вы можете посмотреть на сайте <a href="www.teraska.ru">www.teraska.ru</a>
+		Подробную информацию по терасcной доске Вы можете посмотреть на сайте <a href="http://www.teraska.ru">www.teraska.ru</a>
 		<br/>
 	</div>
 	
