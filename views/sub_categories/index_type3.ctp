@@ -22,7 +22,7 @@
 
 <div class="maincontent">	
 	<?php if (isset($products) ) : ?>	
-		<h1><?php echo $products['SubCategory']['name'];?></h1>
+		<h1><?php echo $products['SubCategory']['name'];?></h1><br /><br />
 		<?php //debug($products);?>
 			<?php foreach($products['Product'] as $product): ?>
 			<div class="cl">
@@ -36,6 +36,8 @@
 				       <br><br>
 				       <?php echo $product['content1'];?>
 			</div>
+			<div style="clear:both;"></div>
+			<br /><br />
 			<?php endforeach ?>
 		<?php else: ?>
 			<?php echo $brand['Brand']['body'];?>
