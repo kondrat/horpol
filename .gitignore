@@ -6,6 +6,7 @@ tmp/cache/views/*
 tmp/tests/*
 tmp/sessions/*
 tmp/logs/*
+plugins/*
 webroot/files/**/*
 webroot/img/catalog/*
 webroot/img/catalog/s/*
