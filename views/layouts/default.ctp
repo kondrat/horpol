@@ -119,7 +119,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 			<div id="contentleft2col">
 					
 					<?php echo $this->element('menu/leftMainMenu', array('cache' => array('key' => 'leftMenu', 'time' => '+30 days') ) ); ?>
-						
+					
 						
 						<div class="other">
 							<p>Другие направления:</p>	

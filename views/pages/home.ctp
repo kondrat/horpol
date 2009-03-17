@@ -1,7 +1,7 @@
 <?php $this->pageTitle = 'Главная страница'; ?>
-
-<?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
-	
+<cake:nocache>
+	<?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
+</cake:nocache>	
 <div class="maincontent">
 						
 	<h1>ГЛАВНАЯ СТРАНИЦА</h1>
