@@ -5,19 +5,24 @@ class Album extends AppModel {
 	public $name = 'Album';
 	var $actsAs = array('Containable');
 	var $validate = array(
-							'name' => array( 'alphaNumeric' => array( 
+							'name' => array(
+												/*
+												 'alphaNumeric' => array( 
 																		'rule' => 'alphaNumeric',
 																		'required' => true,
 																		'message' => 'Только буквы и цифры'
 																		),
+												*/
 												'betweenRus' => array(
-																	'rule' => array( 'betweenRus', 2, 15, 'name'),
-																	'message' => 'От 2 до 15 букв'
+																	'rule' => array( 'betweenRus', 2, 150, 'name'),
+																	'message' => 'От 2 до 150 знаков'
 																	),
+												/*
 												'checkUnique' => array( 
 																		'rule' =>  array('checkUnique', 'name'),
 																		'message' => 'Этот логин уже занят'
 																	),
+												*/
 												),
 						);
 //--------------------------------------------------------------------
