@@ -22,7 +22,6 @@
 	<?php endif ?>
 	<?php //debug($listNews);?>
 	
-
 	
 	
 	<?php foreach($News as $list): ?>
@@ -31,8 +30,9 @@
 		<br />
 		<p>
 		<?php 
-			App::import('Core', 'Flay');
-			echo  Flay::fragment($list['News']['body'],86); 
+			App::import('Vendor', 'fly2');
+			$fly2 = new fly2();
+			echo  $fly2->fragment($list['News']['body'], 70); 
 		?>
 		</p>
 		<br />
