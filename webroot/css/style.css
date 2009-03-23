@@ -60,7 +60,7 @@ body {
 	height: 28px;
 	
 	background-image: url(../img/kn.jpg);
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -90,7 +90,7 @@ body {
 	height: 28px;
 	background-image: url(../img/kn.jpg);
 	background-repeat: no-repeat;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -111,7 +111,7 @@ body {
 	height: 28px;
 	background-image: url(../img/knup.jpg);
 	background-repeat: no-repeat;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -153,7 +153,7 @@ body {
 	
 }
 .leftmenu ul li a {
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12pt; 
 	text-align: left; 
 	text-decoration: none;
@@ -170,7 +170,7 @@ body {
 	left: 27px;
 }
 .other p {
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12pt; 
 	text-align: left; 
 	font-weight: bold;
@@ -198,7 +198,7 @@ body {
 	height: 28px;
 	
 	background-image: url(../img/otherfon.gif);
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -228,7 +228,7 @@ body {
 	height: 28px;
 	background-image: url(../img/otherfon.gif);
 	background-repeat: no-repeat;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -248,7 +248,7 @@ body {
 	top: 25px;
 	left: 0px;
 	width: 700px;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt; 
 	font-style: normal;
 	font-weight: normal; 
@@ -303,6 +303,7 @@ body {
 	top: 11px;
 	width: 700px;
 	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .maincontent-case2 {
@@ -310,7 +311,7 @@ body {
        top: 11px;
        width: 700px;
        text-align: justify;
-       font-family: Verdana, Arial;
+       font-family: Arial, Helvetica, sans-serif;
        text-decoration: none;
        font-size: 12px;
        color: #000000;
@@ -319,7 +320,7 @@ body {
 h1 {
 	position: relative;
 	top: 10px;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	color: #901c3b;
 	font-size: 14px;
 	font-weight: bold;
@@ -357,7 +358,7 @@ h1 {
 	left: 250px;
 }
 .footermenu a {
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-size: 12px;
 	color: #000000;
@@ -394,7 +395,7 @@ h1 {
 
 .cat ul li a {
 	margin-right: 10px;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-size: 12px;
 	color: #000000;
@@ -407,7 +408,7 @@ h1 {
 
 .cat ul li a:hover {
 	margin-right: 10px;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-size: 12px;
 	color: #901c3b;
@@ -425,7 +426,7 @@ h1 {
 */
 
 .catalogmenu {
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-size: 12px;
 	color: #000000;
@@ -473,7 +474,7 @@ div.tumb2 p {
 	margin: 0px;
 	padding: 0 0px 0px 0px;
 	text-align: center;	
-	font-family: Verdana, Arial, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 	color: #777;
@@ -498,7 +499,7 @@ div.tumb3 p {
 	margin: 0px;
 	padding: 0 0px 0px 0px;
 	text-align: center;	
-	font-family: Verdana, Arial, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 	color: #777;
@@ -537,7 +538,7 @@ div.tumbAlbum p {
 	margin: 0px;
 	padding: 0 0px 0px 0px;
 	text-align: center;	
-	font-family: Verdana, Arial, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 	color: #777;
@@ -603,7 +604,7 @@ div.tumbAlbum p span {
  * Slogan
  */
 .slogan {
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt; 
 	font-style: normal;
 	font-weight: bold; 
@@ -621,7 +622,7 @@ cl {
 	margin-bottom: 20px;
 
 	text-align: justify;
-	font-family: Verdana, Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 8pt;
 	font-style: normal;
 	font-weight: bold;

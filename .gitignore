@@ -12,6 +12,7 @@ webroot/img/catalog/*
 webroot/img/catalog/s/*
 webroot/img/catalog/b/*
 webroot/img/gallery/*
+webroot/img/upload_pic/*
 webroot/img/gallery/s/*
 webroot/img/gallery/b/*
 !empty

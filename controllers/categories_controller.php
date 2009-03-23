@@ -2,7 +2,6 @@
 class CategoriesController extends AppController {
 
 	var $name = 'Categories';
-	var $helpers = array('Html', 'Form');
 	var $paginate = array('limit' => 10  );
 	var $uses = array('Category','Brand','SubCategory');
 //--------------------------------------------------------------------	
