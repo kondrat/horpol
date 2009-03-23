@@ -6,7 +6,9 @@
 	<?php
 		echo $form->input('id');
 		echo $form->input('name', array('label' => 'Имя категории') );
-		echo $form->input('body', array('label' => 'Описание') );
+		echo $form->label('body','Описание');
+		echo $fck->load('Category.body');
+		//echo $form->input('body', array('label' => 'Описание') );
 		//echo $form->input('url');
 	?>
 	</fieldset>

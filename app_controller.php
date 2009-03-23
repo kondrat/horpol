@@ -1,7 +1,7 @@
 <?php
 class AppController extends Controller {
-	var $components      = array( 'Auth', 'RequestHandler', 'Email', 'Cookie','DebugKit.Toolbar');
-    var $helpers         = array('Javascript', 'Html', 'Form', 'Menu', 'Tree', 'Cache');
+	var $components = array( 'Auth', 'RequestHandler', 'Email', 'Cookie','DebugKit.Toolbar');
+    var $helpers = array('Javascript', 'Form', 'Menu', 'Tree', 'Cache','Fck');
     var $publicControllers = array('pages');
    	//var $uses = array('Category');
    	var $subheaderTitle = 'Hor pol';
