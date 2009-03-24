@@ -1,7 +1,4 @@
 <div class="maincontent">
-	<?php //debug($listNews);
-		App::import('Core', 'Flay');
-	?>
 	<br />
 
 	
@@ -21,7 +18,13 @@
 	<?php foreach($listNews as $list): ?>
 	<?php echo $html->link( date( 'd.m.y', strtotime($list['News']['created']) ).' '.$list['News']['name'] , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menulup') ) ;?>
 
-		<p><?php echo  Flay::fragment($list['News']['body'],86); ?><p>
+		<p>
+			<?php
+				App::import('Vendor', 'fly2');
+				$fly2 = new fly2();
+				echo  $fly2->fragment(strip_tags($list['News']['body']), 70);
+			?>
+		<p>
 	<br />
 	<?php endforeach ?>
 	

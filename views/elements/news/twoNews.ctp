@@ -23,7 +23,7 @@
 									
 										<?php echo $html->link( date( 'd.m.y', strtotime($singlNews['News']['created']) ).' '.$singlNews['News']['name'] , array('controller' => 'News', 'action' => 'view', $singlNews['News']['id']) ) ;?>
 									</p>
-										<?php echo $html->link( $fly2->fragment($singlNews['News']['body'], 70) , array('controller' => 'News', 'action' => 'view', $singlNews['News']['id']) ); ?>
+										<?php echo $html->link( $fly2->fragment(strip_tags($singlNews['News']['body']), 70) , array('controller' => 'News', 'action' => 'view', $singlNews['News']['id']),false,false,false ); ?>
 										 
 									</span>
 								<?php 
