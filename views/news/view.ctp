@@ -17,7 +17,7 @@
 				$fly2 = new fly2();
 			?>
  		
-			<?php echo $html->link( $fly2->fragment($list['News']['body'], 70), array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menul') ); ?>
+			<?php echo $html->link( $fly2->fragment(strip_tags($list['News']['body']), 70), array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menul'),false,false,true ); ?>
 		</span>
 	<?php endforeach ?>
 	<span class="newspage">

@@ -12,7 +12,7 @@
 			<?php 
 				App::import('Vendor', 'fly2');
 				$fly2 = new fly2();
-				echo $html->link( $fly2->fragment($list['News']['body'], 70) , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menul') ); 
+				echo $html->link( $fly2->fragment(strip_tags($list['News']['body']), 70) , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menul'),false,false,true ); 
 			?>
 		</span>
 	<?php endforeach ?>
