@@ -1,4 +1,4 @@
-	
+<?php $this->pageTitle = $cat['Category']['title']; ?>	
 	<h1><?php echo $cat['Category']['name'];?></h1>
 	<div class="slogan"><br/>Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/><br/><br /></div>
 	<?php foreach($brands as $brand): ?>
@@ -14,5 +14,5 @@
 	<div class="maincontent">
 		<?php echo $cat['Category']['body']; ?>
 	</div>	
-	
+
 

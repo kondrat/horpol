@@ -14,14 +14,14 @@ class subCategoriesController extends AppController {
     }
 //--------------------------------------------------------------------
 	function index() {
-		$this->cacheAction = "10 hours";
+		$this->cacheAction = "10000 hours";
 		App::import('Sanitize');		
 		/**
 		 *In this module we setting the path to the current Brand logo.
 		 */
 		$brand = array();
 		if ( isset($this->params['named']['brand']) && (int)Sanitize::paranoid($this->params['named']['brand']) != null ) {
-			$brand = $this->Brand->find('first', array('conditions' => array('Brand.id' => $this->params['named']['brand'] ),'fields' => array('Brand.id', 'Brand.logo','Brand.body'), 'contain' => false ) );	
+			$brand = $this->Brand->find('first', array('conditions' => array('Brand.id' => $this->params['named']['brand'] ),'fields' => array('Brand.id', 'Brand.logo','Brand.body','Brand.name'), 'contain' => false ) );	
 			if ( $brand != array() ) {
 				$this->set('brand', $brand);
 			} else {
@@ -38,13 +38,14 @@ class subCategoriesController extends AppController {
 		 */		
 		$category = array();
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
-			$t = $this->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
+			//$t = $this->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
 			//$this->set('t',$t);
 			$category = $this->params['named']['category'];
 			$this->set('category',$category);
-			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'] ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => array('Category'=> array('fields'=>array('Category.id','Category.type') ) ) ) );				
+			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'] ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => array('Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
 			if ( $subCat != array() ) {
 				$this->set('subCat', $subCat);
+				
 			} else {
 				$this->Session->setFlash('SubCat wasn\'t found in database');
 				$this->redirect('/', null, true);				

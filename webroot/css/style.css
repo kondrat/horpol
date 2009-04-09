@@ -301,19 +301,20 @@ body {
 .maincontent {
 	position: relative;
 	top: 11px;
-	width: 700px;
+	width: 697px;
 	text-align: justify;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
 }
 
 .maincontent-case2 {
        position: relative;
        top: 11px;
-       width: 700px;
+       width: 697px;
        text-align: justify;
        font-family: Arial, Helvetica, sans-serif;
        text-decoration: none;
-       font-size: 12px;
+       font-size: 10px;
        color: #000000;
 }
 
@@ -442,7 +443,7 @@ h1 {
 }
 div.tumb {
 
-	width: 175px;
+	width: 174px;
 	float: left;
 	margin: 0 0px 0px;
 }
@@ -461,7 +462,7 @@ div.tumb p {
 }
 
 div.tumb2 {
-	width: 175px;
+	width: 174px;
 	float: left;
 	margin: 0px 0px 0px;
 }
@@ -536,6 +537,7 @@ div.album img {
 }
 div.tumbAlbum p {
 	margin: 0px;
+	width: 140px;
 	padding: 0 0px 0px 0px;
 	text-align: center;	
 	font-family: Arial, Helvetica, sans-serif;
@@ -545,6 +547,7 @@ div.tumbAlbum p {
 }
 div.tumbAlbum  {
 	width: 175px;
+	height: 200px;
 	float: left;
 	margin: 0px 0px 0px;
 }
@@ -586,9 +589,8 @@ div.tumbAlbum p span {
 	text-align: justify;
 }
 .newspage p{
-	color: #901c3b;
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: normal;
 }
 .newspage p a{
 	color: #901c3b;
@@ -599,6 +601,10 @@ div.tumbAlbum p span {
 	text-decoration: none;
 	color: #000000;
 	
+}
+.news_header_color{
+	color: #901c3b;
+	font-weight: bold;
 }
 /**
  * Slogan

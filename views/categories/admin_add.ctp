@@ -4,6 +4,7 @@
  		<legend>Создание новой категории</legend>
 	<?php
 		echo $form->input('name', array('label' => 'Имя Категории') );
+		echo $form->input('title', array('label' => 'Заголовок') );
 		//echo $form->input('body',array('label'=>'Описание'));
 		echo $form->label('body','Описание');
 		echo $fck->load('Category.body');

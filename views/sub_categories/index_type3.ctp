@@ -1,3 +1,10 @@
+<?php 
+	if( isset($products) ) {
+		$this->pageTitle = $subCat['0']['Category']['name'].' '.$brand['Brand']['name'].' | '.$products['SubCategory']['name']; 
+	} else {
+		$this->pageTitle = $subCat['0']['Category']['name'].' '.$brand['Brand']['name']; 
+	}
+?>
 <div class="cat">
 	<?php //debug($brand); ?>
 	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>	
