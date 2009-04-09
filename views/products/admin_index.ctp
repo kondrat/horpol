@@ -55,7 +55,7 @@
 
 
 <?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'))); ?>
-<?php echo $javascript->link(array('jquery-1.2.6','horpol'),false);?>
+<?php echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','horpol'),false);?>
 
 <table cellpadding="4" cellspacing="0" border="1">
 <tr>
