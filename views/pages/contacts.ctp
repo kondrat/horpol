@@ -48,8 +48,10 @@
 </table>
 
 
-<br /><br />E-mail: horpol@mail.ru
-<br />Cайты: http://www.horpol.ru, http://www.teraska.ru
+<br /><br /><a href="mailto:horpol@mail.ru">E-mail: horpol@mail.ru</a>
+
+
+<br /><br />Cайты: <a href="http://www.horpol.ru" target="_blank">http://www.horpol.ru</a>, <a href="http://www.teraska.ru" target="_blank">http://www.teraska.ru</a>
 
 
 </div>

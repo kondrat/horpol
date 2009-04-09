@@ -5,7 +5,7 @@
 	
 	
 	<span class="newspage">
-		<p><?php echo date( 'd.m.y', strtotime($news['News']['created']) ).' '.$news['News']['name']; ?></p>
+		<div class="news_header_color"><?php echo date( 'd.m.y', strtotime($news['News']['created']) ).' '.$news['News']['name']; ?></div>
 		<?php echo $news['News']['body']; ?>
 	</span>
 	

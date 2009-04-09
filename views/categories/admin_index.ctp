@@ -20,6 +20,7 @@
 <tr>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('Описание','body');?></th>
+	<th><?php echo $paginator->sort('title');?></th>
 	<th class="actions">Действия</th>
 </tr>
 <?php
@@ -38,6 +39,9 @@ foreach ($cat as $category):
 		<td style="width: 480px;" >
 			<?php App::import('Core', 'Flay');?>
 			<p style="padding: 5px 10px; text-align: left;"><?php echo Flay::fragment( $category['Category']['body'],190); ?></p>
+		</td>
+		<td>
+			<p style="margin-top: 20px; font-size: larger; font-weight: bold;"><?php echo $category['Category']['title']; ?></p>
 		</td>
 		<td class="actions">
 			<?php echo $html->link('Редактировать', array('action'=>'edit', $category['Category']['id'])); ?>

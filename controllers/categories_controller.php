@@ -33,7 +33,7 @@ class CategoriesController extends AppController {
 		App::import('Sanitize');
 		$id = (int)Sanitize::paranoid($id);
 		if ( $id != null ) { 
-			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','name','body'), 'contain' => false) );
+			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','title','name','body'), 'contain' => false) );
 		} else {
 			$this->Session->setFlash(__('Не выбран пункт меню', true));
 			$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );

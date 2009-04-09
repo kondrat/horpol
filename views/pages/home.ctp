@@ -1,4 +1,4 @@
-<?php $this->pageTitle = 'Главная страница'; ?>
+<?php $this->pageTitle = 'Хороший пол Главная страница'; ?>
 <cake:nocache>
 	<?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
 </cake:nocache>	
