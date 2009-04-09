@@ -1,4 +1,4 @@
-<?php $javascript->link(array('jquery.fancybox-1.0.0','horpol'), false);?>
+<?php $javascript->link(array('jquery.fancybox-1.2.1.pack','horpol'), false);?>
 
 
 
