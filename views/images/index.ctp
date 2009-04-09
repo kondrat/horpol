@@ -20,4 +20,20 @@
 	<?php endforeach ?>	
 	</p>
 	<div style="clear:both"></div>
-	
+		<?php 	 
+			$paginator->options(array('url' => $this->passedArgs )); 
+		?>	
+		<?php if( isset($this->params['paging']['Image']['pageCount']) && $this->params['paging']['Image']['pageCount'] > 1 ): ?>
+			<p class="counter">
+				<?php echo $paginator->counter(array('format' => __('Страница %page% из %pages%.', true) ) );?>
+			</p>
+			<div class="paging">
+				<table>
+					<tr>
+						<td><?php echo $paginator->prev('Назад', array(), null, array('class'=>'disabled'));?></td>
+			  			<td><?php echo $paginator->numbers(array('separator' => ' '));?></td>
+						<td><?php echo $paginator->next('Вперед', array(), null, array('class'=>'disabled'));?></td>
+					</tr>
+				</table>
+			</div>
+		<?php endif ?>	

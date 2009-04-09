@@ -3,7 +3,7 @@ class ImagesController extends AppController {
 	var $name = 'Images';
 	var $uses = array('Image', 'Album');
 	var $components = array('Upload');
-	var $paginate = array('limit' => 20 );
+	var $paginate = array('limit' => 12 );
 
 //--------------------------------------------------------------------	
 	function beforeFilter() {
@@ -29,8 +29,9 @@ class ImagesController extends AppController {
     	$this->paginate['Image'] = array(
     										'conditions' => array('Image.album_id' => $id ),
     										'contain' => array('Album.name'),
+    										'limit' => 12
     									);
-		$this->set('images', $this->paginate());
+			$this->set('images', $this->paginate());
     }
 //--------------------------------------------------------------------
 	/*
