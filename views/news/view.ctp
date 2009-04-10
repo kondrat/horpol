@@ -1,6 +1,8 @@
+<?php $this->pageTitle = 'Новости | '.date( 'd.m.y', strtotime($news['News']['created']) ).' '.$news['News']['name'] ; ?>
+
 <div class="news">
 	<?php //debug($listNews);
-		App::import('Core', 'Flay');
+		//App::import('Core', 'Flay');
 	?>
 	
 	

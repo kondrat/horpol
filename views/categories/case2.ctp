@@ -14,7 +14,7 @@
 						$product['logo'] = 'default.jpg';
 					}
 				?>
-				<?php echo  $html->image( 'catalog/'.$product['logo'], array('alt' => '' ) ); ?>
+				<?php echo  $html->image( 'catalog/'.$product['logo'], array('alt' => $product['name'] ) ); ?>
 				<p style="font-family: verdana, sans-serif;"> <?php echo $product['name'];?></p>
 			</div>
 			<?php endforeach ?>

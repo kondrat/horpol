@@ -1,3 +1,5 @@
+<?php $this->pageTitle = 'Фотоальбомы | '.$images['0']['Album']['name'] ; ?>
+
 <?php $javascript->link(array('jquery.fancybox-1.2.1.pack','horpol'), false);?>
 
 

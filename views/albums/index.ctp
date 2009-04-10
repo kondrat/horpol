@@ -1,3 +1,4 @@
+<?php $this->pageTitle = 'Фотоальбомы'; ?>
 	<h1>Фотоальбомы</h1>
 	<div class="maincontent">
 		<?php //debug($albums);?>
