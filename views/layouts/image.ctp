@@ -7,7 +7,6 @@
 <head>
 	<?php echo $html->charset(); ?>
 	<title>
-		Хороший пол
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
