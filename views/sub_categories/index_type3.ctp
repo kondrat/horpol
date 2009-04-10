@@ -38,7 +38,7 @@
 						$product['logo'] = 'default.jpg';
 					}
 				?>
-				<?php echo  $html->image( 'catalog/'.$product['logo'], array('alt' => '' ) ); ?>
+				<?php echo  $html->image( 'catalog/'.$product['logo'], array('alt' => $product['name'] ) ); ?>
 				<b> <?php echo $product['name'];?></b>
 				       <br><br>
 				       <?php echo $product['content1'];?>

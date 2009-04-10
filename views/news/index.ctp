@@ -1,3 +1,4 @@
+<?php $this->pageTitle = 'Новости' ; ?>
 <div class="news">
 
 	<p>НОВОСТИ</p>
