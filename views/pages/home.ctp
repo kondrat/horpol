@@ -2,6 +2,9 @@
 <cake:nocache>
 	<?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
 </cake:nocache>	
+
+		<p class='menulup' style="margin-bottom: 0;" align='right'><?php echo $html->link('Все новости', array('controller'=>'news','action'=>'index'), array('class' => 'news_all_link')); ?></p>
+
 <div class="maincontent">
 						
 	<h1>ГЛАВНАЯ СТРАНИЦА</h1>
