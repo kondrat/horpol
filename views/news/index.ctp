@@ -18,5 +18,4 @@
 		</span>
 	<?php endforeach ?>
 
-	
 </div>
