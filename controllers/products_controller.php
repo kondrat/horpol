@@ -255,7 +255,12 @@ class ProductsController extends AppController {
 			$this->Session->setFlash('Несуществующий товар');
 			$this->redirect(array('action'=>'index'));
 		}
-		
+
+		$pageParam = Router::parse($this->referer());
+		if(isset($pageParam['named']['page']) && $pageParam['named']['page'] != null) {
+			$this->Session->write('editPage',$pageParam['named']['page']);
+		}
+
 		if (!empty($this->data)) {		
 			$file = array();
 			// set the upload destination folder
@@ -292,12 +297,16 @@ class ProductsController extends AppController {
 			}		
 		
 		
-		
 
 			if ($this->Product->save($this->data)) {
 				$this->Session->setFlash('Изменения сохранены');
 				@unlink($destination.$oldFile);
-				$this->redirect(array('action'=>'index',$this->data['Product']['subcategory_id']));
+				if ( $this->Session->check('editPage') ) {
+					$this->redirect( array('action'=>'index',$this->data['Product']['subcategory_id'],'page:'.$this->Session->read('editPage') ) );
+				} else {
+					$this->redirect(array('action'=>'index',$this->data['Product']['subcategory_id']));
+				}
+				
 			} else {
 				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
 						$this->data['Product']['logo'] = $oldFile;
