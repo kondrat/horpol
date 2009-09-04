@@ -1,8 +1,7 @@
 <?php $this->pageTitle = $cat['Category']['title']; ?>	
 	<h1><?php echo $cat['Category']['name'];?></h1>
-	<div class="slogan"><br/>
-		Подробную информацию по терасcной доске Вы можете посмотреть на сайте <a href="http://www.teraska.ru">www.teraska.ru</a>
-		<br/>
+	<div class="slogan">
+		<?php echo $cat['Category']['slogan'];?><!-- Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/><br/><br />-->
 	</div>
 	
 <div class="maincontent-case2">	

@@ -2,8 +2,8 @@
 class CategoriesController extends AppController {
 
 	var $name = 'Categories';
-	var $paginate = array('limit' => 10  );
-	var $uses = array('Category','Brand','SubCategory');
+	var $paginate = array('limit' => 15  );
+	
 //--------------------------------------------------------------------	
   function beforeFilter()
     {
@@ -27,32 +27,30 @@ class CategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function brand($id = null) {
-		$this->cacheAction = "10 hours";
+		//$this->cacheAction = "10000 hours";
 		$cat = array();
 		$a = array();
-		App::import('Sanitize');
-		$id = (int)Sanitize::paranoid($id);
+		
+		$id = (int)($id);
 		if ( $id != null ) { 
-			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','title','name','body'), 'contain' => false) );
+			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','title','name','body','slogan'), 'contain' => false) );
 		} else {
-			$this->Session->setFlash(__('Не выбран пункт меню', true));
+			$this->Session->setFlash('Не выбран пункт меню');
 			$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
 		}	
 		
 		switch($cat['Category']['type']) {
+			
 			case 2:
 				$products = $this->Category->SubCategory->find('first', array('conditions' => array('SubCategory.category_id' => $id ),'fields' => array('id', 'category_id'),'contain' => array('Product') ) );
 				$this->set('cat', $cat);
 				$this->set('products', $products);
 				$this->render('case2');				
 			break;
+			
 			default:
-					/*
-					$this->Category->recursive = 1;	
-					$a = $this->Category->find('first', array( 'conditions' => array('Category.id' => $id ) ) );
-					*/
-					//$a = $this->SubCategory->find('all', array( 'conditions' => array('SubCategory.category_id' => $id), 'contain' => array('Brand') )  );
-			$a = $this->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $id);
+
+			$a = $this->Category->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $id);
 			//debug($a);
 			if ( $a == array() ) {
 				$this->Session->setFlash('В данной категории отсутствуют товары.');

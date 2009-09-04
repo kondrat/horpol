@@ -4,11 +4,11 @@
  		<legend>Создание новой категории</legend>
 	<?php
 		echo $form->input('name', array('label' => 'Имя Категории') );
-		echo $form->input('title', array('label' => 'Заголовок') );
-		//echo $form->input('body',array('label'=>'Описание'));
+		echo $form->input('Category.type', array('options' => array( 1 => 'Первый тип', 2 => 'Второй тип',3 => 'Третий тип') , 'label'=>'Тип категории','empty' => '(Выберите тип)') );
+		echo $form->input('title', array('label' => 'Заголовок ("Title" - отображается вверху страницы).') );
+		echo $form->input('slogan',array('label'=>'Слоган','rows'=>2,'default'=>'Здесь только лучшее от природы и производителей. <br />Каждая фабрика-яркая индивидуальность'));
 		echo $form->label('body','Описание');
 		echo $fck->load('Category.body');
-		echo $form->input('Category.type', array('options' => array( 1 => 'first', 2 => 'second',3 => 'third') , 'selected' => '3','label'=>'тип') );
 	?>
 	</fieldset>
 	<hr />

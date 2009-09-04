@@ -5,18 +5,36 @@ class Category extends AppModel {
 	var $actsAs = array('Containable');
 	var $validate = array(
 							'name' => array( 
-											/*
-												'alphaNumeric' => array( 
-																		'rule' => 'alphaNumeric',
-																		'required' => true,
-																		'message' => 'Допустимы только буквы и цифры',
-																		),
-											*/
-												'checkUnique' => array( 
-																		'rule' =>  array('checkUnique', 'name'),
-																		'message' => 'Брэнд с таким названием уже существует',
-																	)
+	
+												'notEmpty' => array( 
+																
+					       											'rule' => 'notEmpty',
+					        										'message' => 'Это поле не может быть пустым',
+					        									),
+											'un' => array( 
+											       	'rule' => 'isUnique',
+        											'message' => 'Категория с таким названием уже существует.',
+        											),
+ 
+												),
+							'type' => array( 
+												'notEmpty' => array( 
+																
+					       											'rule' => 'notEmpty',
+					        										'message' => 'Необходимо выбрать тип категории',
+					        									),
+ 
+												),
+							/*
+							'slogan' => array( 
+												'notEmpty' => array( 
+																
+					       											'rule' => 'notEmpty',
+					        										'message' => 'Это поле не может быть пустым',
+					        									),
+ 
 												)
+							*/
 						);
 
 
@@ -30,6 +48,9 @@ class Category extends AppModel {
             'limit'        => '',
         )
     );
+ 
+
+//--------------------------------------------------------------------
       
 /**
  *Cleaning the cached left menu element after save
