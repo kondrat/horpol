@@ -43,7 +43,18 @@ escape(document.referrer)+((typeof(screen)=="undefined")?"":
 screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 ";"+Math.random();//--></script><!--/LiveInternet-->	
 	</cake:nocache>
-	
+	<cake:nocache>	
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8421821-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+		
+	</cake:nocache>
 	<cake:nocache>
 
 	<?php 
@@ -206,7 +217,15 @@ pageTracker._initData();
 pageTracker._trackPageview();
 </script>
 
-	
+		<cake:nocache>
+<!-- Yandex.Metrika -->
+<script src="//mc.yandex.ru/resource/watch.js" type="text/javascript"></script>
+<script type="text/javascript">
+try { var yaCounter198036 = new Ya.Metrika(198036); } catch(e){}
+</script>
+<noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/198036" alt="" /></div></noscript>
+<!-- Yandex.Metrika -->
+		</cake:nocache>	
 	
 </body>
 </html>

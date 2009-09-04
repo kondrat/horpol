@@ -147,7 +147,7 @@
 
 	<div class="footer" align="center">
 		<div class="footerin">
-			<span class="copyright">Copiright 2008 Maris Interior<br><a href="http://www.borovikova.ru">Дизайн и разработка сайта</a></span>
+			<span class="copyright">Copiright 2008 Maris Interior<br><a href="http://www.borovikova.ru" target="_blank">Дизайн</a> и <a href="http://www.imkg.ru" target="_blank">разработка сайта</a></span>
 			<span class="footermenu">
 				<?php echo $html->link('ГЛАВНАЯ', '/') ?>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 				<?php echo $html->link('О КОМПАНИИ', array('controller' => 'pages', 'action' => 'company')) ?>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
