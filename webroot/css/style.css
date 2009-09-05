@@ -1,9 +1,4 @@
 
-/*overflow: hidden;*/
-* {
-	
-}
-
 body {
 	margin-top: 24px;
 	margin-left: 0px;
@@ -517,8 +512,9 @@ div.tumb3 p span {
  */
 
 .adminZone {
-	/*position: absolute;*/
-	left: 200px;
+	position: absolute;
+	top:5px;
+	left: 15px;
 	font-weight: bold;
 	color: black;
 	font-size: 20px;	
@@ -669,3 +665,48 @@ cl {
 	text-decoration: none;
 	color: #901C3B;
 }
+/*
+ *form class
+ */
+ .fieldLog {
+  margin-bottom: 1em;
+  height:1.2em;
+ }
+ .fieldLog label {
+ 	display:block;
+ 	float:left;
+ 	text-align:right;
+ 	width:11em;
+ 	margin-right:0.5em;
+ }
+.fieldLog input {
+	width:206px;
+	float:left;
+ }
+.fieldSetLog {
+	padding:4px 10px;
+	margin:0 0 10px;	
+}
+.fieldSetLog legend {
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color:black;
+	}
+.fieldWrapper {
+	position: relative;
+	height:1%;
+}
+.fieldSetLog p {
+	margin:0px;
+	position: absolute;
+	top:0em;
+	left:26em;
+}
+.fieldSetLog p a {
+	color: gray;
+}
+.fieldSetLog p a:hover {
+	color: black;
+	text-decoration: none;
+}
+ 

@@ -14,10 +14,10 @@
  		<legend>Добавить товар</legend>
  		<p style="color: #777; font-weight: bold; font-size: 16px; margin-bottom: 10px;">Выберете Категорию товара и Бренд</p>
 	<?php
-		echo $form->input('category_id', array( 'type' => 'select', 'empty' => 'None',  'options' => $cat, 'label' => 'Список Категорий'));
+		echo $form->input('category_id', array( 'type' => 'select', 'empty' => 'Выберите категорию',  'options' => $cat, 'label' => 'Список Категорий'));
 		echo '<li>'.$html->link('Или создайте новую категорию', array('controller'=> 'categories', 'action'=>'add')).'</li>';
 		echo '<br />';
-		echo $form->input('brand_id', array('type' => 'select', 'empty' => 'None', 'options' => $brands, 'label' => 'Список Брендов' ));	
+		echo $form->input('brand_id', array('type' => 'select', 'empty' => 'Выберите бренд', 'options' => $brands, 'label' => 'Список Брендов' ));	
 		echo '<li>'.$html->link('Или создайте новый бренд', array('controller'=> 'brands', 'action'=>'add')).'</li>';	
 	?>
 	</fieldset>

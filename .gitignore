@@ -1,5 +1,6 @@
 config/database.php
 config/core.php
+tmp/cache/*
 tmp/cache/models/*
 tmp/cache/persistent/*
 tmp/cache/views/*
