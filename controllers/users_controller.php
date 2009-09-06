@@ -146,20 +146,20 @@ class UsersController extends AppController {
 		
 		// Generate new password
 		$password = $this->userReg->createPassword();
-		debug ($user);
+		//debug ($user);
 		$data['User']['password'] = $this->Auth->password($password);
 		$this->User->id = $user['User']['id'];
 		if(!$this->User->saveField('password', $this->Auth->password($password) ) ) {
 			return;
 		}
 		
-		// Send email
-		if(!$this->__sendNewPasswordEmail( $user, $password) ) {
-			$this->flash('Ошибка при отправке Email', 'reset', 10);
-		}
-		else {
-			$this->flash('Новый пароль выслан на  '.$user['User']['email'].'. Please login', '/users/login', 10);
-		}
+			// Send email
+			if(!$this->__sendNewPasswordEmail( $user, $password) ) {
+				$this->flash('Ошибка при отправке Email', 'reset', 10);
+			}
+			else {
+				$this->flash('Новый пароль выслан на  '.$user['User']['email'].'. Please login', '/users/login', 10);
+			}
     }
 //--------------------------------------------------------------------
     /**

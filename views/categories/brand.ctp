@@ -1,4 +1,7 @@
-<?php $this->pageTitle = $cat['Category']['title']; ?>	
+<?php $this->pageTitle = $cat['Category']['title']; ?>
+<div>
+	<?php echo $html->image('banner/banner.jpg'); ?>
+</div>	
 	<h1><?php echo $cat['Category']['name'];?></h1>
 	<div class="slogan">
 		<?php echo $cat['Category']['slogan'];?><!-- Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/><br/><br />-->

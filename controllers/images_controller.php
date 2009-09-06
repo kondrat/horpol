@@ -1,7 +1,6 @@
 <?php
 class ImagesController extends AppController {
 	var $name = 'Images';
-	var $uses = array('Image', 'Album');
 	var $components = array('Upload');
 	var $paginate = array('limit' => 12 );
 
@@ -13,12 +12,12 @@ class ImagesController extends AppController {
     }
 //--------------------------------------------------------------------
     function index($id = null){
-    	$this->cacheAction = "100 hours";
+    	$this->cacheAction = "10000 hours";
     	$this->layout = 'image';
     	$albumData = array();
     	App::import('Sanitize');
     	$id = (int)Sanitize::paranoid($id);
-    	$albumData = $this->Album->read(null, $id);
+    	$albumData = $this->Image->Album->read(null, $id);
     	//debug($albumData);
 		if ( (!$id) ||  $albumData == false || !isset($albumData['Album']['image_count']) || $albumData['Album']['image_count'] == 0 ) {
 			
@@ -33,27 +32,7 @@ class ImagesController extends AppController {
     									);
 			$this->set('images', $this->paginate());
     }
-//--------------------------------------------------------------------
-	/*
-    function admin_index($id = null){
-    	$albumData = array();
-    	App::import('Sanitize');
-    	$id = (int)Sanitize::paranoid($id);
-    	$albumData = $this->Album->read(null, $id);
-    	//debug($albumData);
-		if ( (!$id) ||  $albumData == false || !isset($albumData['Album']['image_count']) || $albumData['Album']['image_count'] == 0 ) {
-			
-			$this->Session->setFlash('Вы не выбрали альбом');
-			$this->redirect( array('controller' => 'albums', 'action' => 'index'),null, true );			
-		}
-			
-    	$this->paginate['Image'] = array(
-    										'conditions' => array('Image.album_id' => $id ),
-    										'contain' => array('Album.name'),
-    									);
-		$this->set('image', $this->paginate());
-    }
-    */
+
 //--------------------------------------------------------------------
 	function view($id = null) {
 		
@@ -61,20 +40,14 @@ class ImagesController extends AppController {
 			$this->Session->setFlash('Фото отсутствует');
 			$this->redirect( $this->Auth->redirect() );			
 		} else {
-			/*
-			$this->paginate['Image'] = array(
-												'limit' => 1,
-												'contain' => array('Album' => array('conditions' => array('Image.album_id' => '') ) ),
-											);
-			$this->set('images', $this->paginate());
-			*/
+
 			$this->set( 'image', $this->Image->read(null, $id) );
 		}
 
 	}
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
-		
+		$this->set('headerName','Фотоальбомы');
 		if ( (!$id) ||  ($this->Image->read(null, $id) == false ) ) {
 			$this->Session->setFlash('Фото отсутствует');
 			$this->redirect( $this->Auth->redirect() );			
@@ -86,12 +59,12 @@ class ImagesController extends AppController {
 
 //--------------------------------------------------------------------
 	function admin_add() {
+		$this->set('headerName','Фотоальбомы');
 		if ( isset($this->params['named']['cache']) && $this->params['named']['cache'] == false ) {
 			$this->Session->del('Album');
 		}
 		
-		
-		//debug($this->params);
+
 		if (!empty($this->data)) {
 			$file = array();
 			// set the upload destination folder
@@ -166,7 +139,7 @@ class ImagesController extends AppController {
 		//debug($albums);
 		
 
-			$albums = $this->Album->find('list');
+			$albums = $this->Image->Album->find('list');
 			$this->set( compact('albums') );
 
 			$this->set('selected', 1);
@@ -197,6 +170,7 @@ class ImagesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
+		$this->set('headerName','Фотоальбомы');
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Photo', true));
 			$this->redirect( $this->Auth->redirect() );

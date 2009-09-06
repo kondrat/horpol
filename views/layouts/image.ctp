@@ -12,7 +12,7 @@
 	<?php
 		echo $html->meta('icon');
 
-		echo $html->css('style');
+		echo $html->css('horPolStyle');
 	
 		echo $html->css('jquery.fancybox');
 	?>

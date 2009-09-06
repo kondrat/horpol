@@ -38,13 +38,12 @@ class User extends AppModel {
 																		'rule' =>  array('checkUnique', 'email'),
 																		'message' => 'Этот Email уже занят'
 																		),
+												'notEmpty' => array( 														
+					       											'rule' => 'notEmpty',
+					        										'message' => 'Это поле не может быть пустым',
+					        									),																																		
 											),
-							
-
-
-
-
-																										 
+																							 
 						  );
 //--------------------------------------------------------------------
 	function betweenRus($data, $min, $max, $key) {

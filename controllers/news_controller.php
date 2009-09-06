@@ -1,10 +1,7 @@
 <?php
-//App::import('Core', 'Flay');
 class NewsController extends AppController {
 	var $name = 'News';
-	var $uses = array('News');
 	var $paginate = array('limit' => 5, 'order' => array( 'News.created' => 'desc') );
-	//var $uses = array('User');
 	
 //--------------------------------------------------------------------	
 	function beforeFilter() {
@@ -22,7 +19,7 @@ class NewsController extends AppController {
 			$twoNews = $this->News->find('all', array( 'conditions' => array(), 'order' => array( 'News.created' => 'desc'), 'limit' => 2 ) );
 			return $twoNews;
 		} else {
-			$this->cacheAction = "100 hours";
+			$this->cacheAction = "10000 hours";
 			$this->set('listNews', $this->paginate());
 		}
 		
@@ -33,8 +30,8 @@ class NewsController extends AppController {
     }
 //--------------------------------------------------------------------
 	function view($id = null) {
-		$this->cacheAction = "100 hours";
-		$this->subheaderTitle = 'НОВОСТИ';
+		$this->cacheAction = "10000 hours";
+
 		if ( (!$id) ||  ($this->News->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid News.', true));
 			$this->redirect( $this->Auth->redirect() );			
@@ -52,7 +49,7 @@ class NewsController extends AppController {
  *
  */
     function admin_index(){
-		$this->subheaderTitle = 'НОВОСТИ';
+    	$this->set('headerName','Новости');
 			$this->News->recursive = 0;
 			$twoNews = $this->News->find('all', array( 'conditions' => array(), 'order' => array( 'News.created' => 'desc') ) );
 
@@ -67,7 +64,7 @@ class NewsController extends AppController {
 
 //--------------------------------------------------------------------
 	function admin_add() {
-		$this->subheaderTitle = 'НОВОСТИ';
+		$this->set('headerName','Новости');
 		if (!empty($this->data)) {
 			$this->News->create();
 			if ($this->News->save($this->data)) {
@@ -84,7 +81,7 @@ class NewsController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_delete($id = null) {
-		$this->subheaderTitle = 'НОВОСТИ';
+		$this->set('headerName','Новости');
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for News', true));
 			$this->redirect( array('action'=>'index') );
@@ -96,7 +93,7 @@ class NewsController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
-		$this->subheaderTitle = 'НОВОСТИ';
+		$this->set('headerName','Новости');
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid News', true));
 			$this->redirect( $this->Auth->redirect() );
@@ -123,7 +120,7 @@ class NewsController extends AppController {
  *
  */
 	function admin_view($id = null) {
-		$this->subheaderTitle = 'НОВОСТИ';
+		$this->set('headerName','Новости');
 		if ( (!$id) ||  ($this->News->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid News.', true));
 			$this->redirect( $this->Auth->redirect() );			

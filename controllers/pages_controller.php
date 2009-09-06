@@ -75,6 +75,7 @@ class PagesController extends AppController {
 	
 //--------------------------------------------------------------------	
 	function admin_index() {
+		$this->set('headerName','Главная страница');
 	}
 	
 }

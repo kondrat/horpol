@@ -1,8 +1,6 @@
 <?php
-App::import('Sanitize');
 class AlbumsController extends AppController {
 	var $name = 'Albums';
-	var $uses = array('Album', 'Brand');
 	var $components = array('Upload');
 	var $paginate = array('limit' => 9 );
 
@@ -14,14 +12,8 @@ class AlbumsController extends AppController {
     }
 //--------------------------------------------------------------------
     function index(){
-    	$this->cacheAction = "100 hours";
-    	/*
-    	App::import('Sanitize');
-    	$id = (int)Sanitize::paranoid($id);
-    	if( isset($id) && $id != null) {
-    		
-    	} else {
-    	*/
+    	$this->cacheAction = "10000 hours";
+ 
 			$this->paginate['Album'] = array(
 											'contain' => 'Image.image',
 											);
@@ -30,7 +22,7 @@ class AlbumsController extends AppController {
     }
 //--------------------------------------------------------------------
 	function view($id = null) {
-		//$this->subheaderTitle = 'НОВОСТИ';
+		
 		if ( (!$id) ||  ($this->Album->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Album.', true));
 			$this->redirect( $this->Auth->redirect() );			
@@ -42,17 +34,17 @@ class AlbumsController extends AppController {
 	}
 //--------------------------------------------------------------------
     function admin_index(){
+    	$this->set('headerName','Фотоальбомы');
     	if($this->Session->check('Album')){
     		$this->Session->del('Album');
     	}
-		$this->Album->recursive = 1;
-		$this->set('albums', $this->paginate());
+			$this->Album->recursive = 1;
+			$this->set('albums', $this->paginate());
     }
 //--------------------------------------------------------------------
 	function admin_add() {
-
+		$this->set('headerName','Фотоальбомы');
 		if (!empty($this->data)) {
-
 			$this->Album->create();
 			if ($this->Album->save($this->data)) {
 				$this->Session->setFlash( 'Новый альбом был создан' );
@@ -65,12 +57,6 @@ class AlbumsController extends AppController {
 				$this->Session->setFlash('Новый альбом не был создан');
 			}
 		}
-			
-			
-		//This use for the find('list') if we use smthname instead of name.
-		//$this->User->displayField = 'username';
-		//$users = $this->User->find('list');
-		//$this->set( compact('users') );
 	}
 //--------------------------------------------------------------------
 	function admin_delete($id = null) {
@@ -88,7 +74,7 @@ class AlbumsController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
-
+		$this->set('headerName','Фотоальбомы');
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Несуществующтй альбом');
 			$this->redirect( $this->Auth->redirect() );
@@ -140,6 +126,7 @@ class AlbumsController extends AppController {
 
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
+		$this->set('headerName','Фотоальбомы');
 		if ( (!$id) ||  ($this->Album->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Album.', true));
 			$this->redirect( $this->Auth->redirect() );			

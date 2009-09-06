@@ -1,5 +1,17 @@
-<?php $this->pageTitle = 'Admin page'; ?>
-<div class="mainAdminPage">
+<?php $this->pageTitle = 'Главная страница'; ?>
+
+<div class="span-24">
+	<h4>Управление Баннерами</h4>
+	<ul>
+		<li>Баннер главлой страницы</li>
+		<li>Баннер страницы категорий</li>
+	</ul>
+	
+</div>
+
+
+
+<div class="span-24">
 
 	<div class="mainAdminPage">
 		<p> Управление товарами </p>
@@ -7,9 +19,9 @@
 		<br />
 		<?php echo $html->link('Управление товарами', array('controller' => 'sub_categories', 'action' => 'index') ) ?>
 		<br />
-		<br />
-		<hr />
-		<br />
+
+
+
 		<?php echo $html->link('Управление Категориями', array('controller'=> 'categories', 'action'=>'index')); ?>
 		<br />
 		<?php echo $html->link('Управление Брендами', array('controller'=> 'brands', 'action'=>'index'));	?>

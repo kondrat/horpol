@@ -10,12 +10,9 @@
 	</title>
 	<?php
 		echo $html->meta('icon');
-
-		echo $html->css('style');
-	
+		echo $html->css('horPolStyle');	
 		echo $html->css('jquery.fancybox');
 	?>
-		<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>-->
 
 	<?php
 		echo $javascript->link( array('jquery-1.3.2.min','jquery.easing.1.3', 'cookie', 'jquery.pngFix.pack') , true);
@@ -35,28 +32,27 @@
 
 </head>
 <body>
-	<cake:nocache>	
-<!--LiveInternet counter--><script type="text/javascript"><!--
-new Image().src = "http://counter.yadro.ru/hit?r"+
-escape(document.referrer)+((typeof(screen)=="undefined")?"":
-";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-";"+Math.random();//--></script><!--/LiveInternet-->	
-	</cake:nocache>
-	<cake:nocache>	
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-8421821-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-		
-	</cake:nocache>
-	<cake:nocache>
+	
+		<!--LiveInternet counter--><script type="text/javascript"><!--
+		new Image().src = "http://counter.yadro.ru/hit?r"+
+		escape(document.referrer)+((typeof(screen)=="undefined")?"":
+		";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+		screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+		";"+Math.random();//--></script><!--/LiveInternet-->	
 
+	
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-8421821-1");
+		pageTracker._trackPageview();
+		} catch(err) {}</script>
+		
+
+	<cake:nocache>
 	<?php 
 		if ($session->check('Auth.User.role') == 'admin') {
 			echo $this->element('admin/adminPanel', array('cache' => true) );

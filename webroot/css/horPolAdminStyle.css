@@ -1,0 +1,59 @@
+/**
+ * Admin classes
+ *
+ */
+.menuActive {
+	color: #911B3B;
+}
+.mainAdminPage {
+	border: 1px solid;
+	padding: 10px;
+}
+
+div.header {
+	padding: 5px 0;
+	border-bottom:1px solid silver;
+}
+.header h3 {
+	margin:10px 0 0 70px;
+}
+.username {
+	margin: 0px;
+	font-weight:bold;
+}
+div.footer {
+	border-top: 1px solid silver;
+	margin:5px 0;
+	padding: 5px 0 0 0;
+}
+div.footer a{
+	color:#000;
+}
+div.footer a:hover{
+	color:gray;
+	text-decoration:none;
+}
+.logout {
+	color: #777;
+	padding: 6px 0 0 0;
+	margin: 0 0 0 180px;
+}
+
+.userZone {
+	background:url(../img/fon.jpg) repeat #9AE4E8;
+	border:2px solid silver;
+	font-weight:bold;
+	text-align:center;
+}
+
+.userZone a{
+	color: #911B3B;
+	font-size: 20px;
+}
+.userZone a:hover{
+	text-decoration:none;
+}
+.thumb_admin {
+	float: left;
+	width: 175px;
+}

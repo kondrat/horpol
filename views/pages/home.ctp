@@ -1,4 +1,7 @@
 <?php $this->pageTitle = 'Хороший пол'; ?>
+<div>
+	<?php echo $html->image('banner/banner.jpg'); ?>
+</div>
 <cake:nocache>
 	<?php echo $this->element('news/twoNews', array('cache' => array('key' => 'twoNews', 'time' => '+30 days') ) ); ?>
 </cake:nocache>	

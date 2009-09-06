@@ -1,5 +1,3 @@
-	<h1>Фотоальбомы</h1>
-
 		
 	<?php foreach($albums as $album): ?>
 		<div class="thumb_admin">
