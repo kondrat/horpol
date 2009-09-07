@@ -1,5 +1,3 @@
-<div>
-
 <div class="actions">
 		<h3><?php echo $html->link('Добавить новый Брeнд', array('action'=>'add')); ?></h3>
 </div>
@@ -24,10 +22,7 @@
 				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo'], array('alt'=>$brand['Brand']['name'],'title'=>$brand['Brand']['name']) ), array('action'=>'edit'.'/'.$brand['Brand']['id']), false, false,false); ?>
 			</div>
 			<?php echo $html->image('icons/lens.png',array('class'=>'lens'));?>
-			<div style="font-weight:bold;text-align:center;">&laquo;
-				<?php echo $brand['Brand']['name']; ?>
-			&raquo;</div>
-
+			<div style="font-weight:bold;text-align:center;">&laquo;<?php echo $brand['Brand']['name']; ?>&raquo;</div>
 		</div>
 
 <?php endforeach; ?>
@@ -35,6 +30,6 @@
 	<?php //echo $paginator->sort('Бренд','name');?>
 	<?php //echo $paginator->sort('Логотип','logo');?>
 
-</div>
+
 
 

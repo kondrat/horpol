@@ -9,12 +9,12 @@
 				'Баннеры' => array('controller' => 'banners', 'action' => 'index'),
 			); 
 ?>
-                      <?php $here = Router::url(substr($this->here, strlen($this->webroot)-1)); ?>
-                      <?php foreach ($items as $name => $link): ?>
-                          <?php if (Router::url($link) == $here): ?>
-															<?php echo $html->link( $name, $link, array('class' => 'menuActive' ) ); ?>	                             
-                          <?php else: ?>
-														<?php echo $html->link( $name, $link, array('class' => 'menu' ) );  ?>                          
-                          <?php endif ?> 
-                                           
-                      <?php endforeach ?>
+  <?php $here = Router::url(substr($this->here, strlen($this->webroot)-1)); ?>
+  <?php foreach ($items as $name => $link): ?>
+      <?php if (Router::url($link) == $here): ?>
+					<?php echo $html->link( $name, $link, array('class' => 'menuActive' ) ); ?>	                             
+      <?php else: ?>
+				<?php echo $html->link( $name, $link, array('class' => 'menu' ) );  ?>                          
+      <?php endif ?>                                         
+  <?php endforeach ?>
+  <?php echo $html->link( 'Выход', array('controller' => 'users', 'action' => 'logout'), array('class' => 'logout' ) );  ?> 

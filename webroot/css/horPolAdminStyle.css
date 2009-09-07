@@ -2,9 +2,7 @@
  * Admin classes
  *
  */
-.menuActive {
-	color: #911B3B;
-}
+
 .mainAdminPage {
 	border: 1px solid;
 	padding: 10px;
@@ -27,13 +25,27 @@ div.header {
 	padding:0.5em 1em;
 	text-decoration:none;
 }
-.menu {
+.mainMenu a.logout{
+	float:right;
 	color:#000;
 }
-.mainMenu a:hover {
-		/*border-bottom: 4px solid black;*/
+a.menu {
+	color:#000;
+}
+a.menu:hover {
 		background:	transparent url(../img/icons/4x4_999.gif) repeat-x scroll left bottom;
 	}
+a.menuActive {
+	color: #911B3B;
+}
+a.menuActive:hover {
+	color: #911B3B;
+	background:	transparent url(../img/icons/4x4_e15e82.gif) repeat-x scroll left bottom;
+}
+a.logout:hover{
+		background:	transparent url(../img/icons/4x4_f00.gif) repeat-x scroll left bottom;
+		color:red;
+}
 .actions h3 {
 	margin: 0.3em 0 0.3em 0.5em;
 }
@@ -59,7 +71,7 @@ div.footer a:hover{
 	color:gray;
 	text-decoration:none;
 }
-.logout {
+.logout4 {
 	color: #777;
 	padding: 6px 0 0 0;
 	margin: 0 0 0 180px;
@@ -79,9 +91,18 @@ div.footer a:hover{
 .userZone a:hover{
 	text-decoration:none;
 }
-.thumbAdmin img {
+.thumbAdmin {
+	position:relative;
+	margin-top:10px;
+}
+.thumbAdmin .lens{
+	top:85px;
+	left:105px;
+}
+.thumbAdmin img.thumbImg {
 	background:transparent url(../img/shadow2.png) no-repeat scroll 0 0;
 	padding:2px 5px 5px 0;
+	text-align:center;
 }
 /*flash message*/
 #flashMessage {

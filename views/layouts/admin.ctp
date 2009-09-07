@@ -36,7 +36,6 @@
 			<div class="span-5 last">
 				<?php if ( $session->check('Auth.User.id') ): ?>
 							<p class="username"> Пользователь:&nbsp;&laquo;<?php echo $session->read('Auth.User.username');?>&raquo;</p>
-							<?php echo $html->link('Выход',array('controller'=>'users','action'=>'logout'));?>
 				<?php endif ?>
 			</div>
 		</div>
