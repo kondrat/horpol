@@ -9,8 +9,8 @@ class ProductsController extends AppController {
 //--------------------------------------------------------------------	
   function beforeFilter() {
         //$this->Auth->allow('view', 'index');
-        parent::beforeFilter(); 
-        $this->layout = 'default'; 
+        parent::beforeFilter();  
+        $this->set('headerName','Товары');
     }
 //--------------------------------------------------------------------
 

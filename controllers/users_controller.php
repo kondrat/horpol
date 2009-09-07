@@ -130,7 +130,6 @@ class UsersController extends AppController {
     }
 //--------------------------------------------------------------------
     function reset() {
-    	$this->subheaderTitle = 'ВОССТАНОВЛЕНИЕ ПАРОЛЯ';
     	
     	if( empty($this->data) ) {
     		return;    		
@@ -155,7 +154,7 @@ class UsersController extends AppController {
 		
 			// Send email
 			if(!$this->__sendNewPasswordEmail( $user, $password) ) {
-				$this->flash('Ошибка при отправке Email', 'reset', 10);
+				$this->Session->setFlash('Ошибка при отправке Email','default', array('class'=>'er'));
 			}
 			else {
 				$this->flash('Новый пароль выслан на  '.$user['User']['email'].'. Please login', '/users/login', 10);

@@ -1,65 +1,40 @@
-<?php //debug($br);?>
-
 <div>
-<h2>Брeнды</h2>
+
 <div class="actions">
-	<ul>
-		<li><?php echo $html->link('Добавить новый Брeнд', array('action'=>'add')); ?></li>
-	</ul>
+		<h3><?php echo $html->link('Добавить новый Брeнд', array('action'=>'add')); ?></h3>
 </div>
-	<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
-		<p><?php echo $paginator->counter(array('format' => __('Страница %page% из %pages%.', true)));?></p>
-		<div class="paging">
-			<table>
-				<tr>
-					<td><?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?></td>
-		  			<td><?php echo $paginator->numbers();?></td>
-					<td><?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?></td>
-				</tr>
-			</table>
+
+		<div class="page">
+			<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
+				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
+  				<?php echo $paginator->numbers( array('modulus'=>'5','separator'=>' &middot; ', 'class' => 'menuPage' ), null );?>
+				<?php echo $paginator->next( $html->image('icons/right_arrow.png',array('class'=>'pageImgNext','alt'=>__('Next',true) ) ), array('escape' => false ), $html->image('icons/right_arrow_disable.png'), array('escape' => false ,'class'=>'menuPage'));?>
+			<?php endif ?>
 		</div>
-	<?php endif ?>
 
 
-<table cellpadding="4" cellspacing="0" border="1">
-<tr>
-	<th><?php echo $paginator->sort('Брэнд','name');?></th>
-	<th><?php echo $paginator->sort('Логотип','logo');?></th>
-	<th>Описание</th>
-	<th class="actions">Действия</th>
-</tr>
-<?php
-$i = 0;
-foreach ($br as $brand):
+
+
+<?php foreach ($br as $brand):
 	$class = null;
 	$background = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-		$background = 'background-color:#F4F4F4';
-	}
 ?>
-	<tr<?php echo $class;?>>
-		<td>
-			<p style="margin-top: 20px; font-size: larger; font-weight: bold;"><?php echo $brand['Brand']['name']; ?></p>
-		</td>
-		<td>
-			<?php echo $html->image( 'catalog/'.$brand['Brand']['logo'] ); ?>
-		</td>
-		<td style="width: 480px;" >
-			<?php App::import('Core', 'Flay');?>
-			<p style="padding: 5px 10px; text-align: left;"><?php echo Flay::fragment( $brand['Brand']['body'],190); ?></p>
-		</td>
-		<td class="actions">
-			<p style="margin: 5px 0;"><?php echo $html->link('Редактировать', array('action'=>'edit', $brand['Brand']['id']),array('style' => $background) ); ?></p>
-			<?php if( count($brand['SubCategory']) > 0 ):?>
-				<p style="font-size: smaller;"><?php echo $html->link('Удалить Бренд с <span style="font-size: larger; font-weight: bold; color: red;">товарами и подразделами</span>', array('action'=>'delete', $brand['Brand']['id']), array('style' => 'color:#777;'.$background), sprintf('Удалить бренд %s?', $brand['Brand']['name']), false ); ?></p>
-			<?php else: ?>
-				<p style="font-size: smaller;"><?php echo $html->link('Удалить Бренд ', array('action'=>'delete', $brand['Brand']['id']),array('style' => 'color:#777;'.$background), sprintf('Удалить бренд %s?', $brand['Brand']['name']), false ); ?></p>
-			<?php endif ?>
-		</td>
-	</tr>
+		<div class="brand">
+			<div style="text-align:center;border:1px solid silver;padding:3px;">
+				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo'], array('alt'=>$brand['Brand']['name'],'title'=>$brand['Brand']['name']) ), array('action'=>'edit'.'/'.$brand['Brand']['id']), false, false,false); ?>
+			</div>
+			<?php echo $html->image('icons/lens.png',array('class'=>'lens'));?>
+			<div style="font-weight:bold;text-align:center;">&laquo;
+				<?php echo $brand['Brand']['name']; ?>
+			&raquo;</div>
+
+		</div>
+
 <?php endforeach; ?>
-</table>
+
+	<?php //echo $paginator->sort('Бренд','name');?>
+	<?php //echo $paginator->sort('Логотип','logo');?>
+
 </div>
 
 

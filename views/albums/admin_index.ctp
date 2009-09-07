@@ -1,6 +1,6 @@
 		
 	<?php foreach($albums as $album): ?>
-		<div class="thumb_admin">
+		<div class="span-4 thumbAdmin">
 			<?php if( isset($album['Image']['0']['image']) && $album['Image']['0']['image'] != null): ?>
 				<?php echo $html->link( $html->image( 'gallery/s/'.$album['Image']['0']['image'], array('alt' => $album['Album']['name'])), array('controller' => 'albums', 'action' => 'edit',$album['Album']['id']),null, null, false ); ?>
 			<?php else: ?>

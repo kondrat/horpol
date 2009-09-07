@@ -6,16 +6,16 @@ class BrandsController extends AppController {
 	var $components = array('Upload');
 	var $paginate = array('limit' => 15);
 //--------------------------------------------------------------------	
-  function beforeFilter()
-    {
+  function beforeFilter() {
         //$this->Auth->allow('index');
         parent::beforeFilter(); 
-        $this->layout = 'default'; 
-    }
+        $this->set('headerName','Бренды'); 
+   }
 //--------------------------------------------------------------------
 
 	function admin_index() {
 		$this->paginate['Brand'] = array('contain' => array('SubCategory.id') );
+		$this->paginate['Brand']['limit'] = 15;
 		$this->set('br', $this->paginate());
 	}
 //--------------------------------------------------------------------
@@ -98,7 +98,7 @@ class BrandsController extends AppController {
 				
 			}else {				
 					// upload the image using the upload component
-					$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('100', '70') ) );
+					$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('127', '70') ) );
 					
 					if ( $result != 1 ){
 						if ( isset($this->data['Brand']['logo']) && $this->data['Brand']['logo'] != null) {

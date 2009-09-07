@@ -11,11 +11,37 @@
 }
 
 div.header {
-	padding: 5px 0;
+	padding: 10px 0;
 	border-bottom:1px solid silver;
 }
 .header h3 {
 	margin:10px 0 0 70px;
+}
+.mainMenu {
+	border-bottom: 1px solid silver;
+}
+.mainMenu a {
+	display:block;
+	float:left;
+	font-weight:bold;
+	padding:0.5em 1em;
+	text-decoration:none;
+}
+.menu {
+	color:#000;
+}
+.mainMenu a:hover {
+		/*border-bottom: 4px solid black;*/
+		background:	transparent url(../img/icons/4x4_999.gif) repeat-x scroll left bottom;
+	}
+.actions h3 {
+	margin: 0.3em 0 0.3em 0.5em;
+}
+.actions a{
+	color:#000;
+}
+.actions a:hover{
+	color:#911B3B;
 }
 .username {
 	margin: 0px;
@@ -53,7 +79,68 @@ div.footer a:hover{
 .userZone a:hover{
 	text-decoration:none;
 }
-.thumb_admin {
-	float: left;
-	width: 175px;
+.thumbAdmin img {
+	background:transparent url(../img/shadow2.png) no-repeat scroll 0 0;
+	padding:2px 5px 5px 0;
+}
+/*flash message*/
+#flashMessage {
+	position:absolute;
+	width: 950px;
+	background-color:#eee;
+	margin:0px;
+	font-weight:bold;
+	font-size: 17pt;
+	line-height:2.5em;
+	text-align:center;
+	overflow: hidden;
+	/*height:0;*/
+	z-index:100;
+}
+div.er {
+	color:red;
+}
+.fl {
+	height:0%;
+	z-index:100;
+}
+/* brand*/
+.brand {
+	/*border:1px solid silver;*/
+	padding:0 5px;
+	margin: 10px 0 0;
+	float:left;
+	width:145px;
+	position:relative;
+}
+
+.lens {
+	left:130px;
+	position:absolute;
+	top:55px;
+}
+/*paginator classes*/
+.page {
+	text-align: right;
+}
+.page div.menuPage {
+	display:inline;
+	font-weight: normal;
+}
+.page a {
+	text-decoration: none;
+}
+.page, .page a, .page span a {
+	color: #464646;
+	font-weight: bold;
+}
+.page span a:hover {
+	color: #000;
+}
+.page span.current {
+	color: #999;
+	font-weight: bold;
+}
+.page img {
+	margin: -3px 2px;
 }

@@ -1,21 +1,20 @@
-<?php $items = array(
-	'Главная' => array('controller' => 'pages', 'action' => 'index'),
-	'Товары' => array('controller' => null, 'action' => null),
-	'Фотоальбомы' => array('controller' => 'albums', 'action' => 'index'),
-	'Новости' => array('controller' => 'news', 'action' => 'index'),
-	'Баннеры' => array('controller' => 'banners', 'action' => 'index'),
-	); 
-	
-
+<?php 
+			$items = array(
+				'Главная' => array('controller' => 'pages', 'action' => 'index'),
+				'Товары' => array('controller' => 'sub_categories', 'action' => 'index'),
+				'Категории' => array('controller' => 'categories', 'action' => 'index'),
+				'Бренды' => array('controller' => 'brands', 'action' => 'index'),
+				'Фотоальбомы' => array('controller' => 'albums', 'action' => 'index'),
+				'Новости' => array('controller' => 'news', 'action' => 'index'),
+				'Баннеры' => array('controller' => 'banners', 'action' => 'index'),
+			); 
 ?>
-
-	<tr align="center">		
-                      <? $here = Router::url(substr($this->here, strlen($this->webroot)-1)) ?>
-                      <? foreach ($items as $name => $link): ?>
-                          <? if (Router::url($link) == $here): ?>
-															<td width="74"> <?php echo $html->link( $name, $link, array('class' => 'menuActive' ) );  ?>&nbsp;</td>		                             
-                          <? else: ?>
-														<td width="74"> <?php echo $html->link( $name, $link, array('class' => 'menu' ) );  ?>&nbsp;</td>                          
-                          <? endif ?>                   
-                      <? endforeach ?>
-	</tr>
+                      <?php $here = Router::url(substr($this->here, strlen($this->webroot)-1)); ?>
+                      <?php foreach ($items as $name => $link): ?>
+                          <?php if (Router::url($link) == $here): ?>
+															<?php echo $html->link( $name, $link, array('class' => 'menuActive' ) ); ?>	                             
+                          <?php else: ?>
+														<?php echo $html->link( $name, $link, array('class' => 'menu' ) );  ?>                          
+                          <?php endif ?> 
+                                           
+                      <?php endforeach ?>

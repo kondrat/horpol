@@ -65,6 +65,7 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 
 	function admin_index() {
+		$this->set('headerName','Категории');
 		$this->Category->recursive = 0;
 		$caties = $this->Category->find('all');
 		//echo 'cat';
@@ -72,6 +73,7 @@ class CategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
+		$this->set('headerName','Категории');
 		if ( (!$id) ||  ($this->Category->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Category.', true));
 			$this->redirect(array('action'=>'index'));			
@@ -81,6 +83,7 @@ class CategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_add() {
+		$this->set('headerName','Категории');
 		if (!empty($this->data)) {
 			$this->Category->create();
 			if ($this->Category->save($this->data)) {
@@ -94,6 +97,7 @@ class CategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
+		$this->set('headerName','Категории');
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Category', true));
 			$this->redirect(array('action'=>'index'));

@@ -1,6 +1,3 @@
-<?php //debug($products); ?>
-<?php //debug($this->params);?>
-<?php //debug($dataToShow);?>
 <div class="products index">
 <h2>Список товаров&nbsp;<span style="font-size: smaller;">
 							<?php //echo $html->link('все товары', array('action' => 'index') );?>
@@ -55,7 +52,6 @@
 
 
 <?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'))); ?>
-<?php echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','horpol'),false);?>
 
 <table cellpadding="4" cellspacing="0" border="1">
 <tr>

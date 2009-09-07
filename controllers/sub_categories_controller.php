@@ -2,9 +2,7 @@
 class subCategoriesController extends AppController {
 
 	var $name = 'subCategories';
-	var $helpers = array('Html', 'Form');
 	var $paginate = array('limit' => 20);
-	var $uses = array('SubCategory', 'Brand', 'Category' );
 	//var $cacheAction;// = "1 hour";
 //--------------------------------------------------------------------	
   function beforeFilter() {
@@ -21,7 +19,7 @@ class subCategoriesController extends AppController {
 		 */
 		$brand = array();
 		if ( isset($this->params['named']['brand']) && (int)Sanitize::paranoid($this->params['named']['brand']) != null ) {
-			$brand = $this->Brand->find('first', array('conditions' => array('Brand.id' => $this->params['named']['brand'] ),'fields' => array('Brand.id', 'Brand.logo','Brand.body','Brand.name'), 'contain' => false ) );	
+			$brand = $this->SubCategory->Brand->find('first', array('conditions' => array('Brand.id' => $this->params['named']['brand'] ),'fields' => array('Brand.id', 'Brand.logo','Brand.body','Brand.name'), 'contain' => false ) );	
 			if ( $brand != array() ) {
 				$this->set('brand', $brand);
 			} else {
@@ -38,7 +36,7 @@ class subCategoriesController extends AppController {
 		 */		
 		$category = array();
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
-			//$t = $this->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
+			//$t = $this->SubCategory->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
 			//$this->set('t',$t);
 			$category = $this->params['named']['category'];
 			$this->set('category',$category);
@@ -66,7 +64,7 @@ class subCategoriesController extends AppController {
 				$this->render('indexType3');
 			}
 		} elseif( !isset($this->params['named']['cat']) ) {
-			//$brandInfo= $this->Brand->find('first', array('conditions' => array('SubCategory.id' => $subCat['0']['SubCategory']['id']), 'contain' => array('Product') ) );		
+			//$brandInfo= $this->SubCategory->Brand->find('first', array('conditions' => array('SubCategory.id' => $subCat['0']['SubCategory']['id']), 'contain' => array('Product') ) );		
 		} 
 		
 		if( isset($products['Product']) && $products['Product'] == array() ) {
@@ -82,6 +80,7 @@ class subCategoriesController extends AppController {
 //--------------------------------------------------------------------
 
 	function admin_index() {
+		$this->set('headerName','Товары');
 			if ( isset($this->params['named']['category']) && $this->params['named']['category'] != null ) {
 				
 				$cond['Category.id'] = $this->params['named']['category'];
@@ -112,13 +111,14 @@ class subCategoriesController extends AppController {
 			$this->set( 'brands', $a );
 			
 		} else {			
-			$categories = $this->Category->find('all');
+			$categories = $this->SubCategory->Category->find('all');
 			$this->set( 'categories', $categories );
 			$this->render('catlist');
 		}
 	}
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
+		$this->set('headerName','Подразделы');
 		if ( (!$id) ||  ($this->SubCategory->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));			
@@ -127,7 +127,8 @@ class subCategoriesController extends AppController {
 		}
 	}
 //--------------------------------------------------------------------
-	function admin_add() {	
+	function admin_add() {
+		$this->set('headerName','Подразделы');	
 		/**
 		 * No validation yet
 		 */
@@ -151,7 +152,7 @@ class subCategoriesController extends AppController {
 		
 		if ( isset($this->data['SubCategory']['category_id']) && $this->data['SubCategory']['category_id'] != null ) {
 				$categoryData = array();
-				$categoryData = $this->Category->find('first', array( 'conditions' => array('Category.id' => $this->data['SubCategory']['category_id']), 'fields'=>array('id','name'), 'contain'=>false ) );
+				$categoryData = $this->SubCategory->Category->find('first', array( 'conditions' => array('Category.id' => $this->data['SubCategory']['category_id']), 'fields'=>array('id','name'), 'contain'=>false ) );
 					if( isset($categoryData) && $categoryData != array() ) {
 						$this->set('categoryData', $categoryData);
 					} else {
@@ -160,7 +161,7 @@ class subCategoriesController extends AppController {
 		}
 		if ( isset($this->data['SubCategory']['brand_id']) && $this->data['SubCategory']['brand_id'] != null ) {					
 				$brandData = array();
-				$brandData = $this->Brand->find('first', array( 'conditions' => array('Brand.id' => $this->data['SubCategory']['brand_id']), 'fields'=>array('id','name','logo'), 'contain'=>false ) );
+				$brandData = $this->SubCategory->Brand->find('first', array( 'conditions' => array('Brand.id' => $this->data['SubCategory']['brand_id']), 'fields'=>array('id','name','logo'), 'contain'=>false ) );
 					if( isset($brandData) && $brandData != array() ) {
 						$this->set('brandData', $brandData);
 					} else {
@@ -191,14 +192,14 @@ class subCategoriesController extends AppController {
 			
 			case 1:								
 				if ( !isset($this->data['SubCategory']['brand_id']) ){					
-					$brands = $this->Brand->find('list');
+					$brands = $this->SubCategory->Brand->find('list');
 					$this->set( compact('brands') );				
 					$this->render('catselect');
 				} else {					
 					$this->SubCategory->set( $this->data );									
 	 				if ( $this->SubCategory->validates() == false ) {
 					
-							$brands = $this->Brand->find('list');
+							$brands = $this->SubCategory->Brand->find('list');
 							$this->set( compact('brands') );
 							
 							$this->Session->setFlash('Вы должны выбрать Бренд');
@@ -217,10 +218,10 @@ class subCategoriesController extends AppController {
 				
  				if ( $this->SubCategory->validates() == false ) {	
 						
-						$cat = $this->Category->find('list',array('contain' => false));
+						$cat = $this->SubCategory->Category->find('list',array('contain' => false));
 						$this->set( compact('cat') );
 				
-						$brands = $this->Brand->find('list');
+						$brands = $this->SubCategory->Brand->find('list');
 						$this->set( compact('brands') );
 						
 						$this->Session->setFlash('Вы должны выбрать Категорию и Брэнд');
@@ -270,10 +271,10 @@ class subCategoriesController extends AppController {
 		
 
 		if ( empty($this->data) ) {
-			$cat = $this->Category->find('list',array('contain' => false));
+			$cat = $this->SubCategory->Category->find('list',array('contain' => false));
 			$this->set( compact('cat') );
 	
-			$brands = $this->Brand->find('list');
+			$brands = $this->SubCategory->Brand->find('list');
 			$this->set( compact('brands') );
 		
 			$this->render('catselect');
@@ -283,6 +284,7 @@ class subCategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
+		$this->set('headerName','Подразделы');
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid SubCategory', true));
 			$this->redirect(array('action'=>'index'), null, true);

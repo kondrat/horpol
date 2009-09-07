@@ -15,15 +15,18 @@
 		echo $html->css('ie');
 		//echo $html->css('adminStyle-ie');if we will need this
 		echo '<![endif]-->';
-
+		
+		echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','jquery.form','horpolAdmin'));
 
 		echo $scripts_for_layout;
 	?>
 </head>
 <body>
 	<div class="container showgrid.">
-
-		<div class="header span-24" style="margin-bottom:5px;">
+		<div class="fl span-24 last" style="font-weight:bold; position:relative;">
+			<?php $session->flash(); ?>
+		</div>
+		<div class="header span-24">
 			<div class="span-4">
 				<div class="userZone"><?php echo $html->link('Хороший пол', '/'); ?></div>
 			</div>
@@ -37,12 +40,12 @@
 				<?php endif ?>
 			</div>
 		</div>
-		<div class="span-24"><?php echo $this->element('menu/menu'); ?></div>
+		<div class="span-24 mainMenu" style="margin-bottom:10px;"><?php echo $this->element('menu/menu'); ?></div>
 		
 			
 		<div class="span-24">
 
-			<?php $session->flash(); ?>
+			
 
 			<?php echo $content_for_layout; ?>
 

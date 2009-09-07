@@ -17,5 +17,6 @@ webroot/img/upload_pic/*
 webroot/img/gallery/s/*
 webroot/img/gallery/b/*
 webroot/js/fck/*
+webroot/js/ckeditor/*
 !empty
 !.gitignore
