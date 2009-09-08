@@ -185,3 +185,17 @@ div.er {
 .stepSpace {
 	padding: 19px 0 0 0;
 }
+.setWrapper {
+	text-align:center;
+	margin: 1em 0 0 0;
+}
+.span- {
+	float:left;
+	margin-left:1em;
+}
+.setItem {
+	font-size: 90%;
+	color:gray;
+	font-weight:bold;
+	line-height:0.8em;
+}
