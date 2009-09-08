@@ -78,14 +78,9 @@ class subCategoriesController extends AppController {
 		//$this->set('subCat', $this->paginate());
 	}
 //--------------------------------------------------------------------
-/*
+
 	function admin_index() {
 		$this->set('headerName','Товары');
-		
-		
-		
-		
-		
 			if ( isset($this->params['named']['category']) && $this->params['named']['category'] != null ) {
 				
 				$cond['Category.id'] = $this->params['named']['category'];
@@ -113,39 +108,14 @@ class subCategoriesController extends AppController {
 			
 			$brands = $this->SubCategory->find('all',array('conditions' => array('category_id'=> $this->params['named']['category'] ) ,'contain' => false) );
 			$a = $this->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $this->params['named']['category'] );
-			//$this->set( 'brands', $a );
+			$this->set( 'brands', $a );
 			
 		} else {			
 			$categories = $this->SubCategory->Category->find('all');
 			$this->set( 'categories', $categories );
 			$this->render('catlist');
 		}
-		
-		
 	}
-	
-	
-	
-*/	
-//--------------------------------------------------------------------
-	function admin_index() {		
-		$this->set('headerName','Товары');
-		$brands = array();
-
-		
-		$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
-		$this->set('brands',$brands);
-		$this->render('brandList');
-		
-		
-		
-		
-	}
-
-
-
-	
-	
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
 		$this->set('headerName','Подразделы');

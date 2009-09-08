@@ -8,7 +8,7 @@
 	<?php
 		echo $form->input('id');
 		echo $form->input('name', array('label' => 'Название Бренда') );
-		//echo $form->input('body', array('label' => 'Описание') );
+		echo $form->input('origin', array( 'label' => 'Страна-изготовитель') );
 		echo $form->label('body','Описание');
 		//echo $fck->load('Brand.body');
 		echo $form->input('logo', array('type' => 'hidden') );
