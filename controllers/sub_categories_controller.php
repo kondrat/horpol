@@ -130,12 +130,22 @@ class subCategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_index() {		
 		$this->set('headerName','Товары');
+		
+		$categories = array();
+
+		
+		$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
+		$this->set('categories',$categories);
+		$this->render('catList');	
+			
+		/*
 		$brands = array();
 
 		
 		$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
 		$this->set('brands',$brands);
 		$this->render('brandList');
+		*/
 		
 		
 		
