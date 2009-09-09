@@ -1,3 +1,7 @@
+<div class="actions">
+		<h3><?php echo $html->link('Добавить новый Подраздел', array('action'=>'add')); ?></h3>
+</div>
+
 <?php echo $this->element('product/product', array('cache' => false ) ); ?>
 
 <div class="categories span-7 push-7">

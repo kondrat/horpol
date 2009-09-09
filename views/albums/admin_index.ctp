@@ -1,5 +1,15 @@
-<div class="actions">
-		<h3><?php echo $html->link('Добавить новый Фотоальбом', array('action'=>'add')); ?></h3>
+<div class="actions span-24">
+		<h3><?php echo $html->link('Добавить новый Фотоальбом', array('action'=>'add'),array('id'=>'albumNew')); ?></h3>
+</div>
+<div class="span-24">
+	<div class="span-7 push-1 albumAdd" id="albumAddForm">
+		<?php echo $form->create('Album');?>
+			<?php
+				echo $form->input('name', array('label' => 'Заголовок альбома', 'style' => 'width: 259px') );
+			?>
+		<?php echo $form->submit('Сохранить',array('class'=>'span-3'));?>
+		<?php echo $form->end();?>
+	</div>
 </div>
 	<?php $i = 1;?>		
 	<?php foreach($albums as $album): ?>

@@ -47,7 +47,7 @@ a.logout:hover{
 		color:#E10000;
 }
 .actions h3 {
-	margin: 0.3em 0 0.3em 0.5em;
+	margin-left: 0.3em;
 }
 .actions a{
 	color:#000;
@@ -91,9 +91,10 @@ div.footer a:hover{
 .userZone a:hover{
 	text-decoration:none;
 }
+/*album*/
 .thumbAdmin {
 	position:relative;
-	margin-top:10px;
+	margin-bottom:1em;
 }
 .thumbAdmin .lens{
 	top:85px;
@@ -104,6 +105,16 @@ div.footer a:hover{
 	padding:2px 5px 5px 0;
 	text-align:center;
 }
+.albumAdd {
+	padding:10px 2px 10px 10px;
+	border-top:2px solid silver;
+	border-bottom:2px solid silver;
+	background-color:#eee;
+	display:none;
+}
+#AlbumName {
+	margin: 0 0 1em;
+	}
 /*flash message*/
 #flashMessage {
 	position:absolute;
@@ -189,7 +200,7 @@ div.er {
 .brand {
 	/*border:1px solid silver;*/
 	padding:0 5px;
-	margin: 10px 0 0;
+	margin-bottom:1em;
 	float:left;
 	width:148px;
 	position:relative;
