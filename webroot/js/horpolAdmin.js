@@ -43,3 +43,33 @@ $(document).ready(function() {
 								});
 }); 
 */
+
+$(document).ready( function(){
+		$('.category li a').click(function() {
+			var liContent = $(this).text();
+			$('#cat span.catText').text(liContent);
+			$('#cat span').addClass('catSelected');
+			var cat = $(this).attr('href');		
+			$('#catSelect').attr('href',cat);
+			return false;
+		});
+});
+
+$(document).ready( function(){
+		$('.brA').click(function() {
+			var brandContent = $(this).text();		
+			$('#brand span.brandText').text(brandContent);
+			$('#brand').addClass('brandSelected');
+			var brandSelect = $(this).attr('href');			
+			$('#brandSelect').attr('href',brandSelect);
+			return false;
+		});
+		$('.brImg').click(function() {
+			var brandContent = $(this).parents('.brand').find('.brA').text();	
+			$('#brand span.brandText').text(brandContent);
+			$('#brand').addClass('brandSelected');
+			var brandSelect = $(this).attr('href');			
+			$('#brandSelect').attr('href',brandSelect);
+			return false;
+		});
+});

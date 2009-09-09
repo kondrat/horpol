@@ -128,21 +128,7 @@ div.er {
 	height:0%;
 	z-index:100;
 }
-/* brand*/
-.brand {
-	/*border:1px solid silver;*/
-	padding:0 5px;
-	margin: 10px 0 0;
-	float:left;
-	width:148px;
-	position:relative;
-}
 
-.lens {
-	left:130px;
-	position:absolute;
-	top:55px;
-}
 /*paginator classes*/
 .page {
 	text-align: right;
@@ -187,7 +173,7 @@ div.er {
 }
 .setWrapper {
 	text-align:center;
-	margin: 1em 0 0 0;
+	margin: 1em 0 ;
 }
 .span- {
 	float:left;
@@ -198,4 +184,46 @@ div.er {
 	color:gray;
 	font-weight:bold;
 	line-height:0.8em;
+}
+/* brand*/
+.brand {
+	/*border:1px solid silver;*/
+	padding:0 5px;
+	margin: 10px 0 0;
+	float:left;
+	width:148px;
+	position:relative;
+}
+
+.lens {
+	left:130px;
+	position:absolute;
+	top:55px;
+}
+/* category */
+.categories {
+	text-align:left;
+	/*border: 2px solid silver;*/
+	color:#911B3B;
+	padding: 5px;
+	font-size:12pt;
+	line-height:27px;
+	/*background:#9AE4E8 url(../img/fon.jpg) repeat scroll 0 0;*/
+}
+.categories li a {
+	color:#911B3B;
+	text-decoration:none;
+}
+.categories li a:hover {
+	color:#000;
+}
+.catSelected {
+	color:maroon;
+	font-size:larger;
+	font-weight:bold;	
+}
+.brandSelected {
+	color:royalBlue;
+	font-size:larger;
+	font-weight:bold;	
 }

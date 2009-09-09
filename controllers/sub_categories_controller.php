@@ -130,26 +130,69 @@ class subCategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_index() {		
 		$this->set('headerName','Товары');
+
 		
 		$categories = array();
-
-		
-		$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
-		$this->set('categories',$categories);
-		$this->render('catList');	
-			
-		/*
 		$brands = array();
+		$subCategories = array();
+		$case = null;
 
 		
-		$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
-		$this->set('brands',$brands);
-		$this->render('brandList');
-		*/
+		if( !isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) ) {
+			$case = 0;
+		} else if( isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) ) {
+			$case = 1;
+		}	else if ( isset($this->params['named']['cat']) && isset($this->params['named']['brand']) ) {
+			$case = 2;
+		}	
 		
 		
-		
-		
+			
+		//debug($case);
+		switch($case) {
+			case 1:
+				//echo 'one';
+				$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
+				$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
+				$this->set('brands',$brands);
+				$this->set('catSelected',$catSelected['Category']['name']);
+				$this->render('brandList');							
+			break;
+			case 2:
+				//echo 'two';				
+				$subCategories = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat'],'SubCategory.brand_id'=>$this->params['named']['brand']),
+																															'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id'),
+																															'contain'=>	array('Category'=>array('fields'=>'name'),
+																																								'Brand'=>array('fields'=>'name') ) 
+																															)
+																								);
+				if(	$subCategories != array() ) {
+					$this->set('subCategories',$subCategories);
+					$this->set('catSelected',$subCategories[0]['Category']['name']);
+					$this->set('brandSelected',$subCategories['0']['Brand']['name']);					
+				} else {
+					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
+					$this->set('catSelected',$catSelected['Category']['name']);
+					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.id','Brand.name'),'contain'=>false));					
+					$this->set('brandSelected',$brandSelected['Brand']['name']);
+					$this->Session->setFlash('Ни одного подраздела еще не создано');
+				}																			
+
+				
+				$this->render('subcatList');
+			break;
+			default:
+				//echo 'default';
+				
+				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
+				$this->set('categories',$categories);
+				$this->render('catList');			
+			break;
+		}		
+
+
+			
+
 	}
 
 

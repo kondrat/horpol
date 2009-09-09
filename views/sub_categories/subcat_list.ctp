@@ -14,19 +14,19 @@
 				$catId = null;
 			}
 ?>
-<?php foreach ($brands as $brand):?>
-		<div class="brand">
-			<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
-				<?php //echo $brand['Brand']['id'];?>
-				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
-			</div>
-			<div class="brandName" style="font-weight:bold;text-align:center;">
-				&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
-			</div>
-		</div>
-
-<?php endforeach; ?>
-
+<div class="span-24">
+	<?php if(isset($subCategories) && $subCategories != array()):?>
+	<ul class="subCategory">
+		<?php foreach ($subCategories as $subCategory):?>			
+				<li>
+					<?php echo $html->link($subCategory['SubCategory']['name'],array('action'=>'index','subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
+				</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php else: ?>
+		<h3>Создать новый подраздел</h3>
+	<?php endif ?>
+</div>
 	<?php //echo $paginator->sort('Бренд','name');?>
 	<?php //echo $paginator->sort('Логотип','logo');?>
 
