@@ -2,7 +2,7 @@
 class AlbumsController extends AppController {
 	var $name = 'Albums';
 	var $components = array('Upload');
-	var $paginate = array('limit' => 9 );
+	var $paginate = array('limit' => 15 );
 
 //--------------------------------------------------------------------	
 	function beforeFilter() {

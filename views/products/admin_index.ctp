@@ -1,7 +1,7 @@
-<div class="products index">
-<h2>Список товаров&nbsp;<span style="font-size: smaller;">
-							<?php //echo $html->link('все товары', array('action' => 'index') );?>
-						</span></h2>
+<div class="actions span-24">
+		<h3><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['subCategory']['category_id'],'brand:'.$dataToShow['0']['subCategory']['brand_id'],'cat:'.$dataToShow['0']['subCategory']['id'],'cache:'.false )); ?></h3>
+</div>
+
 	<?php if ( isset($this->params['pass'][0]) && (int)$this->params['pass'][0] != null ): ?>
  			<table cellpadding="4" cellspacing="0" border="1" style=" width: 550px;">
 				<tr>
@@ -18,12 +18,7 @@
 			</table>
 
 			<p><?php echo $html->link('Назад в подраздел <em style="color: red;">'.$dataToShow['0']['subCategory']['name'].'</em>',array('controller' => 'sub_categories', 'action'=>'index','category:'.$dataToShow['0']['subCategory']['category_id']),false,false,false );?>		
-			<div class="actions">
-				<ul>
-					<li><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['subCategory']['category_id'],'brand:'.$dataToShow['0']['subCategory']['brand_id'],'cat:'.$dataToShow['0']['subCategory']['id'],'cache:'.false )); ?></li>
-			
-				</ul>
-			</div>						
+					
 
 			
 	<?php endif ?>
@@ -95,4 +90,4 @@ foreach ($products as $product):
 </table>
 <?php echo $form->submit('Удалить выбранное', array('onclick' => 'return confirm("Удалть выбранные товары?")') );?>
 <?php $form->end();?>
-</div>
+

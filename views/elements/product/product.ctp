@@ -1,31 +1,40 @@
 <?php ?> 
 <div class="span-24">
-	<div class="span-20 prepend-3 step">
-		<ul>
-		<li class="">
-			<div>1</div>
-			<?php echo $html->link('Выбрать Категорию',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'catSelect') );?>
-		</li>
-		<li class="stepSpace">&raquo;</li>
-		<li class="">
-			<div>2</div>
-			<?php echo $html->link('Выбрать Бренд',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'brandSelect') );?>
-		</li>
-		<li class="stepSpace">&raquo;</li>
-		<li class="">
-			<div>3</div>
-			<?php echo $html->link('Выбрать Подраздел',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'subcatSelect') );?>			
-		</li>
-		<li class="stepSpace">&raquo;</li>
-		<li class="">
-			<div>4</div>
-			<?php echo $html->link('Выбрать Товары',array());?>
-			
-		</li>
-	</ul>
+	<div class="span-24 step actions">
+		<div style="float:left;">
+			<div style="text-align:center;">1</div>
+			<h3>
+				<?php echo $html->link('Выбрать Категорию',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'catSelect') );?>
+			</h3>
+	</div>
+
+		<h3 class="stepSpace">&raquo;</h3>
+		
+		<div style="float:left;">
+			<div style="text-align:center;">2</div>
+			<h3>
+				<?php echo $html->link('Выбрать Бренд',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'brandSelect') );?>
+			</h3>
+		</div>
+		
+		<h3 class="stepSpace">&raquo;</h3>
+		<div style="float:left;">
+			<div style="text-align:center;">3</div>		
+			<h3>			
+				<?php echo $html->link('Выбрать Подраздел',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'subcatSelect') );?>			
+			</h3>
+		</div>
+		<h3 class="stepSpace">&raquo;</h3>
+		<div style="float:left;">
+			<div style="text-align:center;">4</div>		
+			<h3>			
+				<?php echo $html->link('Выбрать Товары',array());?>
+			</h3>
+		</div>
+	
 </div>
 <div class="span-24">
-	<div class="span-15 setWrapper">
+	<div class="span-15 push-5 setWrapper">
 		<div class="span-" style="">
 			<div class="setItem">[ Категория: ]</div>			
 			<?php
@@ -33,7 +42,7 @@
 					$cat = $catSelected;
 					$catSelectedClass = 'catSelected';
 				} else {
-					$cat = 'Все Категории';
+					$cat = 'Категория не выбрана';
 					$catSelectedClass = null;
 				}
 			?>			
@@ -46,7 +55,7 @@
 					$brand = $brandSelected;
 					$brandSelectedClass = 'brandSelected';
 				} else {
-					$brand = 'Все Бренды';
+					$brand = 'Бренды не выбран';
 					$brandSelectedClass = null;
 				}
 			?>			
@@ -54,7 +63,7 @@
 		</div>
 		<div class="span-" style="">
 			<div class="setItem">[ Подраздел: ]</div>
-			<div id="subcat" class="setItemMain">[ Все Подразделы ]</div>
+			<div id="subcat" class="setItemMain">[ Подразделы не выбран ]</div>
 		</div>
 	</div>
 </div>

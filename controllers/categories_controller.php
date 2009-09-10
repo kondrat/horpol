@@ -27,7 +27,7 @@ class CategoriesController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function brand($id = null) {
-		//$this->cacheAction = "10000 hours";
+		$this->cacheAction = "10000 hours";
 		$cat = array();
 		$a = array();
 		
@@ -48,16 +48,19 @@ class CategoriesController extends AppController {
 				$this->render('case2');				
 			break;
 			
-			default:
+			default:			
+			
+			$brands = $this->Category->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$id),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );
 
-			$a = $this->Category->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $id);
+
+
 			//debug($a);
-			if ( $a == array() ) {
+			if ( $brands == array() ) {
 				$this->Session->setFlash('В данной категории отсутствуют товары.');
 				$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
 			}
 				$this->set('cat', $cat);
-				$this->set('brands',$a);	
+				$this->set('brands',$brands);
 		}//end switch	
 	
 	}

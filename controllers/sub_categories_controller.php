@@ -153,9 +153,22 @@ class subCategoriesController extends AppController {
 			case 1:
 				//echo 'one';
 				$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
-				$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
-				$this->set('brands',$brands);
 				$this->set('catSelected',$catSelected['Category']['name']);
+				
+				//$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
+				
+				$brands = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );			
+				$this->set('brands',$brands);
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				$this->render('brandList');							
 			break;
 			case 2:
@@ -177,8 +190,7 @@ class subCategoriesController extends AppController {
 					$this->set('brandSelected',$brandSelected['Brand']['name']);
 					$this->Session->setFlash('Ни одного подраздела еще не создано');
 				}																			
-
-				
+	
 				$this->render('subcatList');
 			break;
 			default:

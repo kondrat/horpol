@@ -77,7 +77,7 @@ $(document).ready( function(){
 $(document).ready( function(){
 		$('#albumNew').click(function() {
   				if ( $("#albumAddForm").is(":hidden") ) {
-            $("#albumAddForm").slideDown();
+            $("#albumAddForm").fadeIn();
 						//$(".projectTitle").text('close id').css({'color' : 'sienna'});
           } else {
             $("#albumAddForm").fadeOut();

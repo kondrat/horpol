@@ -1,14 +1,26 @@
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить новый Фотоальбом', array('action'=>'add'),array('id'=>'albumNew')); ?></h3>
 </div>
-<div class="span-24">
-	<div class="span-7 push-1 albumAdd" id="albumAddForm">
+<div class="span-24" style="position:relative;">
+	<div class="span-8  albumAdd" id="albumAddForm">
+		<div class="albumAddFormWrapper">
 		<?php echo $form->create('Album');?>
 			<?php
 				echo $form->input('name', array('label' => 'Заголовок альбома', 'style' => 'width: 259px') );
 			?>
 		<?php echo $form->submit('Сохранить',array('class'=>'span-3'));?>
 		<?php echo $form->end();?>
+		</div>
+		<div class="test">
+			<!--<div class="fancy_bg fancy_bg_n"></div>
+			<div class="fancy_bg fancy_bg_ne"></div>-->
+			<div class="fancy_bg fancy_bg_e"></div>
+			<div class="fancy_bg fancy_bg_se"></div>
+			<div class="fancy_bg fancy_bg_s"></div>
+			<div class="fancy_bg fancy_bg_sw"></div>
+			<div class="fancy_bg fancy_bg_w"></div>
+			<!--<div class="fancy_bg fancy_bg_nw"></div>-->
+		</div>
 	</div>
 </div>
 	<?php $i = 1;?>		
@@ -28,9 +40,9 @@
 			<?php endif ?>
 			<?php echo $html->image('icons/lens.png',array('class'=>'lens'));?>
 		</div>
-			<div style="font-weight:bold;text-align:center;">&laquo;<?php echo $album['Album']['name']; ?>&raquo;</div>
+			<div style="font-weight:bold;text-align:center;line-height:1em;">&laquo;<?php echo $album['Album']['name']; ?>&raquo;</div>
 		
-			<div style="text-align:center;font-size:90%;line-height:0.4em;">
+			<div style="text-align:center;font-size:90%;line-height:1em;">
 				Кол-во фото:&nbsp;<?php echo $album['Album']['image_count']; ?>
 			</div>
 		</div>

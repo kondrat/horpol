@@ -7,6 +7,11 @@
 			<?php endif ?>
 		</div>
 
+
+<div class="span-24" style="">
+	<h5 style="border-bottom:1px solid silver;margin-bottom:1em;float:left;margin-left:1em;">Бренды категории <span style="color:teal;">&laquo;<?php echo $catSelected;?>&raquo;</span></h5>
+	<h5 style="border-bottom:1px solid silver;margin-bottom:1em;float:left;margin-left:1em;">Все Бренды</h5>
+</div>
 <?php 
 			if(isset($this->params['named']['cat'])){
 				$catId = 'cat:'.$this->params['named']['cat'];

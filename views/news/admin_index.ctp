@@ -1,8 +1,9 @@
-<div class="maincontent">
+<div class="actions span-24">
+		<h3><?php echo $html->link('Добавить новость', array('controller' => 'news', 'action' => 'add') ) ?></h3>
+</div>
 
-<p style="font-size:larger;"><?php echo $html->link('Добавить новость', array('controller' => 'news', 'action' => 'add') ) ?></p>
-<br />
-<br />
+
+
 
 
 
@@ -46,4 +47,3 @@
 
 
 	
-</div>

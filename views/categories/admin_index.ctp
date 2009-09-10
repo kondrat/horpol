@@ -1,21 +1,15 @@
-<?php //debug($cat);?>
-<div class="categorys index">
-<h2>Основные категории (меню с левой стороны)</h2>
-<p><?php echo $html->link('Создать новую категорию', array('action'=>'add')); ?></p>
-<br />
+<div class="actions span-24">
+		<h3><?php echo $html->link('Добавить категорию', array('action'=>'add')); ?></h3>
+</div>
 
-	<?php if( isset($this->params['paging']['Category']['pageCount']) && $this->params['paging']['Category']['pageCount'] > 1 ): ?>
-		<p><?php echo $paginator->counter(array('format' => __('Страница %page% из %pages%.', true)));?></p>
-		<div class="paging">
-			<table>
-				<tr>
-					<td><?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?></td>
-		  			<td><?php echo $paginator->numbers();?></td>
-					<td><?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?></td>
-				</tr>
-			</table>
+		<div class="page">
+			<?php if( isset($this->params['paging']['Category']['pageCount']) && $this->params['paging']['Category']['pageCount'] > 1 ): ?>
+				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
+  				<?php echo $paginator->numbers( array('modulus'=>'5','separator'=>' &middot; ', 'class' => 'menuPage' ), null );?>
+				<?php echo $paginator->next( $html->image('icons/right_arrow.png',array('class'=>'pageImgNext','alt'=>__('Next',true) ) ), array('escape' => false ), $html->image('icons/right_arrow_disable.png'), array('escape' => false ,'class'=>'menuPage'));?>
+			<?php endif ?>
 		</div>
-	<? endif ?>
+
 <table cellpadding="4" cellspacing="0" border="1">
 <tr>
 	<th><?php echo $paginator->sort('name');?></th>
@@ -50,7 +44,7 @@ foreach ($cat as $category):
 	</tr>
 <?php endforeach; ?>
 </table>
-</div>
+
 
 <div class="actions">
 	<ul>

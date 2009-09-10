@@ -95,6 +95,7 @@ div.footer a:hover{
 .thumbAdmin {
 	position:relative;
 	margin-bottom:1em;
+	z-index:-1;
 }
 .thumbAdmin .lens{
 	top:85px;
@@ -105,13 +106,151 @@ div.footer a:hover{
 	padding:2px 5px 5px 0;
 	text-align:center;
 }
+#albumAddForm{
+	position:absolute;
+	top:0px;
+	left:5px;
+	z-index:10;
+}
 .albumAdd {
-	padding:10px 2px 10px 10px;
-	border-top:2px solid silver;
-	border-bottom:2px solid silver;
 	background-color:#eee;
 	display:none;
 }
+.albumAddFormWrapper{
+	padding:10px 0 10px 20px;
+	border-top:2px solid silver;
+	border:2px solid silver;
+}
+.test{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+}
+
+
+div.fancy_bg_n {
+background:transparent url(../img/fancybox/fancy_shadow_n.png) repeat-x scroll 0 0;
+height:18px;
+top:-18px;
+width:100%;
+}
+
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_ne {
+background:transparent url(../img/fancybox/fancy_shadow_ne.png) no-repeat scroll 0 0;
+height:18px;
+right:-13px;
+top:-18px;
+width:13px;
+}
+
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_e {
+background:transparent url(../img/fancybox/fancy_shadow_e.png) repeat-y scroll 0 0;
+height:100%;
+right:-13px;
+width:13px;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_se {
+background:transparent url(../img/fancybox/fancy_shadow_se.png) no-repeat scroll 0 0;
+bottom:-18px;
+height:18px;
+right:-13px;
+width:13px;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_s {
+background:transparent url(../img/fancybox/fancy_shadow_s.png) repeat-x scroll 0 0;
+bottom:-18px;
+height:18px;
+width:100%;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_sw {
+background:transparent url(../img/fancybox/fancy_shadow_sw.png) no-repeat scroll 0 0;
+bottom:-18px;
+height:18px;
+left:-13px;
+width:13px;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_w {
+background:transparent url(../img/fancybox/fancy_shadow_w.png) repeat-y scroll 0 0;
+height:100%;
+left:-13px;
+width:13px;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+div.fancy_bg_nw {
+background:transparent url(../img/fancybox/fancy_shadow_nw.png) no-repeat scroll 0 0;
+height:18px;
+left:-13px;
+top:-18px;
+width:13px;
+}
+div.fancy_bg {
+border:0 none;
+display:block;
+margin:0;
+padding:0;
+position:absolute;
+z-index:70;
+}
+
+
 #AlbumName {
 	margin: 0 0 1em;
 	}
@@ -168,23 +307,15 @@ div.er {
 /*
  * Product style
  */
-.step {
-	text-align:center;
-	font-weight:bold;
-	font-size:120%;
-}
-.step li {
-	display:block;
+
+.step h3 {
 	float:left;
-	margin-left: 1em;
-	margin-top: 5px;
 }
 .stepSpace {
-	padding: 19px 0 0 0;
+	padding: 10px;
 }
 .setWrapper {
 	text-align:center;
-	margin: 1em 0 ;
 }
 .span- {
 	float:left;
@@ -220,6 +351,9 @@ div.er {
 	font-size:12pt;
 	line-height:27px;
 	/*background:#9AE4E8 url(../img/fon.jpg) repeat scroll 0 0;*/
+}
+.categories li {
+	display:inline;
 }
 .categories li a {
 	color:#911B3B;
