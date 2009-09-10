@@ -372,3 +372,10 @@ div.er {
 	font-size:larger;
 	font-weight:bold;	
 }
+.currentCat{
+	font-size:85%;
+	cursor:default;
+}
+.categories li a.currentCat {
+	color:teal;
+}

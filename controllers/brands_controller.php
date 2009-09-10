@@ -2,7 +2,7 @@
 class BrandsController extends AppController {
 
 	var $name = 'Brands';
-	var $helpers = array('Html', 'Form');
+	//var $helpers = array('Html', 'Form');
 	var $components = array('Upload');
 	var $paginate = array('limit' => 15);
 //--------------------------------------------------------------------	
@@ -14,8 +14,9 @@ class BrandsController extends AppController {
 //--------------------------------------------------------------------
 
 	function admin_index() {
-		$this->paginate['Brand'] = array('contain' => array('SubCategory.id') );
+		$this->paginate['Brand'] = array('contain' => false );
 		$this->paginate['Brand']['limit'] = 15;
+		$this->paginate['Brand']['fields'] = array('Brand.id','Brand.name','Brand.logo');
 		$this->set('br', $this->paginate());
 	}
 //--------------------------------------------------------------------

@@ -45,8 +45,18 @@ $(document).ready(function() {
 */
 
 $(document).ready( function(){
+		var prev = null;
+	
 		$('.category li a').click(function() {
+			
 			var liContent = $(this).text();
+			
+			if (prev != null) {
+				prev.removeClass('currentCat');
+			}				
+			prev = $(this);				
+		 	$(this).addClass('currentCat');				
+
 			$('#cat span.catText').text(liContent);
 			$('#cat span').addClass('catSelected');
 			var cat = $(this).attr('href');		
