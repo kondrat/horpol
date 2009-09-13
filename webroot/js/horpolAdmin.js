@@ -95,4 +95,11 @@ $(document).ready( function(){
           }
 			return false;
 		});
+
+});
+$(document).ready( function(){
+		$('#brandsAll').click(function() {
+				$("#allBrandsWrapper").toggle();	          	
+			return false;
+		});
 });

@@ -134,15 +134,16 @@ class subCategoriesController extends AppController {
 		
 		$categories = array();
 		$brands = array();
+		$brandsAll = array();
 		$subCategories = array();
+		$brandsOfCurCatId = array(0);
 		$case = null;
 
-		
 		if( !isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) ) {
 			$case = 0;
-		} else if( isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) ) {
+		} else if( isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) || (isset($this->params['named']['brands'])&&isset($this->params['named']['brand'])=='all') )  {
 			$case = 1;
-		}	else if ( isset($this->params['named']['cat']) && isset($this->params['named']['brand']) ) {
+		}	else if ( isset($this->params['named']['cat']) && isset($this->params['named']['brand'])&&$this->params['named']['brand']!='all' ) {
 			$case = 2;
 		}	
 		
@@ -151,30 +152,31 @@ class subCategoriesController extends AppController {
 		//debug($case);
 		switch($case) {
 			case 1:
-				//echo 'one';
+					
 				$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
 				$this->set('catSelected',$catSelected['Category']['name']);
 				
-				//$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
-				
-				$brands = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );			
-				$this->set('brands',$brands);
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
+					//$brands = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
+					$brands = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id'),'contain'=>array('Brand')  ) );	
+					if($brands != array()) {
+						foreach($brands as $brand) {
+							$brandsOfCurCatId[] = $brand['Brand']['id'];
+						}
+						$brandsAll = $this->SubCategory->Brand->find('all',array('conditions'=>array('Brand.id NOT'=> $brandsOfCurCatId ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));						
+					} else {
+						$brandsAll = $this->SubCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
+					}
+					
+				$this->set('brands',$brands);		
+				$this->set('brandsAll',$brandsAll);
 				$this->render('brandList');							
 			break;
+			
+			
 			case 2:
 				//echo 'two';				
 				$subCategories = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat'],'SubCategory.brand_id'=>$this->params['named']['brand']),
-																															'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id'),
+																															'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id','SubCategory.product_count'),
 																															'contain'=>	array('Category'=>array('fields'=>'name'),
 																																								'Brand'=>array('fields'=>'name') ) 
 																															)
@@ -194,10 +196,16 @@ class subCategoriesController extends AppController {
 				$this->render('subcatList');
 			break;
 			default:
-				//echo 'default';
-				
+				//echo 'default';				
 				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
 				$this->set('categories',$categories);
+				
+				$categorieslast = array();
+				$categorieslast = $this->SubCategory->find('all',array('fields'=>array('SubCategory.name','SubCategory.modified','Category.name','Brand.name'),'contain'=> array('Brand','Category'),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
+				$this->set('categorieslast',$categorieslast);				
+				
+				
+				
 				$this->render('catList');			
 			break;
 		}		

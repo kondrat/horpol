@@ -20,6 +20,7 @@
 		<?php foreach ($subCategories as $subCategory):?>			
 				<li>
 					<?php echo $html->link($subCategory['SubCategory']['name'],array('action'=>'index','subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
+					<span>Содержит товаров:&nbsp;<?php echo $pc = (isset($subCategory['SubCategory']['product_count'])?$subCategory['SubCategory']['product_count']:'0');?></span>
 				</li>
 		<?php endforeach; ?>
 	</ul>

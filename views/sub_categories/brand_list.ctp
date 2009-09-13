@@ -7,11 +7,6 @@
 			<?php endif ?>
 		</div>
 
-
-<div class="span-24" style="">
-	<h5 style="border-bottom:1px solid silver;margin-bottom:1em;float:left;margin-left:1em;">Бренды категории <span style="color:teal;">&laquo;<?php echo $catSelected;?>&raquo;</span></h5>
-	<h5 style="border-bottom:1px solid silver;margin-bottom:1em;float:left;margin-left:1em;">Все Бренды</h5>
-</div>
 <?php 
 			if(isset($this->params['named']['cat'])){
 				$catId = 'cat:'.$this->params['named']['cat'];
@@ -19,18 +14,45 @@
 				$catId = null;
 			}
 ?>
-<?php foreach ($brands as $brand):?>
-		<div class="brand">
-			<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
-				<?php //echo $brand['Brand']['id'];?>
-				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
-			</div>
-			<div class="brandName" style="font-weight:bold;text-align:center;">
-				&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
-			</div>
-		</div>
+<div class="span-24" style="">
+	<h5 style="float:left;margin-left:1em;">Бренды категории <span style="color:teal;">&laquo;<?php echo $catSelected;?>&raquo;</span></h5>
+	<h5 style="float:left;margin-left:1em;"><?php echo $html->link('Все Бренды',array('action'=>'index',$catId),array('id'=>'brandsAll'));?></h5>
+</div>
+<div class="span-24">
+	<?php if($brands!=array()):?>
+		<?php foreach ($brands as $brand):?>
+				<div class="brand">
+					<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
+						<?php //echo $brand['Brand']['id'];?>
+						<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
+					</div>
+					<div class="brandName" style="font-weight:bold;text-align:center;">
+						&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
+					</div>
+				</div>
+		<?php endforeach; ?>
+	<? else: ?>
+		<p style="margin-left:2em;">С данной категорией пока не связан ни один бренд</p>
+	<? endif ?>
+</div>
 
-<?php endforeach; ?>
+<div id="allBrandsWrapper" class="span-24">
+	<div class="span-24">
+		<h5 style="float:left;margin-left:1em;">Остальные Бренды</h5>
+	</div>
+	<div class="span-24">
+	<?php foreach ($brandsAll as $brand):?>
+			<div class="brand">
+				<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
+					<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
+				</div>
+				<div class="brandName" style="font-weight:bold;text-align:center;">
+					&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
+				</div>
+			</div>
+	<?php endforeach; ?>
+	</div>
+</div>
 
 	<?php //echo $paginator->sort('Бренд','name');?>
 	<?php //echo $paginator->sort('Логотип','logo');?>
