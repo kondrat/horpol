@@ -1,4 +1,4 @@
-<?php echo $this->element('product/product', array('cache' => false ) ); ?>
+<?php echo $this->element('product/product', array('firstStep'=>'active','secondStep'=>'next','cache' => false ) ); ?>
 
 <div class="categories span-24">
 	<ul class="category">

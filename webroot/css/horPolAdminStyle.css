@@ -413,5 +413,20 @@ div.er {
 	background:transparent url(../img/127x70.png) no-repeat scroll 0 0;
 	padding:2px 5px 5px 0;
 	text-align:center;
-
+}
+.firstStep{
+}
+.secondStep{
+}
+.thirdStep{
+}
+.forthStep{
+}
+.active a{
+	color:#911B3B;
+	text-decoration:none;
+}
+.next a{
+	color:blue;
+	text-decoration:underline;
 }
