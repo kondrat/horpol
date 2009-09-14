@@ -200,9 +200,9 @@ class subCategoriesController extends AppController {
 				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
 				$this->set('categories',$categories);
 				
-				$categorieslast = array();
-				$categorieslast = $this->SubCategory->find('all',array('fields'=>array('SubCategory.name','SubCategory.modified','Category.name','Brand.name'),'contain'=> array('Brand','Category'),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
-				$this->set('categorieslast',$categorieslast);				
+				$categoriesLast = array();
+				$categoriesLast = $this->SubCategory->find('all',array('fields'=>array('SubCategory.id','SubCategory.name','SubCategory.modified','Category.name','Brand.name','Brand.logo'),'contain'=> array('Brand','Category'),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
+				$this->set('categoriesLast',$categoriesLast);				
 				
 				
 				

@@ -1,6 +1,6 @@
 <?php ?> 
 <div class="span-24">
-	<div class="span-24 step actions">
+	<div class="span-24 step actions">		
 		<div style="float:left;">
 			<div style="text-align:center;"><?php echo $html->image('icons/1step.jpg',array('alt'=>'1'));?></div>
 			<h3>
@@ -34,7 +34,16 @@
 	
 </div>
 <div class="span-24">
-	<div class="span-15 push-5 setWrapper">
+	<div class="span-20 push-1 setWrapper">
+	
+		
+		<div class="span-" style="background-color:#eee;padding:8px;">
+			<div class="setItemMain"><?php echo $html->image('catalog/brand_logo.jpg',array('class'=>'brandShadow'));?></div>
+		</div>	
+		
+		
+		
+			
 		<div class="span-" style="">
 			<div class="setItem">[ Категория: ]</div>			
 			<?php

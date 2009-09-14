@@ -80,6 +80,9 @@ $(document).ready( function(){
 			$('#brand').addClass('brandSelected');
 			var brandSelect = $(this).attr('href');			
 			$('#brandSelect').attr('href',brandSelect);
+			var brandImg = $(this).children().attr('src');
+			$('.brandShadow').attr({src:brandImg});
+			//alert(brandImg);
 			return false;
 		});
 });
@@ -102,4 +105,14 @@ $(document).ready( function(){
 				$("#allBrandsWrapper").toggle();	          	
 			return false;
 		});
+});
+$(document).ready( function(){
+	var showLogo,quickCat,quickSubCat;
+		$('.setWrapper').mouseover(function(){
+			$(this).addClass('act');
+
+			
+		}).mouseout(function(){
+			$(this).removeClass('act');
+    })
 });

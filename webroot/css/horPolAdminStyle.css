@@ -93,8 +93,10 @@ div.footer a:hover{
 }
 /*album*/
 .thumbAdmin {
-	position:relative;
+	background-color:#F3F3F3;
 	margin-bottom:1em;
+	padding:6px 0;
+	position:relative;
 	z-index:-1;
 }
 .thumbAdmin .lens{
@@ -316,6 +318,7 @@ div.er {
 }
 .setWrapper {
 	text-align:center;
+	line-height:2em;
 }
 .span- {
 	float:left;
@@ -326,6 +329,7 @@ div.er {
 	color:gray;
 	font-weight:bold;
 	line-height:0.8em;
+	margin-top:2em;
 }
 /* brand*/
 .brand {
@@ -378,4 +382,36 @@ div.er {
 }
 .categories li a.currentCat {
 	color:teal;
+}
+.quickGoImgHide{
+	position:absolute;
+	top:-25px;
+	/*display:none;*/
+}
+.quickGoImg{
+	border:1px solid gray;
+	z-index:20;
+}
+.act .quickSubCat {
+	font-weight:bold;
+	color:teal;
+	font-size:120%;
+}
+.act .quickGoImgHide {
+	display:block;
+	opacity:.6;
+}
+.act .quickCat {
+	color:maroon;
+	font-weight:bold;
+	font-size:120%;
+}
+.act .quickGo {
+	background-color:silver;
+}
+.brandShadow {
+	background:transparent url(../img/127x70.png) no-repeat scroll 0 0;
+	padding:2px 5px 5px 0;
+	text-align:center;
+
 }
