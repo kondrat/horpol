@@ -34,7 +34,7 @@
 							<div class="setItemMain quickSubCat"><span>[</span>&nbsp;<span><?php echo $catLast['SubCategory']['name'];?></span>&nbsp;<span>]</span></div>
 						</div>
 						<div class="span- quickGo" style="border:1px solid silver; padding:0 4px">
-							<?php echo $html->link('Перейти',array('controller'=>'products','action'=>'index',$catLast['SubCategory']['id']));?>
+							<?php echo $html->link('Перейти',array('controller'=>'products','action'=>'index','subcat:'.$catLast['SubCategory']['id']));?>
 						</div>
 					</div>
 				</div>

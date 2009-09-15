@@ -2,7 +2,7 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
-	var $helpers = array('Html', 'Form');
+	//var $helpers = array('Html', 'Form');
 	var $paginate = array('limit' => 5);
 	var $components = array('Upload');
 	var $uses = array('Product', 'Brand','Category', 'SubCategory');
@@ -19,20 +19,13 @@ class ProductsController extends AppController {
 			
 			$conditions = array('subcategory_id' => $this->params['named']['subcat']);
 			
-			$this->set('dataToShow',$this->Product->find('all', array('conditions' => $conditions, 
-																	'contain'=> array('SubCategory' => 
-																												array('fields'=> array('Category.name',
-																														'Category.type',
-																														'Category.id',
-																														'Brand.name',
-																														'Brand.logo',
-																														'Brand.id'
-																														) ) 
-																												),
-																	'fields' => array('id','name') 
-																	) 
-														) 
-							);
+			$this->set('dataToShow',$this->Product->SubCategory->find('first', array('conditions' => array('SubCategory.id'=>$this->params['named']['subcat']), 
+																																'fields' => array('SubCategory.name'),
+																																'contain'=> array('Category'=>array('fields'=>array('Category.name')),
+																																									'Brand'=>array('fields'=>array('Brand.name'))),
+																																) 
+																									) 
+								);
 		} else {
 			$conditions = array();
 			$this->set('dataToShow',null);
