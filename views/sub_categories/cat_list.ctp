@@ -1,4 +1,4 @@
-<?php echo $this->element('product/product', array('firstStep'=>'active','secondStep'=>'next','cache' => false ) ); ?>
+<?php echo $this->element('product/product', array('firstStep'=>'activeStep','secondStep'=>'nextStep','thirdStep'=>'disableStep','forthStep'=>'disableStep','cache' => false ) ); ?>
 
 <div class="categories span-24">
 	<ul class="category">
@@ -19,7 +19,7 @@
 		<?php if(isset($categoriesLast) && $categoriesLast != array() ):?>
 			<?php foreach($categoriesLast as $catLast):?>
 				<div class="span-24">
-					<div class="span-21 push-1 setWrapper">
+					<div class="span-21 push-1 setWrapperQuick">
 						<div class="span-" style="width:220px;">
 							<div class="setItem">[ Категория: ]</div>				
 							<div class="setItemMain quickCat"><span>[</span>&nbsp;<span><?php echo $catLast['Category']['name'];?></span>&nbsp;<span>]</span></div>

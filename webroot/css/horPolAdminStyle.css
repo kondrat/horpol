@@ -329,7 +329,7 @@ div.er {
 	color:gray;
 	font-weight:bold;
 	line-height:0.8em;
-	margin-top:2em;
+	margin-top:0em;
 }
 /* brand*/
 .brand {
@@ -383,6 +383,23 @@ div.er {
 .categories li a.currentCat {
 	color:teal;
 }
+.currentSubCat{
+	font-size:85%;
+	cursor:default;
+}
+.subCategories li a.currentSubCat {
+	color:red;
+}
+.subCatSelected {
+	color:green;
+	font-size:larger;
+	font-weight:bold;	
+}
+.setWrapperQuick {
+	text-align:center;
+	line-height:1.5em;
+}
+
 .quickGoImgHide{
 	position:absolute;
 	top:-25px;
@@ -399,7 +416,6 @@ div.er {
 }
 .act .quickGoImgHide {
 	display:block;
-	opacity:.6;
 }
 .act .quickCat {
 	color:maroon;
@@ -414,19 +430,29 @@ div.er {
 	padding:2px 5px 5px 0;
 	text-align:center;
 }
-.firstStep{
-}
-.secondStep{
-}
-.thirdStep{
-}
-.forthStep{
-}
-.active a{
-	color:#911B3B;
+
+.activeStep a,.activeStep a:hover{
+	color:burlyWood;
 	text-decoration:none;
+	cursor:default;
 }
-.next a{
-	color:blue;
+.activeStep img{
+	/*margin:-10px;*/
+}
+.nextStep a{
 	text-decoration:underline;
+}
+.prevStep a{
+	color:silver;
+	text-decoration:underline;
+}
+.disableStep a,.disableStep a:hover{
+	color:silver;
+	text-decoration:none;
+	cursor:default;
+}
+
+#allBrandsWrapper{
+	border-top:1px solid silver;
+	padding-top:.5em;
 }

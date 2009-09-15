@@ -178,13 +178,13 @@ class subCategoriesController extends AppController {
 				$subCategories = $this->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$this->params['named']['cat'],'SubCategory.brand_id'=>$this->params['named']['brand']),
 																															'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id','SubCategory.product_count'),
 																															'contain'=>	array('Category'=>array('fields'=>'name'),
-																																								'Brand'=>array('fields'=>'name') ) 
+																																								'Brand'=>array('fields'=>'name','logo') ) 
 																															)
 																								);
 				if(	$subCategories != array() ) {
 					$this->set('subCategories',$subCategories);
 					$this->set('catSelected',$subCategories[0]['Category']['name']);
-					$this->set('brandSelected',$subCategories['0']['Brand']['name']);					
+					$this->set('brandSelected',$subCategories['0']);					
 				} else {
 					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
 					$this->set('catSelected',$catSelected['Category']['name']);

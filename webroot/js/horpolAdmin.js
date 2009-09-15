@@ -43,7 +43,7 @@ $(document).ready(function() {
 								});
 }); 
 */
-
+//changing name of the category and url of the link
 $(document).ready( function(){
 		var prev = null;
 	
@@ -60,11 +60,11 @@ $(document).ready( function(){
 			$('#cat span.catText').text(liContent);
 			$('#cat span').addClass('catSelected');
 			var cat = $(this).attr('href');		
-			$('#catSelect').attr('href',cat);
+			$('#brandSelect').attr('href',cat);
 			return false;
 		});
 });
-
+//changing name of the brand and url of the link
 $(document).ready( function(){
 		$('.brA').click(function() {
 			var brandContent = $(this).text();		
@@ -79,10 +79,30 @@ $(document).ready( function(){
 			$('#brand span.brandText').text(brandContent);
 			$('#brand').addClass('brandSelected');
 			var brandSelect = $(this).attr('href');			
-			$('#brandSelect').attr('href',brandSelect);
+			$('#subcatSelect').attr('href',brandSelect);
 			var brandImg = $(this).children().attr('src');
 			$('.brandShadow').attr({src:brandImg});
 			//alert(brandImg);
+			return false;
+		});
+});
+//changing name of the subCategory and url of the link
+$(document).ready( function(){
+		var prev = null;
+		$('.subCategory li a').click(function() {
+			
+			var liContent = $(this).text();
+			
+			if (prev != null) {
+				prev.removeClass('currentSubCat');
+			}				
+			prev = $(this);				
+		 	$(this).addClass('currentSubCat');				
+
+			$('#subcat span.subCatText').text(liContent);
+			$('#subcat span').addClass('subCatSelected');
+			var subCat = $(this).attr('href');		
+			$('#productSelect').attr('href',subCat);
 			return false;
 		});
 });
@@ -102,13 +122,18 @@ $(document).ready( function(){
 });
 $(document).ready( function(){
 		$('#brandsAll').click(function() {
-				$("#allBrandsWrapper").toggle();	          	
+				//$("#allBrandsWrapper").slideUp();
+  				if ( $("#allBrandsWrapper").is(":hidden") ) {
+            $("#allBrandsWrapper").fadeIn();
+          } else {
+            $("#allBrandsWrapper").fadeOut();
+          }	          	
 			return false;
 		});
 });
 $(document).ready( function(){
 	var showLogo,quickCat,quickSubCat;
-		$('.setWrapper').mouseover(function(){
+		$('.setWrapperQuick').mouseover(function(){
 			$(this).addClass('act');
 
 			

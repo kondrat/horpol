@@ -62,8 +62,8 @@ class Product extends AppModel {
 																					
 						);
 //--------------------------------------------------------------------  
-	var $belongsTo = array ('subCategory' => array(
-											'className' => 'subCategory',
+	var $belongsTo = array ('SubCategory' => array(
+											'className' => 'SubCategory',
 											'conditions' => '',
 											'order' => '',
 											'foreignKey' => 'subcategory_id',

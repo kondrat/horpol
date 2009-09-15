@@ -14,19 +14,22 @@ class ProductsController extends AppController {
     }
 //--------------------------------------------------------------------
 
-	function admin_index($id = null) {
-		if ( $id != null ) {
-			$conditions = array('subcategory_id' => $id);
+	function admin_index() {
+		if ( isset($this->params['named']['subcat'])&&$this->params['named']['subcat']!=null ) {
+			
+			$conditions = array('subcategory_id' => $this->params['named']['subcat']);
+			
 			$this->set('dataToShow',$this->Product->find('all', array('conditions' => $conditions, 
-																	'contain'=> array('subCategory.name' => 
-																												array('Category.name',
+																	'contain'=> array('SubCategory' => 
+																												array('fields'=> array('Category.name',
 																														'Category.type',
+																														'Category.id',
 																														'Brand.name',
 																														'Brand.logo',
 																														'Brand.id'
-																														) 
+																														) ) 
 																												),
-																	'fields' => array('id','name','subcategory_id') 
+																	'fields' => array('id','name') 
 																	) 
 														) 
 							);

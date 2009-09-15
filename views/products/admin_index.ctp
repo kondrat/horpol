@@ -1,5 +1,11 @@
+
+
+
+
+
+
 <div class="actions span-24">
-		<h3><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['subCategory']['category_id'],'brand:'.$dataToShow['0']['subCategory']['brand_id'],'cat:'.$dataToShow['0']['subCategory']['id'],'cache:'.false )); ?></h3>
+		<h3><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['SubCategory']['category_id'],'brand:'.$dataToShow['0']['SubCategory']['brand_id'],'cat:'.$dataToShow['0']['SubCategory']['id'],'cache:'.false )); ?></h3>
 </div>
 
 	<?php if ( isset($this->params['pass'][0]) && (int)$this->params['pass'][0] != null ): ?>
@@ -10,22 +16,20 @@
 					<th>Подраздел</th>	
 				</tr>
 				<tr>
-					<td><p style="margin-top: 20px; font-size: larger; font-weight: bold;"><?php echo $dataToShow[0]['subCategory']['Category']['name']; ?></p></td>
-					<td><?php echo $html->link( $html->image('catalog/'.$dataToShow[0]['subCategory']['Brand']['logo']), array('controller'=>'Brands', 'action' => 'index', $dataToShow['0']['subCategory']['Brand']['id']), null, null, false); ?></td>
+					<td><p style="margin-top: 20px; font-size: larger; font-weight: bold;"><?php echo $dataToShow[0]['SubCategory']['Category']['name']; ?></p></td>
+					<td><?php echo $html->link( $html->image('catalog/'.$dataToShow[0]['SubCategory']['Brand']['logo']), array('controller'=>'Brands', 'action' => 'index', $dataToShow['0']['SubCategory']['Brand']['id']), null, null, false); ?></td>
 					
- 					<td><?php echo '<p style="margin-top: 20px; font-size: larger; font-weight: bold;">'.$dataToShow['0']['subCategory']['name'].'</p>';?></td>
+ 					<td><?php echo '<p style="margin-top: 20px; font-size: larger; font-weight: bold;">'.$dataToShow['0']['SubCategory']['name'].'</p>';?></td>
 				</tr>
 			</table>
 
-			<p><?php echo $html->link('Назад в подраздел <em style="color: red;">'.$dataToShow['0']['subCategory']['name'].'</em>',array('controller' => 'sub_categories', 'action'=>'index','category:'.$dataToShow['0']['subCategory']['category_id']),false,false,false );?>		
+			<p><?php echo $html->link('Назад в подраздел <em style="color: red;">'.$dataToShow['0']['SubCategory']['name'].'</em>',array('controller' => 'sub_categories', 'action'=>'index','category:'.$dataToShow['0']['SubCategory']['category_id']),false,false,false );?>		
 					
 
 			
 	<?php endif ?>
 	
 		<?php 
-			$toPage[0] = $this->params['pass']['0'];
-			$this->passedArgs = $toPage;	 
 			$paginator->options(array('url' => $this->passedArgs )); 			
 		?>	
 	
@@ -53,7 +57,7 @@
 	<th style=" width: 20px;"><input type="checkbox" id="selectall" style="margin: 3px 0 4px 10px;"></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th>logo</th>
-	<?php if ($dataToShow[0]['subCategory']['Category']['type'] == 3): ?>
+	<?php if ($dataToShow[0]['SubCategory']['Category']['type'] == 3): ?>
 		<th>Описание</th>
 	<?php endif ?>
 	<th class="actions">Действия</th>
@@ -74,7 +78,7 @@ foreach ($products as $product):
 		<td>
 			<?php echo $html->image('catalog/'.$product['Product']['logo']); ?>
 		</td>
-		<?php if ($dataToShow[0]['subCategory']['Category']['type'] == 3): ?>
+		<?php if ($dataToShow[0]['SubCategory']['Category']['type'] == 3): ?>
 			<td>
 				<?php echo $product['Product']['content1']; ?>
 			</td>

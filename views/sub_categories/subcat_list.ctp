@@ -1,4 +1,4 @@
-<?php echo $this->element('product/product', array('cache' => false ) ); ?>
+<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'prevStep','thirdStep'=>'activeStep','forthStep'=>'nextStep','cache' => false ) ); ?>
 		<div class="page">
 			<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
 				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
@@ -19,7 +19,7 @@
 	<ul class="subCategory">
 		<?php foreach ($subCategories as $subCategory):?>			
 				<li>
-					<?php echo $html->link($subCategory['SubCategory']['name'],array('action'=>'index','subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
+					<?php echo $html->link($subCategory['SubCategory']['name'],array('controller'=>'products','action'=>'index','subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
 					<span>Содержит товаров:&nbsp;<?php echo $pc = (isset($subCategory['SubCategory']['product_count'])?$subCategory['SubCategory']['product_count']:'0');?></span>
 				</li>
 		<?php endforeach; ?>
