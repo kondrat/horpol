@@ -398,29 +398,31 @@ div.er {
 .setWrapperQuick {
 	text-align:center;
 	line-height:1.5em;
+	padding:6px 0;
 }
 
-.quickGoImgHide{
-	position:absolute;
-	top:-25px;
-	/*display:none;*/
-}
+
 .quickGoImg{
-	border:1px solid gray;
-	z-index:20;
+	display:none;
 }
-.act .quickSubCat {
+.quickCat, .quickBrand,.quickSubCat {
 	font-weight:bold;
-	color:teal;
-	font-size:120%;
+	color:silver;
+}
+.act {
+	background-color:#eee;
+}
+.act .quickSubCat {	
+	color:green;	
 }
 .act .quickGoImgHide {
-	display:block;
+	/*display:block;*/
 }
 .act .quickCat {
-	color:maroon;
-	font-weight:bold;
-	font-size:120%;
+	color:maroon;	
+}
+.act .quickBrand {
+	color:royalBlue;	
 }
 .act .quickGo {
 	background-color:silver;

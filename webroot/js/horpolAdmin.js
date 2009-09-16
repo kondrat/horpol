@@ -132,12 +132,16 @@ $(document).ready( function(){
 		});
 });
 $(document).ready( function(){
-	var showLogo,quickCat,quickSubCat;
-		$('.setWrapperQuick').mouseover(function(){
+	//var showLogo,quickCat,quickSubCat;
+	var brandShadow = $('.brandShadow').attr('src');
+		$('.setWrapperQuick').hover(function(){
 			$(this).addClass('act');
-
+			var quickGoImg = $(this).find('.quickGoImg').attr('src');
+			 
+			$('.brandShadow').hide().attr({src:quickGoImg}).fadeIn('fast');
 			
-		}).mouseout(function(){
+		},function(){
 			$(this).removeClass('act');
+			$('.brandShadow').hide().attr({src:brandShadow}).fadeIn('fast');
     })
 });

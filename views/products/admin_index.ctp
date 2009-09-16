@@ -1,4 +1,4 @@
-
+<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'prevStep','thirdStep'=>'activeStep','forthStep'=>'nextStep','cache' => false ) ); ?>
 
 
 
@@ -7,6 +7,10 @@
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить новый товар', array('action'=>'add','category:'.$dataToShow['0']['SubCategory']['category_id'],'brand:'.$dataToShow['0']['SubCategory']['brand_id'],'cat:'.$dataToShow['0']['SubCategory']['id'],'cache:'.false )); ?></h3>
 </div>
+
+
+
+
 
 	<?php if ( isset($this->params['pass'][0]) && (int)$this->params['pass'][0] != null ): ?>
  			<table cellpadding="4" cellspacing="0" border="1" style=" width: 550px;">
@@ -32,22 +36,19 @@
 		<?php 
 			$paginator->options(array('url' => $this->passedArgs )); 			
 		?>	
-	
 
-		<?php if( isset($this->params['paging']['Product']['pageCount']) && $this->params['paging']['Product']['pageCount'] > 1 ): ?>
-			<p>
-				<?php echo $paginator->counter(array('format' => __('Страница %page% из %pages%.', true)));?>
-			</p>
-			<div class="paging">
-				<table>
-					<tr>
-						<td><?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?></td>
-			  			<td><?php echo $paginator->numbers();?></td>
-						<td><?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?></td>
-					</tr>
-				</table>
-			</div>
-		<?php endif ?>
+		<div class="page">
+			<?php if( isset($this->params['paging']['Product']['pageCount']) && $this->params['paging']['Product']['pageCount'] > 1 ): ?>
+				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
+  				<?php echo $paginator->numbers( array('modulus'=>'5','separator'=>' &middot; ', 'class' => 'menuPage' ), null );?>
+				<?php echo $paginator->next( $html->image('icons/right_arrow.png',array('class'=>'pageImgNext','alt'=>__('Next',true) ) ), array('escape' => false ), $html->image('icons/right_arrow_disable.png'), array('escape' => false ,'class'=>'menuPage'));?>
+			<?php endif ?>
+		</div>
+
+
+
+
+
 
 
 <?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'))); ?>

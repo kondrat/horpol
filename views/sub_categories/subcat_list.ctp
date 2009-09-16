@@ -13,14 +13,19 @@
 			} else {
 				$catId = null;
 			}
+			if(isset($this->params['named']['brand'])){
+				$brandId = 'brand:'.$this->params['named']['brand'];
+			} else {
+				$brandId = null;
+			}
 ?>
 <div class="span-24">
 	<?php if(isset($subCategories) && $subCategories != array()):?>
 	<ul class="subCategory">
 		<?php foreach ($subCategories as $subCategory):?>			
-				<li>
-					<?php echo $html->link($subCategory['SubCategory']['name'],array('controller'=>'products','action'=>'index','subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
-					<span>Содержит товаров:&nbsp;<?php echo $pc = (isset($subCategory['SubCategory']['product_count'])?$subCategory['SubCategory']['product_count']:'0');?></span>
+				<li class="span-10" style="float:left;">
+					<?php echo $html->link($subCategory['SubCategory']['name'],array('action'=>'index',$catId,$brandId,'subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
+					<span style="font-size:smaller;">товаров:&nbsp;</span><span style="font-weight:bold;color:maroon;"><?php echo $pc = (isset($subCategory['SubCategory']['product_count'])?$subCategory['SubCategory']['product_count']:'0');?></span>
 				</li>
 		<?php endforeach; ?>
 	</ul>

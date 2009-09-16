@@ -141,9 +141,9 @@ class subCategoriesController extends AppController {
 
 		if( !isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) ) {
 			$case = 0;
-		} else if( isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) || (isset($this->params['named']['brands'])&&isset($this->params['named']['brand'])=='all') )  {
+		} else if( isset($this->params['named']['cat']) && !isset($this->params['named']['brand']) )  {
 			$case = 1;
-		}	else if ( isset($this->params['named']['cat']) && isset($this->params['named']['brand'])&&$this->params['named']['brand']!='all' ) {
+		}	else if ( isset($this->params['named']['cat']) && isset($this->params['named']['brand']) ) {
 			$case = 2;
 		}	
 		
@@ -182,9 +182,37 @@ class subCategoriesController extends AppController {
 																															)
 																								);
 				if(	$subCategories != array() ) {
+					
+					if(isset($this->params['named']['subcat'])&&$this->params['named']['subcat']!=null){
+						$products = $this->SubCategory->Product->find('all',array('conditions'=>array('Product.subcategory_id'=>$this->params['named']['subcat']),
+																																			'fields'=>array('Product.name','Product.logo'),
+																																			'contain'=>false
+																																			)
+																													);
+						//getting id of the selected category																								
+						foreach($subCategories as $subCategory) {
+							if($subCategory['SubCategory']['id'] == $this->params['named']['subcat']) {
+								$subCatSelected = $subCategory['SubCategory']['name'];
+								$this->SubCategory->id = $this->params['named']['subcat'];	
+								$this->SubCategory->saveField('url','1',false);	
+								break;
+							}	
+						}
+																			
+																													
+						$this->set('subCatSelected',$subCatSelected);																						
+						$this->set('products',$products);
+					}
+					
 					$this->set('subCategories',$subCategories);
 					$this->set('catSelected',$subCategories[0]['Category']['name']);
-					$this->set('brandSelected',$subCategories['0']);					
+					$this->set('brandSelected',$subCategories['0']);	
+					
+					
+					
+					
+					
+									
 				} else {
 					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
 					$this->set('catSelected',$catSelected['Category']['name']);
@@ -195,6 +223,8 @@ class subCategoriesController extends AppController {
 	
 				$this->render('subcatList');
 			break;
+			
+			
 			default:
 				//echo 'default';				
 				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
@@ -203,8 +233,6 @@ class subCategoriesController extends AppController {
 				$categoriesLast = array();
 				$categoriesLast = $this->SubCategory->find('all',array('fields'=>array('SubCategory.id','SubCategory.name','SubCategory.modified','Category.name','Brand.name','Brand.logo'),'contain'=> array('Brand','Category'),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
 				$this->set('categoriesLast',$categoriesLast);				
-				
-				
 				
 				$this->render('catList');			
 			break;
