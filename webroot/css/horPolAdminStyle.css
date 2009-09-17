@@ -387,6 +387,11 @@ div.er {
 	font-size:85%;
 	cursor:default;
 }
+/*subCategory*/
+.subCategoryWrapper {
+	padding-bottom:1em;
+	border-bottom:1px solid silver;
+}
 .subCategories li a.currentSubCat {
 	color:red;
 }
@@ -424,6 +429,9 @@ div.er {
 .act .quickBrand {
 	color:royalBlue;	
 }
+.quickGo {
+	margin-top:4px;
+}
 .act .quickGo {
 	background-color:silver;
 }
@@ -457,4 +465,33 @@ div.er {
 #allBrandsWrapper{
 	border-top:1px solid silver;
 	padding-top:.5em;
+}
+#stepIcon1 {
+	background:transparent url(../img/icons/1step.jpg) no-repeat scroll 0 0px;
+}
+#stepIcon2 {
+	background:transparent url(../img/icons/2step.jpg) no-repeat scroll 0 0px;
+}
+#stepIcon3 {
+	background:transparent url(../img/icons/3step.jpg) no-repeat scroll 0 0px;
+}
+#stepIcon4 {
+	background:transparent url(../img/icons/4step.jpg) no-repeat scroll 0 0px;
+}
+.stepIcon{
+	width:20px;
+	height:20px;
+	margin:0 auto;
+}
+.activeStep div#stepIcon1,.activeStep div#stepIcon2,.activeStep div#stepIcon3 {
+		background-position: 0 -20px;
+}
+.prevStep div#stepIcon1,.prevStep div#stepIcon2,.prevStep div#stepIcon3 {
+	background-position: 0 -40px;
+}
+.nextStep div#stepIcon2,.nextStep div#stepIcon3 {
+	background-position: 0 -60px;	
+}
+.disableStep div#stepIcon3,.disableStep div#stepIcon4 {
+	background-position: 0 -40px;	
 }

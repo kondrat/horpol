@@ -136,12 +136,32 @@ $(document).ready( function(){
 	var brandShadow = $('.brandShadow').attr('src');
 		$('.setWrapperQuick').hover(function(){
 			$(this).addClass('act');
-			var quickGoImg = $(this).find('.quickGoImg').attr('src');
-			 
-			$('.brandShadow').hide().attr({src:quickGoImg}).fadeIn('fast');
-			
+			var quickGoImg = $(this).find('.quickGoImg').attr('src');			 
+			$('.brandShadow').attr({src:quickGoImg});			
 		},function(){
 			$(this).removeClass('act');
-			$('.brandShadow').hide().attr({src:brandShadow}).fadeIn('fast');
-    })
+			$('.brandShadow').attr({src:brandShadow});
+    });
+    
+    
+    $('.prevStep #catSelect').hover(function(){
+    	$('#stepIcon1').css({'background-position':'0 0'});
+    },function() {
+    	$('#stepIcon1').css({'background-position':'0 -40px'});    	
+    });
+    $('.prevStep #brandSelect').hover(function(){
+    	$('#stepIcon2').css({'background-position':'0 0'});
+    },function() {
+    	$('#stepIcon2').css({'background-position':'0 -40px'});    	
+    });    
+    $('.nextStep #brandSelect').hover(function(){
+    	$('#stepIcon2').css({'background-position':'0 0'});
+    },function() {
+    	$('#stepIcon2').css({'background-position':'0 -60px'});    	
+    });
+    $('.nextStep #subcatSelect').hover(function(){
+    	$('#stepIcon3').css({'background-position':'0 0'});
+    },function() {
+    	$('#stepIcon3').css({'background-position':'0 -60px'});    	
+    });
 });

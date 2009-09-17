@@ -184,11 +184,22 @@ class subCategoriesController extends AppController {
 				if(	$subCategories != array() ) {
 					
 					if(isset($this->params['named']['subcat'])&&$this->params['named']['subcat']!=null){
+						/*
 						$products = $this->SubCategory->Product->find('all',array('conditions'=>array('Product.subcategory_id'=>$this->params['named']['subcat']),
 																																			'fields'=>array('Product.name','Product.logo'),
 																																			'contain'=>false
 																																			)
 																													);
+						*/
+						$this->paginate['Product']['contain'] = false;
+						$this->paginate['Product']['conditions'] = array('Product.subcategory_id'=>$this->params['named']['subcat']);
+						$this->paginate['Product']['fields'] = array('Product.id','Product.subcategory_id','Product.name','Product.logo');
+						$this->paginate['Product']['limit'] = 8;
+						$products = $this->paginate('Product');																				
+						$this->set('products',$products);						
+						
+						
+						
 						//getting id of the selected category																								
 						foreach($subCategories as $subCategory) {
 							if($subCategory['SubCategory']['id'] == $this->params['named']['subcat']) {
@@ -200,8 +211,7 @@ class subCategoriesController extends AppController {
 						}
 																			
 																													
-						$this->set('subCatSelected',$subCatSelected);																						
-						$this->set('products',$products);
+						$this->set('subCatSelected',$subCatSelected);		
 					}
 					
 					$this->set('subCategories',$subCategories);
