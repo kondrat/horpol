@@ -442,14 +442,13 @@ div.er {
 }
 
 .activeStep a,.activeStep a:hover{
-	color:burlyWood;
-	text-decoration:none;
-	cursor:default;
+	
 }
 .activeStep img{
 	/*margin:-10px;*/
 }
 .nextStep a{
+	color:silver;
 	text-decoration:underline;
 }
 .prevStep a{
@@ -484,14 +483,14 @@ div.er {
 	margin:0 auto;
 }
 .activeStep div#stepIcon1,.activeStep div#stepIcon2,.activeStep div#stepIcon3 {
-		background-position: 0 -20px;
+		background-position: 0 -60px;
 }
 .prevStep div#stepIcon1,.prevStep div#stepIcon2,.prevStep div#stepIcon3 {
 	background-position: 0 -40px;
 }
 .nextStep div#stepIcon2,.nextStep div#stepIcon3 {
-	background-position: 0 -60px;	
+	background-position: 0 -40px;	
 }
-.disableStep div#stepIcon3,.disableStep div#stepIcon4 {
+.disableStep div#stepIcon2,.disableStep div#stepIcon3,.disableStep div#stepIcon4 {
 	background-position: 0 -40px;	
 }

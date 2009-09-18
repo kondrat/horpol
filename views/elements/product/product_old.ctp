@@ -48,7 +48,12 @@
 			<h3><?php echo $html->link('Выбор Подраздела',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'subcatSelect') );?></h3>
 		</div>
 		
-
+		<h3 class="stepSpace">&raquo;</h3>
+		
+		<div class="<?php echo (isset($forthStep))?$forthStep:null;?>" style="float:left;">
+			<div id="stepIcon4" class="stepIcon"></div>		
+			<h3><?php echo $html->link('Выбор Товаров',array(),array('id'=>'productSelect'));?></h3>
+		</div>
 		
 		
 		<div class="span-" style="background-color:#eee;padding:8px;float:right;">

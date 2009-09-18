@@ -60,29 +60,25 @@ $(document).ready( function(){
 			$('#cat span.catText').text(liContent);
 			$('#cat span').addClass('catSelected');
 			var cat = $(this).attr('href');		
-			$('#brandSelect').attr('href',cat);
+			$('#catSelect').attr('href',cat);
 			return false;
 		});
 });
 //changing name of the brand and url of the link
 $(document).ready( function(){
-		$('.brA').click(function() {
-			var brandContent = $(this).text();		
-			$('#brand span.brandText').text(brandContent);
-			$('#brand').addClass('brandSelected');
-			var brandSelect = $(this).attr('href');			
-			$('#brandSelect').attr('href',brandSelect);
+		$('.brandName').click(function() {
+			var brandContent = $(this).prev();
+			$(brandContent).trigger('click');
 			return false;
 		});
-		$('.brImg').click(function() {
+		$('.brandImg').click(function() {
 			var brandContent = $(this).parents('.brand').find('.brA').text();	
 			$('#brand span.brandText').text(brandContent);
 			$('#brand').addClass('brandSelected');
 			var brandSelect = $(this).attr('href');			
-			$('#subcatSelect').attr('href',brandSelect);
-			var brandImg = $(this).children().attr('src');
+			$('#brandSelect').attr('href',brandSelect);
+			var brandImg = $(this).find('img').attr('src');
 			$('.brandShadow').attr({src:brandImg});
-			//alert(brandImg);
 			return false;
 		});
 });
@@ -144,20 +140,20 @@ $(document).ready( function(){
     });
     
     
+    $('.activeStep #catSelect').hover(function(){
+    	$('#stepIcon1').css({'background-position':'0 0px'});
+    },function() {
+    	$('#stepIcon1').css({'background-position':'0 -60px'});    	
+    });
     $('.prevStep #catSelect').hover(function(){
     	$('#stepIcon1').css({'background-position':'0 0'});
     },function() {
     	$('#stepIcon1').css({'background-position':'0 -40px'});    	
-    });
-    $('.prevStep #brandSelect').hover(function(){
-    	$('#stepIcon2').css({'background-position':'0 0'});
-    },function() {
-    	$('#stepIcon2').css({'background-position':'0 -40px'});    	
     });    
     $('.nextStep #brandSelect').hover(function(){
     	$('#stepIcon2').css({'background-position':'0 0'});
     },function() {
-    	$('#stepIcon2').css({'background-position':'0 -60px'});    	
+    	$('#stepIcon2').css({'background-position':'0 -40px'});    	
     });
     $('.nextStep #subcatSelect').hover(function(){
     	$('#stepIcon3').css({'background-position':'0 0'});
