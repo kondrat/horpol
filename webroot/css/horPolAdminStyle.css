@@ -455,7 +455,7 @@ div.er {
 	color:silver;
 	text-decoration:underline;
 }
-.disableStep a,.disableStep a:hover{
+.disableStep a,.disableStep a:hover,.disableStep a:visited,.disableStep a:active{
 	color:silver;
 	text-decoration:none;
 	cursor:default;
@@ -466,31 +466,41 @@ div.er {
 	padding-top:.5em;
 }
 #stepIcon1 {
-	background:transparent url(../img/icons/1step.jpg) no-repeat scroll 0 0px;
+	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 0 0px;
 }
 #stepIcon2 {
-	background:transparent url(../img/icons/2step.jpg) no-repeat scroll 0 0px;
+	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 20px 0px;
 }
 #stepIcon3 {
-	background:transparent url(../img/icons/3step.jpg) no-repeat scroll 0 0px;
+	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 40px 0px;
 }
-#stepIcon4 {
-	background:transparent url(../img/icons/4step.jpg) no-repeat scroll 0 0px;
-}
+
 .stepIcon{
 	width:20px;
 	height:20px;
 	margin:0 auto;
 }
-.activeStep div#stepIcon1,.activeStep div#stepIcon2,.activeStep div#stepIcon3 {
-		background-position: 0 -60px;
-}
-.prevStep div#stepIcon1,.prevStep div#stepIcon2,.prevStep div#stepIcon3 {
+.activeStep div#stepIcon1{
 	background-position: 0 -40px;
+}
+.activeStep div#stepIcon2{
+	background-position: -20px -40px;
+}
+.activeStep div#stepIcon3 {
+	background-position: -40px -40px;
+}
+.prevStep div#stepIcon1{
+	background-position: 0 -20px;
+}
+.prevStep div#stepIcon2,.prevStep div#stepIcon3 {
+	background-position: -20px -20px;
 }
 .nextStep div#stepIcon2,.nextStep div#stepIcon3 {
 	background-position: 0 -40px;	
 }
-.disableStep div#stepIcon2,.disableStep div#stepIcon3,.disableStep div#stepIcon4 {
-	background-position: 0 -40px;	
+.disableStep div#stepIcon2 {
+	background-position: -20px -20px;
+}
+.disableStep div#stepIcon3 {
+	background-position: -40px -20px;	
 }

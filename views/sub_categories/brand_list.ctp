@@ -1,4 +1,4 @@
-<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'activeStep','thirdStep'=>'nextStep','forthStep'=>'disableStep','cache' => false ) ); ?>
+<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'activeStep','thirdStep'=>'disableStep','cache' => false ) ); ?>
 		<div class="page">
 			<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
 				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
@@ -23,7 +23,6 @@
 		<?php foreach ($brands as $brand):?>
 				<div class="brand">
 					<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
-						<?php //echo $brand['Brand']['id'];?>
 						<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
 					</div>
 					<div class="brandName" style="font-weight:bold;text-align:center;">

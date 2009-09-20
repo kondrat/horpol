@@ -10,9 +10,11 @@
 			<?php
 				if(isset($brandSelected)) {
 					$brand = $brandSelected['Brand']['name'];
+					$catParam= 'cat:'.$brandSelected['Category']['id'];
 					$brandLogo = $brandSelected['Brand']['logo'];
 					$brandSelectedClass = 'brandSelected';
 				} else {
+					$catParam = null;
 					$brand = 'Бренды не выбран';
 					$brandLogo = 'brand_logo.jpg';
 					$brandSelectedClass = null;
@@ -38,7 +40,7 @@
 		
 		<div class="<?php echo (isset($secondStep))?$secondStep:null;?>" style="float:left;">
 			<div id="stepIcon2" class="stepIcon"></div>
-			<h3><?php echo $html->link('Выброр Бренда',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'brandSelect') );?></h3>
+			<h3><?php echo $html->link('Выброр Бренда',array('controller'=>'sub_categories','action'=>'index',$catParam),array('id'=>'brandSelect') );?></h3>
 		</div>
 		
 		<h3 class="stepSpace">&raquo;</h3>

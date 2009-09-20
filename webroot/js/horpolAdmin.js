@@ -75,7 +75,7 @@ $(document).ready( function(){
 			var brandContent = $(this).parents('.brand').find('.brA').text();	
 			$('#brand span.brandText').text(brandContent);
 			$('#brand').addClass('brandSelected');
-			var brandSelect = $(this).attr('href');			
+			var brandSelect = $(this).find('.brImg').attr('href');		
 			$('#brandSelect').attr('href',brandSelect);
 			var brandImg = $(this).find('img').attr('src');
 			$('.brandShadow').attr({src:brandImg});
@@ -98,7 +98,7 @@ $(document).ready( function(){
 			$('#subcat span.subCatText').text(liContent);
 			$('#subcat span').addClass('subCatSelected');
 			var subCat = $(this).attr('href');		
-			$('#productSelect').attr('href',subCat);
+			$('#subcatSelect').attr('href',subCat);
 			return false;
 		});
 });
@@ -143,21 +143,34 @@ $(document).ready( function(){
     $('.activeStep #catSelect').hover(function(){
     	$('#stepIcon1').css({'background-position':'0 0px'});
     },function() {
-    	$('#stepIcon1').css({'background-position':'0 -60px'});    	
+    	$('#stepIcon1').css({'background-position':'0 -40px'});    	
     });
+    
+    $('.activeStep #brandSelect').hover(function(){
+    	$('#stepIcon2').css({'background-position':'-20px 0px'});
+    },function() {
+    	$('#stepIcon2').css({'background-position':'-20px -40px'});    	
+    });
+    
+     $('.activeStep #subcatSelect').hover(function(){
+    	$('#stepIcon3').css({'background-position':'-40px 0px'});
+    },function() {
+    	$('#stepIcon3').css({'background-position':'-40px -40px'});    	
+    });
+       
     $('.prevStep #catSelect').hover(function(){
     	$('#stepIcon1').css({'background-position':'0 0'});
     },function() {
-    	$('#stepIcon1').css({'background-position':'0 -40px'});    	
-    });    
-    $('.nextStep #brandSelect').hover(function(){
-    	$('#stepIcon2').css({'background-position':'0 0'});
-    },function() {
-    	$('#stepIcon2').css({'background-position':'0 -40px'});    	
+    	$('#stepIcon1').css({'background-position':'0 -20px'});    	
     });
-    $('.nextStep #subcatSelect').hover(function(){
-    	$('#stepIcon3').css({'background-position':'0 0'});
+    $('.prevStep #brandSelect').hover(function(){
+    	$('#stepIcon2').css({'background-position':'-20px 0'});
     },function() {
-    	$('#stepIcon3').css({'background-position':'0 -60px'});    	
+    	$('#stepIcon2').css({'background-position':'-20px -20px'});    	
+    });    
+    
+
+    $('.disableStep a').click(function(){
+    	return false;
     });
 });
