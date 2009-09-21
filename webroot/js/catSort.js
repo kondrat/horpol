@@ -10,16 +10,16 @@ $(document).ready(function(){
     		 
       	var order = $('#sortableList').sortable('serialize');
       	
-				$.post(
-					path + "/categories/sort",
-					order,
-							function(data){
-								$('#infoSort').html(data.hi);
-							},
-							"json"
-				);
-						      	 
-    	} 
+				$.ajax({
+					type: "POST",
+					url: path + "/categories/sort",
+					data: order,
+					success:function(data){$('#infoSort').html(data.hi);},
+					error: function(event, request, settings){alert( event.responseText );},
+					dataType :"json"				
+				});
+			}			      	 
+  
 		});
 
 		
