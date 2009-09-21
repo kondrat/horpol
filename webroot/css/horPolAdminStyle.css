@@ -504,3 +504,12 @@ div.er {
 .disableStep div#stepIcon3 {
 	background-position: -40px -20px;	
 }
+.moveCat {
+	cursor:move;
+	height:24px;
+	width:24px;
+	background:transparent url(../img/icons/move_light.png) no-repeat scroll 0 0px;
+}
+.bg{
+	background:transparent url(../img/icons/move.png) no-repeat scroll 0 0px;
+}

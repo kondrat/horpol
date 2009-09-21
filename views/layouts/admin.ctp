@@ -16,6 +16,7 @@
 		//echo $html->css('adminStyle-ie');if we will need this
 		echo '<![endif]-->';
 		
+		echo $javascript->codeBlock('var path = "'.Configure::read('path').'";' );		
 		echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','jquery.form','horpolAdmin'));
 
 		echo $scripts_for_layout;

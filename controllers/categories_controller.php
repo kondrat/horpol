@@ -14,9 +14,7 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 
 	function index() {
-		$this->Category->recursive = -1;
-		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.id' => 'asc'), 'fields' => array('id','name'), 'limit' => 50 ) );		
-		//debug($a);
+		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.pos' => 'asc'), 'fields' => array('id','name'), 'limit' => 50,'contain'=>false ) );		
 		
 		if (isset($this->params['requested'])) {
 			return $a;
@@ -68,11 +66,13 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 
 	function admin_index() {
+		$categories = array();
 		$this->set('headerName','Категории');
-		$this->Category->recursive = 0;
-		$caties = $this->Category->find('all');
-		//echo 'cat';
-		$this->set('cat', $this->paginate(  ) );
+		//$this->paginate['Category']['contain'] = false;
+		//$this->paginate['Category']['limit'] = 15;
+		//$this->set('categories', $this->paginate() );
+		$categories = $this->Category->find('all',array('order'=>'pos','fields'=>array('Category.id','Category.name','Category.pos'),'contain'=>false) );
+		$this->set('categories', $categories );
 	}
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
@@ -128,6 +128,24 @@ class CategoriesController extends AppController {
 			$this->Session->setFlash('Категория удалена');
 			$this->redirect(array('action'=>'index'));
 		}
+	}
+//--------------------------------------------------------------------
+	function sort() {
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		if ($this->RequestHandler->isAjax()) {		
+			if($_POST['item']) {
+				foreach($_POST['item'] as $k=>$v){
+					$this->Category->id = $v;
+					$this->Category->saveField('pos',$k);							
+				}			
+			}
+			
+			
+			
+			echo json_encode( array('hi'=> 'ok') );
+			exit;		
+		}			
 	}
 //--------------------------------------------------------------------
 }
