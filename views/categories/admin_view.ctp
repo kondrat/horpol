@@ -1,4 +1,5 @@
 <? echo $javascript->link(array('jquery.jeditable.mini','catEdit'),false);?>
+<div id="ttt">bbbb</div>
 <div class="span-22 push-1">
 
 	<dl class="viewCat">
@@ -11,6 +12,13 @@
 		<dd>
 			<?php echo $category['Category']['type']; ?>
 		</dd>
+		
+		<dt>[ОписаниеTest:]</dt>
+		<dd style="width:697px; height:3em;overflow:hidden;">
+			<span class="edit_test"><?php echo trim($category['Category']['body']); ?></span>
+			
+		</dd>
+		
 		<dt>[Описание:]</dt>
 		<dd style="width:697px; height:3em;overflow:hidden;">
 			<?php echo trim($category['Category']['body']); ?>

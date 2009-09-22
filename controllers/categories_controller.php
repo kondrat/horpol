@@ -166,5 +166,20 @@ class CategoriesController extends AppController {
 		}		
 	}
 //--------------------------------------------------------------------
+
+
+	function cattest() {
+		Configure::write('debug', 0);
+		//$this->autoRender = false;
+		$this->layout = 'ajax'; 
+
+			if ($this->RequestHandler->isAjax()) {
+			$this->data = $this->Category->read(null, 10);	
+				
+			}	
+				
+	}
+	
+//--------------------------------------------------------------------	
 }
 ?>
