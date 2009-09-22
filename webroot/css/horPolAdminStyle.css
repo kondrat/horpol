@@ -504,6 +504,7 @@ div.er {
 .disableStep div#stepIcon3 {
 	background-position: -40px -20px;	
 }
+/*category edit*/
 .moveCat {
 	cursor:move;
 	height:24px;
@@ -512,4 +513,19 @@ div.er {
 }
 .bg{
 	background:transparent url(../img/icons/move.png) no-repeat scroll 0 0px;
+}
+.viewCat dt{
+	color:gray;
+	font-size:90%;
+	font-weight:bold;
+	line-height:0.8em;
+	margin-top:0;
+}
+.viewCat dd{
+	margin-bottom:1em;
+}
+.catEdForm input {
+	float:left;
+	margin-bottom:0.5em;
+	display:block;
 }

@@ -1,37 +1,33 @@
-<div class="">
-<h2><?php  __('Category');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $category['Category']['id']; ?>
-			&nbsp;
-		</dd>
+<? echo $javascript->link(array('jquery.jeditable.mini','catEdit'),false);?>
+<div class="span-22 push-1">
 
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $category['Category']['name']; ?>
-			&nbsp;
+	<dl class="viewCat">
+		<dt>[Название:]</dt>
+		<dd>
+			<div id="catNameEdit">edit</div>
+			<div class="span-15"><h3 style="color:#911B3B;margin-bottom:0.5em;" class="edit_area" id="<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['name']; ?></h3></div>
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Url'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $category['Category']['url']; ?>
-			&nbsp;
+		<dt>[Тип категории:]</dt>
+		<dd>
+			<?php echo $category['Category']['type']; ?>
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $category['Category']['created']; ?>
-			&nbsp;
+		<dt>[Описание:]</dt>
+		<dd style="width:697px; height:3em;overflow:hidden;">
+			<?php echo trim($category['Category']['body']); ?>
+		</dd>
+		<dt>[Дата создания:]</dt>
+		<dd>
+			<?php //echo $time->relativeTime($category['Category']['created'],array('format' =>'d:n:Y','end'=>'+ 1 week'), false); ?>
+			<?php echo date('j.n.Y',strtotime($category['Category']['created'])); ?>
 		</dd>
 	</dl>
+	
 </div>
-<hr />
+
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('Edit Category', true), array('action'=>'edit', $category['Category']['id'])); ?> </li>
 		<li><?php echo $html->link(__('Delete Category', true), array('action'=>'delete', $category['Category']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $category['Category']['id'])); ?> </li>
 		<li><?php echo $html->link(__('List Categories', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Category', true), array('action'=>'add')); ?> </li>
-		<li><?php //echo $html->link(__('List Brands', true), array('controller'=> 'brands', 'action'=>'index')); ?> </li>
-		<li><?php //echo $html->link(__('New Brand', true), array('controller'=> 'brands', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

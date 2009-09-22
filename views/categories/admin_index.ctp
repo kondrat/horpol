@@ -7,10 +7,12 @@
 <?php
 $i = 0;
 foreach ($categories as $category):
+	/*
 	$class = null;
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
+	*/
 ?>
 	<?php //echo $class;?>
 
@@ -18,7 +20,7 @@ foreach ($categories as $category):
 			<div id="item_<?php echo $category['Category']['id'];?>" class="span-14" style="border:1px solid;float:left;padding:.5em;background-color:#fff;margin-bottom:.5em;">
 				<div class="span-1 moveCat"></div>
 				<div class="span-5"><?php echo $category['Category']['name']; ?></div>
-				<div class="span-3 last"<?php echo $html->link('Редактировать', array('action'=>'edit', $category['Category']['id'])); ?></div>			
+				<div class="span-3 last"<?php echo $html->link('Редактировать', array('action'=>'view', $category['Category']['id'])); ?></div>			
 			</div>
 
 

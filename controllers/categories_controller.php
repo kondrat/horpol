@@ -3,6 +3,7 @@ class CategoriesController extends AppController {
 
 	var $name = 'Categories';
 	var $paginate = array('limit' => 15  );
+	//var $helpers = array('Time');
 	
 //--------------------------------------------------------------------	
   function beforeFilter()
@@ -78,10 +79,11 @@ class CategoriesController extends AppController {
 	function admin_view($id = null) {
 		$this->set('headerName','Категории');
 		if ( (!$id) ||  ($this->Category->read(null, $id) == false ) ) {
-			$this->Session->setFlash(__('Invalid Category.', true));
+			$this->Session->setFlash('Несуществующая категория');
 			$this->redirect(array('action'=>'index'));			
 		} else {
-			$this->set('category', $this->Category->read(null, $id));
+			$category = $this->Category->find('first',array('conditions'=>array('Category.id'=>$id),'contain'=>false));
+			$this->set('category', $category);
 		}
 	}
 //--------------------------------------------------------------------
@@ -139,13 +141,29 @@ class CategoriesController extends AppController {
 					$this->Category->id = $v;
 					$this->Category->saveField('pos',$k);							
 				}			
-			}
-			
-			
-			
+			}			
 			echo json_encode( array('hi'=> 'ok') );
 			exit;		
 		}			
+	}
+//--------------------------------------------------------------------
+	function catEdit() {
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+				
+					
+						$this->Category->id = $this->data['Post']['id'];
+						if($this->Category->saveField('name',trim($this->data['Post']['name']) ) ) {
+								echo trim($this->data['Post']['name']);
+						}					
+								
+						
+
+				exit;		
+			}	
+		}		
 	}
 //--------------------------------------------------------------------
 }

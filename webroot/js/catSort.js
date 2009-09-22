@@ -16,6 +16,7 @@ $(document).ready(function(){
 					data: order,
 					success:function(data){$('#infoSort').html(data.hi);},
 					error: function(event, request, settings){alert( event.responseText );},
+					async: false,
 					dataType :"json"				
 				});
 			}			      	 
@@ -35,3 +36,7 @@ $(document).ready(function(){
 
 
 });
+
+ $(document).ready(function() {
+     $('.edit').editable('http://www.example.com/save.php');
+ });
