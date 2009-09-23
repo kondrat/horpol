@@ -151,6 +151,7 @@ class CategoriesController extends AppController {
 	function catEdit() {
 		Configure::write('debug', 0);
 		$this->autoRender = false;
+		$this->layout = 'ajax';
 		if ($this->data) {
 			if ($this->RequestHandler->isAjax()) {		
 				

@@ -555,7 +555,7 @@ div.er {
 }
 .catEditButtonHover {
 	text-decoration:underline;
-	color:gray;
+	color:red;
 	cursor:pointer;
 }
 .catEditButtonHover div {

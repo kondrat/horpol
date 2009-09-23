@@ -5,7 +5,7 @@
 	<dl class="viewCat">
 		<dt>[Название:]&nbsp;<span class="catEditButton" id="catNameEdit">Редактировать<div></div></span></dt>
 		<dd>
-			<div class="span-24"><h3 style="color:#911B3B;margin-bottom:0.5em;" class="edit_area" id="<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['name']; ?></h3></div>
+			<div class="span-24"><h3 style="color:#911B3B;margin-bottom:0.5em;" class="edit_name" id="<?php echo $category['Category']['id']; ?>_name"><?php echo $category['Category']['name']; ?></h3></div>
 		</dd>
 		<hr />
 		<dt>[Тип категории:]&nbsp;<span class="catEditButton" id="catTypeEdit">Редактировать<div></div></span></dt>
@@ -14,9 +14,9 @@
 		</dd>
 		<hr />
 		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<span class="catEditButton" id="catBodyEdit">Редактировать<div></div></span></dt>
-		<div id="ttt" style="width:740px;"></div>
+			<div id="ttt" style="width:740px;"></div>
 		<dd style="width:697px;">
-			<span class="edit_test" id="<?php echo trim($category['Category']['id']); ?>_body"><?php echo trim($category['Category']['body']); ?></span>		
+			<span class="edit_body" id="<?php echo trim($category['Category']['id']); ?>_body"><?php echo trim($category['Category']['body']); ?></span>		
 		</dd>
 		<hr />
 		<dt>[Дата создания:]</dt>

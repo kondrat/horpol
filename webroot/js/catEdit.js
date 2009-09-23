@@ -1,16 +1,20 @@
  $(document).ready(function() {
- 	$('.edit_type').editable('/save', {
+ 	$('.edit_type').editable(
+ 		path + "/categories/catEdit", 
+ 		{
      	data   : " {'1':'Товары без описания (Основная)','2':'Товары с описанием (пр: Химия)','3':'Товары без Бренда (пр: Винтаж)', 'selected':'1'}",
      	id        : 'data[Category][id]',
       name      : 'data[Category][type]',
      	type   : 'select',
-     	submit : 'OK'
+     	submit : 'OK',
+     	cancel : 'Отменить',
+     	indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
 
 	});
 
-     $('.edit_area').editable( 
+     $('.edit_name').editable( 
      	path + "/categories/catEdit",      
-     {    	 
+    	{    	 
      	   id        : 'data[Category][id]',
          name      : 'data[Category][name]',
 
@@ -37,7 +41,7 @@
 
      });
 */
-	$('.edit_test').click(function(){
+	$('.edit_body').click(function(){
 		var id = parseInt($(this).attr('id'));
 		var origText = $(this).html();
 		$(this).html('');
@@ -49,9 +53,15 @@
 	});
 
 	$('#catNameEdit').click(function(){
-		$('.edit_area').trigger('click');
+		$('.edit_name').trigger('click');
 	});
-
+	$('#catTypeEdit').click(function(){
+		$('.edit_type').trigger('click');
+	});
+	$('#catBodyEdit').click(function(){
+		$('.edit_body').trigger('click');
+	});
+	
 	$('.catEditButton').hover(function(){
 		$(this).addClass('catEditButtonHover');
 	},function(){
