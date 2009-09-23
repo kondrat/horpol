@@ -1,9 +1,8 @@
 <?php
 class AppController extends Controller {
-	var $components = array( 'Auth', 'RequestHandler', 'Email', 'Cookie','DebugKit.Toolbar');
-    var $helpers = array('Html','Javascript', 'Form', 'Menu', 'Tree', 'Cache','Fck');
+		var $components = array( 'Auth', 'RequestHandler', 'Cookie','DebugKit.Toolbar');
+    var $helpers = array('Form','Javascript','Menu','Cache');
     var $publicControllers = array('pages');
-   	//var $uses = array('Category');
    	var $subheaderTitle = 'Hor pol';
 //--------------------------------------------------------------------
 	function beforeFilter() {

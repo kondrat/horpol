@@ -1,28 +1,24 @@
 <? echo $javascript->link(array('jquery.jeditable.mini','catEdit'),false);?>
-<div id="ttt">bbbb</div>
+
 <div class="span-22 push-1">
 
 	<dl class="viewCat">
-		<dt>[Название:]</dt>
+		<dt>[Название:]&nbsp;<span class="catEditButton" id="catNameEdit">Редактировать<div></div></span></dt>
 		<dd>
-			<div id="catNameEdit">edit</div>
-			<div class="span-15"><h3 style="color:#911B3B;margin-bottom:0.5em;" class="edit_area" id="<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['name']; ?></h3></div>
+			<div class="span-24"><h3 style="color:#911B3B;margin-bottom:0.5em;" class="edit_area" id="<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['name']; ?></h3></div>
 		</dd>
-		<dt>[Тип категории:]</dt>
+		<hr />
+		<dt>[Тип категории:]&nbsp;<span class="catEditButton" id="catTypeEdit">Редактировать<div></div></span></dt>
 		<dd>
-			<?php echo $category['Category']['type']; ?>
+			<span class="edit_type" id="<?php echo trim($category['Category']['id']); ?>_type"><?php echo $this->element('category/category_type',array('catType'=> $category['Category']['type']) ); ?></span>
 		</dd>
-		
-		<dt>[ОписаниеTest:]</dt>
-		<dd style="width:697px; height:3em;overflow:hidden;">
-			<span class="edit_test"><?php echo trim($category['Category']['body']); ?></span>
-			
+		<hr />
+		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<span class="catEditButton" id="catBodyEdit">Редактировать<div></div></span></dt>
+		<div id="ttt" style="width:740px;"></div>
+		<dd style="width:697px;">
+			<span class="edit_test" id="<?php echo trim($category['Category']['id']); ?>_body"><?php echo trim($category['Category']['body']); ?></span>		
 		</dd>
-		
-		<dt>[Описание:]</dt>
-		<dd style="width:697px; height:3em;overflow:hidden;">
-			<?php echo trim($category['Category']['body']); ?>
-		</dd>
+		<hr />
 		<dt>[Дата создания:]</dt>
 		<dd>
 			<?php //echo $time->relativeTime($category['Category']['created'],array('format' =>'d:n:Y','end'=>'+ 1 week'), false); ?>

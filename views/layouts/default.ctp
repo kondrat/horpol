@@ -12,6 +12,7 @@
 		echo $html->meta('icon');
 		echo $html->css('horPolStyle');	
 		echo $html->css('jquery.fancybox');
+		echo $javascript->codeBlock('var path = "'.Configure::read('path').'";' );
 	?>
 
 	<?php
@@ -79,7 +80,7 @@
 								'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0',
 								'width', '698',
 								'height', '393',
-								'src', '/'+ flashName,
+								//'src',  flashName,
 								'quality', 'high',
 								'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
 								'align', 'middle',
@@ -95,10 +96,10 @@
 								'menu', 'true',
 								'allowFullScreen', 'false',
 								'allowScriptAccess','sameDomain',
-								'movie', '/'+ flashName,
+								'movie', path+'/'+ flashName,
 								'salign', ''
 								); //end AC code
-								//alert(flashName);
+								
 						}
 						
 					</script><noscript>

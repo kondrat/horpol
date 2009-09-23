@@ -524,8 +524,40 @@ div.er {
 .viewCat dd{
 	margin-bottom:1em;
 }
+.viewCat dt{
+	margin-bottom:1em;
+}
 .catEdForm input {
 	float:left;
 	margin-bottom:0.5em;
 	display:block;
+}
+.edit_test img {
+	border:inherit;
+	margin:inherit;
+}
+.catEditButton {
+	color: burlyWood;
+	font-weight:normal;
+	position:relative;
+}
+.edit_type {
+	color:teal;
+	font-weight:bold;
+}
+.catEditButton div {
+	background:transparent url(../img/icons/edit_inline_10x10.png) no-repeat scroll 0 -10px;
+	height:10px;
+	left:80px;
+	position:absolute;
+	top:0px;
+	width:10px;
+}
+.catEditButtonHover {
+	text-decoration:underline;
+	color:gray;
+	cursor:pointer;
+}
+.catEditButtonHover div {
+	background-position: 0 0;
 }

@@ -3,7 +3,7 @@ class CategoriesController extends AppController {
 
 	var $name = 'Categories';
 	var $paginate = array('limit' => 15  );
-	//var $helpers = array('Time');
+	var $helpers = array('Fck');
 	
 //--------------------------------------------------------------------	
   function beforeFilter()
@@ -104,18 +104,19 @@ class CategoriesController extends AppController {
 	function admin_edit($id = null) {
 		$this->set('headerName','Категории');
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Category', true));
+			$this->Session->setFlash('Несуществующая категория');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Category->save($this->data)) {
 				$this->Session->setFlash('Изменения сохранены');
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
 			}
 		}
 		if (empty($this->data)) {
+			$this->Category->recurcive = -1;
 			$this->data = $this->Category->read(null, $id);
 		}
 
@@ -154,9 +155,9 @@ class CategoriesController extends AppController {
 			if ($this->RequestHandler->isAjax()) {		
 				
 					
-						$this->Category->id = $this->data['Post']['id'];
-						if($this->Category->saveField('name',trim($this->data['Post']['name']) ) ) {
-								echo trim($this->data['Post']['name']);
+						$this->Category->id = $this->data['Category']['id'];
+						if($this->Category->saveField('name',trim($this->data['Category']['name']) ) ) {
+								echo trim($this->data['Category']['name']);
 						}					
 								
 						
@@ -170,12 +171,11 @@ class CategoriesController extends AppController {
 
 	function cattest() {
 		Configure::write('debug', 0);
-		//$this->autoRender = false;
 		$this->layout = 'ajax'; 
 
 			if ($this->RequestHandler->isAjax()) {
-			$this->data = $this->Category->read(null, 10);	
-				
+				//$this->data = $this->Category->read(null, 3);	
+				$this->data = $this->Category->read(null, $this->data['Category']['id']);				
 			}	
 				
 	}
