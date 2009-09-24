@@ -2,6 +2,14 @@
 		echo $form->create(null,array('url'=>array('controller'=>'categories','action' => 'edit','admin'=>true) ) );
 		echo $form->hidden('Category.id');
 		echo $fck->load('Category.body');
-		echo $form->button('Отмена');
-		echo $form->end('Сохранить');
 	?>
+	<div class="span-24" style="margin:1em 0;">
+	<?php
+		echo $form->submit('Сохранить',array('class'=>'span-3','div'=>array('class'=>'span-3') ) );
+		echo $form->button('Отмена',array('class'=>'span-3 catBodyCancel','id'=>'catBodyCancel') );
+	?>
+	</div>
+	<?php
+		echo $form->end();
+	?>
+	<div class="catBodyCancel">hello</div>

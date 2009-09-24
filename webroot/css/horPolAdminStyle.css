@@ -506,7 +506,7 @@ div.er {
 }
 /*category edit*/
 .moveCat {
-	cursor:move;
+	cursor:n-resize;
 	height:24px;
 	width:24px;
 	background:transparent url(../img/icons/move_light.png) no-repeat scroll 0 0px;
@@ -545,6 +545,10 @@ div.er {
 	color:teal;
 	font-weight:bold;
 }
+.edit_slogan {
+	color:black;
+	font-weight:bold;
+}
 .catEditButton div {
 	background:transparent url(../img/icons/edit_inline_10x10.png) no-repeat scroll 0 -10px;
 	height:10px;
@@ -560,4 +564,17 @@ div.er {
 }
 .catEditButtonHover div {
 	background-position: 0 0;
+}
+.catEditType select{
+	float:left;
+	margin:0 1em 1em 0;
+}
+.catEditType select{
+	float:left;
+	margin:0 .5em 1em 0;
+}
+.catEditType div{
+	margin: -.2em 0.5em 0;
+	padding:0;
+	float:left;
 }

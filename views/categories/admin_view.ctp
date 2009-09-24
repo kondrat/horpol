@@ -13,7 +13,13 @@
 			<span class="edit_type" id="<?php echo trim($category['Category']['id']); ?>_type"><?php echo $this->element('category/category_type',array('catType'=> $category['Category']['type']) ); ?></span>
 		</dd>
 		<hr />
+		<dt>[Слоган:]&nbsp;<span class="catEditButton" id="catSloganEdit">Редактировать<div></div></span></dt>
+		<dd>
+			<span class="edit_slogan" id="<?php echo trim($category['Category']['id']); ?>_slogan" style="text-align:center;"><?php echo  $category['Category']['slogan']; ?></span>
+		</dd>
+		<hr />
 		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<span class="catEditButton" id="catBodyEdit">Редактировать<div></div></span></dt>
+			<div id="mmm"></div>
 			<div id="ttt" style="width:740px;"></div>
 		<dd style="width:697px;">
 			<span class="edit_body" id="<?php echo trim($category['Category']['id']); ?>_body"><?php echo trim($category['Category']['body']); ?></span>		

@@ -150,26 +150,58 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function catEdit() {
 		Configure::write('debug', 0);
-		$this->autoRender = false;
 		$this->layout = 'ajax';
+		$this->autorender = false;
 		if ($this->data) {
 			if ($this->RequestHandler->isAjax()) {		
-				
-					
-						$this->Category->id = $this->data['Category']['id'];
+									
+						$this->Category->id = (int)$this->data['Category']['id'];
 						if($this->Category->saveField('name',trim($this->data['Category']['name']) ) ) {
 								echo trim($this->data['Category']['name']);
-						}					
-								
-						
-
-				exit;		
+						} else {
+							//echo 	$this->data['Category']['id'];
+						}			
+						exit;		
 			}	
 		}		
 	}
 //--------------------------------------------------------------------
-
-
+	function catEditType() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {											
+						$this->Category->id = (int)$this->data['Category']['id'];
+						if($this->Category->saveField('type',trim($this->data['Category']['type']) ) ) {
+								$this->set('catEditType', trim($this->data['Category']['type']) );
+						}	else {
+							echo 'za';
+							exit;
+							$this->set('blin','blin');
+						}				
+		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------
+	function catEditSlogan() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Category->id = (int)$this->data['Category']['id'];
+						if($this->Category->saveField('slogan',trim($this->data['Category']['slogan']) ) ) {
+								echo trim($this->data['Category']['slogan']);
+						} else {
+							//echo 	$this->data['Category']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------
 	function cattest() {
 		Configure::write('debug', 0);
 		$this->layout = 'ajax'; 
