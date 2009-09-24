@@ -1,17 +1,17 @@
  $(document).ready(function() {
- 	$('.edit_type').editable(
- 		path + "/categories/catEditType", 
- 		{
-     	data   : " {'1':'Товары без описания (Основной тип)','2':'Товары с описанием (пример: Лаки)','3':'Товары без Бренда (пример: Винтаж)', 'selected':'1'}",
-     	id        : 'data[Category][id]',
-      name      : 'data[Category][type]',
-      cssclass : 'catEditType',
-     	type   : 'select',
-     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
-     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div>',
-     	indicator : '<img src="'+path +' /img/icons/ajax-loader3.gif">'
-
-	});
+	 	$('.edit_type').editable(
+	 		path + "/categories/catEditType", 
+	 		{
+	     	data   : " {'1':'Товары без описания (Основной тип)','2':'Товары с описанием (пример: Лаки)','3':'Товары без Бренда (пример: Винтаж)', 'selected':'1'}",
+	     	id        : 'data[Category][id]',
+	      name      : 'data[Category][type]',
+	      cssclass : 'catEditType',
+	     	type   : 'select',
+	     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
+	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div>',
+	     	indicator : '<img src="'+path +' /img/icons/ajax-loader3.gif">'
+	
+		});
 
      $('.edit_name').editable( 
      	path + "/categories/catEdit",      
@@ -24,7 +24,13 @@
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div>',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
          indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
-         tooltip   : 'Click to edit...'
+         tooltip   : 'Click to edit...',
+         callback : function(value, settings) {
+         		console.log(this);
+         		console.log(value);
+        	 	console.log(settings);
+        }
+
      });
      
      $('.edit_slogan').editable( 

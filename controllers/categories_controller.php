@@ -157,7 +157,7 @@ class CategoriesController extends AppController {
 									
 						$this->Category->id = (int)$this->data['Category']['id'];
 						if($this->Category->saveField('name',trim($this->data['Category']['name']) ) ) {
-								echo trim($this->data['Category']['name']);
+								echo trim($this->data['Category']['name']).' 10';
 						} else {
 							//echo 	$this->data['Category']['id'];
 						}			
