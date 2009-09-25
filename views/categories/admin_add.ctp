@@ -1,23 +1,24 @@
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Категории', array('controller'=>'categories','action'=>'index')); ?>
+<?php $html->addCrumb('Добавить категорию', array()); ?>
+
 <div class="products form">
 <?php echo $form->create('Category');?>
-	<fieldset>
+	<fieldset id="catAdd">
  		<legend>Создание новой категории</legend>
-	<?php
-		echo $form->input('name', array('label' => 'Имя Категории') );
-		echo $form->input('Category.type', array('options' => array( 1 => 'Первый тип', 2 => 'Второй тип',3 => 'Третий тип') , 'label'=>'Тип категории','empty' => '(Выберите тип)') );
-		echo $form->input('title', array('label' => 'Заголовок ("Title" - отображается вверху страницы).') );
-		echo $form->input('slogan',array('label'=>'Слоган','rows'=>2,'default'=>'Здесь только лучшее от природы и производителей. <br />Каждая фабрика-яркая индивидуальность'));
-		echo $form->label('body','Описание');
-		echo $fck->load('Category.body');
-	?>
+ 			<?php echo $form->label('name','[Название категории:]' );?>
+			<?php echo $form->input('name', array('label' => false) );?>
+			<?php echo $form->label('type','[Тип категории:]' );?>
+			<?php echo $form->input('Category.type', array('options' => array( 1 => 'Товары без описания (Основной тип)', 2 => 'Товары с описанием (пример: Лаки)',3 => 'Товары без Бренда (пример: Винтаж)') , 'label'=>false,'empty' => false) );?>
+			<?php //echo $form->label('title','[Заголовок ("Title" - отображается вверху страницы):]' );?>
+			<?php //echo $form->input('title', array('label' => false) );?>
+			<?php echo $form->label('slogan','[Слоган:]' );?>
+			<?php echo $form->input('slogan',array('label'=>false,'rows'=>2,'default'=>'Здесь только лучшее от природы и производителей. <br />Каждая фабрика-яркая индивидуальность'));?>			
+			<?php echo $form->label('body','[Описание:]');?>
+		<div>
+			<?php echo $fck->load('Category.body');?>
+		</div>
 	</fieldset>
-	<hr />
 <?php echo $form->end('Сохранить');?>
 </div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link('Список категорий', array('action'=>'index'));?></li>
-		<li><?php //echo $html->link(__('List Brands', true), array('controller'=> 'brands', 'action'=>'index')); ?> </li>
-		<li><?php //echo $html->link(__('New Brand', true), array('controller'=> 'brands', 'action'=>'add')); ?> </li>
-	</ul>
-</div>
+

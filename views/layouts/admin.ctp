@@ -17,7 +17,7 @@
 		echo '<![endif]-->';
 		
 		echo $javascript->codeBlock('var path = "'.Configure::read('path').'";' );		
-		echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','jquery.form','horpolAdmin'));
+		echo $javascript->link(array('jquery-1.3.2.min','jquery.easing.1.3','jquery.form','func','horpolAdmin'));
 
 		echo $scripts_for_layout;
 	?>
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div class="span-24 mainMenu" style="margin-bottom:10px;"><?php echo $this->element('menu/menu'); ?></div>
-		
+		<div class="span-23 last push-1"><?php echo $html->getCrumbs(' &raquo; ',false); ?></div>
 			
 		<div class="span-24">
 

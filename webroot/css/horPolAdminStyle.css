@@ -514,7 +514,7 @@ div.er {
 .bg{
 	background:transparent url(../img/icons/move.png) no-repeat scroll 0 0px;
 }
-.viewCat dt{
+.viewCat dt, #catAdd label{
 	color:gray;
 	font-size:90%;
 	font-weight:bold;
@@ -578,3 +578,40 @@ div.er {
 	padding:0;
 	float:left;
 }
+#catAdd input{
+	width:270px;
+}
+#catAdd textarea{
+	width:650px;
+	height:50px;
+}
+#catAdd label{
+	margin-bottom:.1em;
+	line-height:1em;
+	display:block;
+}
+#catAdd div.input{
+	margin-bottom:1em;
+}
+.catDeleteButton span{
+	width:16px;
+	height:16px;
+	background-color:red;
+	display:block;
+	position:absolute;
+	top:2px;
+	left:115px;
+}
+.catDeleteButton{
+	position:relative;
+}
+.catDeleteButton a {
+	color:brown;
+	display:block;
+	width:150px;
+	background:transparent url(../img/icons/delete_inline_16x16.png) no-repeat scroll 115px -32px;
+}
+.catDeleteButton a:hover {
+	color:red;
+	background-position: 115px 0;
+}	

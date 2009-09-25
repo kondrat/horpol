@@ -1,4 +1,6 @@
 <? echo $javascript->link(array('jquery-ui-1.7.2.custom.min','catSort'),false);?>
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Категории', array()); ?>
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить категорию', array('action'=>'add')); ?></h3>
 </div>
@@ -29,5 +31,4 @@ foreach ($categories as $category):
 
 <?php endforeach; ?>
 </div>
-<div id="infoSort" class="span-24">InfoSort</div>
 

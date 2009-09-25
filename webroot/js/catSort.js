@@ -14,8 +14,13 @@ $(document).ready(function(){
 					type: "POST",
 					url: path + "/categories/sort",
 					data: order,
-					success:function(data){$('#infoSort').html(data.hi);},
-					error: function(event, request, settings){alert( event.responseText );},
+					success:function(data){
+						flashMessage('Позиция изменена','message');	
+					},
+					error: function(event, request, settings){
+						//alert( event.responseText );
+						alert( 'Ошибка сервера. Попробуйте еще раз' );
+					},
 					async: false,
 					dataType :"json"				
 				});
@@ -28,10 +33,10 @@ $(document).ready(function(){
 
 		
 		$('.moveCat').hover(function(){
-			$(this).toggleClass('bg');
-		},function(){
-			$(this).toggleClass('bg');
-		}
+				$(this).addClass('bg');
+			},function(){
+				$(this).removeClass('bg');
+			}
 		);
 
 

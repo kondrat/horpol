@@ -90,12 +90,15 @@ class CategoriesController extends AppController {
 	function admin_add() {
 		$this->set('headerName','Категории');
 		if (!empty($this->data)) {
+			
+			$this->data['Category']['title'] = (isset($this->data['Category']['name']))?$this->data['Category']['name']:null;
+			
 			$this->Category->create();
 			if ($this->Category->save($this->data)) {
 				$this->Session->setFlash('Категория была сохранена');
 				$this->redirect(array('action'=>'index'), null, true);
 			} else {
-				$this->Session->setFlash('Категория не была сохранена');
+				$this->Session->setFlash('Категория не была сохранена','default',array('class'=>'er'));
 			}
 		}
 
@@ -148,7 +151,7 @@ class CategoriesController extends AppController {
 		}			
 	}
 //--------------------------------------------------------------------
-	function catEdit() {
+	function catEditName() {
 		Configure::write('debug', 0);
 		$this->layout = 'ajax';
 		$this->autorender = false;
@@ -157,7 +160,7 @@ class CategoriesController extends AppController {
 									
 						$this->Category->id = (int)$this->data['Category']['id'];
 						if($this->Category->saveField('name',trim($this->data['Category']['name']) ) ) {
-								echo trim($this->data['Category']['name']).' 10';
+								echo trim($this->data['Category']['name']);
 						} else {
 							//echo 	$this->data['Category']['id'];
 						}			
@@ -202,14 +205,16 @@ class CategoriesController extends AppController {
 		}		
 	}
 //--------------------------------------------------------------------
-	function cattest() {
+	function catEditBody() {
 		Configure::write('debug', 0);
 		$this->layout = 'ajax'; 
 
 			if ($this->RequestHandler->isAjax()) {
 				//$this->data = $this->Category->read(null, 3);	
 				$this->data = $this->Category->read(null, $this->data['Category']['id']);				
-			}	
+			} else {
+				exit;
+			}
 				
 	}
 	
