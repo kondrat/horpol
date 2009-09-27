@@ -33,14 +33,14 @@
 	<div class="span-24 step actions">		
 		<div class="<?php echo (isset($firstStep))?$firstStep:null;?>" style="float:left;">
 			<div id="stepIcon1" class="stepIcon"></div>
-			<h3><?php echo $html->link('Выброр Категории',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'catSelect') );?></h3>
+			<h3><?php echo $html->link('Выбор Категории',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'catSelect') );?></h3>
 		</div>
 
 		<h3 class="stepSpace">&raquo;</h3>
 		
 		<div class="<?php echo (isset($secondStep))?$secondStep:null;?>" style="float:left;">
 			<div id="stepIcon2" class="stepIcon"></div>
-			<h3><?php echo $html->link('Выброр Бренда',array('controller'=>'sub_categories','action'=>'index',$catParam),array('id'=>'brandSelect') );?></h3>
+			<h3><?php echo $html->link('Выбор Бренда',array('controller'=>'sub_categories','action'=>'index',$catParam),array('id'=>'brandSelect') );?></h3>
 		</div>
 		
 		<h3 class="stepSpace">&raquo;</h3>

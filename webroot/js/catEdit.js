@@ -9,7 +9,7 @@
 	      cssclass : 'catEditType',
 	     	type   : 'select',
 	     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
-	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div>',
+	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div><hr />',
 	     	tooltip   : 'Редактировать тип',
 	     	indicator : '<img src="'+path +' /img/icons/ajax-loader3.gif">',
         callback : function(value, settings) {
@@ -25,7 +25,7 @@
         // type      : 'textarea',
          width		 : 500,
          cssclass : 'catEdForm',
-         cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div>',
+         cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
          indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
@@ -46,7 +46,7 @@
         // type      : 'textarea',
          width		 : 500,
          cssclass : 'catEdForm',
-         cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div>',
+         cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
          indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать слоган',
@@ -80,7 +80,7 @@
 			{ 'data[Category][id]': id },
 			function(){
 				$('#mmm').empty();
-				//flashMessage('Описане отредактировано','message');
+				//flashMessage('Описание отредактировано','message');
 			}
 		);
 
@@ -107,11 +107,6 @@
 		$('.edit_body').trigger('click');
 	});
 	
-	$('.catEditButton').hover(function(){
-		$(this).addClass('catEditButtonHover');
-	},function(){
-		$(this).removeClass('catEditButtonHover');
-	});
 
 
 

@@ -536,7 +536,7 @@ div.er {
 	border:inherit;
 	margin:inherit;
 }
-.catEditButton {
+.editButton {
 	color: burlyWood;
 	font-weight:normal;
 	position:relative;
@@ -549,22 +549,22 @@ div.er {
 	color:black;
 	font-weight:bold;
 }
-.catEditButton div {
-	background:transparent url(../img/icons/edit_inline_10x10.png) no-repeat scroll 0 -10px;
-	height:10px;
-	left:80px;
-	position:absolute;
-	top:0px;
-	width:10px;
+
+
+
+a.editButton {
+	background:transparent url(../img/icons/edit_inline_10x10.png) no-repeat scroll 80px -20px;
+	padding:0 20px 0 0 ;
 }
-.catEditButtonHover {
-	text-decoration:underline;
+a.editButton:hover {
+	background-position: 80px 0px;
 	color:red;
-	cursor:pointer;
 }
-.catEditButtonHover div {
-	background-position: 0 0;
-}
+
+
+
+
+
 .catEditType select{
 	float:left;
 	margin:0 1em 1em 0;
@@ -593,25 +593,26 @@ div.er {
 #catAdd div.input{
 	margin-bottom:1em;
 }
-.catDeleteButton span{
-	width:16px;
-	height:16px;
-	background-color:red;
-	display:block;
-	position:absolute;
-	top:2px;
-	left:115px;
-}
-.catDeleteButton{
-	position:relative;
-}
-.catDeleteButton a {
+
+.deleteButton a {
 	color:brown;
 	display:block;
-	width:150px;
-	background:transparent url(../img/icons/delete_inline_16x16.png) no-repeat scroll 115px -32px;
+	background:transparent url(../img/icons/delete_inline_16x16.png) no-repeat scroll;
 }
-.catDeleteButton a:hover {
+.deleteButton a:hover {
 	color:red;
-	background-position: 115px 0;
 }	
+.catDelBut a{
+	width:150px;
+	background-position: 115px -32px;
+}
+.catDelBut a:hover{
+	background-position: 115px 0;
+}
+.brandDelBut a{
+	width:120px;
+	background-position: 94px -32px;
+}
+.brandDelBut a:hover{
+	background-position: 94px 0;
+}

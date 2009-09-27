@@ -5,22 +5,22 @@
 <div class="span-22 push-1">
 
 	<dl class="viewCat">
-		<dt>[Название:]&nbsp;<span class="catEditButton" id="catNameEdit">Редактировать<div></div></span></dt>
+		<dt>[Название:]&nbsp;<a class="editButton" id="catNameEdit">Редактировать</a></dt>
 		<dd>
 			<div class="span-24"><h3 style="color:#911B3B;" class="edit_name" id="<?php echo $category['Category']['id']; ?>_name"><?php echo $category['Category']['name']; ?></h3></div>
 		</dd>
 		
-		<dt>[Тип категории:]&nbsp;<span class="catEditButton" id="catTypeEdit">Редактировать<div></div></span></dt>
+		<dt>[Тип категории:]&nbsp;<a class="editButton" id="catTypeEdit">Редактировать</a></dt>
 		<dd>
 			<span class="edit_type" id="<?php echo trim($category['Category']['id']); ?>_type"><?php echo $this->element('category/category_type',array('catType'=> $category['Category']['type']) ); ?></span>
 		</dd>
 		
-		<dt>[Слоган:]&nbsp;<span class="catEditButton" id="catSloganEdit">Редактировать<div></div></span></dt>
+		<dt>[Слоган:]&nbsp;<a class="editButton" id="catSloganEdit">Редактировать</a></dt>
 		<dd>
 			<span class="edit_slogan" id="<?php echo trim($category['Category']['id']); ?>_slogan" style="text-align:center;"><?php echo  $category['Category']['slogan']; ?></span>
 		</dd>
 		
-		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<span class="catEditButton" id="catBodyEdit">Редактировать<div></div></span></dt>
+		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<a class="editButton" id="catBodyEdit">Редактировать</a></dt>
 			<div id="mmm"></div>
 			<div id="ttt" style="width:740px;"></div>
 		<dd style="width:697px;">
@@ -36,7 +36,7 @@
 	
 </div>
 
-<div class="span-23 last push-1 catDeleteButton">
+<div class="span-23 last push-1 deleteButton catDelBut">
 
 	<?php echo $html->link('Удалить категорию', array('action'=>'delete', $category['Category']['id']), null, sprintf(__('Вы подтверждаете удаление категории %s?', true), $category['Category']['name'])); ?>
 

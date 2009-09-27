@@ -6,22 +6,22 @@
 
 	<dl class="viewCat">
 		
-		<dt>[Логотип:]&nbsp;<span class="catEditButton" id="catNameEdit">Редактировать<div></div></span></dt>
+		<dt>[Логотип:]&nbsp;<a class="editButton" id="catNameEdit">Редактировать</a></dt>
 		<dd>
 			<div class="span-24" style="margin-bottom:1em;"><div style="padding:8px;background-color:#eee;float:left;"><?php echo $html->image('catalog/'.$brand['Brand']['logo'],array('class'=>'brandShadow')); ?></div></div>
 		</dd>
 		
-		<dt>[Название:]&nbsp;<span class="catEditButton" id="catNameEdit">Редактировать<div></div></span></dt>
+		<dt>[Название:]&nbsp;<a class="editButton" id="catNameEdit">Редактировать</a></dt>
 		<dd>
 			<div class="span-24"><h3 class="edit_name" id="<?php echo $brand['Brand']['id']; ?>_name"><?php echo $brand['Brand']['name']; ?></h3></div>
 		</dd>
 	
-		<dt>[Страна-изготовитель:]&nbsp;<span class="catEditButton" id="catSloganEdit">Редактировать<div></div></span></dt>
+		<dt>[Страна-изготовитель:]&nbsp;<a class="editButton" id="catSloganEdit">Редактировать</a></dt>
 		<dd>
 			<span class="edit_slogan" id="<?php echo trim($brand['Brand']['id']); ?>_slogan"><?php echo ($brand['Brand']['origin']!=null)?$brand['Brand']['origin']:'Не указана'; ?></span>
 		</dd>
 		
-		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<span class="catEditButton" id="catBodyEdit">Редактировать<div></div></span></dt>
+		<dt style="margin-bottom:.5em;">[Описание:]&nbsp;<a class="editButton" id="catBodyEdit">Редактировать</a></dt>
 			<div id="mmm"></div>
 			<div id="ttt" style="width:740px;"></div>
 		<dd style="width:697px;">
@@ -37,7 +37,7 @@
 	
 </div>
 
-<div class="span-23 last push-1 catDeleteButton">
+<div class="span-23 last push-1 deleteButton brandDelBut">
 
 	<?php echo $html->link('Удалить Бренд', array('action'=>'delete', $brand['Brand']['id']), null, sprintf(__('Вы подтверждаете удаление Бренда %s?', true), $brand['Brand']['name'])); ?>
 
