@@ -84,7 +84,7 @@
 				
 				// -- error if not correct extension
 				if(!in_array($this->ext($fileName),$this->_allowed)){
-					$this->error("File type not allowed.");
+					$this->error("Недопустимый тип файла");
 				} else { 
 				
 					// -- it's been uploaded with php
@@ -122,7 +122,7 @@
 					
 			} else {
 				//debug( $this->upload_error($file['error']) );
-				$this->error('Проблема при загрузке файла: '.$this->upload_error($file['error']) );
+				$this->error($this->upload_error($file['error']) );
 			}
 
 			if( $this->errors != false ) {

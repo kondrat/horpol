@@ -5,6 +5,7 @@ class BrandsController extends AppController {
 	//var $helpers = array('Html', 'Form');
 	var $components = array('Upload');
 	var $paginate = array('limit' => 15);
+	var $helpers = array('Fck');
 //--------------------------------------------------------------------	
   function beforeFilter() {
         //$this->Auth->allow('index');
@@ -85,6 +86,8 @@ class BrandsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			
+			/*
+			
 			$file = array();
 			// set the upload destination folder
 			$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
@@ -118,16 +121,20 @@ class BrandsController extends AppController {
 					}
 			}
 			
+				*/
+				
 						
 			if ($this->Brand->save($this->data)) {
 				$this->Session->setFlash('Изменения сохранены');
-				@unlink($destination.$oldFile);
-				$this->redirect(array('action'=>'index'), null, true);
+				//@unlink($destination.$oldFile);
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
+				/*
 						if (  isset($this->Upload->result) && $this->Upload->result != null) {
 							@unlink($destination.$this->Upload->result);
 						}
+				*/
 			}
 		}
 		if (empty($this->data)) {
@@ -148,5 +155,128 @@ class BrandsController extends AppController {
 		}
 	}
 //--------------------------------------------------------------------
+	function brandEditOrigin() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Brand->id = (int)$this->data['Brand']['id'];
+						if($this->Brand->saveField('origin',trim($this->data['Brand']['origin']) ) ) {
+								echo trim($this->data['Brand']['origin']);
+						} else {
+							//echo 	$this->data['Category']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------
+	function brandEditBody() {
+			Configure::write('debug', 0);
+			$this->layout = 'ajax'; 
+	
+				if ($this->RequestHandler->isAjax()) {	
+					$this->data = $this->Brand->read(null, $this->data['Brand']['id']);				
+				} else {
+					exit;
+				}
+					
+		}
+		
+//--------------------------------------------------------------------	
+	function brandEditLogo() {
+		Configure::write('debug', 0);
+		if (!empty($this->data)) {
+			
+			$file = array();
+			// set the upload destination folder
+			$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+			//debug($destination );
+			// grab the file
+			$file = $this->data['Brand']['userfile'];
+
+			if ($file['error'] == 4) {
+				$this->data['Brand']['logo'] = null;
+				//$this->Session->setFlash('Файл не загружен');
+					echo json_encode(array('error'=>'Файл не загружен'));
+					$this->autoRender = false;
+					exit();							
+			}else {
+									
+				// upload the image using the upload component
+				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('127', '70') ) );
+					if ( $result != 1 ){
+						$this->data['Brand']['logo'] = $this->Upload->result;
+					} else {
+						// display error
+						$errors = $this->Upload->errors;
+						// piece together errors
+						if( is_array($errors) ) { 
+							$errors = implode("<br />",$errors); 
+						}	   
+							//$this->Session->setFlash($errors);
+						echo json_encode(array('error'=>$errors));											
+						$this->autoRender = false;
+					 	exit();	
+					}
+			}			
+			
+					
+			if ( isset($this->data['Brand']['logo']) && $this->data['Brand']['logo'] != null ) {							
+					$this->Brand->create();
+					if ($this->Brand->save($this->data)) {
+									
+									$arr = array ( 'img'=> $this->data['Brand']['logo'] );
+									echo json_encode($arr);											
+									$this->autoRender = false;
+					 				exit();
+					} else {
+						if (  isset($this->Upload->result) && $this->Upload->result != null) {
+							@unlink($destination.$this->Upload->result);
+						}
+									echo json_encode('error');											
+									$this->autoRender = false;
+					 				exit();					
+						
+					}
+			}
+
+		}
+	}
+//--------------------------------------------------------------------
+	function brandEditName() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Brand->id = (int)$this->data['Brand']['id'];
+						if($this->Brand->saveField('name',trim($this->data['Brand']['name']) ) ) {
+								echo trim($this->data['Brand']['name']);
+						} else {
+							//echo 	$this->data['Brand']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>
