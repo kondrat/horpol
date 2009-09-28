@@ -42,7 +42,7 @@ class BrandsController extends AppController {
 			
 			if ($file['error'] == 4) {
 				$this->data['Brand']['logo'] = null;
-				//$this->Session->setFlash('Файл не загружен');
+				$this->Session->setFlash('Файл не загружен');
 				
 			}else {
 									

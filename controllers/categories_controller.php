@@ -15,7 +15,7 @@ class CategoriesController extends AppController {
 //--------------------------------------------------------------------
 
 	function index() {
-		$a = $this->Category->find('all', array( 'conditions' => array(), 'order' => array( 'Category.pos' => 'asc'), 'fields' => array('id','name'), 'limit' => 50,'contain'=>false ) );		
+		$a = $this->Category->find('all', array( 'conditions' => array('Category.active'=>'1'), 'order' => array( 'Category.pos' => 'asc'), 'fields' => array('id','name'), 'limit' => 50,'contain'=>false ) );		
 		
 		if (isset($this->params['requested'])) {
 			return $a;

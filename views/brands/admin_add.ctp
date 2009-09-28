@@ -1,18 +1,21 @@
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Бренды', array('controller'=>'brands','action'=>'index')); ?>
+<?php $html->addCrumb('Добавить Бренд', array()); ?>
 <div class="products form">
 <?php echo $form->create('Brand', array( 'type' => 'file') );?>
-	<fieldset>
- 		<legend>Добавить новый Бренд</legend>
+	<fieldset  id="brandAdd">
+ 		<legend>Создание нового Бренда</legend>
 
-		<b>Загрузка Логотипа:</b> 
+		<?php echo $form->label('userfile','[Загрузка Логотипа:]',array('style'=>'margin-bottom:.5em;') );?> 
 		<?php echo $form->input('Brand.userfile', array('label' => false, 'type'=>'file')); ?>
-	<?php
-		echo $form->input('name', array( 'label' => 'Название Бренда') );
-		echo $form->input('origin', array( 'label' => 'Страна-изготовитель') );
-		//echo $form->input('body', array('label' => 'Описание') );
-		echo $form->label('body','Описание');
-		echo $fck->load('Brand.body');
-	?>
+		<?php echo $form->label('name','[Название Бренда:]' );?>
+		<?php echo $form->input('name', array( 'label' => false) );?>
+		<?php echo $form->label('name','[Страна-изготовитель:]' );?>
+		<?php echo $form->input('origin', array( 'label' => false) );?>		
+		<?php echo $form->label('body','[Описание:]');?>
+		<div>
+			<?php echo $fck->load('Brand.body');?>
+		</div>
 	</fieldset>
-	<hr />
 <?php echo $form->end('Сохранить');?>
 </div>

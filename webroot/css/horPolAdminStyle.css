@@ -514,7 +514,7 @@ div.er {
 .bg{
 	background:transparent url(../img/icons/move.png) no-repeat scroll 0 0px;
 }
-.viewCat dt, #catAdd label{
+.viewCat dt, #catAdd label, #brandAdd label{
 	color:gray;
 	font-size:90%;
 	font-weight:bold;
@@ -579,19 +579,19 @@ a.editButton:hover {
 	padding:0;
 	float:left;
 }
-#catAdd input{
+#catAdd input,#brandAdd input{
 	width:270px;
 }
-#catAdd textarea{
+#catAdd textarea,#brandAdd textarea{
 	width:650px;
 	height:50px;
 }
-#catAdd label{
+#catAdd label,#brandAdd label{
 	margin-bottom:.1em;
 	line-height:1em;
 	display:block;
 }
-#catAdd div.input{
+#catAdd div.input,#brandAdd div.input{
 	margin-bottom:1em;
 }
 
