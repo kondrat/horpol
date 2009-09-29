@@ -1,36 +1,35 @@
-<div class="maincontent">
-	<br />
+<? echo $javascript->link(array('jquery.jeditable.mini','newsEdit'),false);?>
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Новости', array('action'=>'index')); ?>
+<?php $html->addCrumb('Редактировать новость', array()); ?>
+<div class="span-22 push-1">
 
+	<dl class="viewCat">
+		<dt>[Дата:]&nbsp;<a class="editButton" id="newsDataEdit">Редактировать</a></dt>
+			<div id="dataInput"></div>
+		<dd>
+			<div class="span-24"><h3 class="edit_data" id="<?php echo $news['News']['id']; ?>_data"><?php echo date( 'd.m.y', strtotime($news['News']['created']) ); ?></h3></div>
+		</dd>
+		<dt>[Заголовок:]&nbsp;<a class="editButton" id="newsNameEdit">Редактировать</a></dt>
+		<dd>
+			<div class="span-24"><h3 style="color:#911B3B;" class="edit_name" id="<?php echo $news['News']['id']; ?>_name"><?php echo $news['News']['name']; ?></h3></div>
+		</dd>
+		<dt style="margin-bottom:.5em;">[Новость:]&nbsp;<a class="editButton" id="newsBodyEdit">Редактировать</a></dt>
+			<div id="mmm"></div>
+			<div id="ttt" style="width:740px;"></div>
+		<dd style="width:697px;">
+			<span class="edit_body" id="<?php echo trim($news['News']['id']); ?>_body"><?php echo ($news['News']['body']!=null)?$news['News']['body']:'Описане отсутствует'; ?></span>		
+		</dd>
+	</dl>
 	
+<div class="span-23 last push-1 deleteButton catDelBut">
+			<?php echo $html->link('Удалить новость', array('action'=>'delete', $news['News']['id']), null, sprintf('Удалить новость от %s?', date( 'd.m.y', strtotime($news['News']['created'])) ) ); ?>
+</div>	
 	
-		<p style="font-size:larger;"><?php echo date( 'd.m.y', strtotime($news['News']['created']) ).' '.$news['News']['name']; ?></p>
-		<br />
 
 
-	<p><?php echo $news['News']['body']; ?></p>
-		<br />
-			<p style="font-size:smaller;"><?php echo $html->link('Редактировать новость', array('action'=>'edit', $news['News']['id']), array('style' => "color: #777;") ); ?></p>
-			<p style="font-size:smaller;"><?php echo $html->link('Удалить новость', array('action'=>'delete', $news['News']['id']), array('style' => "color:#FF5E5E;"), sprintf('Удалить новость от %s?', date( 'd.m.y', strtotime($news['News']['created'])) ) ); ?></p>
 
-		<br />	
-		<hr />
-		<br />
-	<?php foreach($listNews as $list): ?>
-	<?php echo $html->link( date( 'd.m.y', strtotime($list['News']['created']) ).' '.$list['News']['name'] , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menulup') ) ;?>
 
-		<p>
-			<?php
-				App::import('Vendor', 'fly2');
-				$fly2 = new fly2();
-				echo  $fly2->fragment(strip_tags($list['News']['body']), 70);
-			?>
-		<p>
-	<br />
-	<?php endforeach ?>
-	
-<p>
-	<?php echo $html->link('Все новости', array('action'=>'index')); ?>
-</p>
 
 </div>
 

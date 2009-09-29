@@ -1,4 +1,4 @@
-<? //echo $javascript->link(array('jquery-ui-1.7.2.custom.min','catSort'),false);?>
+<? echo $javascript->link(array('newsEdit'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Новости', array()); ?>
 
@@ -16,26 +16,29 @@
 		</div>
 	
 	
-	
-	<?php foreach($News as $list): ?>
-		<?php echo $html->link( date( 'd.m.y', strtotime($list['News']['created']) ).' '.$list['News']['name'] , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'menulup') ) ;?>
+<div class="span-24">	
+	<?php foreach($allnews as $list): ?>
+	<div class="span-20 push-1 newsWrapper">
+		<div class="span-2">
+			<?php echo $html->link( date( 'd.m.y', strtotime($list['News']['created']) ) , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => '') ) ;?>
+		</div>
+		<?php echo $html->link( $list['News']['name'] , array('controller' => 'News', 'action' => 'view', $list['News']['id']), array('class' => 'newsHead') ) ;?>
+		<span class="newsTest"></span>
 
-		<br />
-		<p>
+
+
+		<div class="span-21  prepend-2">
 		<?php 
 			App::import('Vendor', 'fly2');
 			$fly2 = new fly2();
 			echo  $fly2->fragment(strip_tags($list['News']['body']), 70); 
 		?>
-		</p>
-		<br />
-			<p style="font-size:smaller;"><?php echo $html->link('Редактировать новость', array('action'=>'edit', $list['News']['id']), array('style' => "color: #777;") ); ?></p>
-			<p style="font-size:smaller;"><?php echo $html->link('Удалить новость', array('action'=>'delete', $list['News']['id']), array('style' => "color:#FF5E5E;"), sprintf('Удалить новость от %s?', date( 'd.m.y', strtotime($list['News']['created'])) ) ); ?></p>
+		</div>
 
-		<br />
-		<hr />
-		<br />
+			<p style="font-size:smaller;"><?php //echo $html->link('Редактировать новость', array('action'=>'edit', $list['News']['id']), array('style' => "color: #777;") ); ?></p>
+			<p style="font-size:smaller;"><?php //echo $html->link('Удалить новость', array('action'=>'delete', $list['News']['id']), array('style' => "color:#FF5E5E;"), sprintf('Удалить новость от %s?', date( 'd.m.y', strtotime($list['News']['created'])) ) ); ?></p>
+	</div>
 	<?php endforeach ?>
-
+</div>
 
 	

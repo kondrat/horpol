@@ -2,6 +2,7 @@
 class NewsController extends AppController {
 	var $name = 'News';
 	var $paginate = array('limit' => 5, 'order' => array( 'News.created' => 'desc') );
+	var $helpers = array('Fck');
 	
 //--------------------------------------------------------------------	
 	function beforeFilter() {
@@ -53,11 +54,7 @@ class NewsController extends AppController {
 			$this->News->recursive = 0;
 			$twoNews = $this->News->find('all', array( 'conditions' => array(), 'order' => array( 'News.created' => 'desc') ) );
 
-			$this->set('News', $this->paginate());
-
-		
-		//$text = Flay::fragment($a[0]['News']['body'],7);
-		//debug( $text );
+			$this->set('allnews', $this->paginate());
 		
 		
     }
@@ -71,7 +68,7 @@ class NewsController extends AppController {
 				$this->Session->setFlash( 'Новость была добавлена' );
 				$this->redirect( array('action' => 'index') );
 			} else {
-				$this->Session->setFlash('Новость не была добавлена. Попробуйте еще раз');
+				$this->Session->setFlash('Новость не была добавлена','default',array('class'=>'er'));
 			}
 		}
 		//This use for the find('list') if we use smthname instead of name.
@@ -101,7 +98,7 @@ class NewsController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->News->save($this->data)) {
 				$this->Session->setFlash('Изменения сохранены');
-				$this->redirect( array('action' => 'index') );
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
 			}
@@ -121,16 +118,65 @@ class NewsController extends AppController {
  */
 	function admin_view($id = null) {
 		$this->set('headerName','Новости');
+		
 		if ( (!$id) ||  ($this->News->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid News.', true));
 			$this->redirect( $this->Auth->redirect() );			
 		} else {
 			$this->set('news', $this->News->read(null, $id));
-			$listNews = $this->News->find('all',array('conditions' => array('News.id <>' => $id), 'limit' => 5, 'order' => array('News.created' => 'desc') ) ); 
-			$this->set('listNews', $listNews);
-			//$this->set('referer', $this->referer() );
 		}
 	}
+//--------------------------------------------------------------------
+	function newsEditName() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->News->id = (int)$this->data['News']['id'];
+						if($this->News->saveField('name',trim($this->data['News']['name']) ) ) {
+								echo trim($this->data['News']['name']);
+						} else {
+							
+						}			
+						exit;		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------
+	function newsEditBody() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax'; 
+
+			if ($this->RequestHandler->isAjax()) {
+				//$this->data = $this->Category->read(null, 3);	
+				$this->data = $this->News->read(null, $this->data['News']['id']);				
+			} else {
+				exit;
+			}
+				
+	}
+	
+//--------------------------------------------------------------------
+	function newsEditData() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax'; 
+
+			if ($this->RequestHandler->isAjax()) {		
+				if (!empty($this->data)&&$this->data['News']['data'] != null) {
+					if ($this->News->save($this->data)) {
+						
+					} else {
+						
+					}
+				}
+				if (empty($this->data)) {
+					$this->data = $this->News->read(null, $this->data['News']['id']);
+				}
+		}
+	}
+
 //--------------------------------------------------------------------
 }
 

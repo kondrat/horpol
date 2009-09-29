@@ -620,3 +620,21 @@ a.editButton:hover {
 input#BrandUserfile{
 	width:500px;
 }
+/*news*/
+.newsHead {
+	color:#911B3B;
+	font-weight:bold;
+	float:left;
+	margin-right:1em;
+}
+.newsTest{
+		background:transparent url(../img/icons/edit_news_16x16.png) no-repeat scroll 0 0;
+		width:16px;
+		height:16px;
+		display:block;
+		float:left;
+}
+.newsWrapper{
+	border-bottom:1px solid silver;
+	padding-bottom:.5em;
+}
