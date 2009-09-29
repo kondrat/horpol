@@ -8,7 +8,7 @@
 		<dt>[Дата:]&nbsp;<a class="editButton" id="newsDataEdit">Редактировать</a></dt>
 			<div id="dataInput"></div>
 		<dd>
-			<div class="span-24"><h3 class="edit_data" id="<?php echo $news['News']['id']; ?>_data"><?php echo date( 'd.m.y', strtotime($news['News']['created']) ); ?></h3></div>
+			<div class="span-24"><h4 class="edit_data" id="<?php echo $news['News']['id']; ?>_data"><?php echo date( 'd.m.Y', strtotime($news['News']['created']) ); ?></h4></div>
 		</dd>
 		<dt>[Заголовок:]&nbsp;<a class="editButton" id="newsNameEdit">Редактировать</a></dt>
 		<dd>

@@ -164,16 +164,24 @@ class NewsController extends AppController {
 		$this->layout = 'ajax'; 
 
 			if ($this->RequestHandler->isAjax()) {		
-				if (!empty($this->data)&&$this->data['News']['data'] != null) {
+				if (!empty($this->data)&&$this->data['News']['created'] != null) {
 					if ($this->News->save($this->data)) {
-						
+						$arr = array ( 'data'=> $this->data['News']['created']['day'].'.'.$this->data['News']['created']['month'].'.'.$this->data['News']['created']['year'] );
+						echo json_encode($arr);		
+						exit;
 					} else {
-						
+						echo json_encode('Not saved');
+						exit;
 					}
 				}
 				if (empty($this->data)) {
+					
 					$this->data = $this->News->read(null, $this->data['News']['id']);
+					$this->set('sel',$this->data);
 				}
+		} else {
+			echo 'not good';
+			exit;
 		}
 	}
 

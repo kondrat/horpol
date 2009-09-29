@@ -58,10 +58,10 @@
 	$('.edit_data').click(function(){
 		var id = parseInt($(this).attr('id'));
 		origData = $(this).html();
-		$(this).html('')
-		$('.dataInput').append('<img src="'+path +' /img/icons/ajax-loader.gif">');
+		$(this).html('');
+		$('#dataInput').append('<img src="'+path +' /img/icons/ajax-loader.gif">');
 	
-		$('.dataInput').load( 
+		$('#dataInput').load( 
 			path + "/news/newsEditData",
 			{ 'data[News][id]': id },
 			function(){
@@ -78,7 +78,27 @@
 		$('.edit_data').html(origData);
 	});
 
-
+	$('#newsDataSubmit').live('click',function(){
+		$('.edit_data').html('<img src="'+path +' /img/icons/ajax-loader.gif">');
+		$(this).parents("#NewsEditForm").ajaxSubmit({
+			success: function(responseText, responseCode) {
+				if(responseText.data != null){
+					flashMessage('Дата изменена','message');
+					$('.edit_data').text(responseText.data);
+				} else {
+					flashMessage('Дата не изменена','er');
+					$('.edit_data').text(origData);
+				}
+					//alert(responseText.data);
+					$('#ajax-save-message').hide().html(responseText).fadeIn();					
+				},
+			resetForm: true,
+			dataType:  'json'
+			});
+		$('#dataInput').empty();
+		
+		return false;
+	})
 
 
 
