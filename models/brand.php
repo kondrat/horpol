@@ -12,6 +12,13 @@ class Brand extends AppModel {
 																		'message' => 'Допустимы только буквы и цифры',
 																		),
 												*/
+
+												'notEmpty' => array(
+																	'rule' => 'notEmpty',
+																	'required' => false,
+																	'message' => 'Это поле не может быть пустым',
+																	'last' => true,
+																	),
 												'checkUnique' => array( 
 																		'rule' =>  array('checkUnique', 'name'),
 																		'message' => 'Брэнд с таким названием уже существует',

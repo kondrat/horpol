@@ -1,4 +1,4 @@
-<? echo $javascript->link(array('jquery.jeditable.mini','brandEdit'),false);?>
+<?php echo $javascript->link(array('jquery.jeditable.mini','brandEdit'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Бренды', array('controller'=>'brands','action'=>'index')); ?>
 <?php $html->addCrumb($brand['Brand']['name'], array()); ?>

@@ -226,7 +226,8 @@ class subCategoriesController extends AppController {
 				} else {
 					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
 					$this->set('catSelected',$catSelected['Category']['name']);
-					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo'),'contain'=>false));					
+					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo'),'contain'=>false));
+					$brandSelected['Category']['id'] = $catSelected['Category']['id'];					
 					$this->set('brandSelected',$brandSelected);
 					$this->Session->setFlash('Ни одного подраздела еще не создано');
 				}																			
@@ -424,6 +425,20 @@ class subCategoriesController extends AppController {
 
 	}
 //--------------------------------------------------------------------
+	function admin_addInline() {
+		if (!empty($this->data)) {
+			$this->SubCategory->create();
+			if ($this->SubCategory->save($this->data)) {
+				$this->Session->setFlash('Создан новый подраздел');
+				$this->redirect(array('action'=>'index','cat:'.$this->data['SubCategory']['category_id'],'brand:'.$this->data['SubCategory']['brand_id'],'subcat:'.$this->SubCategory->id));
+				//$this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash('Подраздел не был создан','default',array('class'=>'er'));
+				$this->redirect(array('action'=>'index','cat:'.$this->data['SubCategory']['category_id'],'brand:'.$this->data['SubCategory']['brand_id']));
+			}
+		}
+	}
+//--------------------------------------------------------------------	
 	function admin_edit($id = null) {
 		$this->set('headerName','Подразделы');
 		if (!$id && empty($this->data)) {

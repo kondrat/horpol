@@ -65,7 +65,6 @@
 			path + "/news/newsEditData",
 			{ 'data[News][id]': id },
 			function(){
-				//$('#mmm').empty();
 				//flashMessage('Описание отредактировано','message');
 			}
 		);
@@ -74,7 +73,7 @@
 	
 	
 	$('input.newsDataCancel').live('click',function(){
-		//$('#ttt').empty();
+		$('#dataInput').empty();
 		$('.edit_data').html(origData);
 	});
 
@@ -86,7 +85,7 @@
 					flashMessage('Дата изменена','message');
 					$('.edit_data').text(responseText.data);
 				} else {
-					flashMessage('Дата не изменена','er');
+					flashMessage('Изменения не были сохранены. Проверьте дату','er');
 					$('.edit_data').text(origData);
 				}
 					//alert(responseText.data);

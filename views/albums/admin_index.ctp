@@ -38,7 +38,7 @@
 			<?php else: ?>
 				<?php echo $html->link( $html->image( 'gallery/s/default.jpg', array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'edit',$album['Album']['id']),null, null, false ); ?>
 			<?php endif ?>
-			<?php echo $html->image('icons/lens.png',array('class'=>'lens'));?>
+			<div class="lens"></div>
 		</div>
 			<div style="font-weight:bold;text-align:center;line-height:1em;">&laquo;<?php echo $album['Album']['name']; ?>&raquo;</div>
 		

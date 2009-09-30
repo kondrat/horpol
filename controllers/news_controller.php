@@ -100,7 +100,7 @@ class NewsController extends AppController {
 				$this->Session->setFlash('Изменения сохранены');
 				$this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
+				$this->Session->setFlash('Изменения не были сохранены. Проверьте дату','default','er');
 			}
 		}
 		if (empty($this->data)) {
@@ -174,10 +174,8 @@ class NewsController extends AppController {
 						exit;
 					}
 				}
-				if (empty($this->data)) {
-					
-					$this->data = $this->News->read(null, $this->data['News']['id']);
-					$this->set('sel',$this->data);
+				if (empty($this->data['News']['created'])&&$this->data['News']['id'] != null) {				
+					$this->data = $this->News->read(array('id','created'), $this->data['News']['id']);
 				}
 		} else {
 			echo 'not good';

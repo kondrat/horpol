@@ -92,6 +92,14 @@ div.footer a:hover{
 	text-decoration:none;
 }
 /*album*/
+.lens{
+	left:130px;
+	position:absolute;
+	top:55px;
+	width:16px;
+	height:16px;
+	background:transparent url(../img/icons/edit_lens_16x16.png) no-repeat scroll 0 0;
+}
 .thumbAdmin {
 	background-color:#F3F3F3;
 	margin-bottom:1em;
@@ -341,11 +349,6 @@ div.er {
 	position:relative;
 }
 
-.lens {
-	left:130px;
-	position:absolute;
-	top:55px;
-}
 /* category */
 .categories {
 	text-align:left;
@@ -389,8 +392,23 @@ div.er {
 }
 /*subCategory*/
 .subCategoryWrapper {
-	padding-bottom:1em;
-	border-bottom:1px solid silver;
+}
+.subCategoryAddWrapper{
+	position:relative;
+	height:100%;
+	z-index:100;
+}
+.subCategoryAdd{
+	position:absolute;
+	background-color:white;
+	z-index:100;
+	top:25px;
+	left:10px;
+	border:1px solid silver;
+	padding:10px 0 20px 20px;
+}
+.subCategoryAdd label{
+	color:gray;
 }
 .subCategories li a.currentSubCat {
 	color:red;
@@ -478,7 +496,7 @@ div.er {
 .stepIcon{
 	width:20px;
 	height:20px;
-	margin:0 auto;
+	margin:0 60px;
 }
 .activeStep div#stepIcon1{
 	background-position: 0 -40px;

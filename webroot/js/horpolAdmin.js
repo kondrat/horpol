@@ -81,11 +81,20 @@ $(document).ready( function(){
 			$('.brandShadow').attr({src:brandImg});
 			return false;
 		});
+
+
+	$('.brand').hover(function(){
+		$(this).children().css({'border-color':'#000'});
+	},function(){
+		$(this).children().css({'border-color':'silver'});	
+	});
+	
 });
+
 //changing name of the subCategory and url of the link
 $(document).ready( function(){
 		var prev = null;
-		$('.subCategory li a').click(function() {
+		$('.subCategory div a').click(function() {
 			
 			var liContent = $(this).text();
 			

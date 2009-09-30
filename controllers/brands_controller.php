@@ -150,7 +150,7 @@ class BrandsController extends AppController {
 		}
 		
 		if ($this->Brand->del($id)) {
-			$this->Session->setFlash(__('Brand deleted', true));			
+			$this->Session->setFlash('Бренд удален');			
 			$this->redirect(array('action'=>'index'));
 		}
 	}
