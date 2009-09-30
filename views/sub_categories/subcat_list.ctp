@@ -28,6 +28,8 @@
 			<?php echo $form->input('brand_id', array( 'type' => 'hidden','value'=> $brandIdVal ) );?>
 			<?php echo $form->label('name','[Название:]');?><br />
 			<?php echo $form->input('name',array('style'=>'width:450px;','label'=>false));?>
+			<?php echo $form->error('name', 'text error');?>
+			<div id="SubCategoryNameError" style="padding:5px;"></div>
 			<div class="span-3">
 				<?php echo $form->submit('Сохранить',array('class'=>'span-3'));?>
 			</div>
@@ -61,8 +63,6 @@
 	<?php else: ?>
 		<div style="height:200px;width:1px;"></div>
 	<?php endif ?>
-		
-	
 	
 			<div class="page">
 			<?php if( isset($this->params['paging']['Product']['pageCount']) && $this->params['paging']['Product']['pageCount'] > 1 ): ?>
@@ -77,6 +77,12 @@
 
 <div class="span-24" >
 	<?php if(isset($products)): ?>
+	
+		<div class="span-23">
+			<h3 style="margin-bottom:0em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
+		</div>		
+	
+	
 		<?php if($products != array()):?>
 			<?php foreach($products as $product): ?>
 				<div class="span-7">
@@ -85,7 +91,7 @@
 				</div>
 			<?php endforeach ?>
 		<?php else: ?>
-			<div class="span-20 push-3 " style="color:red;">Товары еще не добавлены</div>
+			<div class="span-20 push-6 " style="color:red; margin-top:2em;">Товары еще не добавлены</div>
 			<div style="height:200px;width:1px;"></div>
 		<?php endif ?>
 		<?php else: ?>
