@@ -36,11 +36,10 @@ class subCategoriesController extends AppController {
 		 */		
 		$category = array();
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
-			//$t = $this->SubCategory->Category->find('all', array('conditions' => array('Category.id'=>$this->params['named']['category'] ) ) );
-			//$this->set('t',$t);
+
 			$category = $this->params['named']['category'];
 			$this->set('category',$category);
-			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'] ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => array('Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
+			$subCat = $this->SubCategory->find('all', array('conditions' => array('SubCategory.category_id' => $this->params['named']['category'], 'SubCategory.brand_id' => $this->params['named']['brand'],'SubCategory.product_count <>' =>null ),'fields' => array('SubCategory.name','SubCategory.id'), 'contain' => array('Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
 			if ( $subCat != array() ) {
 				$this->set('subCat', $subCat);
 				

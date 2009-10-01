@@ -22,7 +22,7 @@
 		</dd>
 	</dl>
 	
-<div class="span-23 last push-1 deleteButton catDelBut">
+<div class="span-23 last deleteButton catDelBut">
 			<?php echo $html->link('Удалить новость', array('action'=>'delete', $news['News']['id']), null, sprintf('Удалить новость от %s?', date( 'd.m.y', strtotime($news['News']['created'])) ) ); ?>
 </div>	
 	

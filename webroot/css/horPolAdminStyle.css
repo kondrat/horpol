@@ -393,12 +393,12 @@ div.er {
 /*subCategory*/
 .subCategoryWrapper {
 }
-.subCategoryAddWrapper{
+.subCategoryAddWrapper, .productAddWrapper{
 	position:relative;
 	height:100%;
 	z-index:100;
 }
-.subCategoryAdd{
+.subCategoryAdd, .productItemAdd{
 	position:absolute;
 	background-color:white;
 	z-index:100;
@@ -406,6 +406,10 @@ div.er {
 	left:10px;
 	border:1px solid silver;
 	padding:10px 0 20px 20px;
+}
+.productItemAdd{
+		left:135px;
+		padding:20px 0 20px 40px;
 }
 .subCategoryAdd label{
 	color:gray;
@@ -418,6 +422,16 @@ div.er {
 	font-size:larger;
 	font-weight:bold;	
 }
+
+.subCatItem{
+	padding:6px 0 6px 10px;	
+}
+.subCatItem a{
+	padding:1px 6px;
+	border:1px solid silver;
+}
+
+
 .setWrapperQuick {
 	text-align:center;
 	line-height:1.5em;

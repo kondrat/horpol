@@ -5,7 +5,7 @@ class Product extends AppModel {
 	var $actsAs = array('Containable');
 //-------------------------------------------------------------------- 
 	var $validate = array(
-							
+							/*
 
 							'category_id' => array( 
 												'notEmpty' => array(
@@ -35,21 +35,7 @@ class Product extends AppModel {
 																	'last' => true,
 																	),
 											),
-						/*
-							'url' => array(
-												'isUnique' => array(
-																'rule' => 'isUnique',
-																'required' => true,
-																'message' => 'This URL name has already been taken.',
-																'last' => true,
-																),
-												'between' => array(
-																	'rule' => array('between', 4, 15),
-																	'message' => '4 and 15',
-																	'required' => true,
-																	),
-											),
-						*/
+
 							'subcategory_id' => array( 
 												'notEmpty' => array(
 																	'rule' => 'notEmpty',
@@ -59,6 +45,7 @@ class Product extends AppModel {
 																	),
 												
 												),
+												*/
 																					
 						);
 //--------------------------------------------------------------------  

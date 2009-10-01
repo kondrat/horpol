@@ -199,7 +199,6 @@ class BrandsController extends AppController {
 
 			if ($file['error'] == 4) {
 				$this->data['Brand']['logo'] = null;
-				//$this->Session->setFlash('Файл не загружен');
 					echo json_encode(array('error'=>'Файл не загружен'));
 					$this->autoRender = false;
 					exit();							

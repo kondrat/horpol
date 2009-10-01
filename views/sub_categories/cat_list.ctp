@@ -13,7 +13,7 @@
 
 
 	<div class="actions span-24">
-		<h3><?php echo $html->link('Быстрый переход: <span style="font-size:smaller;">Пять последних подкатегорий</span>', array(),array(),false,false); ?></h3>
+		<h3><?php echo $html->link('Быстрый переход: <span style="font-size:smaller;">Пять последних подразделов</span>', array(),array(),false,false); ?></h3>
 	</div>
 	
 		<?php if(isset($categoriesLast) && $categoriesLast != array() ):?>

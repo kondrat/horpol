@@ -58,28 +58,132 @@ class ProductsController extends AppController {
 //--------------------------------------------------------------------
 
 	function admin_add() {
+		//debug($this->Session->read());
+		/**
+		 * to see if validation is passed
+		 */
+		$status = false;
+		/**
+		 * used to skip the function if session params are isset.
+		 */
+		$skip = false;
+		
+		/**
+		 * If we have data in session we use them.
+		 * If we have param "cache" we clean the data
+		 * If we have param "category" we start a new conditions
+		 */
+		if ($this->Session->check('CatBrandData') ) {
+			if ( isset($this->params['named']['cache']) &&  $this->params['named']['cache'] == false || isset($this->params['form']['category']) ) {
+				$this->Session->del('CatBrandData');
+			} else {
+				$skip = true;
+			}
+		}
+		/**
+		 * If we get with controller with the params
+		 */
+		if ( isset($this->params['named']['category']) && isset($this->params['named']['brand']) && $this->params['named']['cache'] == false && isset($this->params['named']['cat']) ) {
+			$this->data['Product']['category_id'] = $this->params['named']['category'];
+			$this->data['Product']['brand_id'] = $this->params['named']['brand'];
+			$this->Session->write('CatBrandData.ses', true );
+			$this->Session->write('CatBrandData.subcatFinal.id', $this->params['named']['cat']);
+			$currentSubCat = $this->SubCategory->find('first', array( 'conditions' => array('subCategory.id' => $this->params['named']['cat'] ), 'fields' => array('subCategory.name'), 'contain'=>false ) );	
+			//debug($currentSubCat);
+			$this->Session->write('CatBrandData.subcatFinal.id', $this->params['named']['cat'] );	
+			$this->Session->write('CatBrandData.subcatFinal.name', $currentSubCat['subCategory']['name'] );
+			//$skip = true;
+		}
+
+
+		if ( !empty($this->data) || $this->Session->check('CatBrandData.ses') ) {
+						 
+			 			
+			if ( ( empty($this->data['Product']['category_id']) || empty($this->data['Product']['brand_id']) ) && $skip == false ) {
+				//debug($this->data);
+				
+				$this->Product->set( $this->data );
+				
+ 				if ( $this->Product->validates() == false ) {
+ 					
+					$er = $this->Product->invalidFields();
+					if ( isset($er['category_id']) || isset($er['brand_id']) ) {
+						
+						$cat = $this->Category->find('list',array('contain' => false));
+						$this->set( compact('cat') );
+				
+						$brands = $this->Brand->find('list');
+						$this->set( compact('brands') );
+						
+						$this->Session->setFlash('Вы должны выбрать Категорию и Брэнд');
+						$this->render('catselect'); 
+						//he we won't move forward
+					} 
+ 					
+ 				} 
+ 			} else {
+ 				/** 
+ 				 *So the validation of the subcategory_id and brand_id id OK
+ 				 */
+ 				$status = true;
+ 				if( !$this->Session->check('CatBrandData.category.id') ) { 
+ 					$this->Session->write('CatBrandData.category.id', $this->data['Product']['category_id'] );
+ 					$this->Session->write('CatBrandData.brand.id', $this->data['Product']['brand_id'] );
+ 				}
+ 			}
 			
+
+			if ( $status == true || $skip == true ) {
+				/**
+				 * no data saved in session yet
+				 */
+				if ( $skip == false ) {
+					$catName = $this->Category->find('first', array('conditions' => array( 'Category.id' => $this->Session->read('CatBrandData.category.id') ), 'contain' => false, 'fields' => array('id','name','type') ) );
+					$this->Session->write('CatBrandData.category.name',$catName['Category']['name'] );
+					$this->Session->write('CatBrandData.category.type',$catName['Category']['type'] );
+					
+					$brandName = $this->Brand->find('first', array('conditions' => array( 'Brand.id' => $this->Session->read('CatBrandData.brand.id') ), 'contain' => false, 'fields' => array('id','logo','name') ) );	
+					$this->Session->write('CatBrandData.brand.name', $brandName['Brand']['name'] );	
+					$this->Session->write('CatBrandData.brand.logo', $brandName['Brand']['logo'] );	
+
+					/**
+					 *Setting subcategry array for choosing.
+					 */				
+					$subcat = $this->SubCategory->find('all', array('conditions' => array( 'subCategory.category_id' => $this->Session->read('CatBrandData.category.id'), 'subCategory.brand_id' => $this->Session->read('CatBrandData.brand.id') ), 'contain' => false, 'fields' => array('id', 'name') ) );
+	
+					if ( $subcat == array() ) { //we haven't yet any subcategories, we need to create one first
+						$this->Session->setFlash('Создайте Подраздел для выбранных Категории и Брэнда');
+						$this->redirect(array('controller' => 'sub_categories', 'action'=>'add', 'category:'.$this->data['Product']['category_id'], 'brand:'.$this->data['Product']['brand_id']),null,true);
+					}
+					$this->Session->write('CatBrandData.subcat', $subcat );
+					
+				} 
+				
 				//saving module
 				if ( isset($this->data['Product']['name']) ) {
 					
-						/**
-						 * We uploading the product photo first
-						 *
-						 */
+					if ( $this->Session->check('CatBrandData.subcatFinal.id') && $this->Session->read('CatBrandData.subcatFinal.id') != null ) {
+						$this->data['Product']['subcategory_id'] = $this->Session->read('CatBrandData.subcatFinal.id');
+					}
+					
+					/**
+					 * We uploading the product photo first
+					 *
+					 */
 
 						$file = array();
 						// set the upload destination folder
 						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
-
+						//debug($destination );
 						// grab the file
 						$file = $this->data['Product']['userfile'];
-
+						//debug($file);
 				
 						if ($file['error'] == 4) {
 							$this->data['Product']['logo'] = 'default.jpg';
 							//$this->Session->setFlash('Файл не загружен');
 							
-						} else {
+						}else {
 												
 							// upload the image using the upload component
 							$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('150', '100') ) );
@@ -96,6 +200,13 @@ class ProductsController extends AppController {
 										$this->redirect(array('action' => 'add'), null, true);
 								}
 						}								
+					
+					
+					
+					
+					
+					
+					//debug($this->data);
 					
 					
 											
@@ -118,84 +229,24 @@ class ProductsController extends AppController {
 						}												
 											
 				}	
+			}						
+						
+		}
+		
 
+
+		if ( empty($this->data) && !$this->Session->check('CatBrandData.ses') ) {
+			$cat = $this->Category->find('list',array('contain' => false));
+			$this->set( compact('cat') );
+	
+			$brands = $this->Brand->find('list',array('contain' => false) );
+			$this->set( compact('brands') );
+			$this->render('catselect');
+		} 
 			
 
 	}
-//--------------------------------------------------------------------
-	function addProduct() {
-		Configure::write('debug', 0);			
-				//saving module
-				if ( isset($this->data['Product']['name']) ) {
-						unset($this->data['Procuct']['id']);
-						/**
-						 * We uploading the product photo first
-						 *
-						 */
 
-						$file = array();
-						// set the upload destination folder
-						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
-
-						// grab the file
-						$file = $this->data['Product']['userfile'];
-
-				
-						if ($file['error'] == 4) {
-							$this->data['Product']['logo'] = null;
-							echo json_encode(array('error'=>'Файл не загружен'));
-							$this->autoRender = false;
-							exit();									
-						} else {
-												
-							// upload the image using the upload component
-							$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('150', '100') ) );
-								if ( $result != 1 ){
-									$this->data['Product']['logo'] = $this->Upload->result;
-								} else {
-									// display error
-									$errors = $this->Upload->errors;
-									// piece together errors
-									if( is_array($errors) ) { 
-										$errors = implode("<br />",$errors); 
-									}	   
-										$this->Session->setFlash($errors);
-										echo json_encode(array('error'=>$errors));											
-										$this->autoRender = false;
-									 	exit();	
-								}
-						}								
-					
-							
-			
-											
-						$this->Product->create();
-						if ($this->Product->save($this->data)) {						
-										
-							
-									$arr = array ( 'img'=> $this->data['Product']['logo'] );
-									echo json_encode($arr);											
-									$this->autoRender = false;
-					 				exit();									
-							
-						} else {
-							echo json_encode('error');	
-							if (  isset($this->Upload->result) && $this->Upload->result != null) {
-								//@unlink($destination.$this->Upload->result);
-							}
-									$arr = array ( 'img'=> $this->data['Procuct']['id'] );
-									echo json_encode($arr);												
-									$this->autoRender = false;
-					 				exit();								
-							
-							
-						}												
-											
-				}	
-
-			
-
-	}
 //--------------------------------------------------------------------
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
