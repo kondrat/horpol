@@ -27,7 +27,7 @@
 		return false;
 	});
 
-		$("#SubCategoryAddForm").ajaxForm({
+		$("#ProductAddProductForm").ajaxForm({
 			url: path+'/products/addProduct',	
 			dataType:  'json',			
 			success: 
@@ -42,7 +42,7 @@
 								flashMessage('Изменения не были сохранены','er');
 								//$('.brandShadow').hide().attr('src',oldImg).fadeIn();
 								//$('.brandFormError').html('<div class="error">'+data.error+'</div>');
-								//alert(data.error);
+
 								console.log(data.error);
 							}
 							

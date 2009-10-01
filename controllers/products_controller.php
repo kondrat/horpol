@@ -127,7 +127,7 @@ class ProductsController extends AppController {
 		Configure::write('debug', 0);			
 				//saving module
 				if ( isset($this->data['Product']['name']) ) {
-						unset($this->data['Procuct']['id']);
+						unset($this->data['Product']['id']);
 						/**
 						 * We uploading the product photo first
 						 *
@@ -165,11 +165,13 @@ class ProductsController extends AppController {
 									 	exit();	
 								}
 						}								
-					
-							
+						$dd = null;
+						foreach($this->data['Product'] as $d){
+								$dd = $dd.' '.$d;
+						}
 			
 											
-						$this->Product->create();
+						//$this->Product->create();
 						if ($this->Product->save($this->data)) {						
 										
 							
@@ -179,11 +181,12 @@ class ProductsController extends AppController {
 					 				exit();									
 							
 						} else {
-							echo json_encode('error');	
+							//echo json_encode('error1');	
+							//exit();
 							if (  isset($this->Upload->result) && $this->Upload->result != null) {
 								//@unlink($destination.$this->Upload->result);
 							}
-									$arr = array ( 'img'=> $this->data['Procuct']['id'] );
+									$arr = array ( 'img'=> $this->data['Product'] );
 									echo json_encode($arr);												
 									$this->autoRender = false;
 					 				exit();								

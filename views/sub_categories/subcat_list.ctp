@@ -25,10 +25,9 @@
 			}
 ?>
 <div class="span-24 subCategoryWrapper" style="margin-bottom:1em;">
-	<div class="span-24 subCategoryAddWrapper" style="margin-bottom:1em;">
-		
-		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>
-		
+	<?php if(!isset($products)||$products == array()): ?>	
+	<div class="span-24 subCategoryAddWrapper" style="margin-bottom:1em;">		
+		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>		
 		<div class="span-13 subCategoryAdd hide">
 		<?php echo $form->create('SubCategory',array('action'=>'addInline'));?>
 			<?php echo $form->input('category_id', array( 'type' => 'hidden','value'=> $catIdVal) );?>
@@ -54,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<?php endif ?>
 	<?php if(isset($subCategories) && $subCategories != array()):?>
 	<div class="subCategory span-24">
 		<?php 
@@ -90,22 +89,12 @@
 
 
 
-<?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'),'name'=>'form2' ) ); ?>
+
 <div class="span-24" >
 	<?php if(isset($products)): ?>
+	
 	<div class="span-24 productAddWrapper">
-			<div class="span-4">
-				<h3 style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
-			</div>
-			<div class="span-3">		
-				<span id="selectall" style="margin: 0 0 0 10px;">Выбрать все</span>
-			</div>
-			<div class="span-10">
-				
-			</div>
-	
-	
-			
+		
 			<div class="span-9 productItemAdd hide">
 			<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
 				<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
@@ -130,9 +119,31 @@
 					<div class="fancy_bg fancy_bg_w"></div>
 					<!--<div class="fancy_bg fancy_bg_nw"></div>-->
 				</div>
-			</div>		
+			</div>				
 		
-	</div>
+		
+	</div>	
+		
+<div class="span-24">
+		<?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'),'name'=>'form2' ) ); ?>			
+		<div class="span-24">
+			<div class="span-4">
+				<h3 style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
+			</div>
+			<div class="span-3">		
+				<span id="selectall" style="margin: 0 0 0 10px;">Выбрать все</span>
+			</div>
+			<div class="span-10">
+					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-4','onclick' => 'return confirm("Удалить выбранные товары?")') );?>
+			
+			</div>
+		</div>
+	
+	
+			
+
+		
+
 	
 	
 				<?php if($products != array()):?>
@@ -146,6 +157,7 @@
 						</div>
 					<?php $j++;?>
 					<?php endforeach ?>
+					
 				<?php else: ?>
 					<div class="span-20 push-6 " style="color:red; margin-top:2em;">Товары еще не добавлены</div>
 					<div style="height:200px;width:1px;"></div>
@@ -156,10 +168,12 @@
 		<?php else: ?>
 			<div style="height:200px;width:1px;"></div>
 		<?php endif	?>
+
+
+
+	<?php echo $form->end();?>
 </div>
-	<?php //echo $paginator->sort('Бренд','name');?>
-	<?php //echo $paginator->sort('Логотип','logo');?>
-		<div class="span-24"><?php echo $form->submit('Удалить выбранное', array('class'=>'span-4','onclick' => 'return confirm("Удалить выбранные товары?")') );?></div>
-		<?php $form->end();?>
+
+		
 
 

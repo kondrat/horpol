@@ -194,6 +194,7 @@ class subCategoriesController extends AppController {
 						$this->paginate['Product']['conditions'] = array('Product.subcategory_id'=>$this->params['named']['subcat']);
 						$this->paginate['Product']['fields'] = array('Product.id','Product.subcategory_id','Product.name','Product.logo');
 						$this->paginate['Product']['limit'] = 8;
+						$this->paginate['Product']['order'] = array('Product.created'=>'DESC');
 						$products = $this->paginate('Product');																				
 						$this->set('products',$products);						
 						
