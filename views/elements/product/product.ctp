@@ -13,11 +13,13 @@
 					$catParam= 'cat:'.$brandSelected['Category']['id'];
 					$brandLogo = $brandSelected['Brand']['logo'];
 					$brandSelectedClass = 'brandSelected';
+					$catBrandParam = 'cat:'.$brandSelected['Category']['id'].'/'.'brand:'.$brandSelected['Brand']['id'];
 				} else {
 					$catParam = null;
 					$brand = 'Бренды не выбран';
 					$brandLogo = 'brand_logo.jpg';
 					$brandSelectedClass = null;
+					$catBrandParam =  null;
 				}
 			?>	
 			<?php
@@ -47,7 +49,7 @@
 		
 		<div class="<?php echo (isset($thirdStep))?$thirdStep:null;?>" style="float:left;">
 			<div id="stepIcon3" class="stepIcon"></div>	
-			<h3><?php echo $html->link('Выбор Подраздела',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'subcatSelect') );?></h3>
+			<h3><?php echo $html->link('Выбор Подраздела',array('controller'=>'sub_categories','action'=>'index',$catBrandParam),array('id'=>'subcatSelect') );?></h3>
 		</div>
 		
 

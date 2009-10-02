@@ -124,10 +124,13 @@ class ProductsController extends AppController {
 	}
 //--------------------------------------------------------------------
 	function addProduct() {
+		$prodName = null;
+		//$prodName = trim($this->data['Product']['name']);
 		Configure::write('debug', 0);			
 				//saving module
-				if ( isset($this->data['Product']['name']) ) {
-						unset($this->data['Product']['id']);
+				if ( isset($this->data['Product']['name'])&& $this->data['Product']['name']!=null ) {
+					$prodName = $this->data['Product']['name'];
+						//unset($this->data['Product']['id']);
 						/**
 						 * We uploading the product photo first
 						 *
@@ -165,33 +168,27 @@ class ProductsController extends AppController {
 									 	exit();	
 								}
 						}								
-						$dd = null;
-						foreach($this->data['Product'] as $d){
-								$dd = $dd.' '.$d;
-						}
-			
+
 											
-						//$this->Product->create();
+						$this->Product->create();
 						if ($this->Product->save($this->data)) {						
 										
+									$prodId = $this->Product->id;
 							
-									$arr = array ( 'img'=> $this->data['Product']['logo'] );
+									$arr = array ( 'img'=> $this->data['Product']['logo'],'prodId'=> $prodId,'prodName'=> $prodName );
 									echo json_encode($arr);											
 									$this->autoRender = false;
 					 				exit();									
 							
 						} else {
-							//echo json_encode('error1');	
-							//exit();
-							if (  isset($this->Upload->result) && $this->Upload->result != null) {
-								//@unlink($destination.$this->Upload->result);
-							}
-									$arr = array ( 'img'=> $this->data['Product'] );
+									if (  isset($this->Upload->result) && $this->Upload->result != null) {
+										@unlink($destination.$this->Upload->result);
+									}
+									
+									$arr = array ( 'error'=> 'Ошибка при сохранении товара' );
 									echo json_encode($arr);												
 									$this->autoRender = false;
-					 				exit();								
-							
-							
+					 				exit();														
 						}												
 											
 				}	
@@ -297,7 +294,7 @@ class ProductsController extends AppController {
 				}  
 			}
 			if ($count == 0) {
-				$this->Session->setFlash('Вы не выбрали товары');
+				$this->Session->setFlash('Вы не выбрали товары','default',array('class'=>'er'));
 			} else {
 				$this->Session->setFlash('Товары удалены');
 			}

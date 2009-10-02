@@ -408,9 +408,24 @@ div.er {
 	padding:10px 0 20px 20px;
 }
 .productItemAdd{
-		left:135px;
+		left:250px;
 		padding:20px 0 20px 40px;
 }
+.productItem {
+	background-color:#EEEEEE;
+	border:1px solid silver;
+	float:left;
+	margin-bottom:5px;
+	margin-right:15px;
+	padding:5px;
+	width:210px;
+}
+.productItem input.selectable {
+	margin: 0 5px 10px 5px;
+}
+
+
+
 .subCategoryAdd label{
 	color:gray;
 }

@@ -130,11 +130,11 @@
 			<div class="span-4">
 				<h3 style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
 			</div>
-			<div class="span-3">		
-				<span id="selectall" style="margin: 0 0 0 10px;">Выбрать все</span>
+			<div class="span-4">		
+				<input type="button" class="span-4" id="selectall" value="Выбрать все" />
 			</div>
 			<div class="span-10">
-					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-4','onclick' => 'return confirm("Удалить выбранные товары?")') );?>
+					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-5','onclick' => 'return confirm("Удалить выбранные товары?")') );?>
 			
 			</div>
 		</div>
@@ -147,16 +147,18 @@
 	
 	
 				<?php if($products != array()):?>
-				<?php $j = 1;?>
+				
+				<div class="span-24 productItemWrapper">
 					<?php foreach($products as $product): ?>
-					<?php $lastProd = ($j%4 == 0)?'last':null;?>
-						<div class="span-6 <?php echo $lastProd;?>" style="background-color:#eee; padding:2px 0;margin-bottom:5px;">
-							<div class="span-4"><?php echo $html->link( $html->image('catalog/'.$product['Product']['logo'],array('alt'=>$product['Product']['name']) ),array(),false,false,false );?></div>
-							<?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id'], 'style' => 'margin: 0 5px 10px 5px;' ) ); ?>
+					
+						<div class="productItem" >
+							<div class="span-4"><?php echo $html->link( $html->image('catalog/'.$product['Product']['logo'],array('alt'=>$product['Product']['name']) ),false,false,false,false );?></div>
+							<?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?>
 							<div class="span-6 last"><?php echo $product['Product']['name'];?></div>
 						</div>
-					<?php $j++;?>
+					
 					<?php endforeach ?>
+				</div>
 					
 				<?php else: ?>
 					<div class="span-20 push-6 " style="color:red; margin-top:2em;">Товары еще не добавлены</div>
