@@ -1,26 +1,41 @@
-	<?php //debug($album);?>
-	
-	<? if ( in_array($session->read('Auth.User.group_id'), array(1,2,3) ) ): ?>
-		<p><?php echo $html->link('Добавить новость', array('action'=>'add')); ?></p>
-	<? endif ?>
-	
-	<span class='menulup' >
-		<?php echo date( 'd.m.y', strtotime($album['Album']['created']) ).' '.$album['Album']['name']; ?>
-	</span>
-		<? if ( in_array($session->read('Auth.User.role'), array('admin') ) ): ?>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<?php echo $html->link('Удалить альбом', array('action'=>'delete', $album['Album']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<?php echo $html->link('Редактировать альбом', array('action'=>'edit', $album['Album']['id'])); ?>
-		<? endif ?>		
-	
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Альбомы', array('controller'=>'albums','action'=>'index')); ?>
+<?php $html->addCrumb($album['Album']['name'], array()); ?>
 
-<p>
-	<?php echo $html->link('Добавить картинку', array('controller' => 'images', 'action'=>'add', $this->params['pass'][0])); ?>
-</p>	
-<p>
-	<?php echo $html->link('Все альбомы', array('action'=>'index')); ?>
-</p>
+<div class="">
+
+<div class="actions span-24">
+	<h3><?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add','album:'.$album['Album']['id'])); ?></h3>
+</div>
+<div class="span-24">
+<?php echo $form->create('Album');?>
+	<fieldset>
+ 		<legend>Редактировать альбом:&nbsp;<span style="font-size: smaller; color: #777;"><?php echo $form->value('name');?></span></legend>
+	<?php
+		echo $form->input('id');
+		//echo $form->input('created', array('dateFormat' => 'DMY','timeFormat' => 'NONE', 'minYear' => 2007, 'maxYear' => 2020, 'label' => 'Дата&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') );
+		echo $form->input('name', array('label' => 'Заголовок ', 'style' => 'width: 259px') );
+	?>
+	</fieldset>
+<?php echo $form->end('Сохранить');?>
+</div>
+
+<div class="span-24">
+	<?php $i = 1;?>
+	<?php foreach($album['Image'] as $image): ?>
+		<?php $class=($i%6 == 0 )?'last':null;?>
+	
+	
+		<div class="span-4 <?php echo $class;?>">
+			<?php echo $html->link( $html->image( 'gallery/s/'.$image['image'], array('alt' => $image['name'])), array('controller' => 'images', 'action' => 'view', $image['id']),null, null, false ); ?>
+			<p>
+				<?php echo $image['name'];?>
+			</p>
+		</div>
+		<?php $i++;?>
+	<?php endforeach ?>	
+</div>
+
 
 
 

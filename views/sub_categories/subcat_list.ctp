@@ -98,11 +98,13 @@
 			<div class="span-9 productItemAdd hide">
 			<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
 				<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
-				<?php echo $form->label('Product.userfile','[Логотип:]');?><br />
-				<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false,'div'=>array('style'=>'margin:5px 0;') ) ); ?>
+				<?php echo $form->label('Product.userfile','[Логотип:]');?>
+				<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
+				<div id="ProductFileError" ></div>
 				<?php echo $form->label('Product.name','[Название:]');?>
 				<?php echo $form->input('Product.name',array('style'=>'width:250px;','label'=>false));?>
 				<?php echo $form->error('Pruduct.name', 'text error');?>
+				<div id="ProductNameError" ></div>
 				<div id="SubCategoryNameError" style="padding:5px;"></div>
 				<div class="span-3">
 					<?php echo $form->submit('Сохранить',array('class'=>'span-3 newProduct'));?>
@@ -145,26 +147,27 @@
 		
 
 	
-	
+				<div class="span-24 productItemWrapper">
 				<?php if($products != array()):?>
 				
-				<div class="span-24 productItemWrapper">
+				
 					<?php foreach($products as $product): ?>
 					
 						<div class="productItem" >
 							<div class="span-4"><?php echo $html->link( $html->image('catalog/'.$product['Product']['logo'],array('alt'=>$product['Product']['name']) ),false,false,false,false );?></div>
-							<?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?>
+							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
+							<div class="span-1 productEdit"></div>
 							<div class="span-6 last"><?php echo $product['Product']['name'];?></div>
 						</div>
 					
 					<?php endforeach ?>
-				</div>
+				
 					
 				<?php else: ?>
-					<div class="span-20 push-6 " style="color:red; margin-top:2em;">Товары еще не добавлены</div>
+					<div class="span-20 push-6 noProductYet">Товары еще не добавлены</div>
 					<div style="height:200px;width:1px;"></div>
 				<?php endif ?>
-			
+				</div>
 			
 
 		<?php else: ?>

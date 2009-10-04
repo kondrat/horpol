@@ -50,7 +50,7 @@
 							);
 							
 							
-							//$('.brandShadow').hide().attr('src',path+"/img/catalog/"+data.img).fadeIn();
+							$('.noProductYet').remove();
 							//$('.brandFrom').hide();
 						} else if (data.error != null) {
 							flashMessage('Изменения не были сохранены','er');
@@ -66,7 +66,21 @@
 		resetForm: true
 			
 	});
-
+	$('.newProduct').click(function(){
+		$('#ProductFileError ,#ProductNameError').empty();
+		$('.productItemAdd').removeClass('error');
+		if($('#ProductUserfile').val() == '' ) {
+			$('#ProductFileError').text('Это поле должно быть заполнено');
+			$('.productItemAdd').addClass('error');
+			return false;
+		} else if ($('#ProductName').val() == '' ) {
+			$('#ProductNameError').text('Это поле должно быть заполнено');
+			$('.productItemAdd').addClass('error');
+			return false;			
+		}	
+	});
+	
+	
 	$('.productItem').hover(function(){
 		//$(this).addClass('act');
 		$(this).css({'border-color':'#000'});
@@ -74,7 +88,12 @@
 		$(this).css({'border-color':'silver'});
 		//$(this).removeClass('act');
 	});
-
+	$('.productEdit').hover(function(){
+		$(this).css({'background-position':'5px -28px','border-color':'silver'});
+	},function(){
+		$(this).css({'background-position':'5px 4px','border-color':'#eee'});
+		
+	});
 
 
 	$("#selectall").click(function(){

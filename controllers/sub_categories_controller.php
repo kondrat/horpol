@@ -226,7 +226,7 @@ class subCategoriesController extends AppController {
 				} else {
 					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
 					$this->set('catSelected',$catSelected['Category']['name']);
-					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo'),'contain'=>false));
+					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo','Brand.id'),'contain'=>false));
 					$brandSelected['Category']['id'] = $catSelected['Category']['id'];					
 					$this->set('brandSelected',$brandSelected);
 					$this->Session->setFlash('Ни одного подраздела еще не создано');

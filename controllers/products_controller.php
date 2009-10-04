@@ -301,7 +301,8 @@ class ProductsController extends AppController {
 			$this->redirect($this->referer());
 			$this->Session->setFlash('here');
 		} else {
-			$this->Session->setFlash('htiear');
+			$this->Session->setFlash('Удаление невозможно','default',array('class'=>'er'));
+			$this->redirect($this->referer());
 		}
 	}
 //--------------------------------------------------------------------

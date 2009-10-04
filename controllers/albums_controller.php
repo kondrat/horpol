@@ -73,6 +73,7 @@ class AlbumsController extends AppController {
 		}
 	}
 //--------------------------------------------------------------------
+
 	function admin_edit($id = null) {
 		$this->set('headerName','Фотоальбомы');
 		if (!$id && empty($this->data)) {
@@ -127,12 +128,16 @@ class AlbumsController extends AppController {
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
 		$this->set('headerName','Фотоальбомы');
-		if ( (!$id) ||  ($this->Album->read(null, $id) == false ) ) {
+		$this->data = $this->Album->read(null, $id);
+		if ( (!$id) ||  ( $this->data = $this->Album->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Album.', true));
 			$this->redirect( $this->Auth->redirect() );			
 		} else {
+			//$images = $this->Album->Image->find('all', array('conditions'=>array('Image.album_id' => $id), 'contain' => false ) );
+			//$this->set('images', $images);
 			
-			$this->set('album', $this->paginate());
+			$album = $this->Album->find('first',array('conditions'=>array('Album.id' => $id)));						
+			$this->set('album', $album);
 		}
 	}
 	

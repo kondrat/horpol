@@ -105,7 +105,6 @@ div.footer a:hover{
 	margin-bottom:1em;
 	padding:6px 0;
 	position:relative;
-	z-index:-1;
 }
 .thumbAdmin .lens{
 	top:85px;
@@ -423,7 +422,18 @@ div.er {
 .productItem input.selectable {
 	margin: 0 5px 10px 5px;
 }
-
+.noProductYet {
+	color:red;
+	margin-top:2em;
+}
+.productEdit{
+	background:transparent url(../img/icons/edit_inline_16x16.png) no-repeat scroll 5px 4px;
+	border:1px solid #eee;
+	padding:0 0 3px;
+	height:20px;
+	width:16px;
+	cursor:pointer;
+}
 
 
 .subCategoryAdd label{

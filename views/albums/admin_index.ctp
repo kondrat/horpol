@@ -1,3 +1,5 @@
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Альбомы', array()); ?>
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить новый Фотоальбом', array('action'=>'add'),array('id'=>'albumNew')); ?></h3>
 </div>
@@ -34,9 +36,9 @@
 		<div class="span-4 thumbAdmin <?php echo $last;?> ">
 			<div style="text-align:center;">
 			<?php if( isset($album['Image']['0']['image']) && $album['Image']['0']['image'] != null): ?>
-				<?php echo $html->link( $html->image( 'gallery/s/'.$album['Image']['0']['image'], array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'edit',$album['Album']['id']),null, null, false ); ?>
+				<?php echo $html->link( $html->image( 'gallery/s/'.$album['Image']['0']['image'], array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'view',$album['Album']['id']),null, null, false ); ?>
 			<?php else: ?>
-				<?php echo $html->link( $html->image( 'gallery/s/default.jpg', array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'edit',$album['Album']['id']),null, null, false ); ?>
+				<?php echo $html->link( $html->image( 'gallery/s/default.jpg', array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'view',$album['Album']['id']),null, null, false ); ?>
 			<?php endif ?>
 			<div class="lens"></div>
 		</div>

@@ -1,6 +1,6 @@
 
 <div class="">
-<br />
+
 <p style="margin-bottom: 10px">
 	<?php echo $html->link('Все Альбомы', array('action'=>'index'), array('style'=> "font-size: smaller; color: #777;") ); ?>
 </p>
@@ -18,25 +18,20 @@
 	</fieldset>
 <?php echo $form->end('Сохранить');?>
 </div>
-	<div style= "width: 900px">
+
+<div class="span-24">
 	<?php $i = 1;?>
-	
 	<?php foreach($images as $image): ?>
-		<div class="thumb_admin">
+		<?php $class=($i%6 == 0 )?'last':null;?>
+	
+	
+		<div class="span-4 <?php echo $class;?>">
 			<?php echo $html->link( $html->image( 'gallery/s/'.$image['Image']['image'], array('alt' => $image['Image']['name'])), array('controller' => 'images', 'action' => 'view', $image['Image']['id']),null, null, false ); ?>
 			<p>
 				<?php echo $image['Image']['name'];?>
 			</p>
 		</div>
-		<?php if ($i%5 == 0 ) {
-					echo '<div style="clear:both; height: 20px"></div>';
-				}
-			$i++;
-			?>
+		<?php $i++;?>
 	<?php endforeach ?>	
-	</div>
-	<div style="clear:both"></div>
-	
+</div>
 
-
-<?php //debug($images);?>
