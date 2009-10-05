@@ -356,9 +356,15 @@ div.er {
 	color:gray;
 
 }
-.category{
+.category {
+	
 	font-size:12pt;
 	line-height:27px;
+	margin:0.5em 0.5em 0.1em;
+	padding:0 0.5em;
+}
+.category a{
+	
 }
 
 .catSelected {
@@ -374,8 +380,8 @@ div.er {
 .currentCat{
 	cursor:default;
 }
-.categories a.currentCat {
-	color:teal;
+a.currentCat {
+	
 }
 .currentSubCat{
 	font-size:85%;

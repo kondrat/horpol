@@ -7,7 +7,7 @@
 		<?php foreach ($categories as $category):?>			
 				<div style="position:relative; float:left;" class="category">
 					<?php echo $html->link(strip_tags($category['Category']['name']),array('action'=>'index','cat:'.$category['Category']['id']),false,false,false);?>
-					<div style="position:absolute;top:-4px;right:4px;z-index:10;"><?php echo $html->image('icons/'.$category['Category']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
+					<div style="position:absolute;top:2px;right:2px;z-index:10;"><?php echo $html->image('icons/'.$category['Category']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
 					&nbsp;|&nbsp;
 				</div>				
 		<?php endforeach; ?>

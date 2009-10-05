@@ -35,10 +35,10 @@ $(document).ready( function(){
 			var liContent = $(this).text();
 			
 			if (prev != null) {
-				prev.removeClass('currentCat');
+				prev.removeClass('currentCat').removeClass('act');
 			}				
 			prev = $(this);				
-		 	$(this).addClass('currentCat');				
+		 	$(this).addClass('currentCat').addClass('act');				
 
 			$('#cat span.catText').text(liContent);
 			$('#cat span').addClass('catSelected');
@@ -47,6 +47,15 @@ $(document).ready( function(){
 			return false;
 		});
 });
+$(document).ready( function(){
+		$('.category').hover(function(){
+			$(this).addClass('act');		
+		},function(){
+			$(this).removeClass('act');
+    });
+});
+
+
 //changing name of the brand and url of the link
 $(document).ready( function(){
 		$('.brandName').click(function() {
