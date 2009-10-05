@@ -125,7 +125,7 @@
 		
 			<div id="contentleft2col">
 					
-					<?php echo $this->element('menu/leftMainMenu', array('cache' => array('key' => 'leftMenu', 'time' => '+30 days') ) ); ?>
+					<?php echo $this->element('menu/leftMainMenu', array('cache' => array('key' => 'leftMenu', 'time' => '+300 days') ) ); ?>
 					
 						
 						<div class="other">

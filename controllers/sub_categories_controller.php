@@ -238,7 +238,7 @@ class subCategoriesController extends AppController {
 			
 			default:
 				//echo 'default';				
-				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.name'),'contain'=>false));
+				$categories = $this->SubCategory->Category->find('all',array('fields'=>array('Category.id','Category.type','Category.name'),'contain'=>false));
 				$this->set('categories',$categories);
 				
 				$categoriesLast = array();

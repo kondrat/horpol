@@ -72,7 +72,7 @@ class CategoriesController extends AppController {
 		//$this->paginate['Category']['contain'] = false;
 		//$this->paginate['Category']['limit'] = 15;
 		//$this->set('categories', $this->paginate() );
-		$categories = $this->Category->find('all',array('order'=>'pos','fields'=>array('Category.id','Category.name','Category.pos'),'contain'=>false) );
+		$categories = $this->Category->find('all',array('order'=>'pos','fields'=>array('Category.id','Category.name','Category.type','Category.pos'),'contain'=>false) );
 		$this->set('categories', $categories );
 	}
 //--------------------------------------------------------------------

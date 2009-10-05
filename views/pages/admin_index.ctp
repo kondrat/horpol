@@ -8,7 +8,13 @@
 	</ul>
 	
 </div>
-
+<div class="span-24">
+	<h4>Управление Статическими страницами</h4>
+	<ul>
+		<li><?php echo $html->link('Статические страницы',array('controller'=>'StaticPages','action'=>'index'));?></li>
+	</ul>
+	
+</div>
 
 
 <div class="span-24">

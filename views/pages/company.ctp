@@ -1,9 +1,7 @@
-<div class="maincontent">
-
 <?php $this->pageTitle = 'О компании'; ?>
-
-<h1>About company</h1>
+<div class="maincontent">
+<h1>О компании</h1>
 <br><br>
-<b>САЙТ НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ.</b><br>Приносим извинения за предоставленные неудобства.
-
+	<?php //echo $this->element('staticpages/statec_page', array('cache' => array('key' => 'static_pages_3', 'time' => '+300 days') ) ); ?>
+	<?php echo $this->element('staticpages/static_page', array('pageName'=>3) ); ?>
 </div>

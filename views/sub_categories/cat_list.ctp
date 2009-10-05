@@ -1,19 +1,22 @@
 <?php echo $this->element('product/product', array('firstStep'=>'activeStep','secondStep'=>'disableStep','thirdStep'=>'disableStep','cache' => false ) ); ?>
 
-<div class="categories span-24">
-	<ul class="category">
+<div class="span-24" style="margin-bottom:2em;">
+	<div class="categories span-24">
+		[Категории:]
+	</div>
 		<?php foreach ($categories as $category):?>			
-				<li>
+				<div style="position:relative; float:left;" class="category">
 					<?php echo $html->link(strip_tags($category['Category']['name']),array('action'=>'index','cat:'.$category['Category']['id']),false,false,false);?>
-				</li>
-				&nbsp;|&nbsp;
+					<div style="position:absolute;top:-4px;right:4px;z-index:10;"><?php echo $html->image('icons/'.$category['Category']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
+					&nbsp;|&nbsp;
+				</div>				
 		<?php endforeach; ?>
-	</ul>
+
 </div>
 
 
-	<div class="actions span-24">
-		<h3><?php echo $html->link('Быстрый переход: <span style="font-size:smaller;">Пять последних подразделов</span>', array(),array(),false,false); ?></h3>
+	<div class="categories span-24" style="margin-bottom:1em;">
+		[Быстрый переход:] <span style="font-size:150%; color:teal;">Пять последних подразделов</span>
 	</div>
 	
 		<?php if(isset($categoriesLast) && $categoriesLast != array() ):?>

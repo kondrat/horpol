@@ -1,7 +1,8 @@
 <?php $this->pageTitle = 'Услуги'; ?>
-<?php //$this->subheaderTitle = 'Услуги'; ?>
+
 <div class="maincontent">
 <h1>Услуги</h1>
 <br><br>
-<b>САЙТ НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ.</b><br>Приносим извинения за предоставленные неудобства.
+	<?php //echo $this->element('staticpages/statec_page', array('cache' => array('key' => 'static_pages_2', 'time' => '+300 days') ) ); ?>
+	<?php echo $this->element('staticpages/static_page', array('pageName'=>2) ); ?>
 </div>

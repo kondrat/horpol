@@ -350,24 +350,17 @@ div.er {
 
 /* category */
 .categories {
-	text-align:left;
-	/*border: 2px solid silver;*/
-	color:#911B3B;
-	padding: 5px;
+	line-height:0.8em;
+	font-size:90%;
+	font-weight:bold;
+	color:gray;
+
+}
+.category{
 	font-size:12pt;
 	line-height:27px;
-	/*background:#9AE4E8 url(../img/fon.jpg) repeat scroll 0 0;*/
 }
-.categories li {
-	display:inline;
-}
-.categories li a {
-	color:#911B3B;
-	text-decoration:none;
-}
-.categories li a:hover {
-	color:#000;
-}
+
 .catSelected {
 	color:maroon;
 	font-size:larger;
@@ -379,10 +372,9 @@ div.er {
 	font-weight:bold;	
 }
 .currentCat{
-	font-size:85%;
 	cursor:default;
 }
-.categories li a.currentCat {
+.categories a.currentCat {
 	color:teal;
 }
 .currentSubCat{

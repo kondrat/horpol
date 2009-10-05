@@ -30,7 +30,7 @@ $(document).ready(function() {
 $(document).ready( function(){
 		var prev = null;
 	
-		$('.category li a').click(function() {
+		$('.category a').click(function() {
 			
 			var liContent = $(this).text();
 			
