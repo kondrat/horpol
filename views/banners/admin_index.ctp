@@ -1,64 +1,44 @@
-<div class="banners index">
+<?php echo $javascript->link(array('bannerIndex'),false);?>
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Баннеры', array()); ?>
 
-<p>
-<?php
-echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-));
-?></p>
-<table cellpadding="0" cellspacing="0">
-<tr>
-	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('type');?></th>
-	<th><?php echo $paginator->sort('comment');?></th>
-	<th><?php echo $paginator->sort('body');?></th>
-	<th><?php echo $paginator->sort('created');?></th>
-	<th><?php echo $paginator->sort('modified');?></th>
-	<th class="actions"><?php __('Actions');?></th>
-</tr>
-<?php
-$i = 0;
-foreach ($banners as $banner):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
-?>
-	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $banner['Banner']['id']; ?>
-		</td>
-		<td>
-			<?php echo $banner['Banner']['type']; ?>
-		</td>
-		<td>
-			<?php echo $banner['Banner']['comment']; ?>
-		</td>
-		<td>
-			<?php echo $banner['Banner']['body']; ?>
-		</td>
-		<td>
-			<?php echo $banner['Banner']['created']; ?>
-		</td>
-		<td>
-			<?php echo $banner['Banner']['modified']; ?>
-		</td>
-		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action' => 'view', $banner['Banner']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $banner['Banner']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $banner['Banner']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $banner['Banner']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-</table>
+<div class="actions span-24">
+		<h3><?php echo $html->link('Добавить новый Баннер', array('action'=>'add')); ?></h3>
 </div>
-<div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class' => 'disabled'));?>
-</div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link(__('New Banner', true), array('action' => 'add')); ?></li>
-	</ul>
+
+<div class="span-24 banners index">
+
+
+				<table cellpadding="0" cellspacing="0">
+				<tr>
+					<th>id</th>
+					<th>logo</th>
+					<th class="actions"><?php __('Actions');?></th>
+				</tr>
+				<?php
+				$i = 0;
+				foreach ($banners as $banner):
+					$class = null;
+					if ($i++ % 2 == 0) {
+						$class = ' class="altrow"';
+					}
+				?>
+					<tr<?php echo $class;?>>
+						<td>
+							<?php echo $banner['Banner']['id']; ?>
+						</td>
+						<td>
+							<?php echo $html->image('banner/'.$banner['Banner']['logo']); ?>
+						</td>
+						<td class="actions">
+							<?php echo $html->link(__('View', true), array('action' => 'view', $banner['Banner']['id'])); ?>
+							<?php echo $html->link(__('Edit', true), array('action' => 'edit', $banner['Banner']['id'])); ?>
+							<?php echo $html->link(__('Delete', true), array('action' => 'delete', $banner['Banner']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $banner['Banner']['id'])); ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+				</table>
+				
+				
+				
 </div>

@@ -38,10 +38,11 @@ $(document).ready(function(){
 				$(this).removeClass('bg');
 			}
 		);
-
+		$('.categoryIndex').hover(function(){
+				$(this).css({'background-color':'#eee'});
+			},function(){
+				$(this).css({'background-color':'#fff'});
+			}
+		);
 
 });
-
- $(document).ready(function() {
-     $('.edit').editable('http://www.example.com/save.php');
- });

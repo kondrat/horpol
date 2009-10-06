@@ -19,10 +19,11 @@ foreach ($categories as $category):
 	<?php //echo $class;?>
 
 
-			<div id="item_<?php echo $category['Category']['id'];?>" class="span-14" style="border:1px solid;float:left;padding:.5em;background-color:#fff;margin-bottom:.5em;">
-				<div class="span-1 moveCat"></div>
+			<div id="item_<?php echo $category['Category']['id'];?>" class="span-14 categoryIndex">
+				<div class="span-1 moveCat last"></div>
+				<div class="span-1"><?php echo $html->image( 'icons/'.$category['Category']['type'].'_type.png');?></div>
 				<div class="span-5"><?php echo $category['Category']['name']; ?></div>
-				<div class="span-3 last"><?php echo $html->link('Редактировать', array('action'=>'view', $category['Category']['id'])); ?></div>			
+				<div class="span-3 last"><?php echo $html->link('Редактировать', array('action'=>'view', $category['Category']['id']),array('class'=>'categoryEditButton') ); ?></div>			
 			</div>
 
 

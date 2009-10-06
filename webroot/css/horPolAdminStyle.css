@@ -356,16 +356,13 @@ div.er {
 	color:gray;
 
 }
-.category {
-	
+.category {	
 	font-size:12pt;
 	line-height:27px;
 	margin:0.5em 0.5em 0.1em;
 	padding:0 0.5em;
 }
-.category a{
-	
-}
+
 
 .catSelected {
 	color:maroon;
@@ -380,9 +377,32 @@ div.er {
 .currentCat{
 	cursor:default;
 }
-a.currentCat {
-	
+.act2,.act3 {
+	background-color:silver;
 }
+.categoryIndex{
+	border:1px solid silver;
+	padding:.5em;
+	background-color:#fff;
+	margin-bottom:.5em;	
+}
+.categoryEditButton {
+	color: gray;
+	font-weight:normal;
+	position:relative;
+}
+
+a.categoryEditButton {
+	background:transparent url(../img/icons/edit_inline_16x16.png) no-repeat scroll 90px 0px;
+	padding:0 20px 0 0;
+	cursor:pointer;
+}
+a.categoryEditButton:hover {
+	background-position: 90px -32px;
+	color:red;
+}
+
+
 .currentSubCat{
 	font-size:85%;
 	cursor:default;
@@ -591,11 +611,7 @@ a.currentCat {
 	border:inherit;
 	margin:inherit;
 }
-.editButton {
-	color: burlyWood;
-	font-weight:normal;
-	position:relative;
-}
+
 .edit_type {
 	color:teal;
 	font-weight:bold;
@@ -605,7 +621,11 @@ a.currentCat {
 	font-weight:bold;
 }
 
-
+.editButton {
+	color: burlyWood;
+	font-weight:normal;
+	position:relative;
+}
 
 a.editButton {
 	background:transparent url(../img/icons/edit_inline_10x10.png) no-repeat scroll 80px -20px;

@@ -35,10 +35,10 @@ $(document).ready( function(){
 			var liContent = $(this).text();
 			
 			if (prev != null) {
-				prev.removeClass('currentCat').removeClass('act');
+				prev.removeClass('currentCat').parent('.category').removeClass('act2');;
 			}				
 			prev = $(this);				
-		 	$(this).addClass('currentCat').addClass('act');				
+		 	$(this).addClass('currentCat').parent('.category').addClass('act2');				
 
 			$('#cat span.catText').text(liContent);
 			$('#cat span').addClass('catSelected');
@@ -49,9 +49,9 @@ $(document).ready( function(){
 });
 $(document).ready( function(){
 		$('.category').hover(function(){
-			$(this).addClass('act');		
+			$(this).addClass('act3');		
 		},function(){
-			$(this).removeClass('act');
+			$(this).removeClass('act3');
     });
 });
 

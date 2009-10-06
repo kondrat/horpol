@@ -2,9 +2,10 @@
 class Banner extends AppModel {
 
 	var $name = 'Banner';
+	var $actsAs = array('Containable');
 	var $validate = array(
 		'id' => array('notempty'),
-		'body' => array('notempty')
+		'logo' => array('notempty')
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
