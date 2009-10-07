@@ -4,15 +4,26 @@ class BannersController extends AppController {
 	var $name = 'Banners';
 	var $components = array('Upload');
 	
-		
-	function beforeFilter() {
-		$this->set('headerName','Баннеры');
-	}
+//--------------------------------------------------------------------	
+  function beforeFilter() {
+        //$this->Auth->allow('view');
+        parent::beforeFilter(); 
+        $this->set('headerName','Бренды'); 
+   }
+//--------------------------------------------------------------------
 
-	function admin_index() {	
-		$banners = $this->Banner->find('all',array('contain'=>false));
+	function admin_index() {
+		$conditions = array();	
+		if(isset($this->params['named']['type'])&&$this->params['named']['type'] != null) {
+			$conditions = array('Banner.type'=>$this->params['named']['type']);
+		} 
+		
+		
+		$banners = $this->Banner->find('all',array('conditions'=>$conditions,'contain'=>false));
 		$this->set('banners', $banners);
 	}
+	
+//--------------------------------------------------------------------
 
 	function admin_view($id = null) {
 		if (!$id) {
@@ -21,7 +32,57 @@ class BannersController extends AppController {
 		}
 		$this->set('banner', $this->Banner->read(null, $id));
 	}
+//--------------------------------------------------------------------	
+	function admin_append($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid Banner', true));
+			$this->redirect(array('action'=>'index'));
+		}
 
+		$banner = $this->Banner->read(array('id','logo','type'), $id);
+		$this->set('banner',$banner);
+		
+		if(isset($banner['Banner']['type'])&&$banner['Banner']['type']== 1){
+			
+			
+			
+		}
+		
+		$categories = $this->Banner->Category->find('all',array('fields'=>array('id','name','type'),'contain'=>array('Banner'=>array('id') )));
+		$this->set('categories',$categories);
+		
+	}
+//--------------------------------------------------------------------
+	function admin_glue() {
+				
+				if( isset($this->data['Category']['Category']) ){
+					
+					$CatCat = $this->data['Category']['Category'];
+					$this->data['Category']['Category'] = array();
+					
+					foreach( $CatCat as $cc){
+						if($cc != 0){
+							$this->data['Category']['Category'][] = $cc;
+						}
+					}
+
+		
+		
+		
+				$this->Banner->create();
+				if ($this->Banner->save($this->data)) {
+					$this->Session->setFlash('Баннер был прикреплен');
+					$this->redirect(array('action'=>'index'));
+				} else {
+						$this->Session->setFlash('Баннер не был прикреплен');
+				}
+				
+			} else {
+				$this->Session->setFlash('Баннер не был прикреплен');
+			}				
+				
+	}
+//--------------------------------------------------------------------
 	function admin_add() {
 		if (!empty($this->data)) {
 			
@@ -34,8 +95,6 @@ class BannersController extends AppController {
 				}
 			} 
 			
-
-
 			$file = array();
 			// set the upload destination folder
 			$destination = WWW_ROOT.'img'.DS.'banner'.DS;
@@ -81,13 +140,11 @@ class BannersController extends AppController {
 				
 				
 			}
-			
-			
-			
+						
 		}
 
 	}
-
+//--------------------------------------------------------------------
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Banner', true));
@@ -107,7 +164,7 @@ class BannersController extends AppController {
 		$categories = $this->Banner->Category->find('list');
 		$this->set(compact('categories'));
 	}
-
+//--------------------------------------------------------------------
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Banner', true));

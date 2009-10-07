@@ -49,6 +49,31 @@ class Category extends AppModel {
         )
     );
  
+	var $hasAndBelongsToMany = array(
+		'Banner' => array(
+			'className' => 'Banner',
+			'joinTable' => 'banners_categories',
+			'foreignKey' => 'category_id',
+			'associationForeignKey' => 'banner_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
+
+
+
+
+
+
+
 
 //--------------------------------------------------------------------
       

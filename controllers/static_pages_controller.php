@@ -3,7 +3,13 @@ class StaticPagesController extends AppController {
 
 	var $name = 'StaticPages';
 	var $helpers = array('Fck');
-
+//--------------------------------------------------------------------	
+  function beforeFilter() {
+        $this->Auth->allow('view');
+        parent::beforeFilter(); 
+        $this->set('headerName','Бренды'); 
+   }
+//--------------------------------------------------------------------
 
 
 	function view($id = null) {
