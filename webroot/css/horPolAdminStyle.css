@@ -713,3 +713,19 @@ input#BrandUserfile{
 	border-bottom:1px solid silver;
 	padding-bottom:.5em;
 }
+/*banner*/
+.tagBanner {
+	color: black;
+	font-weight:normal;
+	position:relative;
+}
+
+a.tagBanner {
+	background:transparent url(../img/icons/tag_banner_16x16.png) no-repeat scroll 130px 0px;
+	padding:0 25px 0 0;
+	cursor:pointer;
+}
+a.tagBanner:hover {
+	background-position: 130px -32px;
+	color:#911B3B;
+}

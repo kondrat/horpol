@@ -32,7 +32,7 @@ class CategoriesController extends AppController {
 		
 		$id = (int)($id);
 		if ( $id != null ) { 
-			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','title','name','body','slogan'), 'contain' => false) );
+			$cat = $this->Category->find('first', array('conditions' => array('Category.id' => $id),'fields' => array('id','type','title','name','body','slogan'), 'contain' => array('Banner'=>array('fields'=>array('Banner.logo') ) ) ) );
 		} else {
 			$this->Session->setFlash('Не выбран пункт меню');
 			$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );

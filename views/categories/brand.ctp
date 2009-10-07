@@ -1,6 +1,11 @@
 <?php $this->pageTitle = $cat['Category']['title']; ?>
 <div>
-	<?php echo $html->image('banner/banner.jpg'); ?>
+	
+	<?php if(isset($cat['Banner']['0']['logo'])&&$cat['Banner']['0']['logo']!= null):?>
+		<?php echo $html->image('banner/'.$cat['Banner']['0']['logo']); ?>
+	<?php endif ?>
+	
+	
 </div>	
 	<h1><?php echo $cat['Category']['name'];?></h1>
 	<div class="slogan">
