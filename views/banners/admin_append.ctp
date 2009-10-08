@@ -14,9 +14,11 @@
 		<div class="categories span-24">
 			[Статические страницы:]
 		</div>
+		<?php echo $form->create('Banner',array('action'=>'glue'));?>
 		<div class="span-22">
 			Главная
-			<?php echo $form->checkbox('StaticPage.id.1',array('class' => 'selectable')); ?>
+			<?php $checked = (isset($staticpages['Banner']['0']['id'])&&$staticpages['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
+			<?php echo $form->checkbox('StaticPage.StaticPage',array('class' => 'selectable','checked'=>$checked,'value' =>'1')); ?>
 		</div>
 	</div>	
 	<div class="span-24" style="margin-bottom:2em;">
@@ -24,7 +26,7 @@
 			[Страницы категорий:]
 		</div>
 		
-		<?php echo $form->create('Banner',array('action'=>'glue'));?>
+
 			<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
 			<?php //echo $form->input('Category'); ?>
 			<?php foreach ($categories as $category):?>			
@@ -33,7 +35,8 @@
 						
 						<?php echo $html->link(strip_tags($category['Category']['name']),array('action'=>'index'),false,false,false);?>&nbsp;&nbsp;&nbsp;
 						<div style="position:absolute;top:2px;right:25px;z-index:10;"><?php echo $html->image('icons/'.$category['Category']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
-						<?php echo $form->checkbox('Category.Category][',array('class' => 'selectable', 'value' =>$category['Category']['id'])); ?>
+						<?php $checked = (isset($category['Banner']['0']['id'])&&$category['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
+						<?php echo $form->checkbox('Category.Category][',array('class' => 'selectable','checked'=>$checked, 'value' =>$category['Category']['id'])); ?>
 						
 					</div>				
 			<?php endforeach; ?>

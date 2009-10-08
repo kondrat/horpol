@@ -6,9 +6,9 @@ class BannersController extends AppController {
 	
 //--------------------------------------------------------------------	
   function beforeFilter() {
-        //$this->Auth->allow('view');
+        $this->Auth->allow('statpage');
         parent::beforeFilter(); 
-        $this->set('headerName','Бренды'); 
+        $this->set('headerName','Баннеры'); 
    }
 //--------------------------------------------------------------------
 
@@ -21,6 +21,21 @@ class BannersController extends AppController {
 		
 		$banners = $this->Banner->find('all',array('conditions'=>$conditions,'contain'=>false));
 		$this->set('banners', $banners);
+	}
+	
+//--------------------------------------------------------------------
+
+	function statpage($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid StaticPage.', true));
+			$this->redirect(array('controller'=>'pages','action'=>'index'));
+		}
+		if (isset($this->params['requested'])) {
+			$banner = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>$id),'fields'=>array('StaticPage.id'),'contain'=>array('Banner'=>array('fields'=>array('Banner.logo'),'order'=> array('BannersStaticPage.id'=>'DESC') )) ) );
+			return $banner;
+		} else {
+			exit();
+		}					
 	}
 	
 //--------------------------------------------------------------------
@@ -39,7 +54,9 @@ class BannersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 
-		$banner = $this->Banner->read(array('id','logo','type'), $id);
+		//$banner = $this->Banner->read(array('id','logo','type'), $id);
+		$banner = $this->Banner->find('first',array('conditions'=>array('Banner.id'=>$id),'fields'=>array('id','logo','type'),'contain'=>false ) );
+		
 		$this->set('banner',$banner);
 		
 		if(isset($banner['Banner']['type'])&&$banner['Banner']['type']== 1){
@@ -47,8 +64,10 @@ class BannersController extends AppController {
 			
 			
 		}
-		
-		$categories = $this->Banner->Category->find('all',array('fields'=>array('id','name','type'),'contain'=>array('Banner'=>array('id') )));
+		$staticpages = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>1),'fields'=>array('id','name'), 'contain' => array('Banner'=>array('fields'=>array('Banner.id'),'order'=> array('BannersStaticPage.id'=>'DESC') ) ) ) );
+		$this->set('staticpages',$staticpages);	
+			
+		$categories = $this->Banner->Category->find('all',array('fields'=>array('id','name','type'), 'contain' => array('Banner'=> array('fields'=> array('Banner.id'),'order'=> array('BannersCategory.id'=>'DESC') ) ) ) );
 		$this->set('categories',$categories);
 		
 	}
@@ -65,7 +84,7 @@ class BannersController extends AppController {
 							$this->data['Category']['Category'][] = $cc;
 						}
 					}
-
+					
 		
 		
 		
@@ -145,6 +164,65 @@ class BannersController extends AppController {
 
 	}
 //--------------------------------------------------------------------
+	function bannerEditLogo() {
+		Configure::write('debug', 0);
+		if (!empty($this->data)) {
+			
+			$file = array();
+			// set the upload destination folder
+			$destination = WWW_ROOT.'img'.DS.'banner'.DS;
+			// grab the file
+			$file = $this->data['Banner']['userfile'];
+
+			if ($file['error'] == 4) {
+				$this->data['Banner']['logo'] = null;
+					echo json_encode(array('error'=>'Файл не загружен'));
+					$this->autoRender = false;
+					exit();							
+			}else {
+									
+				// upload the image using the upload component
+				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('700', '70') ) );
+					if ( $result != 1 ){
+						$this->data['Banner']['logo'] = $this->Upload->result;
+					} else {
+						// display error
+						$errors = $this->Upload->errors;
+						// piece together errors
+						if( is_array($errors) ) { 
+							$errors = implode("<br />",$errors); 
+						}	   
+							//$this->Session->setFlash($errors);
+						echo json_encode(array('error'=>$errors));											
+						$this->autoRender = false;
+					 	exit();	
+					}
+			}			
+			
+					
+			if ( isset($this->data['Banner']['logo']) && $this->data['Banner']['logo'] != null ) {							
+					$this->Banner->create();
+					if ($this->Banner->save($this->data)) {
+									
+									$arr = array ( 'img'=> $this->data['Banner']['logo'] );
+									echo json_encode($arr);											
+									$this->autoRender = false;
+					 				exit();
+					} else {
+						if (  isset($this->Upload->result) && $this->Upload->result != null) {
+							@unlink($destination.$this->Upload->result);
+						}
+									echo json_encode('error');											
+									$this->autoRender = false;
+					 				exit();					
+						
+					}
+			}
+
+		}
+	}
+
+//--------------------------------------------------------------------
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Banner', true));
@@ -167,11 +245,11 @@ class BannersController extends AppController {
 //--------------------------------------------------------------------
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Banner', true));
+			$this->Session->setFlash('Баннер не был удален','default',array('class'=>'er'));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Banner->del($id)) {
-			$this->Session->setFlash(__('Banner deleted', true));
+			$this->Session->setFlash('Баннер удален');
 			$this->redirect(array('action'=>'index'));
 		}
 	}

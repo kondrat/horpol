@@ -24,8 +24,38 @@ class Banner extends AppModel {
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
+		),
+		'StaticPage' => array(
+			'className' => 'StaticPage',
+			'joinTable' => 'banners_static_pages',
+			'foreignKey' => 'banner_id',
+			'associationForeignKey' => 'static_page_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
+
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------	
+	function beforeDelete () {
+		$bannerToDel = array();
+		$bannerToDel = $this->find('first', array( 'conditions' => array('Banner.id' => $this->id),'fields' => array('Banner.logo'), 'contain' => false ) );
+		//debug($bannerToDel);
+		if( $bannerToDel != array() && $bannerToDel['Banner']['logo'] != null ) {
+
+			@unlink( WWW_ROOT.'img/banner/'.$bannerToDel['Banner']['logo']);
+		}
+		return true;
+	}
+
 
 }
 ?>
