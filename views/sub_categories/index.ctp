@@ -1,24 +1,25 @@
 
 <?php 
 	if( isset($products) ) {
-		$this->pageTitle = $subCat['0']['Category']['name'].' '.$brand['Brand']['name'].' | '.$products['SubCategory']['name']; 
+		$this->pageTitle = $subCats['Category']['name'].' '.$brand['Brand']['name'].' | '.$products['SubCategory']['name']; 
 	} else {
-		$this->pageTitle = $subCat['0']['Category']['name'].' '.$brand['Brand']['name']; 
+		$this->pageTitle = $subCats['Category']['name'].' '.$brand['Brand']['name']; 
 	}
 ?>
 
 <div class="cat">
-	<?php //debug($brand); ?>
-	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>	
+
+	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>
+	<?php echo $html->image('banner/banner_test20.png', array('class'=> 'catimg','style'=>'margin-left:35px;')); ?>
 	<br />
-	<?php //debug($subCat);?>
+
 	<ul>
-		<?php foreach( $subCat as $sub ): ?>
+		<?php foreach( $subCats['SubCategory'] as $sub ): ?>
 		<li><?php echo $html->image('point.gif');?>&nbsp;&nbsp;
-			<?php if( isset($products) && $sub['SubCategory']['name'] == $products['SubCategory']['name']): ?>
-				<?php echo $html->link($sub['SubCategory']['name'], array('action' => 'index','category:'.$category,'brand:'.$brand['Brand']['id'],'cat:'.$sub['SubCategory']['id']), array('class' => 'catalogmenu', 'id' => 'catalog-link') ); ?>
+			<?php if( isset($products) && $sub['name'] == $products['SubCategory']['name']): ?>
+				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu', 'id' => 'catalog-link') ); ?>
 			<?php else: ?>
-				<?php echo $html->link($sub['SubCategory']['name'], array('action' => 'index','category:'.$category,'brand:'.$brand['Brand']['id'],'cat:'.$sub['SubCategory']['id']), array('class' => 'catalogmenu') ); ?>			
+				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu') ); ?>			
 			<?php endif ?> 
 		</li>
 		<?php endforeach ?>

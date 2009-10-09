@@ -14,7 +14,7 @@
 	
 <div class="maincontent-case2">	
 	<?php if ( isset($products) && $products != array() ) : ?>	
-			<?php foreach($products['Product'] as $product): ?>
+			<?php foreach($products['SubCategory'][0]['Product'] as $product): ?>
 			<div class="tumb">
 				<?php 
 					if($product['logo'] == null) {

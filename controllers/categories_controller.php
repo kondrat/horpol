@@ -28,7 +28,6 @@ class CategoriesController extends AppController {
 	function brand($id = null) {
 		$this->cacheAction = "10000 hours";
 		$cat = array();
-		$a = array();
 		
 		$id = (int)($id);
 		if ( $id != null ) { 
@@ -41,7 +40,9 @@ class CategoriesController extends AppController {
 		switch($cat['Category']['type']) {
 			
 			case 2:
-				$products = $this->Category->SubCategory->find('first', array('conditions' => array('SubCategory.category_id' => $id ),'fields' => array('id', 'category_id'),'contain' => array('Product') ) );
+	
+				$products = $this->Category->BrandsCategory->find('first', array('conditions' => array('category_id'=>$id),'fields'=>array('id'),'contain'=>array('SubCategory'=>array('fields'=>array('id'),'Product'=>array('name','logo') ) ) ) );
+
 				$this->set('cat', $cat);
 				$this->set('products', $products);
 				$this->render('case2');				
@@ -49,11 +50,10 @@ class CategoriesController extends AppController {
 			
 			default:			
 			
-			$brands = $this->Category->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$id),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );
+			//old $brands = $this->Category->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$id),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );
+			$brands = $this->Category->find('first',array('conditions'=>array('Category.id'=>$id),'fields'=>array(),'contain'=>array('Brand') ) );
 
 
-
-			//debug($a);
 			if ( $brands == array() ) {
 				$this->Session->setFlash('В данной категории отсутствуют товары.');
 				$this->redirect( array('controller' => 'pages', 'action' => 'index'), null, true );
@@ -219,5 +219,54 @@ class CategoriesController extends AppController {
 	}
 	
 //--------------------------------------------------------------------	
+	function admin_catbrand(){
+		$newCatBrand = array();
+		$newCatBrand = $this->Category->SubCategory->find('all',array('fields'=>array('id','name','brand_id','category_id'),'contain'=>array()));
+		//$this->set('newCatBrand',$newCatBrand);
+		
+		if(isset($this->params['named']['go']) && $this->params['named']['go'] == 1) {
+			
+			foreach( $newCatBrand as $mm ){
+				$subCatId = $mm['SubCategory']['id'];
+				$brand = $mm['SubCategory']['brand_id'];
+				$category = $mm['SubCategory']['category_id'];
+				
+				$look = array();
+				//$this->Category->bindModel(array('hasOne' => array('BrandsCategory')));
+				$look = $this->Category->BrandsCategory->find('first',array('conditions'=>array('brand_id'=> $brand,'category_id'=> $category) ) );
+				if( $look == array() ){
+					$this->data['BrandsCategory']['brand_id'] = $brand;
+					$this->data['BrandsCategory']['category_id'] = $category;
+					if( !$this->Category->BrandsCategory->save($this->data) ){
+						$this->Session->setFlash(__('Invalid id for Category', true));
+						$this->redirect(array('action'=>'catbrand','go:2'));
+					}
+					$id = $this->Category->BrandsCategory->id;
+					$this->Category->BrandsCategory->id = null;
+				} else {
+					$id = $look['BrandsCategory']['id'];
+				}
+				
+				$this->Category->SubCategory->id = $subCatId;
+				$this->Category->SubCategory->saveField('brand_category_id', $id);
+				$this->Category->SubCategory->id = null;
+				
+			}
+			
+		} elseif (isset($this->params['named']['look']) && $this->params['named']['look'] == 1) {
+					$Brand = $this->Category->find('all',array('fields'=>array('id','name'),'contain'=>array('Brand'=>array('id','name') ) ) );
+					$this->set('Brand',$Brand);
+		}
+		
+		
+		
+		
+	}
+
+
+
+
+
+
 }
 ?>

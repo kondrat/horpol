@@ -1,6 +1,9 @@
 <?php $this->pageTitle = 'Главная страница'; ?>
 
 <div class="span-24">
+	<div class="span-22 push-1">
+		<?php echo $html->link('New DB table brand_category',array('controller'=>'categories','action'=>'catbrand'));?>
+	</div>
 	<h4>Управление Баннерами</h4>
 	<ul>
 		<li>Баннер главлой страницы</li>

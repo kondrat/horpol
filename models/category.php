@@ -64,6 +64,21 @@ class Category extends AppModel {
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
+		),
+		'Brand' => array(
+			'className' => 'Brand',
+			'joinTable' => 'brands_categories',
+			'foreignKey' => 'category_id',
+			'associationForeignKey' => 'brand_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 

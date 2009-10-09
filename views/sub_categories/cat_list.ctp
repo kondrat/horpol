@@ -24,16 +24,16 @@
 				<div class="span-24">
 					<div class="span-21 setWrapperQuick">
 						<div class="span- quickGo" style="border:1px solid silver; padding:0 4px">
-							<?php echo $html->link('Перейти',array('action'=>'index','cat:'.$catLast['Category']['id'],'brand:'.$catLast['Brand']['id'],'subcat:'.$catLast['SubCategory']['id']));?>
+							<?php echo $html->link('Перейти',array('action'=>'index','cat:'.$catLast['BrandsCategory']['Category']['id'],'brand:'.$catLast['BrandsCategory']['Brand']['id'],'subcat:'.$catLast['SubCategory']['id']));?>
 						</div>
 						<div class="span-" style="">
 							<div class="setItem">[ Категория: ]</div>				
-							<div class="setItemMain quickCat"><span>[</span>&nbsp;<span><?php echo $catLast['Category']['name'];?></span>&nbsp;<span>]</span></div>
+							<div class="setItemMain quickCat"><span>[</span>&nbsp;<span><?php echo $catLast['BrandsCategory']['Category']['name'];?></span>&nbsp;<span>]</span></div>
 						</div>
 						<div class="span-" style="">
 							<div class="setItem">[ Бренд: ]</div>
-							<div class="setItemMain quickBrand"><span>[</span>&nbsp;<span><?php echo $catLast['Brand']['name'];?></span>&nbsp;<span>]</span></div>
-							<?php echo $html->image('catalog/'.$catLast['Brand']['logo'],array('class'=>'quickGoImg'));?>
+							<div class="setItemMain quickBrand"><span>[</span>&nbsp;<span><?php echo $catLast['BrandsCategory']['Brand']['name'];?></span>&nbsp;<span>]</span></div>
+							<?php echo $html->image('catalog/'.$catLast['BrandsCategory']['Brand']['logo'],array('class'=>'quickGoImg'));?>
 						</div>
 						<div class="span-">
 							<div class="setItem">[ Подраздел: ]</div>

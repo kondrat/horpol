@@ -49,26 +49,48 @@ class BannersController extends AppController {
 	}
 //--------------------------------------------------------------------	
 	function admin_append($id = null) {
+		$categories = array();
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Banner', true));
 			$this->redirect(array('action'=>'index'));
 		}
 
-		//$banner = $this->Banner->read(array('id','logo','type'), $id);
 		$banner = $this->Banner->find('first',array('conditions'=>array('Banner.id'=>$id),'fields'=>array('id','logo','type'),'contain'=>false ) );
 		
 		$this->set('banner',$banner);
 		
 		if(isset($banner['Banner']['type'])&&$banner['Banner']['type']== 1){
 			
+			$staticpages = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>1),'fields'=>array('id','name'), 'contain' => array('Banner'=>array('fields'=>array('Banner.id'),'order'=> array('BannersStaticPage.id'=>'DESC') ) ) ) );
+			$this->set('staticpages',$staticpages);	
+				
+			$categories = $this->Banner->Category->find('all',array('fields'=>array('id','name','type'), 'contain' => array('Banner'=> array('fields'=> array('Banner.id'),'order'=> array('BannersCategory.id'=>'DESC') ) ) ) );
+			$this->set('categories',$categories);	
+								
+		} elseif (isset($banner['Banner']['type'])&&$banner['Banner']['type']== 2) {
 			
+			$this->Banner->Category->bindModel(array('hasAndBelongsToMany' => array('Brand' => array(
+			
+	              'className'              => 'Brand',
+                'joinTable'              => 'sub_categories',
+                'foreignKey'             => 'brand_id',
+                'associationForeignKey'  => 'category_id',
+                'unique'                 => true,
+				
+			
+				)
+			
+			
+			)));
+
+			$categories = $this->Banner->Category->SubCategory->find('all',array('conditions'=>array('Category.id' => 2),'fields'=>array('Category.name','Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand','Category') ) );
+			//$categories = $this->Banner->Category->find('all',array('conditions'=>array(),'fields'=>array('Category.name'),'group' => array(),'contain'=>array('Brand'=>array('id','name'),'Banner') )  );
+		
+			
+			$this->set('categories',$categories);						
 			
 		}
-		$staticpages = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>1),'fields'=>array('id','name'), 'contain' => array('Banner'=>array('fields'=>array('Banner.id'),'order'=> array('BannersStaticPage.id'=>'DESC') ) ) ) );
-		$this->set('staticpages',$staticpages);	
-			
-		$categories = $this->Banner->Category->find('all',array('fields'=>array('id','name','type'), 'contain' => array('Banner'=> array('fields'=> array('Banner.id'),'order'=> array('BannersCategory.id'=>'DESC') ) ) ) );
-		$this->set('categories',$categories);
+
 		
 	}
 //--------------------------------------------------------------------

@@ -50,15 +50,21 @@ class SubCategory extends AppModel {
 //-------------------------------------------------------------------- 
 	var $actsAs = array('Containable');
 //-------------------------------------------------------------------- 
-	var $belongsTo = array ('Category' => array(
+	var $belongsTo = array (
+							/*
+							'Category' => array(
 											'className' => 'Category',
-											'conditions' => '',
-											'order' => '',
 											'foreignKey' => 'category_id',
 											'counterCache' => true),
 							'Brand' => array( 
 											'className' => 'Brand',
-											'foreignKey' => 'brand_id')
+											'foreignKey' => 'brand_id'),
+							*/			
+											
+											
+							'BrandsCategory' => array( 
+											'className' => 'BrandsCategory',
+											'foreignKey' => 'brand_category_id')
 							);
 
 //--------------------------------------------------------------------	

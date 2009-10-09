@@ -10,11 +10,11 @@
 	<div class="slogan">
 		<?php echo $cat['Category']['slogan'];?><!-- Здесь только лучшее от природы и производителей<br /> Каждая фабрика-яркая индивидуальность<br/><br/><br />-->
 	</div>
-	<?php foreach($brands as $brand): ?>
+	<?php foreach($brands['Brand'] as $brand): ?>
 		<div class="tumb2">
-			<?php echo $html->link( $html->image( 'catalog/'.$brand['Brand']['logo'], array('alt' => $brand['Brand']['name'])), array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['Brand']['id']),null, null, false ); ?>
+			<?php echo $html->link( $html->image( 'catalog/'.$brand['logo'], array('alt' => $brand['name'])), array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['id']),null, null, false ); ?>
 			<p>
-				<?php echo $html->link( $cat['Category']['name'].'<br />'.$brand['Brand']['name'], array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['Brand']['id']), array('class' => "catalogmenu"),false, false ); ?>
+				<?php echo $html->link( $cat['Category']['name'].'<br />'.$brand['name'], array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['id']), array('class' => "catalogmenu"),false, false ); ?>
 			</p>
 		</div>
 	<?php endforeach ?>	
