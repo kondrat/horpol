@@ -61,11 +61,11 @@
 			
 		
 		?>
-		<?php foreach ($subCategories as $subCategory):?>	
+		<?php foreach ($subCategories['SubCategory'] as $subCategory):?>	
 		<?php $class=(($i%2) == 0)?"clear":null;?>		
 				<div class="span-10 <?php echo $class;?> subCatItem">
-					<?php echo $html->link($subCategory['SubCategory']['name'],array('action'=>'index',$catId,$brandId,'subcat:'.$subCategory['SubCategory']['id']),false,false,false);?>
-					<span style="font-size:smaller;">товаров:&nbsp;</span><span style="font-weight:bold;color:maroon;"><?php echo $pc = (isset($subCategory['SubCategory']['product_count'])?$subCategory['SubCategory']['product_count']:'0');?></span>
+					<?php echo $html->link($subCategory['name'],array('action'=>'index',$catId,$brandId,'subcat:'.$subCategory['id']),false,false,false);?>
+					<span style="font-size:smaller;">товаров:&nbsp;</span><span style="font-weight:bold;color:maroon;"><?php echo $pc = (isset($subCategory['product_count'])?$subCategory['product_count']:'0');?></span>
 				</div>
 		<?php $i++;?>
 		<?php endforeach; ?>

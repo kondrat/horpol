@@ -322,6 +322,7 @@ div.er {
 }
 .stepSpace {
 	padding: 10px;
+	color:silver;
 }
 .setWrapper {
 	text-align:center;
@@ -531,7 +532,7 @@ a.categoryEditButton:hover {
 	text-decoration:underline;
 }
 .disableStep a,.disableStep a:hover,.disableStep a:visited,.disableStep a:active{
-	color:silver;
+	color:#eee;
 	text-decoration:none;
 	cursor:default;
 }
@@ -541,13 +542,13 @@ a.categoryEditButton:hover {
 	padding-top:.5em;
 }
 #stepIcon1 {
-	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 0 0px;
+	background:transparent url(../img/icons/steps.png) no-repeat scroll 0 0px;
 }
 #stepIcon2 {
-	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 20px 0px;
+	background:transparent url(../img/icons/steps.png) no-repeat scroll 20px 0px;
 }
 #stepIcon3 {
-	background:transparent url(../img/icons/steps.jpg) no-repeat scroll 40px 0px;
+	background:transparent url(../img/icons/steps.png) no-repeat scroll 40px 0px;
 }
 
 .stepIcon{
@@ -574,10 +575,10 @@ a.categoryEditButton:hover {
 	background-position: 0 -40px;	
 }
 .disableStep div#stepIcon2 {
-	background-position: -20px -20px;
+	background-position: -20px -60px;
 }
 .disableStep div#stepIcon3 {
-	background-position: -40px -20px;	
+	background-position: -40px -60px;	
 }
 /*category edit*/
 .moveCat {
