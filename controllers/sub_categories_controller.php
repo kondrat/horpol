@@ -40,7 +40,7 @@ class subCategoriesController extends AppController {
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
 			
 			
-			$subCats = $this->SubCategory->BrandsCategory->find('first', array('conditions' => array('category_id' => $this->params['named']['category'], 'brand_id' => $this->params['named']['brand'] ),'fields' => array(), 'contain' => array('SubCategory'=>array('name','id'),'Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
+			$subCats = $this->SubCategory->BrandsCategory->find('first', array('conditions' => array('category_id' => $this->params['named']['category'], 'brand_id' => $this->params['named']['brand'] ),'fields' => array(), 'contain' => array('Banner'=>array('fields'=>array('Banner.id','Banner.logo'),'order'=>array('BannersBrandsCategory.id'=>'DESC') ),'SubCategory'=>array('name','id'),'Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
 			if ( $subCats != array() ) {
 				$this->set('subCats', $subCats);
 				

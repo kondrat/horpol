@@ -10,7 +10,9 @@
 <div class="cat">
 
 	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>
-	<?php echo $html->image('banner/banner_test20.png', array('class'=> 'catimg','style'=>'margin-left:35px;')); ?>
+	<?php if( isset($subCats['Banner']['0']['logo']) ): ?>
+		<?php echo $html->image('banner/'.$subCats['Banner']['0']['logo'], array('class'=> 'catimg','style'=>'margin-left:35px;')); ?>
+	<?php endif ?>
 	<br />
 
 	<ul>

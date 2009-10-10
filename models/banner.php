@@ -15,34 +15,23 @@ class Banner extends AppModel {
 			'joinTable' => 'banners_categories',
 			'foreignKey' => 'banner_id',
 			'associationForeignKey' => 'category_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'unique' => true
 		),
 		'StaticPage' => array(
 			'className' => 'StaticPage',
 			'joinTable' => 'banners_static_pages',
 			'foreignKey' => 'banner_id',
 			'associationForeignKey' => 'static_page_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'unique' => true
+		),
+		'BrandsCategory' => array(
+			'className' => 'BrandsCategory',
+			'joinTable' => 'banners_brands_categories',
+			'foreignKey' => 'banner_id',
+			'associationForeignKey' => 'brand_category_id',
+			'unique' => true
 		)
 	);
-
-//--------------------------------------------------------------------
 
 //--------------------------------------------------------------------	
 	function beforeDelete () {

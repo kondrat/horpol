@@ -1,8 +1,9 @@
+<?php echo $javascript->link(array('jquery/jquery.qtip.min','subCatIndex','subCatIndexCat'),false);?>
 <?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'disableStep','thirdStep'=>'disableStep','cache' => false ) ); ?>
 
 <div class="span-24" style="margin-bottom:2em;">
 	<div class="categories span-24">
-		[Категории:]
+		[Категории:]&nbsp;<?php echo $html->image('icons/info2.png',array('class'=>'catInfoTip'));?> 
 	</div>
 		<?php foreach ($categories as $category):?>			
 				<div style="position:relative; float:left;" class="category">
@@ -16,7 +17,7 @@
 
 
 	<div class="categories span-24" style="margin-bottom:1em;">
-		[Быстрый переход:] <span style="font-size:150%; color:teal;">Пять последних подразделов</span>
+		[Быстрый переход:]&nbsp;<span style="font-size:140%; color:black;">Пять последних подразделов</span>&nbsp;<?php echo $html->image('icons/info2.png',array('class'=>'last5InfoTip'));?> 
 	</div>
 	
 		<?php if(isset($categoriesLast) && $categoriesLast != array() ):?>

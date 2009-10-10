@@ -1,3 +1,4 @@
+<?php echo $javascript->link(array('jquery/jquery.qtip.min','subCatIndex','subCatIndexBrand'),false);?>
 <?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'activeStep','thirdStep'=>'disableStep','cache' => false ) ); ?>
 		<div class="page">
 			<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
@@ -52,9 +53,6 @@
 	<?php endforeach; ?>
 	</div>
 </div>
-
-	<?php //echo $paginator->sort('Бренд','name');?>
-	<?php //echo $paginator->sort('Логотип','logo');?>
 
 
 

@@ -19,7 +19,7 @@
 		<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>-->
 
 	<?php
-		echo $javascript->link( array('jquery-1.3.2.min','jquery.easing.1.3', 'jquery.pngFix.pack') , true);
+		echo $javascript->link( array('jquery/jquery-1.3.2.min','jquery/jquery.easing.1.3', 'jquery/jquery.pngFix.pack') , true);
 	?>
 		<script type="text/javascript"> 
 		    $(document).ready(function(){ 

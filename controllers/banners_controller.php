@@ -69,25 +69,33 @@ class BannersController extends AppController {
 								
 		} elseif (isset($banner['Banner']['type'])&&$banner['Banner']['type']== 2) {
 			
-			$this->Banner->Category->bindModel(array('hasAndBelongsToMany' => array('Brand' => array(
-			
-	              'className'              => 'Brand',
-                'joinTable'              => 'sub_categories',
-                'foreignKey'             => 'brand_id',
-                'associationForeignKey'  => 'category_id',
-                'unique'                 => true,
-				
-			
-				)
-			
-			
-			)));
 
-			$categories = $this->Banner->Category->SubCategory->find('all',array('conditions'=>array('Category.id' => 2),'fields'=>array('Category.name','Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand','Category') ) );
-			//$categories = $this->Banner->Category->find('all',array('conditions'=>array(),'fields'=>array('Category.name'),'group' => array(),'contain'=>array('Brand'=>array('id','name'),'Banner') )  );
-		
-			
+
+			$categories = $this->Banner->Category->find('all',array('conditions'=>array(),'fields'=>array('id','name'),'contain'=>false ) );
+			$catBrandBanner = $this->Banner->BrandsCategory->find('all',array('conditions'=>array(),'contain'=>array('Category'=>array('id','name'),'Brand'=>array('id','name'),'Banner'=>array('id','logo') ) ) );
+
+			$new = array();
+			$i = 0;
+			foreach( $categories as $cat ) {
+
+				
+				foreach( $catBrandBanner as $cb ) {
+					if( $cat['Category']['id'] == $cb['Category']['id'] ) {
+						$new[$i][] = $cb['Brand'];
+						$new[$i][] = $cb['Banner'];
+					}
+				}
+	
+				$i++;
+			}
+
+
+				
 			$this->set('categories',$categories);						
+			$this->set('catBrandBanner',$catBrandBanner);
+			//$bc = $this->Banner->Category->BrandsCategory->find('all',array('conditions'=>array(),'fields'=>array() ) );
+			$this->set('new',$new);
+			
 			
 		}
 

@@ -39,6 +39,7 @@ class Category extends AppModel {
 
 
 //--------------------------------------------------------------------
+		/*
     var $hasMany = array(
         'SubCategory' => array(
             'className'     => 'SubCategory',
@@ -48,7 +49,7 @@ class Category extends AppModel {
             'limit'        => '',
         )
     );
- 
+ 	*/
 	var $hasAndBelongsToMany = array(
 		'Banner' => array(
 			'className' => 'Banner',

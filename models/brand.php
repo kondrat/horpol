@@ -26,16 +26,18 @@ class Brand extends AppModel {
 												)
 						);
 //--------------------------------------------------------------------
+
     var $hasMany = array(
-        'SubCategory' => array(
-            'className'     => 'SubCategory',
+        'BrandsCategory' => array(
+            'className'     => 'BrandsCategory',
             'foreignKey'    => 'brand_id',
             'conditions'    => array(),
             'order'    => '',
             'limit'        => '',
             'dependent'=> true,
         )
-    );  
+    ); 
+ 
 //--------------------------------------------------------------------														
 	function checkUnique($data, $fieldName) {
     	$valid = false;

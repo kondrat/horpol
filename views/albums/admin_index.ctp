@@ -1,3 +1,4 @@
+<?php echo $javascript->link(array('jquery/jquery.qtip.min','albumIndex'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Альбомы', array()); ?>
 <div class="actions span-24">

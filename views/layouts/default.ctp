@@ -16,7 +16,7 @@
 	?>
 
 	<?php
-		echo $javascript->link( array('jquery-1.3.2.min','jquery.easing.1.3', 'cookie', 'jquery.pngFix.pack') , true);
+		echo $javascript->link( array('jquery/jquery-1.3.2.min','jquery/jquery.easing.1.3', 'cookie', 'jquery/jquery.pngFix.pack') , true);
 	?>
 		<script type="text/javascript"> 
 		    $(document).ready(function(){ 

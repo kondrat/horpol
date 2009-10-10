@@ -7,7 +7,9 @@ class BrandsCategory extends AppModel {
 //-------------------------------------------------------------------- 
 	var $actsAs = array('Containable');
 //-------------------------------------------------------------------- 
-	var $belongsTo = array ('Category' => array(
+	
+	var $belongsTo = array (
+							'Category' => array(
 											'className' => 'Category',
 											'conditions' => '',
 											'order' => '',
@@ -17,7 +19,7 @@ class BrandsCategory extends AppModel {
 											'className' => 'Brand',
 											'foreignKey' => 'brand_id')
 							);
-
+	
 //--------------------------------------------------------------------	
 	var $hasMany = array('SubCategory' => array(
 							            'className'     => 'SubCategory',
@@ -28,6 +30,20 @@ class BrandsCategory extends AppModel {
 							            'dependent'=> true
 							        )
 						);
+
+    var $hasAndBelongsToMany = array(
+        'Banner' =>
+            array(
+                'className'              => 'Banner',
+                'joinTable'              => 'banners_brands_categories',
+                'foreignKey'             => 'brand_category_id',
+                'associationForeignKey'  => 'banner_id',
+                'unique'                 => true
+            )
+    );
+
+
+
 
 }
 ?>

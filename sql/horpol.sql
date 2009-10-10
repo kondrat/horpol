@@ -8,7 +8,7 @@
 # Target compatibility:         HeidiSQL w/ MySQL Server 5.0
 # Target max_allowed_packet:    1048576
 # HeidiSQL version:             4.0
-# Date/time:                    2009-10-09 22:00:39
+# Date/time:                    2009-10-10 20:23:00
 # --------------------------------------------------------
 
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;*/
@@ -88,14 +88,44 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `banners` (
 LOCK TABLES `banners` WRITE;
 /*!40000 ALTER TABLE `banners` DISABLE KEYS;*/
 REPLACE INTO `banners` (`id`, `type`, `logo`, `created`, `modified`) VALUES
-	(7,1,'0_2db9f_ffcb6ed9_XL0.jpg','2009-10-06 21:12:28','2009-10-09 13:01:42'),
+	(7,1,'0_2db9f_ffcb6ed9_XL0.jpg','2009-10-06 21:12:28','2009-10-10 18:21:12'),
 	(8,2,'0_2a79c_a94f25d6_XL0.jpeg','2009-10-06 21:12:37','2009-10-06 21:12:36'),
-	(11,1,'banner12.gif','2009-10-06 21:35:45','2009-10-08 18:13:08'),
+	(11,1,'banner12.gif','2009-10-06 21:35:45','2009-10-10 17:37:02'),
 	(12,2,'banner13.gif','2009-10-06 21:36:31','2009-10-06 21:36:31'),
 	(13,1,'bann1.png','2009-10-08 13:57:14','2009-10-08 20:58:41'),
-	(15,1,'banner_test0.gif','2009-10-08 20:48:42','2009-10-08 21:34:10'),
+	(15,1,'banner_test0.gif','2009-10-08 20:48:42','2009-10-10 17:36:33'),
 	(16,2,'banner_test20.png','2009-10-08 21:43:26','2009-10-08 21:43:26');
 /*!40000 ALTER TABLE `banners` ENABLE KEYS;*/
+UNLOCK TABLES;
+
+
+#
+# Table structure for table 'banners_brands_categories'
+#
+
+CREATE TABLE /*!32312 IF NOT EXISTS*/ `banners_brands_categories` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `banner_id` int(11) unsigned NOT NULL default '0',
+  `brand_category_id` int(11) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `banCat` (`banner_id`,`brand_category_id`),
+  KEY `ban` (`banner_id`),
+  KEY `cat` (`brand_category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+
+
+#
+# Dumping data for table 'banners_brands_categories'
+#
+
+LOCK TABLES `banners_brands_categories` WRITE;
+/*!40000 ALTER TABLE `banners_brands_categories` DISABLE KEYS;*/
+REPLACE INTO `banners_brands_categories` (`id`, `banner_id`, `brand_category_id`) VALUES
+	('1','8','1'),
+	('3','8','7'),
+	('2','12','1');
+/*!40000 ALTER TABLE `banners_brands_categories` ENABLE KEYS;*/
 UNLOCK TABLES;
 
 
@@ -107,13 +137,11 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `banners_categories` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `banner_id` int(11) unsigned NOT NULL default '0',
   `category_id` int(11) unsigned NOT NULL default '0',
-  `brand_id` int(11) unsigned default NULL,
-  `created` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `banCat` (`banner_id`,`category_id`),
   KEY `ban` (`banner_id`),
   KEY `cat` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
 
@@ -123,20 +151,12 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `banners_categories` (
 
 LOCK TABLES `banners_categories` WRITE;
 /*!40000 ALTER TABLE `banners_categories` DISABLE KEYS;*/
-REPLACE INTO `banners_categories` (`id`, `banner_id`, `category_id`, `brand_id`, `created`) VALUES
-	('137','13','2',NULL,NULL),
-	('138','13','3',NULL,NULL),
-	('139','13','4',NULL,NULL),
-	('140','13','5',NULL,NULL),
-	('144','11','2',NULL,NULL),
-	('145','11','3',NULL,NULL),
-	('159','15','2',NULL,NULL),
-	('160','15','3',NULL,NULL),
-	('161','15','4',NULL,NULL),
-	('162','15','8',NULL,NULL),
-	('163','7','6',NULL,NULL),
-	('164','7','7',NULL,NULL),
-	('165','7','10',NULL,NULL);
+REPLACE INTO `banners_categories` (`id`, `banner_id`, `category_id`) VALUES
+	('5','7','6'),
+	('4','11','6'),
+	('1','15','2'),
+	('2','15','3'),
+	('3','15','4');
 /*!40000 ALTER TABLE `banners_categories` ENABLE KEYS;*/
 UNLOCK TABLES;
 
@@ -150,7 +170,7 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `banners_static_pages` (
   `banner_id` int(11) unsigned NOT NULL default '0',
   `static_page_id` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 
 
@@ -162,9 +182,9 @@ LOCK TABLES `banners_static_pages` WRITE;
 /*!40000 ALTER TABLE `banners_static_pages` DISABLE KEYS;*/
 REPLACE INTO `banners_static_pages` (`id`, `banner_id`, `static_page_id`) VALUES
 	('16','13','0'),
-	('18','11','1'),
-	('29','15','1'),
-	('30','7','0');
+	('31','15','1'),
+	('32','11','0'),
+	('33','7','0');
 /*!40000 ALTER TABLE `banners_static_pages` ENABLE KEYS;*/
 UNLOCK TABLES;
 
@@ -567,8 +587,8 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `sub_categories` (
 LOCK TABLES `sub_categories` WRITE;
 /*!40000 ALTER TABLE `sub_categories` DISABLE KEYS;*/
 REPLACE INTO `sub_categories` (`id`, `category_id`, `brand_id`, `brand_category_id`, `active`, `name`, `url`, `images`, `product_count`, `created`, `modified`) VALUES
-	(19,'2','1','1',1,'sdfdd',1,NULL,'26','2008-11-19 15:04:19','2009-10-09 17:45:36'),
-	(20,'2','3','2',1,'ZaTe',1,NULL,'3','2008-11-19 16:30:22','2009-10-09 17:45:36'),
+	(19,'2','1','1',1,'sdfdd',1,NULL,'26','2008-11-19 15:04:19','2009-10-10 16:06:35'),
+	(20,'2','3','2',1,'ZaTe',1,NULL,'3','2008-11-19 16:30:22','2009-10-10 18:33:33'),
 	(27,'2','2','3',1,'d',1,NULL,'1','2008-11-19 18:51:33','2009-10-09 17:45:36'),
 	(35,'4','4','4',1,'planes1',1,NULL,'2','2008-12-09 12:40:37','2009-10-09 17:45:36'),
 	(36,'2','6','5',1,'planes2',1,NULL,'3','2008-12-09 18:47:15','2009-10-09 17:45:36'),
@@ -585,7 +605,7 @@ REPLACE INTO `sub_categories` (`id`, `category_id`, `brand_id`, `brand_category_
 	(64,'6','3','6',1,'naw8',NULL,NULL,NULL,'2008-12-11 19:20:06','2009-10-09 17:45:36'),
 	(66,'5','3','10',1,'NewOne',NULL,NULL,'2','2008-12-11 20:41:18','2009-10-09 17:45:36'),
 	(67,'2','2','3',1,'nwenn',1,NULL,NULL,'2008-12-12 13:04:41','2009-10-09 17:45:36'),
-	(68,'5','9','11',1,'vau',NULL,NULL,NULL,'2008-12-12 21:24:02','2009-10-09 17:45:36'),
+	(68,'5','9','11',1,'vau',1,NULL,NULL,'2008-12-12 21:24:02','2009-10-10 16:35:46'),
 	(69,'7','10','12',1,'podrazdel',NULL,NULL,'1','2008-12-13 14:57:29','2009-10-09 17:45:36'),
 	(70,'7','10','12',1,'podrazdel2',NULL,NULL,'1','2008-12-13 15:03:02','2009-10-09 17:45:36'),
 	(71,'14','1','13',1,'newtt',NULL,NULL,'1','2009-03-22 14:48:48','2009-10-09 17:45:36'),
@@ -605,7 +625,7 @@ REPLACE INTO `sub_categories` (`id`, `category_id`, `brand_id`, `brand_category_
 	(85,'2','3','2',1,'newdd',1,NULL,NULL,'2009-10-01 15:09:01','2009-10-09 17:45:36'),
 	(86,'2','3','2',1,'фыва',1,NULL,NULL,'2009-10-01 15:49:42','2009-10-09 17:45:36'),
 	(87,'2','3','2',1,'333ыук',1,NULL,NULL,'2009-10-01 15:50:02','2009-10-09 17:45:36'),
-	(88,'2','3','2',1,'Флизелиновые обои Erfurt Vliesfaser.ПОСМОТРЕТЬ ЗДЕСЬ!',1,NULL,NULL,'2009-10-01 17:47:30','2009-10-09 17:45:36'),
+	(88,'2','3','2',1,'Флизелиновые обои Erfurt Vliesfaser.ПОСМОТРЕТЬ ЗДЕСЬ!',1,NULL,NULL,'2009-10-01 17:47:30','2009-10-10 15:25:16'),
 	(89,'2','3','2',1,'Бумажные обои Erfurt Novaboss.ПОСМОТРЕТЬ ЗДЕСЬ!',1,NULL,NULL,'2009-10-01 17:47:48','2009-10-09 17:45:36'),
 	(90,'2','3','2',1,'Флизелиновые обои Erfurt Vliesfaser.ПОСМОТРЕТЬ ЗДЕСЬ',1,NULL,NULL,'2009-10-01 17:50:09','2009-10-09 17:45:36'),
 	(91,'8','14','19',1,'newMM',1,NULL,'4','2009-10-05 21:59:33','2009-10-09 17:45:36'),
