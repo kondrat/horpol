@@ -68,20 +68,26 @@ class BannersController extends AppController {
 			$this->set('categories',$categories);	
 								
 		} elseif (isset($banner['Banner']['type'])&&$banner['Banner']['type']== 2) {
-			
+						
 
-			//$this->Banner->Category->bindModel(array('hasMany' => array('BrandsCategory')));
-			
-
-			$categories = $this->Banner->Category->find('all',array('conditions'=>array(),
+			$categories = $this->Banner->Category->find('all',array('conditions'=>array('Category.type <>'=>'2'),
 																															'fields'=>array('id','name'),
 																															'contain'=>array('Brand'=>array('id','name') )//array('BrandsCategory'=>array('Banner','Brand'=>array('id','name'))) 
 																															) 
 																									);
 
-			$this->set('categories',$categories);	
+			//$this->set('categories',$categories);	
 			
-			$catBrandBanner = $this->Banner->BrandsCategory->find('all',array('conditions'=>array(),'contain'=>array('Category'=>array('id','name'),'Brand'=>array('id','name'),'Banner'=>array('id','logo') ) ) );
+			$catBrandBanner = $this->Banner->BrandsCategory->find('all',array(	'conditions'=>array(),
+																																					'order'=>array(),
+																																					'contain'=>array(	'Category'=>array('id','name'),
+																																														'Brand'=>array('id','name'),
+																																														'Banner'=>array('fields'=>array('id','logo'),'order'=>array('BannersBrandsCategory.id'=>'DESC') ) 
+																																													) 
+																																				) 
+																													);
+			$this->set('catBrandBanner',$catBrandBanner);
+
 
 			$new = array();
 			$i = 0;
@@ -99,13 +105,7 @@ class BannersController extends AppController {
 	
 				$i++;
 			}
-			$this->set('catBrandBanner',$catBrandBanner);
-			
 
-				
-								
-			
-			//$bc = $this->Banner->Category->BrandsCategory->find('all',array('conditions'=>array(),'fields'=>array() ) );
 			$this->set('new',$new);
 			
 			

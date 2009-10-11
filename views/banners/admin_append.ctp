@@ -45,13 +45,25 @@
 			<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
 			<?php echo $form->end();?>
 	<?php elseif($banner['Banner']['type']==2):?>
-	
-	
-	
-	<?php else: ?>
-	
-	
-	
+		<?php echo $form->create('Banner',array('action'=>'glue2'));?>
+		<?php foreach($new as $n):?>
+		<div class="category">
+			<a><?php echo $n['cat'];?></a>
+		</div>
+		<ul>
+			<?php foreach($n['item'] as $itt):?>	
+					<li style="display:inline;">
+						<a><?php echo	$itt['Brand']['name'];?></a>
+						<?php $checked = (isset($itt['Banner']['0']['id'])&&$itt['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
+						<?php echo $form->checkbox('Category.Category][',array('class' => 'selectable','checked'=>$checked, 'value' =>$itt['Brand']['id'])); ?>
+					</li>
+			<?php endforeach; ?>	
+		</ul>	
+		<?php endforeach; ?>
+			<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
+			<?php echo $form->end();?>	
+		<?php else: ?>
+		
 	<?php endif ?>
 
 
