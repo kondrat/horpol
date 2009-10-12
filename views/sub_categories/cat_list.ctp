@@ -17,7 +17,7 @@
 
 
 	<div class="categories span-24" style="margin-bottom:1em;">
-		[Быстрый переход:]&nbsp;<span style="font-size:140%; color:black;">Пять последних подразделов</span>&nbsp;<?php echo $html->image('icons/info2.png',array('class'=>'last5InfoTip'));?> 
+		[Быстрый переход:]&nbsp;<?php echo $html->image('icons/info2.png',array('class'=>'last5InfoTip'));?> 
 	</div>
 	
 		<?php if(isset($categoriesLast) && $categoriesLast != array() ):?>

@@ -2,7 +2,7 @@
 $(document).ready( function(){
 		var prev = null;
 	
-		$('.category a, .bannerLi a').click(function() {
+		$('.bannerLi a').click(function() {
 			
 			var liContent = $(this).text();
 			
@@ -20,7 +20,7 @@ $(document).ready( function(){
 		});
 });
 $(document).ready( function(){
-		$('.category, .bannerLi').hover(function(){
+		$('.category,.bannerLi').hover(function(){
 			$(this).addClass('act3');		
 		},function(){
 			$(this).removeClass('act3');
@@ -29,16 +29,19 @@ $(document).ready( function(){
 
 
 $(document).ready( function(){
-	//var showLogo,quickCat,quickSubCat;
-	var brandShadow = $('.brandShadow').attr('src');
-		$('.setWrapperQuick').hover(function(){
-			$(this).addClass('act');
-			var quickGoImg = $(this).find('.quickGoImg').attr('src');			 
-			$('.brandShadow').attr({src:quickGoImg});			
-		},function(){
-			$(this).removeClass('act');
-			$('.brandShadow').attr({src:brandShadow});
-    });
+	$("input:checked").parent().addClass('act2');
+	
+	$(":checkbox").click(function(){
+		var check = $(this).parent();
+		if ($(this).is(":checked")) {
+			$(this).parent().addClass('act4');			
+		} else {
+			$(this).parent().removeClass('act4');
+			$(this).parent().removeClass('act2');
+		}
+
+		
+	});
 });
 
 //Tips

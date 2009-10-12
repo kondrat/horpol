@@ -15,6 +15,7 @@
 			<?php echo $html->link( $html->image( 'catalog/'.$brand['logo'], array('alt' => $brand['name'])), array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['id']),null, null, false ); ?>
 			<p>
 				<?php echo $html->link( $cat['Category']['name'].'<br />'.$brand['name'], array('controller' => 'sub_categories', 'action' => 'index', 'category:'.$cat['Category']['id'], 'brand:'.$brand['id']), array('class' => "catalogmenu"),false, false ); ?>
+				<?php echo (isset($brand['origin']))?$brand['origin']:null;?>
 			</p>
 		</div>
 	<?php endforeach ?>	

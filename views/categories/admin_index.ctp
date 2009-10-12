@@ -1,4 +1,4 @@
-<? echo $javascript->link(array('jquery-ui-1.7.2.custom.min','catSort'),false);?>
+<? echo $javascript->link(array('jquery/jquery-ui-1.7.2.custom.min','catSort'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Категории', array()); ?>
 <div class="actions span-24">

@@ -15,10 +15,12 @@
 			[Статические страницы:]
 		</div>
 		<?php echo $form->create('Banner',array('action'=>'glue'));?>
-		<div class="span-22 prepend-1" style="font-size:12pt;">
-			<a>Главная</a>
-			<?php $checked = (isset($staticpages['Banner']['0']['id'])&&$staticpages['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
-			<?php echo $form->checkbox('StaticPage.StaticPage][',array('class' => 'selectable','checked'=>$checked,'value' =>'1')); ?>
+		<div class="span-22 " style="font-size:12pt;">
+			<div class="category" style="float:left;">
+				<a>Главная</a>
+				<?php $checked = (isset($staticpages['Banner']['0']['id'])&&$staticpages['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
+				<?php echo $form->checkbox('StaticPage.StaticPage][',array('class' => 'selectable','checked'=>$checked,'value' =>'1')); ?>
+			</div>
 		</div>
 	</div>	
 	<div class="span-24" style="margin-bottom:2em;">
@@ -54,12 +56,12 @@
 					<div class="categories span-23">
 						[Категория:]
 					</div>
-					<div class="category" style="position:relative; float:left;margin:0 0 0 1em;">
+					<div class="category2" style="">
 						<a style="text-decoration:none;"><?php echo strip_tags($n['cat']['name']);?></a>&nbsp;&nbsp;&nbsp;
 						<div style="position:absolute;top:2px;right:0px;z-index:10;"><?php echo $html->image('icons/'.$n['cat']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
 					</div>
 					<div class="categories span-23">
-						[Связаннвые бренды:]
+						[Связанные бренды:]
 					</div>
 					<div class="span-24">
 						<ul>

@@ -77,7 +77,7 @@ class PagesController extends AppController {
 //--------------------------------------------------------------------	
 	function admin_index() {
 		$this->set('headerName','Главная страница');
-		$this->redirect( array('controller'=>'sub_categories','action'=>'index') );	
+		//$this->redirect( array('controller'=>'sub_categories','action'=>'index') );	
 	}
 	
 }

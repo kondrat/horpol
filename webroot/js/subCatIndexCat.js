@@ -44,7 +44,7 @@ $(document).ready( function(){
 //Tips
 $(document).ready( function(){
 	$(".catInfoTip").qtip({
-	   content: 'Значок обозначает тип категории',
+	   content: '<h4>Значок обозначает тип категории:</h4> 1 - Товары без описания (Основной тип);<br />2 - Товары без Бренда (пример: Винтаж);<br />3 - Товары с описанием (пример: Лаки)',
 	   position: {
 	      corner: {
 	         target: 'topRight',
@@ -58,7 +58,7 @@ $(document).ready( function(){
 	});
 	
 	$(".last5InfoTip").qtip({
-	   content: 'означает тип категории',
+	   content: 'Пять последних подразделов, в которые добавлялись товары',
 	   position: {
 	      corner: {
 	         target: 'topRight',

@@ -31,13 +31,14 @@
 			<div class="span-4">
 				<div class="userZone"><?php echo $html->link('Хороший пол', '/'); ?></div>
 			</div>
-			<div class="span-15 ">
+			<div class="span-14 ">
 				<h3>Панель управления: <span style="color:teal;font-size:120%;"><?php if(isset($headerName))echo $headerName;?></span></h3>
 			</div>
-			<div class="span-5 last">
+			<div class="span-6 last" style="position:relative;">
 				<?php if ( $session->check('Auth.User.id') ): ?>
 							<p class="username"> Пользователь:&nbsp;&laquo;<?php echo $session->read('Auth.User.username');?>&raquo;</p>
 				<?php endif ?>
+				<div style="position:absolute;top:0;right:10px;"><?php echo $html->image('icons/im.jpg');?></div>
 			</div>
 		</div>
 		<div class="span-24 mainMenu" style="margin-bottom:10px;"><?php echo $this->element('menu/menu'); ?></div>
