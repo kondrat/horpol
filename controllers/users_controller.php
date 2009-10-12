@@ -228,6 +228,7 @@ class UsersController extends AppController {
 //-----------------------------
 	function admin_clearcache() {
 		clearCache();
+		$this->Session->setFlash('Cache очищен');
 		$this->redirect( $this->referer() );
 	}
 }

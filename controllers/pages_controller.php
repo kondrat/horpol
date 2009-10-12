@@ -69,6 +69,7 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title = Inflector::humanize($path[$count - 1]);
 		}
+		$this->set('ref',$this->referer());
 		$this->set(compact('page', 'subpage', 'title'));
 		$this->render(join('/', $path));
 	}
@@ -76,6 +77,7 @@ class PagesController extends AppController {
 //--------------------------------------------------------------------	
 	function admin_index() {
 		$this->set('headerName','Главная страница');
+		$this->redirect( array('controller'=>'sub_categories','action'=>'index') );	
 	}
 	
 }

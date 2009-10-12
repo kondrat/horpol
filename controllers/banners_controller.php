@@ -71,7 +71,7 @@ class BannersController extends AppController {
 						
 
 			$categories = $this->Banner->Category->find('all',array('conditions'=>array('Category.type <>'=>'2'),
-																															'fields'=>array('id','name'),
+																															'fields'=>array('id','name','type'),
 																															'contain'=>array('Brand'=>array('id','name') )//array('BrandsCategory'=>array('Banner','Brand'=>array('id','name'))) 
 																															) 
 																									);
@@ -81,7 +81,7 @@ class BannersController extends AppController {
 			$catBrandBanner = $this->Banner->BrandsCategory->find('all',array(	'conditions'=>array(),
 																																					'order'=>array(),
 																																					'contain'=>array(	'Category'=>array('id','name'),
-																																														'Brand'=>array('id','name'),
+																																														'Brand'=>array('name'),
 																																														'Banner'=>array('fields'=>array('id','logo'),'order'=>array('BannersBrandsCategory.id'=>'DESC') ) 
 																																													) 
 																																				) 
@@ -95,12 +95,17 @@ class BannersController extends AppController {
 
 				$j = 0;
 				foreach( $catBrandBanner as $cb ) {
+					
 					if( $cat['Category']['id'] == $cb['Category']['id'] ) {
-						$new[$i]['cat'] = $cat['Category']['name'];
+											
+						$new[$i]['cat']['name'] = $cat['Category']['name'];
+						$new[$i]['cat']['type'] = $cat['Category']['type'];
+						$new[$i]['item'][$j]['BrandsCategory'] = $cb['BrandsCategory']['id'];
 						$new[$i]['item'][$j]['Brand'] = $cb['Brand'];
 						$new[$i]['item'][$j]['Banner'] = $cb['Banner'];
 					}
 					$j++;
+					
 				}
 	
 				$i++;
@@ -123,7 +128,49 @@ class BannersController extends AppController {
 					
 					foreach( $CatCat as $cc){
 						if($cc != 0){
+							$this->Banner->BannersCategory->deleteAll(array('BannersCategory.category_id' => $cc));
 							$this->data['Category']['Category'][] = $cc;
+						}
+					}
+					
+					$StaticPage = $this->data['StaticPage']['StaticPage'];
+					$this->data['StaticPage']['StaticPage'] = array();
+							
+					foreach( $StaticPage as $cp){
+						if($cp != 0){
+							//$this->Banner->bindModel(array('hasMany'=>'BannersStaticPage'));
+							$this->Banner->BannersStaticPage->deleteAll(array('BannersStaticPage.static_page_id' => $cp));
+							$this->data['StaticPage']['StaticPage'][] = $cp;
+						}
+					}		
+		
+		
+				$this->Banner->create();
+				if ($this->Banner->save($this->data)) {
+					$this->Session->setFlash('Баннер был прикреплен');
+					$this->redirect(array('action'=>'index'));
+				} else {
+						$this->Session->setFlash('Баннер не был прикреплен');
+				}
+				
+			} else {
+				$this->Session->setFlash('Баннер не был прикреплен');
+			}				
+				
+	}
+//--------------------------------------------------------------------
+	function admin_glue2() {
+				
+				if( isset($this->data['BrandsCategory']['BrandsCategory']) ){
+					
+					$CatCat = $this->data['BrandsCategory']['BrandsCategory'];
+					$this->data['BrandsCategory']['BrandsCategory'] = array();
+					
+					foreach( $CatCat as $cc){
+						if($cc != 0){
+							$this->Banner->BannersBrandsCategory->deleteAll(array('BannersBrandsCategory.brand_category_id' => $cc));
+													
+							$this->data['BrandsCategory']['BrandsCategory'][] = $cc;
 						}
 					}
 					

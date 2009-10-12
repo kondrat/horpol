@@ -40,7 +40,12 @@ class subCategoriesController extends AppController {
 		if ( isset($this->params['named']['category']) && (int)Sanitize::paranoid($this->params['named']['category']) != null ) {
 			
 			
-			$subCats = $this->SubCategory->BrandsCategory->find('first', array('conditions' => array('category_id' => $this->params['named']['category'], 'brand_id' => $this->params['named']['brand'] ),'fields' => array(), 'contain' => array('Banner'=>array('fields'=>array('Banner.id','Banner.logo'),'order'=>array('BannersBrandsCategory.id'=>'DESC') ),'SubCategory'=>array('name','id'),'Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) ) ) );				
+			$subCats = $this->SubCategory->BrandsCategory->find('first', array('conditions' => array('category_id' => $this->params['named']['category'], 'brand_id' => $this->params['named']['brand'] ),'fields' => array(), 'contain' => array('Banner'=>array('fields'=>array('Banner.id','Banner.logo'),'order'=>array('BannersBrandsCategory.id'=>'DESC') ),
+																																																																																																																						'SubCategory'=>array('fields'=>array('name','id','product_count'),'conditions'=> array('SubCategory.product_count <>'=>null) ),
+																																																																																																																						'Category'=> array('fields'=>array('Category.id','Category.type','Category.name') ) 
+																																																																																																																						) 
+																																				) 
+																													);				
 			if ( $subCats != array() ) {
 				$this->set('subCats', $subCats);
 				
@@ -58,7 +63,7 @@ class subCategoriesController extends AppController {
 		 */		
 		$products = array();
 		if ( isset($this->params['named']['subcat']) && (int)Sanitize::paranoid($this->params['named']['subcat']) != null ) {
-			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['subcat']),'fields'=>array('name'), 'contain' => array('Product'=>array('fields'=>array('Product.name','Product.logo','Product.content1') ) ) ) );
+			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['subcat']),'fields'=>array('name'), 'contain' => array('Product'=>array('fields'=>array('Product.name','Product.logo','Product.content1'),'order'=>array('Product.id'=>'DESC') ) ) ) );
 			$this->set('products', $products);
 			if($subCats['Category']['type'] == 3) {
 				$this->render('indexType3');
@@ -173,8 +178,6 @@ class subCategoriesController extends AppController {
 			
 			case 2:
 				//echo 'two';
-				$toDel = $this->SubCategory->BrandsCategory->Category->find('all');		
-				$this->set('toDel',$toDel);
 				
 						
 				$subCategories = $this->SubCategory->BrandsCategory->find('first',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat'],'BrandsCategory.brand_id'=>$this->params['named']['brand']),

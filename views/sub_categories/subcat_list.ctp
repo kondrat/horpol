@@ -9,12 +9,19 @@
 				$catId = null;
 				$catIdVal = null;
 			}
+			
 			if(isset($this->params['named']['brand'])){
 				$brandId = 'brand:'.$this->params['named']['brand'];
-				$brandIdVal = $this->params['named']['brand'];
+				$brandIdVal = $this->params['named']['brand'];				
 			} else {
 				$brandId = null;
-				$brandIdVal = null;
+				$brandIdVal = null;			
+			}
+			
+			if(isset($subCategories['BrandsCategory']['id'])){
+				$brandsCatVal = $subCategories['BrandsCategory']['id'];
+			} else {
+				$brandsCatVal = null;
 			}
 			if(isset($this->params['named']['subcat'])){
 				$subcatId = 'subcat:'.$this->params['named']['subcat'];
@@ -30,6 +37,7 @@
 		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>		
 		<div class="span-13 subCategoryAdd hide">
 		<?php echo $form->create('SubCategory',array('action'=>'addInline'));?>
+			<?php echo $form->input('brand_category_id', array( 'type' => 'hidden','value'=> $brandsCatVal) );?>
 			<?php echo $form->input('category_id', array( 'type' => 'hidden','value'=> $catIdVal) );?>
 			<?php echo $form->input('brand_id', array( 'type' => 'hidden','value'=> $brandIdVal ) );?>
 			<?php echo $form->label('name','[Название:]');?><br />

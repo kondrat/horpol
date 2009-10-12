@@ -82,7 +82,7 @@ class SubCategory extends AppModel {
 	 */
 	function checkUnique($data) {
     	$valid = false;
-      		$caunt = $this->find('count',array('conditions' => array('SubCategory.name' => $this->data['SubCategory']['name'],'SubCategory.category_id' => $this->data['SubCategory']['category_id'], 'SubCategory.brand_id' => $this->data['SubCategory']['brand_id'] ), 'contain' =>false) );
+      		$caunt = $this->find('count',array('conditions' => array('SubCategory.name' => $this->data['SubCategory']['name'],'SubCategory.brand_category_id' => $this->data['SubCategory']['brand_category_id'] ), 'contain' =>false) );
 			if ( $caunt == null ) {
 				//debug($caunt);
 				$valid = true;

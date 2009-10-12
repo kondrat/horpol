@@ -1,4 +1,4 @@
-<? echo $javascript->link(array('jquery.jeditable.mini','newsEdit'),false);?>
+<? echo $javascript->link(array('jquery/jquery.jeditable.mini','newsEdit'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Новости', array('action'=>'index')); ?>
 <?php $html->addCrumb('Редактировать новость', array()); ?>

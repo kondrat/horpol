@@ -141,7 +141,24 @@ class AlbumsController extends AppController {
 		}
 	}
 	
-
+//--------------------------------------------------------------------
+	function albumEditName() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Album->id = (int)$this->data['Album']['id'];
+						if($this->Album->saveField('name',trim($this->data['Album']['name']) ) ) {
+								echo trim($this->data['Album']['name']);
+						} else {
+							//echo 	$this->data['Album']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
 	
 	
 }

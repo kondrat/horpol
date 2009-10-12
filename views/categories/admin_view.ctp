@@ -1,4 +1,4 @@
-<? echo $javascript->link(array('jquery.jeditable.mini','catEdit'),false);?>
+<? echo $javascript->link(array('jquery/jquery.jeditable.mini','catEdit'),false);?>
 <?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
 <?php $html->addCrumb('Категории', array('controller'=>'categories','action'=>'index')); ?>
 <?php $html->addCrumb($category['Category']['name'], array()); ?>

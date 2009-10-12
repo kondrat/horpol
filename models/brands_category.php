@@ -38,7 +38,9 @@ class BrandsCategory extends AppModel {
                 'joinTable'              => 'banners_brands_categories',
                 'foreignKey'             => 'brand_category_id',
                 'associationForeignKey'  => 'banner_id',
-                'unique'                 => true
+                'unique'                 => true,
+                'order'    => '',
+                'limit'        => '2'
             )
     );
 

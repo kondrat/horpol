@@ -15,10 +15,10 @@
 			[Статические страницы:]
 		</div>
 		<?php echo $form->create('Banner',array('action'=>'glue'));?>
-		<div class="span-22">
-			Главная
+		<div class="span-22 prepend-1" style="font-size:12pt;">
+			<a>Главная</a>
 			<?php $checked = (isset($staticpages['Banner']['0']['id'])&&$staticpages['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
-			<?php echo $form->checkbox('StaticPage.StaticPage',array('class' => 'selectable','checked'=>$checked,'value' =>'1')); ?>
+			<?php echo $form->checkbox('StaticPage.StaticPage][',array('class' => 'selectable','checked'=>$checked,'value' =>'1')); ?>
 		</div>
 	</div>	
 	<div class="span-24" style="margin-bottom:2em;">
@@ -28,12 +28,10 @@
 		
 
 			<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
-			<?php //echo $form->input('Category'); ?>
+
 			<?php foreach ($categories as $category):?>			
-					<div style="position:relative; float:left;" class="category">
-						
-						
-						<?php echo $html->link(strip_tags($category['Category']['name']),array('action'=>'index'),false,false,false);?>&nbsp;&nbsp;&nbsp;
+					<div style="position:relative; float:left;" class="category">					
+						<a><?php echo strip_tags($category['Category']['name']);?></a>&nbsp;&nbsp;&nbsp;
 						<div style="position:absolute;top:2px;right:25px;z-index:10;"><?php echo $html->image('icons/'.$category['Category']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
 						<?php $checked = (isset($category['Banner']['0']['id'])&&$category['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
 						<?php echo $form->checkbox('Category.Category][',array('class' => 'selectable','checked'=>$checked, 'value' =>$category['Category']['id'])); ?>
@@ -44,24 +42,44 @@
 	</div>	
 			<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
 			<?php echo $form->end();?>
+			
 	<?php elseif($banner['Banner']['type']==2):?>
-		<?php echo $form->create('Banner',array('action'=>'glue2'));?>
-		<?php foreach($new as $n):?>
-		<div class="category">
-			<a><?php echo $n['cat'];?></a>
-		</div>
-		<ul>
-			<?php foreach($n['item'] as $itt):?>	
-					<li style="display:inline;">
-						<a><?php echo	$itt['Brand']['name'];?></a>
-						<?php $checked = (isset($itt['Banner']['0']['id'])&&$itt['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
-						<?php echo $form->checkbox('Category.Category][',array('class' => 'selectable','checked'=>$checked, 'value' =>$itt['Brand']['id'])); ?>
-					</li>
-			<?php endforeach; ?>	
-		</ul>	
-		<?php endforeach; ?>
-			<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
+
+	
+			<?php echo $form->create('Banner',array('action'=>'glue2'));?>
+				<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
+				<?php foreach($new as $n):?>
+				
+				<div class="span-23 push-1" style="background-color:#eee;padding:1em 0 0 1em;">
+					<div class="categories span-23">
+						[Категория:]
+					</div>
+					<div class="category" style="position:relative; float:left;margin:0 0 0 1em;">
+						<a style="text-decoration:none;"><?php echo strip_tags($n['cat']['name']);?></a>&nbsp;&nbsp;&nbsp;
+						<div style="position:absolute;top:2px;right:0px;z-index:10;"><?php echo $html->image('icons/'.$n['cat']['type'].'_type.png',array('title'=>'Тип категории'));?></div>
+					</div>
+					<div class="categories span-23">
+						[Связаннвые бренды:]
+					</div>
+					<div class="span-24">
+						<ul>
+							<?php foreach($n['item'] as $itt):?>	
+									<li class="bannerLi" style="display:inline; margin-right:1em;  padding:0.3em .2em .3em .5em;">
+										[&nbsp;<a><?php echo	$itt['Brand']['name'];?></a>&nbsp;]
+										<?php $checked = (isset($itt['Banner']['0']['id'])&&$itt['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
+										<?php echo $form->checkbox('BrandsCategory.BrandsCategory][',array('class' => 'selectable','checked'=>$checked, 'value' =>$itt['BrandsCategory'])); ?>
+									</li>
+							<?php endforeach; ?>	
+						</ul>	
+					</div>
+				</div>
+				<?php endforeach; ?>
+			<div class="span-24">
+				<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
 			<?php echo $form->end();?>	
+			</div>
+			
+			
 		<?php else: ?>
 		
 	<?php endif ?>
