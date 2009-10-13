@@ -153,40 +153,35 @@ class subCategoriesController extends AppController {
 		//debug($case);
 		switch($case) {
 			case 1:
-					
-				//$catSelected = $this->SubCategory->BrandsCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
-				//$this->set('catSelected',$catSelected['Category']['name']);
-				
+									
 					$brands = $this->SubCategory->BrandsCategory->find('all',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name','Category.name'),'contain'=>array('Brand','Category')  ) );	
-					
-					$catSelected = Set::extract ('/Category/.[:first]',$brands);
-					$this->set('catSelected',$catSelected);
 
 
 					if($brands != array()) {
-						
+
+						$catSelected = Set::extract ('/Category/.[:first]',$brands);
+						$this->set('catSelected',$catSelected['0']);						
 					
 						foreach($brands as $brand) {
 							$brandsOfCurCatId[] = $brand['Brand']['id'];
 						}						
-						//$this->set('brandsOfCurCatId',$brandsOfCurCatId);
 																
 						$brandsAllTotal = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array(),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
 						
 						foreach($brandsAllTotal as $br) {
 							$brandsOfCurCatId2[] = $br['Brand']['id'];					
 						}
-						//$this->set('brandsOfCurCatId2',$brandsOfCurCatId2);												
-						$diff = array_diff ($brandsOfCurCatId2, $brandsOfCurCatId);					
-						//$this->set('diff',$diff);
 											
+						$diff = array_diff ($brandsOfCurCatId2, $brandsOfCurCatId);																
 						$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array('Brand.id'=> $diff ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
 						//$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array('Brand.id NOT'=> $brandsOfCurCatId ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
 						
-						
-						
-											
+																	
 					} else {
+						
+						$catSelected = $this->SubCategory->BrandsCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
+						$this->set('catSelected',$catSelected['Category']);
+
 						$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
 					}
 					
@@ -240,8 +235,8 @@ class subCategoriesController extends AppController {
 					}
 					
 					$this->set('subCategories',$subCategories);
-					$this->set('catSelected',$subCategories['Category']['name']);
-					$this->set('brandSelected',$subCategories);	
+					$this->set('catSelected',$subCategories['Category']);
+					$this->set('brandSelected',$subCategories['Brand']);	
 					
 					
 					
@@ -250,13 +245,14 @@ class subCategoriesController extends AppController {
 									
 				} else {
 					
-					//$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
-					//$this->set('catSelected',$catSelected['Category']['name']);
-					//$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo','Brand.id'),'contain'=>false));
-					$brandSelected['Category']['id'] = $catSelected['Category']['id'];					
-					$this->set('brandSelected',$brandSelected);
-					$this->Session->setFlash('Ни одного подраздела еще не создано');
+					$catSelected = $this->SubCategory->BrandsCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
+					$this->set('catSelected',$catSelected['Category']);
+					$brandSelected = $this->SubCategory->BrandsCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo','Brand.id'),'contain'=>false));
+					//$brandSelected['Category']['id'] = $catSelected['Category']['id'];					
+					$this->set('brandSelected',$brandSelected['Brand']);
 					
+					$this->Session->setFlash('Ни одного подраздела еще не создано');
+										
 				}																			
 	
 				$this->render('subcatList');
@@ -456,6 +452,15 @@ class subCategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_addInline() {
 		if (!empty($this->data)) {
+			
+			if( $this->data['SubCategory']['brand_category_id'] == null ) {
+				
+				
+				
+			}
+			
+			
+			
 			$this->SubCategory->create();
 			if ($this->SubCategory->save($this->data)) {
 				$this->Session->setFlash('Создан новый подраздел');
@@ -463,7 +468,7 @@ class subCategoriesController extends AppController {
 				//$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash('Подраздел не был создан','default',array('class'=>'er'));
-				$this->redirect(array('action'=>'index','cat:'.$this->data['SubCategory']['category_id'],'brand:'.$this->data['SubCategory']['brand_id']));
+				$this->redirect(array('action'=>'index','cat:'.$this->data['SubCategory']['category_id']));
 			}
 		}
 	}

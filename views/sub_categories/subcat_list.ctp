@@ -1,5 +1,5 @@
 <?php echo $javascript->link(array('subCatIndex','subCatIndexSubCat'),false);?>
-<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'prevStep','thirdStep'=>'activeStep','cache' => false ) ); ?>
+<?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'prevStep','thirdStep'=>'prevStep','cache' => false ) ); ?>
 
 <?php 
 			if(isset($this->params['named']['cat'])){

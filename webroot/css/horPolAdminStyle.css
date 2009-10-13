@@ -415,7 +415,6 @@ a.categoryEditButton:hover {
 
 
 .currentSubCat{
-	font-size:85%;
 	cursor:default;
 }
 /*subCategory*/
@@ -440,8 +439,8 @@ a.categoryEditButton:hover {
 		padding:20px 0 20px 40px;
 }
 .productItem {
-	background-color:#EEEEEE;
-	border:1px solid silver;
+	background-color:#eee;
+	border:1px solid #eee;
 	float:left;
 	margin-bottom:5px;
 	margin-right:15px;
@@ -499,7 +498,7 @@ a.categoryEditButton:hover {
 	font-weight:bold;
 	color:silver;
 }
-.act {
+.act,.actSubcat {
 	background-color:#eee;
 }
 .act .quickSubCat {	
@@ -574,9 +573,13 @@ a.categoryEditButton:hover {
 .prevStep div#stepIcon1{
 	background-position: 0 -20px;
 }
-.prevStep div#stepIcon2,.prevStep div#stepIcon3 {
+.prevStep div#stepIcon2 {
 	background-position: -20px -20px;
 }
+.prevStep div#stepIcon3 {
+	background-position: -40px -20px;
+}
+
 .nextStep div#stepIcon2,.nextStep div#stepIcon3 {
 	background-position: 0 -40px;	
 }

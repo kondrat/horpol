@@ -1,7 +1,7 @@
 $(document).ready( function(){
     
  		var bgPosition = '';
-    $('#catSelect').hover(function(){
+    $('.prevStep #catSelect,.activeStep #catSelect').hover(function(){
     			bgPosition = $('#stepIcon1').css("background-position");
     			$('#stepIcon1').css({'background-position':'0px 0px'});
     		}, function() {
@@ -9,7 +9,7 @@ $(document).ready( function(){
     	}); 
  
  		var bgPosition2 = '';
-    $('#brandSelect').hover(function(){
+    $('.prevStep #brandSelect,.activeStep #brandSelect').hover(function(){
     			var bgPosition2 = $('#stepIcon1').css("background-position");
     			$('#stepIcon2').css({'background-position':'-20px 0px'});
     		}, function() {
@@ -18,7 +18,7 @@ $(document).ready( function(){
     	 
   		
   	var bgPosition3 = '';
-    $('#subcatSelect').hover(function(){
+    $('.prevStep #subcatSelect,.activeStep #subcatSelect').hover(function(){
     			var bgPosition3 = $('#stepIcon1').css("background-position");
     			$('#stepIcon3').css({'background-position':'-40px 0px'});
     		}, function() {

@@ -1,6 +1,6 @@
 			<?php
 				if(isset($catSelected)) {
-					$cat = $catSelected;
+					$cat = $catSelected['name'];
 					$catSelectedClass = 'catSelected';
 				} else {
 					$cat = 'Категория не выбрана';
@@ -8,12 +8,12 @@
 				}
 			?>		
 			<?php
-				if(isset($brandSelected)) {
-					$brand = $brandSelected['Brand']['name'];
-					$catParam= 'cat:'.$brandSelected['Category']['id'];
-					$brandLogo = $brandSelected['Brand']['logo'];
+				if(isset($brandSelected)&& isset($catSelected) ) {
+					$brand = $brandSelected['name'];
+					$catParam= 'cat:'.$catSelected['id'];
+					$brandLogo = $brandSelected['logo'];
 					$brandSelectedClass = 'brandSelected';
-					$catBrandParam = 'cat:'.$brandSelected['Category']['id'].'/'.'brand:'.$brandSelected['Brand']['id'];
+					$catBrandParam = 'cat:'.$catSelected['id'].'/'.'brand:'.$brandSelected['id'];
 				} else {
 					$catParam = null;
 					$brand = 'Бренды не выбран';
@@ -75,7 +75,7 @@
 		</div>
 		<div class="span-" style="">
 			<div class="setItem">[ Подраздел: ]</div>
-			<div id="subcat" class="setItemMain <?php echo $subCatSelectedClass;?> "><span>[</span>&nbsp;<span class="subCatText"><?php echo $subCat;?></span>&nbsp;<span>]</span></div>
+			<div id="subcat" class="setItemMain <?php echo $subCatSelectedClass;?> ">[&nbsp;<span class="subCatText"><?php echo $subCat;?></span>&nbsp;]</div>
 		</div>
 	</div>
 </div>

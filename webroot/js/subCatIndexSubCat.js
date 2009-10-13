@@ -1,4 +1,31 @@
 $(document).ready(function() {
+
+//changing name of the subCategory and url of the link
+		var prev = null;
+		$('.subCategory div a').click(function() {
+			
+			var liContent = $(this).text();
+			
+			if (prev != null) {
+				prev.removeClass('actSubcat');
+			}				
+			prev = $(this).parent();				
+		 	prev.addClass('actSubcat');				
+
+			$('#subcat span.subCatText').text(liContent);
+			$('#subcat span').addClass('subCatSelected');
+			var subCat = $(this).attr('href');		
+			$('#subcatSelect').attr('href',subCat);
+			
+			$("#step3").removeClass('prevStep').addClass('activeStep');
+			$(".activeStep div#stepIcon3").css({'background-position':'-40px -40px'});			
+			
+			
+			return false;
+		});
+		
+		
+		
 	$('.subCatAdd, .subCategoryAddCancel').click(function(){
 		$('.subCategoryAdd').toggle();
 		return false;
@@ -15,12 +42,16 @@ $(document).ready(function() {
 
 	$('.subCatItem').hover(function(){
 		$(this).addClass('act');
-		$('.act a').css({'background-color':'#ccc'});
+		//$('.act a').css({'background-color':'#ccc'});
 	},function(){
-		$('.act a').css({'background-color':'#fff'});
+		//$('.act a').css({'background-color':'#fff'});
 		$(this).removeClass('act');
 	});
 	
+
+
+
+
 
 	$('.productAdd, .productAddCancel').click(function(){
 		$('.productItemAdd').toggle();
@@ -83,9 +114,9 @@ $(document).ready(function() {
 	
 	$('.productItem').hover(function(){
 		//$(this).addClass('act');
-		$(this).css({'border-color':'#000'});
-	},function(){
 		$(this).css({'border-color':'silver'});
+	},function(){
+		$(this).css({'border-color':'#eee'});
 		//$(this).removeClass('act');
 	});
 	$('.productEdit').hover(function(){
@@ -102,25 +133,4 @@ $(document).ready(function() {
 		});	
 	});
 	
-});
-
-//changing name of the subCategory and url of the link
-$(document).ready( function(){
-		var prev = null;
-		$('.subCategory div a').click(function() {
-			
-			var liContent = $(this).text();
-			
-			if (prev != null) {
-				prev.removeClass('currentSubCat');
-			}				
-			prev = $(this);				
-		 	$(this).addClass('currentSubCat');				
-
-			$('#subcat span.subCatText').text(liContent);
-			$('#subcat span').addClass('subCatSelected');
-			var subCat = $(this).attr('href');		
-			$('#subcatSelect').attr('href',subCat);
-			return false;
-		});
 });
