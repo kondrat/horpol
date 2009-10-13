@@ -1,7 +1,7 @@
-function flashMessage(message,class) {	
+function flashMessage(message, classs ) {
+
 		$('div.fl').empty();
-		$('div.fl').append('<div id="flashMessage" class="'+class+'">'+message+'</div>');
-		
+		$('div.fl').append('<div id="flashMessage" class="'+classs+'">'+message+'</div>');
 				var $alert = $('#flashMessage');
 				var alerttimer = window.setTimeout(function () {
 					$alert.trigger('click');
@@ -14,3 +14,4 @@ function flashMessage(message,class) {
 					
 				});
 }
+

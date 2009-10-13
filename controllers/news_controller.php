@@ -1,7 +1,7 @@
 <?php
 class NewsController extends AppController {
 	var $name = 'News';
-	var $paginate = array('limit' => 5, 'order' => array( 'News.created' => 'desc') );
+	var $paginate = array('limit' => 10, 'order' => array( 'News.created' => 'desc') );
 	var $helpers = array('Fck');
 	
 //--------------------------------------------------------------------	

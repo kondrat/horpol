@@ -26,11 +26,11 @@
 	$background = null;
 ?>
 		<div class="brand <?php echo $class;?>">
-			<div style="text-align:center;border:1px solid silver;padding:3px;">
+			<div style="text-align:center;border:1px solid #eee;padding:3px;">
 				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo'], array('alt'=>$brand['Brand']['name'],'title'=>$brand['Brand']['name']) ), array('action'=>'view',$brand['Brand']['id']), false, false,false); ?>
 			</div>
 			<div class="lens"></div><?php //echo $html->image('icons/lens.png',array('class'=>'lens'));?>
-			<div style="font-weight:bold;text-align:center;">&laquo;<?php echo $brand['Brand']['name']; ?>&raquo;</div>
+			<div style="font-weight:bold;text-align:center;"><?php echo $brand['Brand']['name']; ?></div>
 		</div>
 <?php $i++;?>
 <?php endforeach; ?>

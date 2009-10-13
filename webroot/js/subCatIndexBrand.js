@@ -14,27 +14,22 @@ $(document).ready( function(){
 			$('#brandSelect').attr('href',brandSelect);
 			var brandImg = $(this).find('img').attr('src');
 			$('.brandShadow').attr({src:brandImg});
+			
+			$("#step2").removeClass('prevStep').addClass('activeStep');
+			/*
+	 		$("#step2").oneTime(500, function() {
+				$(this).removeClass('activeStep').addClass('prevStep');
+			});			
+			*/
+			
 			return false;
 		});
 
 
 	$('.brand').hover(function(){
-		$(this).children().css({'border-color':'#000'});
+		$(this).children().css({'border-color':'silver'});
 	},function(){
-		$(this).children().css({'border-color':'silver'});	
+		$(this).children().css({'border-color':'#eee'});	
 	});
 	
-});
-
-
-$(document).ready( function(){
-		$('#brandsAll').click(function() {
-				//$("#allBrandsWrapper").slideUp();
-  				if ( $("#allBrandsWrapper").is(":hidden") ) {
-            $("#allBrandsWrapper").fadeIn();
-          } else {
-            $("#allBrandsWrapper").fadeOut();
-          }	          	
-			return false;
-		});
 });

@@ -1,11 +1,13 @@
 $(document).ready(function(){
 
+	
+	
 		$("#sortableList").sortable({
 
 			forcePlaceholderSize: true,
-			revert:true,
 			axis:'y',
 			handle:'.moveCat',
+			revert: true,
     	update : function () {
     		 
       	var order = $('#sortableList').sortable('serialize');
@@ -14,9 +16,7 @@ $(document).ready(function(){
 					type: "POST",
 					url: path + "categories/sort",
 					data: order,
-					success:function(data){
-						flashMessage('Позиция изменена','message');	
-					},
+					success:function(data){flashMessage('Позиция изменена','message');},
 					error: function(event, request, settings){
 						//alert( event.responseText );
 						alert( 'Ошибка сервера. Попробуйте еще раз' );

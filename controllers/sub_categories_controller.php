@@ -154,10 +154,15 @@ class subCategoriesController extends AppController {
 		switch($case) {
 			case 1:
 					
-				$catSelected = $this->SubCategory->BrandsCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
-				$this->set('catSelected',$catSelected['Category']['name']);
+				//$catSelected = $this->SubCategory->BrandsCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));
+				//$this->set('catSelected',$catSelected['Category']['name']);
 				
-					$brands = $this->SubCategory->BrandsCategory->find('all',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>array('Brand')  ) );	
+					$brands = $this->SubCategory->BrandsCategory->find('all',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name','Category.name'),'contain'=>array('Brand','Category')  ) );	
+					
+					$catSelected = Set::extract ('/Category/.[:first]',$brands);
+					$this->set('catSelected',$catSelected);
+
+
 					if($brands != array()) {
 						
 					
@@ -212,7 +217,7 @@ class subCategoriesController extends AppController {
 						$this->paginate['Product']['contain'] = false;
 						$this->paginate['Product']['conditions'] = array('Product.subcategory_id'=>$this->params['named']['subcat']);
 						$this->paginate['Product']['fields'] = array('Product.id','Product.subcategory_id','Product.name','Product.logo');
-						$this->paginate['Product']['limit'] = 8;
+						$this->paginate['Product']['limit'] = 24;
 						$this->paginate['Product']['order'] = array('Product.created'=>'DESC');
 						$products = $this->paginate('Product');																				
 						$this->set('products',$products);		
@@ -244,12 +249,14 @@ class subCategoriesController extends AppController {
 					
 									
 				} else {
-					$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
-					$this->set('catSelected',$catSelected['Category']['name']);
-					$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo','Brand.id'),'contain'=>false));
+					
+					//$catSelected = $this->SubCategory->Category->find('first',array('conditions'=>array('Category.id'=>$this->params['named']['cat']),'fields'=>array('Category.id','Category.name'),'contain'=>false));					
+					//$this->set('catSelected',$catSelected['Category']['name']);
+					//$brandSelected = $this->SubCategory->Brand->find('first',array('conditions'=>array('Brand.id'=>$this->params['named']['brand']),'fields'=>array('Brand.name','Brand.logo','Brand.id'),'contain'=>false));
 					$brandSelected['Category']['id'] = $catSelected['Category']['id'];					
 					$this->set('brandSelected',$brandSelected);
 					$this->Session->setFlash('Ни одного подраздела еще не создано');
+					
 				}																			
 	
 				$this->render('subcatList');

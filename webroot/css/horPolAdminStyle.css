@@ -526,12 +526,7 @@ a.categoryEditButton:hover {
 	text-align:center;
 }
 
-.activeStep a,.activeStep a:hover{
-	
-}
-.activeStep img{
-	/*margin:-10px;*/
-}
+
 .nextStep a{
 	color:silver;
 	text-decoration:underline;
@@ -565,6 +560,8 @@ a.categoryEditButton:hover {
 	height:20px;
 	margin:0 60px;
 }
+
+
 .activeStep div#stepIcon1{
 	background-position: 0 -40px;
 }
@@ -589,6 +586,7 @@ a.categoryEditButton:hover {
 .disableStep div#stepIcon3 {
 	background-position: -40px -60px;	
 }
+
 /*category edit*/
 .moveCat {
 	cursor:n-resize;
@@ -738,4 +736,7 @@ a.tagBanner {
 a.tagBanner:hover {
 	background-position: 130px -32px;
 	color:#911B3B;
+}
+.infoTip{
+	cursor:help;
 }

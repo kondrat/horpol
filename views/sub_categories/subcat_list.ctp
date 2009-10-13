@@ -157,17 +157,17 @@
 	
 				<div class="span-24 productItemWrapper">
 				<?php if($products != array()):?>
-				
+					<?php $i = 0;?>
 				
 					<?php foreach($products as $product): ?>
-					
-						<div class="productItem" >
+					<?php $class = ($i%4 == 0)?'clear':null;?>
+						<div class="productItem <?php echo $class;?>" >
 							<div class="span-4"><?php echo $html->link( $html->image('catalog/'.$product['Product']['logo'],array('alt'=>$product['Product']['name']) ),false,false,false,false );?></div>
 							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
 							<div class="span-1 productEdit"></div>
-							<div class="span-6 last"><?php echo $product['Product']['name'];?></div>
+							<div class="" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>
 						</div>
-					
+						<?php $i++;?>
 					<?php endforeach ?>
 				
 					

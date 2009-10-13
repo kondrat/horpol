@@ -67,7 +67,7 @@
 						<ul>
 							<?php foreach($n['item'] as $itt):?>	
 									<li class="bannerLi" style="display:inline; margin-right:1em;  padding:0.3em .2em .3em .5em;">
-										[&nbsp;<a><?php echo	$itt['Brand']['name'];?></a>&nbsp;]
+										[&nbsp;<a><?php echo	$itt['Brand']['name'];?></a>&nbsp;]&nbsp;
 										<?php $checked = (isset($itt['Banner']['0']['id'])&&$itt['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
 										<?php echo $form->checkbox('BrandsCategory.BrandsCategory][',array('class' => 'selectable','checked'=>$checked, 'value' =>$itt['BrandsCategory'])); ?>
 									</li>

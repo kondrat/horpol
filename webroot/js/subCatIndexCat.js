@@ -16,6 +16,20 @@ $(document).ready( function(){
 			$('#cat span').addClass('catSelected');
 			var cat = $(this).attr('href');		
 			$('#catSelect').attr('href',cat);
+
+			$("#step1").removeClass('prevStep').addClass('activeStep');
+			$(".activeStep div#stepIcon1").css({'background-position':'0 -40px'});
+
+			
+			/*
+	 		$("#step1").oneTime(500, function() {
+				$(this).removeClass('activeStep').addClass('prevStep');
+			});
+			*/
+			
+
+			
+			
 			return false;
 		});
 });

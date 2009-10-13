@@ -33,21 +33,21 @@
 			?>		
 
 	<div class="span-24 step actions">		
-		<div class="<?php echo (isset($firstStep))?$firstStep:null;?>" style="float:left;">
+		<div id="step1" class="<?php echo (isset($firstStep))?$firstStep:null;?>" style="float:left;">
 			<div id="stepIcon1" class="stepIcon"></div>
 			<h3><?php echo $html->link('Выбор Категории',array('controller'=>'sub_categories','action'=>'index'),array('id'=>'catSelect') );?></h3>
 		</div>
 
 		<h3 class="stepSpace">&raquo;</h3>
 		
-		<div class="<?php echo (isset($secondStep))?$secondStep:null;?>" style="float:left;">
+		<div id="step2" class="<?php echo (isset($secondStep))?$secondStep:null;?>" style="float:left;">
 			<div id="stepIcon2" class="stepIcon"></div>
 			<h3><?php echo $html->link('Выбор Бренда',array('controller'=>'sub_categories','action'=>'index',$catParam),array('id'=>'brandSelect') );?></h3>
 		</div>
 		
 		<h3 class="stepSpace">&raquo;</h3>
 		
-		<div class="<?php echo (isset($thirdStep))?$thirdStep:null;?>" style="float:left;">
+		<div id="step3" class="<?php echo (isset($thirdStep))?$thirdStep:null;?>" style="float:left;">
 			<div id="stepIcon3" class="stepIcon"></div>	
 			<h3><?php echo $html->link('Выбор Подраздела',array('controller'=>'sub_categories','action'=>'index',$catBrandParam),array('id'=>'subcatSelect') );?></h3>
 		</div>
