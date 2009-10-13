@@ -87,6 +87,6 @@
 </div>
 	<hr />
 	<div class="span-22 push-1">
-		<?php echo $html->link('New DB table brand_category',array('controller'=>'categories','action'=>'catbrand','go:1'));?>
+		<?php echo $html->link('New DB table brand_category',array('controller'=>'categories','action'=>'catbrand','look:1'));?>
 	</div>
 
