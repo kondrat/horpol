@@ -48,8 +48,8 @@
 		</script>
 		<script type="text/javascript">
 		try {
-		var pageTracker = _gat._getTracker("UA-8421821-1");
-		pageTracker._trackPageview();
+			var pageTracker = _gat._getTracker("UA-8421821-1");
+			pageTracker._trackPageview();
 		} catch(err) {}</script>
 		
 
@@ -96,7 +96,7 @@
 								'menu', 'true',
 								'allowFullScreen', 'false',
 								'allowScriptAccess','sameDomain',
-								'movie', path+'/'+ flashName,
+								'movie', path + flashName,
 								'salign', ''
 								); //end AC code
 								

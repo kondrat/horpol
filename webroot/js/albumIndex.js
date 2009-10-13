@@ -18,7 +18,7 @@
 		
 		
      $('.edit_name').editable( 
-     	path + "/albums/albumEditName",      
+     	path + "albums/albumEditName",      
     	{    	 
      	   id        : 'data[Album][id]',
          name      : 'data[Album][name]',
@@ -26,7 +26,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
          		//console.log(this);

@@ -5,7 +5,7 @@
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить новый Брeнд', array('action'=>'add')); ?></h3>
 </div>
-
+	<div class="span-24" style="margin-bottom:1em;">
 		<div class="page">
 			<?php if( isset($this->params['paging']['Brand']['pageCount']) && $this->params['paging']['Brand']['pageCount'] > 1 ): ?>
 				<?php echo $paginator->prev($html->image('icons/left_arrow.png',array('class'=>'pageImgPrev','alt'=>__('Prev',true) ) ), array('escape' => false ) , $html->image('icons/left_arrow_disable.png'),  array('escape' => false ,'class'=>'menuPage'));?>
@@ -13,6 +13,7 @@
 				<?php echo $paginator->next( $html->image('icons/right_arrow.png',array('class'=>'pageImgNext','alt'=>__('Next',true) ) ), array('escape' => false ), $html->image('icons/right_arrow_disable.png'), array('escape' => false ,'class'=>'menuPage'));?>
 			<?php endif ?>
 		</div>
+	</div>
 
 
 

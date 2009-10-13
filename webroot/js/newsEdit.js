@@ -8,7 +8,7 @@
 		});
 
      $('.edit_name').editable( 
-     	path + "/news/newsEditName",      
+     	path + "news/newsEditName",      
     	{    	 
      	   id        : 'data[News][id]',
          name      : 'data[News][name]',
@@ -17,7 +17,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
          		//console.log(this);
@@ -33,10 +33,10 @@
 	$('.edit_body').click(function(){
 		var id = parseInt($(this).attr('id'));
 		origText = $(this).html();
-		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +' /img/icons/ajax-loader2.gif"></div>');
+		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +'img/icons/ajax-loader2.gif"></div>');
 		$(this).html('');
 		$('#ttt').load( 
-			path + "/news/newsEditBody",
+			path + "news/newsEditBody",
 			{ 'data[News][id]': id },
 			function(){
 				$('#mmm').empty();
@@ -59,10 +59,10 @@
 		var id = parseInt($(this).attr('id'));
 		origData = $(this).html();
 		$(this).html('');
-		$('#dataInput').append('<img src="'+path +' /img/icons/ajax-loader.gif">');
+		$('#dataInput').append('<img src="'+path +'img/icons/ajax-loader.gif">');
 	
 		$('#dataInput').load( 
-			path + "/news/newsEditData",
+			path + "news/newsEditData",
 			{ 'data[News][id]': id },
 			function(){
 				//flashMessage('Описание отредактировано','message');
@@ -78,7 +78,7 @@
 	});
 
 	$('#newsDataSubmit').live('click',function(){
-		$('.edit_data').html('<img src="'+path +' /img/icons/ajax-loader.gif">');
+		$('.edit_data').html('<img src="'+path +'img/icons/ajax-loader.gif">');
 		$(this).parents("#NewsEditForm").ajaxSubmit({
 			success: function(responseText, responseCode) {
 				if(responseText.data != null){

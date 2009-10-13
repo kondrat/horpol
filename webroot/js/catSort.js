@@ -12,7 +12,7 @@ $(document).ready(function(){
       	
 				$.ajax({
 					type: "POST",
-					url: path + "/categories/sort",
+					url: path + "categories/sort",
 					data: order,
 					success:function(data){
 						flashMessage('Позиция изменена','message');	

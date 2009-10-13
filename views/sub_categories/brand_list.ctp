@@ -21,8 +21,10 @@
 </div>
 <div class="span-24">
 	<?php if($brands!=array()):?>
+	<?php $i = 0;?>
 		<?php foreach ($brands as $brand):?>
-				<div class="brand">
+			<?php $clear = ($i%6 == 0)?'clear':null;?>
+				<div class="brand <?php echo $clear;?>">
 					<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
 						<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
 					</div>
@@ -30,6 +32,7 @@
 						&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
 					</div>
 				</div>
+				<?php $i++;?>
 		<?php endforeach; ?>
 	<? else: ?>
 		<p style="margin-left:2em;">С данной категорией пока не связан ни один бренд</p>
@@ -41,8 +44,10 @@
 		<h5 style="float:left;margin-left:1em;">Остальные Бренды</h5>
 	</div>
 	<div class="span-24">
+	<?php $j = 0;?>
 	<?php foreach ($brandsAll as $brand):?>
-			<div class="brand">
+		<?php $clear = ($j%6 == 0)?'clear':null;?>
+			<div class="brand <?php echo $clear;?>">
 				<div class="brandImg" style="text-align:center;border:1px solid silver;padding:3px;">
 					<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo']),array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brImg'),false,false); ?>
 				</div>
@@ -50,6 +55,7 @@
 					&laquo;<?php echo $html->link($brand['Brand']['name'],array('action'=>'index',$catId,'brand:'.$brand['Brand']['id']),array('class'=>'brA'),false,false); ?>&raquo;
 				</div>
 			</div>
+		<?php $j++;?>
 	<?php endforeach; ?>
 	</div>
 </div>

@@ -159,15 +159,33 @@ class subCategoriesController extends AppController {
 				
 					$brands = $this->SubCategory->BrandsCategory->find('all',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat']),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>array('Brand')  ) );	
 					if($brands != array()) {
+						
+					
 						foreach($brands as $brand) {
 							$brandsOfCurCatId[] = $brand['Brand']['id'];
+						}						
+						//$this->set('brandsOfCurCatId',$brandsOfCurCatId);
+																
+						$brandsAllTotal = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array(),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
+						
+						foreach($brandsAllTotal as $br) {
+							$brandsOfCurCatId2[] = $br['Brand']['id'];					
 						}
-						$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array('Brand.id NOT'=> $brandsOfCurCatId ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));						
+						//$this->set('brandsOfCurCatId2',$brandsOfCurCatId2);												
+						$diff = array_diff ($brandsOfCurCatId2, $brandsOfCurCatId);					
+						//$this->set('diff',$diff);
+											
+						$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array('Brand.id'=> $diff ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
+						//$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('conditions'=>array('Brand.id NOT'=> $brandsOfCurCatId ),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));	
+						
+						
+						
+											
 					} else {
 						$brandsAll = $this->SubCategory->BrandsCategory->Brand->find('all',array('fields'=>array('Brand.id','Brand.logo','Brand.name'),'contain'=>false));
 					}
 					
-				$this->set('brands',$brands);		
+				$this->set('brands',$brands);
 				$this->set('brandsAll',$brandsAll);
 				
 				

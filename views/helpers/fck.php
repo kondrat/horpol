@@ -15,7 +15,7 @@
 				App::import('Vendor', 'fckeditor');
               $oFCKeditor = new FCKeditor('data['.$model.']['.$controller.']') ;
 
-              $oFCKeditor->BasePath = Configure::read('path').'/js/fck/';
+              $oFCKeditor->BasePath = Configure::read('path').'js/fck/';
 
               $oFCKeditor->Value	= $this->data[$model][$controller];
 

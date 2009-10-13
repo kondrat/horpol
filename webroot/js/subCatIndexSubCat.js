@@ -28,7 +28,7 @@ $(document).ready(function() {
 	});
 
 	$("#ProductAddProductForm").ajaxForm({
-		url: path+'/products/addProduct',	
+		url: path+'products/addProduct',	
 		dataType:  'json',			
 		success: 
 				function(data) {

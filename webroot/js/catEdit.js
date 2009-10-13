@@ -1,7 +1,7 @@
  $(document).ready(function() {
  	
 	 	$('.edit_type').editable(
-	 		path + "/categories/catEditType", 
+	 		path + "categories/catEditType", 
 	 		{
 	     	data   : " {'1':'Товары без описания (Основной тип)','2':'Товары без Бренда (пример: Винтаж)','3':'Товары с описанием (пример: Лаки)', 'selected':'1'}",
 	     	id        : 'data[Category][id]',
@@ -11,14 +11,14 @@
 	     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
 	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div><hr />',
 	     	tooltip   : 'Редактировать тип',
-	     	indicator : '<img src="'+path +' /img/icons/ajax-loader3.gif">',
+	     	indicator : '<img src="'+path +'img/icons/ajax-loader3.gif">',
         callback : function(value, settings) {
         	 	flashMessage('Тип категории изменен','message');	
         }	
 		});
 
      $('.edit_name').editable( 
-     	path + "/categories/catEditName",      
+     	path + "categories/catEditName",      
     	{    	 
      	   id        : 'data[Category][id]',
          name      : 'data[Category][name]',
@@ -27,7 +27,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
          		//console.log(this);
@@ -39,7 +39,7 @@
      });
      
      $('.edit_slogan').editable( 
-     	path + "/categories/catEditSlogan",      
+     	path + "categories/catEditSlogan",      
     	{    	 
      	   id        : 'data[Category][id]',
          name      : 'data[Category][slogan]',
@@ -48,7 +48,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать слоган',
 	        callback : function(value, settings) {
 	        	 	flashMessage('Слоган изменен','message');	
@@ -56,12 +56,12 @@
      });
 /*     
      $('.edit_test').editable( 
-     	path + "/categories/catEditTest",      
+     	path + "categories/catEditTest",      
      {    	 
      	  // id        : 'data[Post][id]',
         // name      : 'data[Post][name]',
 
-         loadurl  : path + "/categories/cattest",
+         loadurl  : path + "categories/cattest",
          loadtype : "POST",
          //type    : 'textarea',
          submit  : 'OK'
@@ -73,10 +73,10 @@
 	$('.edit_body').click(function(){
 		var id = parseInt($(this).attr('id'));
 		origText = $(this).html();
-		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +' /img/icons/ajax-loader2.gif"></div>');
+		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +'img/icons/ajax-loader2.gif"></div>');
 		$(this).html('');
 		$('#ttt').load( 
-			path + "/categories/catEditBody",
+			path + "categories/catEditBody",
 			{ 'data[Category][id]': id },
 			function(){
 				$('#mmm').empty();

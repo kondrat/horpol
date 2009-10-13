@@ -1,7 +1,7 @@
  $(document).ready(function() {
 /* 	
 	 	$('.edit_type').editable(
-	 		path + "/categories/catEditType", 
+	 		path + "categories/catEditType", 
 	 		{
 	     	data   : " {'1':'Товары без описания (Основной тип)','2':'Товары с описанием (пример: Лаки)','3':'Товары без Бренда (пример: Винтаж)', 'selected':'1'}",
 	     	id        : 'data[Category][id]',
@@ -11,7 +11,7 @@
 	     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
 	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div><hr />',
 	     	tooltip   : 'Редактировать тип',
-	     	indicator : '<img src="'+path +' /img/icons/ajax-loader3.gif">',
+	     	indicator : '<img src="'+path +'img/icons/ajax-loader3.gif">',
         callback : function(value, settings) {
         	 	flashMessage('Тип категории изменен','message');	
         }	
@@ -22,20 +22,20 @@
 		});
 		
 		$('#tuda').click( function(){ 
-			 $('.brandShadow').attr('src',path+"/img/icons/ajax-loader4.gif");
+			 $('.brandShadow').attr('src',path+"img/icons/ajax-loader4.gif");
 		});
 		
 		var oldImg = $('.brandShadow').attr('src');
 							
 		$("#storyEditForm").ajaxForm({
-			url: path+'/brands/brandEditLogo',	
+			url: path+'brands/brandEditLogo',	
 			dataType:  'json',			
 			success: 
 					function(data) {
 							//console.log(data);
 							if( data.img != null) {
 								flashMessage('Изменения сохранены','message');
-								$('.brandShadow').hide().attr('src',path+"/img/catalog/"+data.img).fadeIn();
+								$('.brandShadow').hide().attr('src',path+"img/catalog/"+data.img).fadeIn();
 								$('.brandFrom').hide();
 							} else if (data.error != null) {
 								flashMessage('Изменения не были сохранены','er');
@@ -53,7 +53,7 @@
 		
 
      $('.edit_name').editable( 
-     	path + "/brands/brandEditName",      
+     	path + "brands/brandEditName",      
     	{    	 
      	   id        : 'data[Brand][id]',
          name      : 'data[Brand][name]',
@@ -62,7 +62,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
          		//console.log(this);
@@ -74,7 +74,7 @@
      });
     
      $('.edit_origin').editable( 
-     	path + "/brands/brandEditOrigin",      
+     	path + "brands/brandEditOrigin",      
     	{    	 
      	   id        : 'data[Brand][id]',
          name      : 'data[Brand][origin]',
@@ -83,7 +83,7 @@
          cssclass : 'catEdForm',
          cancel    : '<div class="span-2"><input type="submit" class="span-3" value="Отменить" /></div><hr />',
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
-         indicator : '<img src="'+path +' /img/icons/ajax-loader.gif">',
+         indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать',
 	        callback : function(value, settings) {
 	        	 	flashMessage('Изменения сохранены','message');	
@@ -95,10 +95,10 @@
 	$('.edit_body').click(function(){
 		var id = parseInt($(this).attr('id'));
 		origText = $(this).html();
-		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +' /img/icons/ajax-loader2.gif"></div>');
+		$('#mmm').append('<div style="margin:150px 330px; auto;width:740px;height:400px"><img src="'+path +'img/icons/ajax-loader2.gif"></div>');
 		$(this).html('');
 		$('#ttt').load( 
-			path + "/brands/brandEditBody",
+			path + "brands/brandEditBody",
 			{ 'data[Brand][id]': id },
 			function(){
 				$('#mmm').empty();

@@ -16,7 +16,7 @@ class BrandsController extends AppController {
 
 	function admin_index() {
 		$this->paginate['Brand'] = array('contain' => false );
-		$this->paginate['Brand']['limit'] = 15;
+		$this->paginate['Brand']['limit'] = 36;
 		$this->paginate['Brand']['fields'] = array('Brand.id','Brand.name','Brand.logo');
 		$this->set('br', $this->paginate());
 	}
