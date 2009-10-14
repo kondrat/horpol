@@ -48,11 +48,48 @@ $(document).ready(function() {
 		$(this).removeClass('act');
 	});
 	
+	$('.subCategoryEdit').hover(function(){
+		$(this).css({'background-position':'0px -32px','border-color':'silver'});
+	},function(){
+		$(this).css({'background-position':'0px 0px','border-color':'#eee'});		
+	});
+
+
+	$('.subCategoryEdit').click(function(){
+		$('.edit_name').empty();
+		$('.subCatItem').removeClass('actSubcat');
+		$(this).parents('.subCatItem').addClass('actSubcat');
+		var id = parseInt($(this).attr('id'));
+		$(this).next().append('<div style="margin:1em;"><img src="'+path +'img/icons/ajax-loader.gif"></div>');
+		
+		$(this).next().load( 
+			path + "sub_categories/subCatEditName",
+			{ 'data[SubCat][id]': id },
+			function(){
+				//$('#mmm').empty();
+			}
+		);
+		
+	});
+
+	$('input.catBodyCancel').live('click',function(){
+		$(this).parents('.edit_name').empty();
+		$('.subCatItem').removeClass('actSubcat');
+	});
+
+
+	$('input.subCatEditSubmit').live('click',function(){
+		if($('#subCatEditName').val() == '' ) {
+			$('#SubCategoryEditError').text('Это поле должно быть заполнено');
+			$(this).parents('.subCatItem').addClass('error');
+			return false;
+		}		
+	});
 
 
 
 
-
+//products
 	$('.productAdd, .productAddCancel').click(function(){
 		$('.productItemAdd').toggle();
 		return false;

@@ -25,11 +25,12 @@ class SubCategory extends AppModel {
 												),							
 
 							'name' => array(
+												/*
 												'checkUnique' => array(           
 																		'rule' =>  array('checkUnique'),
 																		'message' => 'Это название уже занято'
 																		),
-												/*
+												
 												'isUnique' => array(
 																'rule' => 'isUnique',
 																'required' => true,

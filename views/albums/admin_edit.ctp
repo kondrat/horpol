@@ -1,12 +1,15 @@
+<?php $html->addCrumb('Главная', array('controller'=>'pages','action'=>'index')); ?>
+<?php $html->addCrumb('Альбомы ', array('controller'=>'albums','action'=>'index')); ?>
+<?php //$html->addCrumb($brand['Brand']['name'], array()); ?>
 
-<div class="">
 
 <p style="margin-bottom: 10px">
 	<?php echo $html->link('Все Альбомы', array('action'=>'index'), array('style'=> "font-size: smaller; color: #777;") ); ?>
 </p>
 <p>
-	<?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add',$albumId)); ?>
+	<?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add','album:'.$albumId)); ?>
 </p>
+<div class="span-21 push-1">
 <?php echo $form->create('Album');?>
 	<fieldset>
  		<legend>Редактировать альбом:&nbsp;<span style="font-size: smaller; color: #777;"><?php echo $form->value('name');?></span></legend>

@@ -7,6 +7,7 @@
 				'Фотоальбомы' => array('controller' => 'albums', 'action' => 'index'),
 				'Новости' => array('controller' => 'news', 'action' => 'index'),
 				'Баннеры' => array('controller' => 'banners', 'action' => 'index'),
+				'Страницы' => array('controller' => 'static_pages', 'action' => 'index'),
 			); 
 ?>
   <?php $here = Router::url(substr($this->here, strlen($this->webroot)-1)); ?>

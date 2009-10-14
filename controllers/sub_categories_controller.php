@@ -452,11 +452,19 @@ class subCategoriesController extends AppController {
 //--------------------------------------------------------------------
 	function admin_addInline() {
 		if (!empty($this->data)) {
-			
-			if( $this->data['SubCategory']['brand_category_id'] == null ) {
+			//debug($this->data);
+			if( !isset($this->data['SubCategory']['brand_category_id']) || $this->data['SubCategory']['brand_category_id'] == 0 ) {
 				
+				$this->data['BrandsCategory']['brand_id'] = $this->data['SubCategory']['brand_id'];
+				$this->data['BrandsCategory']['category_id'] = $this->data['SubCategory']['category_id'];
 				
-				
+				if($this->SubCategory->BrandsCategory->save($this->data) ) {
+					$newBrandCatId = $this->SubCategory->BrandsCategory->id;
+					$this->data['SubCategory']['brand_category_id'] = $newBrandCatId;	
+				}else {
+					$this->Session->setFlash('Подраздел не был создан Mistake','default',array('class'=>'er'));
+					$this->redirect($this->referer());
+				}	
 			}
 			
 			
@@ -469,9 +477,25 @@ class subCategoriesController extends AppController {
 			} else {
 				$this->Session->setFlash('Подраздел не был создан','default',array('class'=>'er'));
 				$this->redirect(array('action'=>'index','cat:'.$this->data['SubCategory']['category_id']));
+				//$this->redirect($this->referer());
 			}
+
 		}
 	}
+	
+//--------------------------------------------------------------------
+	function subCatEditName() {
+			Configure::write('debug', 0);
+			$this->layout = 'ajax'; 
+	
+				if ($this->RequestHandler->isAjax()) {	
+					$this->data = $this->SubCategory->read(null, $this->data['SubCat']['id']);				
+				} else {
+					exit;
+				}
+					
+		}
+		
 //--------------------------------------------------------------------	
 	function admin_edit($id = null) {
 		$this->set('headerName','Подразделы');
@@ -482,9 +506,10 @@ class subCategoriesController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->SubCategory->save($this->data)) {
 				$this->Session->setFlash('Название подраздела было сохранено');
-				$this->redirect(array('action'=>'index'), null, true);
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash('Подраздел не был создан. Попробйте еще раз');
+				$this->redirect($this->referer());
 			}
 		}
 		if (empty($this->data)) {

@@ -1,22 +1,5 @@
  $(document).ready(function() {
-/* 	
-	 	$('.edit_type').editable(
-	 		path + "categories/catEditType", 
-	 		{
-	     	data   : " {'1':'Товары без описания (Основной тип)','2':'Товары с описанием (пример: Лаки)','3':'Товары без Бренда (пример: Винтаж)', 'selected':'1'}",
-	     	id        : 'data[Category][id]',
-	      name      : 'data[Category][type]',
-	      cssclass : 'catEditType',
-	     	type   : 'select',
-	     	submit : '<div><input type="submit" class="span-2" value="OK" /></div>',
-	     	cancel : '<div><input type="submit" class="span-3" value="Отменить" /></div><hr />',
-	     	tooltip   : 'Редактировать тип',
-	     	indicator : '<img src="'+path +'img/icons/ajax-loader3.gif">',
-        callback : function(value, settings) {
-        	 	flashMessage('Тип категории изменен','message');	
-        }	
-		});
-*/
+
 		$('#brandLogoEdit,.barndLogoCancel').click(function(){
 			$('.brandFrom').toggle();
 		});

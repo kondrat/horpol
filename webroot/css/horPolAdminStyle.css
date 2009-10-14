@@ -434,6 +434,13 @@ a.categoryEditButton:hover {
 	border:1px solid silver;
 	padding:10px 0 20px 20px;
 }
+.subCategoryEdit{
+		background:transparent url(../img/icons/edit_inline_16x16.png) no-repeat scroll 0 0;
+		width:16px;
+		height:16px;
+		display:block;
+		float:left;
+}
 .productItemAdd{
 		left:250px;
 		padding:20px 0 20px 40px;
