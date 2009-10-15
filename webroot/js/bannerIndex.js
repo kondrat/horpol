@@ -42,6 +42,28 @@ $(document).ready( function(){
 
 		
 	});
+	
+	$("#selectall").click(function(){	
+		if ( $(this).is('input[name="sel"]') ) {		
+			$(this).attr('value','Снять выделение');
+			$(this).attr("name", "desel");
+			$(".selectable").each(function(){
+				$(this).attr("checked", "checked");
+				$(this).parent().addClass('act4');						
+			});				
+		} else if( $(this).is('input[name="desel"]') )  {
+			$(this).attr('value','Выбрать все');
+			$(this).attr("name", "sel");		
+			$(".selectable").each(function(){
+				$(this).attr("checked", null);
+				$(this).parent().removeClass('act4');
+				$(this).parent().removeClass('act2');			
+			});					
+		}				
+	});	
+	
+	
+	
 });
 
 //Tips

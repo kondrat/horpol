@@ -150,14 +150,16 @@
 				<h3 style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
 			</div>
 			<div class="span-4">		
-				<input type="button" class="span-4" id="selectall" value="Выбрать все" />
+				<input type="button" class="span-4" id="selectall" value="Выбрать все" name="sel" />
 			</div>
 			<div class="span-10">
 					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-5','onclick' => 'return confirm("Удалить выбранные товары?")') );?>
 			
 			</div>
 		</div>
-	
+		<div class="span-24" style="margin-bottom:.5em;">
+			<?php echo $html->image('icons/warning.png');?> - отсутствует большое фото
+		</div>
 	
 			
 
@@ -194,7 +196,7 @@
 							</div>
 							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
 							<div class="span-1 productEdit"></div>
-							<div class="span-1"><?php echo $logoWarring;?></div>
+							<div class="span-1" style="padding:3px 3px 3px 7px;"><?php echo $logoWarring;?></div>
 							<div class="" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>
 						</div>
 						<?php $i++;?>

@@ -9,12 +9,22 @@
 	</div>
 
 	<?php if($banner['Banner']['type']==1):?>
+		<?php echo $form->create('Banner',array('action'=>'glue'));?>
+				<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
+				<div class="span-22 push-1">
+					<div class="span-5">
+						<?php echo $form->submit('Прикр / откр баннер',array('class'=>'span-5'));?>
+					</div>
+					<div class="span-4">		
+						<input type="button" class="span-4" id="selectall" name="sel" value="Выбрать все" />
+					</div>
+				</div>
 	
 	<div class="span-24" style="margin-bottom:2em;">
 		<div class="categories span-24">
 			[Статические страницы:]
 		</div>
-		<?php echo $form->create('Banner',array('action'=>'glue'));?>
+
 		<div class="span-22 " style="font-size:12pt;">
 			<div class="category" style="float:left;">
 				<a>Главная</a>
@@ -27,9 +37,6 @@
 		<div class="categories span-24">
 			[Страницы категорий:]
 		</div>
-		
-
-			<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
 
 			<?php foreach ($categories as $category):?>			
 					<div style="position:relative; float:left;" class="category">					
@@ -42,7 +49,7 @@
 			<?php endforeach; ?>
 
 	</div>	
-			<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
+			
 			<?php echo $form->end();?>
 			
 	<?php elseif($banner['Banner']['type']==2):?>
@@ -50,6 +57,14 @@
 	
 			<?php echo $form->create('Banner',array('action'=>'glue2'));?>
 				<?php echo $form->input('Banner.id', array('type'=>'hidden', 'value' => $banner['Banner']['id'])); ?>
+				<div class="span-22 push-1">
+					<div class="span-5">
+						<?php echo $form->submit('Прикр / откр баннер',array('class'=>'span-5'));?>
+					</div>
+					<div class="span-4">		
+						<input type="button" class="span-4" id="selectall" value="Выбрать все" name="sel" />
+					</div>
+				</div>
 				<?php foreach($new as $n):?>
 				
 				<div class="span-23 push-1" style="background-color:#eee;padding:1em 0 0 1em;">
@@ -77,7 +92,7 @@
 				</div>
 				<?php endforeach; ?>
 			<div class="span-24">
-				<?php echo $form->submit('Прикрепить баннер',array('class'=>'span-5'));?>
+
 			<?php echo $form->end();?>	
 			</div>
 			

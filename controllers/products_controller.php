@@ -48,13 +48,7 @@ class ProductsController extends AppController {
 			$this->set('product', $this->Product->read(null, $id));
 		}
 	}
-//--------------------------------------------------------------------
-/*
-	function index() {
-		$this->Product->recursive = 0;
-		$this->set('products', $this->paginate());
-	}
-*/
+
 //--------------------------------------------------------------------
 
 	function admin_add() {
@@ -157,13 +151,14 @@ class ProductsController extends AppController {
 								for ( $i=0; $i<=1; $i++) {
 									switch($i) {
 										case(0):
-											$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'crop', 'size' => array('150', '100') ) ); 
+
 											if ($result != 1) {
 												$this->data['Product']['logo1'] = $this->Upload->result;
 											}
 											break;
 										case(1):
-											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'crop', 'size' => array('150', '100') ) ); 
+											$result = $this->Upload->upload($file, $destinationB, null, array( ) );
 											break;
 									}
 									if ( $result == 1 ) {
@@ -174,7 +169,6 @@ class ProductsController extends AppController {
 											$errors = implode("<br />",$errors); 
 										}
 						   
-										//$this->Session->setFlash($errors);
 										echo json_encode(array('error'=>$errors));											
 										$this->autoRender = false;
 									 	exit();	
