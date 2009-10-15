@@ -139,50 +139,64 @@ class ProductsController extends AppController {
 						$file = array();
 						// set the upload destination folder
 						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
-
+						
+						$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
+						$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
 						// grab the file
 						$file = $this->data['Product']['userfile'];
 
 				
 						if ($file['error'] == 4) {
-							$this->data['Product']['logo'] = null;
+							$this->data['Product']['logo1'] = null;
 							echo json_encode(array('error'=>'Файл не загружен'));
 							$this->autoRender = false;
 							exit();									
 						} else {
-												
-							// upload the image using the upload component
-							$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('150', '100') ) );
-								if ( $result != 1 ){
-									$this->data['Product']['logo'] = $this->Upload->result;
-								} else {
-									// display error
-									$errors = $this->Upload->errors;
-									// piece together errors
-									if( is_array($errors) ) { 
-										$errors = implode("<br />",$errors); 
-									}	   
-										$this->Session->setFlash($errors);
+
+								// upload the image using the upload component
+								for ( $i=0; $i<=1; $i++) {
+									switch($i) {
+										case(0):
+											$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+											if ($result != 1) {
+												$this->data['Product']['logo1'] = $this->Upload->result;
+											}
+											break;
+										case(1):
+											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'crop', 'size' => array('150', '100') ) ); 
+											break;
+									}
+									if ( $result == 1 ) {
+										// display error
+										$errors = $this->Upload->errors;
+										// piece together errors
+										if( is_array($errors) ) { 
+											$errors = implode("<br />",$errors); 
+										}
+						   
+										//$this->Session->setFlash($errors);
 										echo json_encode(array('error'=>$errors));											
 										$this->autoRender = false;
 									 	exit();	
+									}					
 								}
+
 						}								
 
 											
 						$this->Product->create();
 						if ($this->Product->save($this->data)) {						
 										
-									$prodId = $this->Product->id;
-							
-									$arr = array ( 'img'=> $this->data['Product']['logo'],'prodId'=> $prodId,'prodName'=> $prodName );
+									$prodId = $this->Product->id;						
+									$arr = array ( 'img'=> $this->data['Product']['logo1'],'prodId'=> $prodId,'prodName'=> $prodName );
 									echo json_encode($arr);											
 									$this->autoRender = false;
 					 				exit();									
 							
 						} else {
 									if (  isset($this->Upload->result) && $this->Upload->result != null) {
-										@unlink($destination.$this->Upload->result);
+										@unlink($destinationB.$this->Upload->result);
+										@unlink($destinationS.$this->Upload->result);
 									}
 									
 									$arr = array ( 'error'=> 'Ошибка при сохранении товара' );
@@ -288,7 +302,7 @@ class ProductsController extends AppController {
 			$count = 0;
 			foreach($this->data['Product']['id'] as $value) {  
 				if($value != 0) { 
-					if($this->Product->del($value) ){
+					if($this->Product->delete($value) ){
 						$count = 1; 
 					} 
 				}  

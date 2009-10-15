@@ -1,6 +1,6 @@
 <?php $this->pageTitle = 'Фотоальбомы | '.$images['0']['Album']['name'] ; ?>
 
-<?php $javascript->link(array('jquery.fancybox-1.2.1.pack','horpol'), false);?>
+<?php echo $javascript->link(array('jquery/jquery.fancybox-1.2.1.pack','horpol'),false);?>
 
 
 
@@ -20,6 +20,16 @@
 			<p><span><?php echo $image['Image']['name']; ?></span></p>
 		</div>
 	<?php endforeach ?>	
+
+	
+		<div style="display:none;">
+			<?php foreach($restImgs as $restImg): ?>
+				<div class="tumbAlbum test1">
+					<p class="album_image"> <?php echo $html->link( $html->image( 'gallery/s/'.$restImg['Image']['image'], array('alt' => $restImg['Image']['name'] ) ), '/img/gallery/b/'.$restImg['Image']['image'] ,array('title' => $restImg['Image']['name'], 'rel' => 'group1'), null, false ); ?><p>
+				</div>		
+			<?php endforeach ?>	
+		</div>	
+	
 	</p>
 	<div style="clear:both"></div>
 		<?php 	 

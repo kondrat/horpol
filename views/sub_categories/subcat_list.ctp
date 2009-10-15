@@ -1,4 +1,5 @@
-<?php echo $javascript->link(array('subCatIndex','subCatIndexSubCat'),false);?>
+<?php echo $javascript->link(array('jquery/jquery.fancybox-1.2.1.pack','subCatIndex','subCatIndexSubCat'),false);?>
+<?php echo $html->css('jquery.fancybox'); ?>
 <?php echo $this->element('product/product', array('firstStep'=>'prevStep','secondStep'=>'prevStep','thirdStep'=>'prevStep','cache' => false ) ); ?>
 
 <?php 
@@ -168,11 +169,32 @@
 					<?php $i = 0;?>
 				
 					<?php foreach($products as $product): ?>
+					
+						<?php
+									$logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
+									if($product['Product']['logo1'] != null) {
+										$imagePathS = 'catalog/s/'.$product['Product']['logo1'];
+										$imagePathB = '/img/catalog/b/'.$product['Product']['logo1'];	
+																		
+									} elseif($product['Product']['logo'] != null) {
+										$imagePathS = 'catalog/'.$product['Product']['logo'];
+										$imagePathB = '/img/catalog/b/product_logo.jpg';
+										$logoClass = 'oldLogo';
+										$logoWarring = $html->image('icons/warning.png');
+									} else {
+										$imagePath = 'catalog/s/product_logo.jpg';
+									}
+						?>
+					
+					
 					<?php $class = ($i%4 == 0)?'clear':null;?>
-						<div class="productItem <?php echo $class;?>" >
-							<div class="span-4"><?php echo $html->link( $html->image('catalog/'.$product['Product']['logo'],array('alt'=>$product['Product']['name']) ),false,false,false,false );?></div>
+						<div class="productItem <?php echo $class.' '.$logoClass;?>" >
+							<div class="span-4">							
+									<?php echo $html->link( $html->image($imagePathS,array('alt'=>$product['Product']['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );?>
+							</div>
 							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
 							<div class="span-1 productEdit"></div>
+							<div class="span-1"><?php echo $logoWarring;?></div>
 							<div class="" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>
 						</div>
 						<?php $i++;?>

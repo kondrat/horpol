@@ -63,7 +63,7 @@ class subCategoriesController extends AppController {
 		 */		
 		$products = array();
 		if ( isset($this->params['named']['subcat']) && (int)Sanitize::paranoid($this->params['named']['subcat']) != null ) {
-			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['subcat']),'fields'=>array('name'), 'contain' => array('Product'=>array('fields'=>array('Product.name','Product.logo','Product.content1'),'order'=>array('Product.id'=>'DESC') ) ) ) );
+			$products = $this->SubCategory->find('first', array('conditions' => array('SubCategory.id' => $this->params['named']['subcat']),'fields'=>array('name'), 'contain' => array('Product'=>array('fields'=>array('Product.name','Product.logo','Product.logo1','Product.content1'),'order'=>array('Product.id'=>'DESC') ) ) ) );
 			$this->set('products', $products);
 			if($subCats['Category']['type'] == 3) {
 				$this->render('indexType3');
@@ -211,7 +211,7 @@ class subCategoriesController extends AppController {
 
 						$this->paginate['Product']['contain'] = false;
 						$this->paginate['Product']['conditions'] = array('Product.subcategory_id'=>$this->params['named']['subcat']);
-						$this->paginate['Product']['fields'] = array('Product.id','Product.subcategory_id','Product.name','Product.logo');
+						$this->paginate['Product']['fields'] = array('Product.id','Product.subcategory_id','Product.name','Product.logo','Product.logo1');
 						$this->paginate['Product']['limit'] = 24;
 						$this->paginate['Product']['order'] = array('Product.created'=>'DESC');
 						$products = $this->paginate('Product');																				

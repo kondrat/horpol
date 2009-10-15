@@ -64,7 +64,7 @@
 	<div class="fieldup"></div>	
 	<div align="center">
 		
-			<div class="header-photo">
+			<div class="header-photo" style="position:relative; z-index: 0;">
 					<?php echo $html->image('header.gif', array("class" => "img") );?><script language="javascript">
 						var flashName = 'flaming_cursor2';																		
 									if(jQuery.cookie("firstVisit") == 1 ){
@@ -81,18 +81,20 @@
 								'width', '698',
 								'height', '393',
 								//'src',  flashName,
+								'name','wmode',
+								'value','opaque',
 								'quality', 'high',
 								'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
 								'align', 'middle',
 								'play', 'true',
 								'loop', 'true',
 								'scale', 'showall',
-								'wmode', 'window',
+								'wmode', 'transparent',
 								'devicefont', 'false',
 								'id', flashName,
 								'class','pict1',
 								'background', '/img/low.jpg',
-								'name', flashName,
+								
 								'menu', 'true',
 								'allowFullScreen', 'false',
 								'allowScriptAccess','sameDomain',

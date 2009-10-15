@@ -13,7 +13,7 @@ class ImagesController extends AppController {
 //--------------------------------------------------------------------
     function index($id = null){
     	$this->cacheAction = "10000 hours";
-    	$this->layout = 'image';
+    	//$this->layout = 'image';
     	$albumData = array();
     	App::import('Sanitize');
     	$id = (int)Sanitize::paranoid($id);
@@ -30,7 +30,26 @@ class ImagesController extends AppController {
     										'contain' => array('Album.name'),
     										'limit' => 12
     									);
-			$this->set('images', $this->paginate());
+    	$images = $this->paginate();
+
+						foreach($images as $image) {
+							$imagesId[] = $image['Image']['id'];
+						}	
+
+
+ 
+ 			$imagesTotal = $this->Image->find('all',array('conditions' => array('Image.album_id' => $id ),'contain'=>false ) );
+ 
+						foreach($imagesTotal as $imageT) {
+							$imagesId2[] = $imageT['Image']['id'];					
+						} 
+ 						$diff = array_diff ($imagesId2, $imagesId);	
+ 			$restImgs = $this->Image->find('all',array('conditions' => array('Image.album_id' => $id,'Image.id'=>$diff ),'contain'=>false ) );		
+ 						
+ 						
+ 			$this->set('restImgs', $restImgs);
+ 
+			$this->set('images', $images);
     }
 
 //--------------------------------------------------------------------
@@ -70,7 +89,7 @@ class ImagesController extends AppController {
 			// set the upload destination folder
 			$destinationB = WWW_ROOT.'img'.DS.'gallery'.DS.'b'.DS;
 			$destinationS = WWW_ROOT.'img'.DS.'gallery'.DS.'s'.DS;
-			//debug($destination );
+
 			// grab the file
 			$file = $this->data['Image']['userfile'];
 			//debug($file);

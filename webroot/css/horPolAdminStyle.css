@@ -454,6 +454,11 @@ a.categoryEditButton:hover {
 	padding:5px;
 	width:210px;
 }
+.oldLogo {
+	background-color:#FBE3E4;	
+}
+
+
 .productItem input.selectable {
 	margin: 0 5px 10px 5px;
 }
