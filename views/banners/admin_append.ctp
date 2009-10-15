@@ -63,16 +63,16 @@
 					<div class="categories span-23">
 						[Связанные бренды:]
 					</div>
-					<div class="span-24">
-						<ul>
+					<div class="span-23">
+						
 							<?php foreach($n['item'] as $itt):?>	
-									<li class="bannerLi" style="display:inline; margin:0 1em .2em 0;  padding:0.3em .2em .3em .5em;">
-										[&nbsp;<a><?php echo	$itt['Brand']['name'];?></a>&nbsp;]&nbsp;
+									<div class="bannerLi" style="float:left;margin:0.3em 1em .3em 0;  padding:0em .2em .3em .5em;">
+										[&nbsp;<a><?php echo	$itt['Brand']['name'];?></a>&nbsp;]
 										<?php $checked = (isset($itt['Banner']['0']['id'])&&$itt['Banner']['0']['id'] == $banner['Banner']['id'])?true:false;?>
 										<?php echo $form->checkbox('BrandsCategory.BrandsCategory][',array('class' => 'selectable','checked'=>$checked, 'value' =>$itt['BrandsCategory'])); ?>
-									</li>
+									</div>
 							<?php endforeach; ?>	
-						</ul>	
+						
 					</div>
 				</div>
 				<?php endforeach; ?>
