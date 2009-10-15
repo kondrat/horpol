@@ -108,7 +108,7 @@ $(document).ready(function() {
 								'<div class="productItem" style="border-color:teal;">'+
 									'<div class="span-4">'+
 										'<a href="">'+
-										'<img alt="newOn" src="/horpol/img/catalog/s/'+data.img+'"/></a>'+
+										'<img alt="newOn" src="'+path+'/img/catalog/s/'+data.img+'"/></a>'+
 									'</div>'+
 									'<input type="hidden" value="0" id="ProductId'+data.prodId+'_" name="data[Product][id]['+data.prodId+']"/>'+
 									'<input type="checkbox" id="ProductId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Product][id]['+data.prodId+']"/>'+
