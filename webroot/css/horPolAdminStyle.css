@@ -445,7 +445,13 @@ a.categoryEditButton:hover {
 		left:250px;
 		padding:20px 0 20px 40px;
 }
+
+.productItemAdd input#ProductName {
+	margin-top:0;
+}
+
 .productItem {
+	position:relative;
 	background-color:#eee;
 	border:1px solid #eee;
 	float:left;
@@ -453,6 +459,20 @@ a.categoryEditButton:hover {
 	margin-right:15px;
 	padding:5px;
 	width:210px;
+}
+#productEditForm {	
+	position:absolute;
+	background-color:white;
+	z-index:200;
+	top:100px;
+	left:30px;
+	border:1px solid silver;
+	padding:10px 0 20px 20px;			
+}
+
+.prodEdBG {
+		background-color:darkGray;	
+			border:1px solid red;
 }
 .oldLogo {
 	background-color:#FBE3E4;	
@@ -474,7 +494,14 @@ a.categoryEditButton:hover {
 	width:16px;
 	cursor:pointer;
 }
-
+.oldPict{
+	background:transparent url(../img/icons/camera.png) no-repeat scroll 5px 4px;
+	border:1px solid #eee;
+	padding:0 0 3px;
+	height:20px;
+	width:16px;
+	cursor:pointer;
+}
 
 .subCategoryAdd label{
 	color:gray;
@@ -752,6 +779,13 @@ a.tagBanner:hover {
 	background-position: 130px -32px;
 	color:#911B3B;
 }
+/*info */
 .infoTip{
 	cursor:help;
+}
+.infoTip16{
+	cursor:help;
+	background:transparent url(../img/icons/info_16x16.png) no-repeat scroll 0px 0px;
+	height: 16px;
+	width:16px;
 }

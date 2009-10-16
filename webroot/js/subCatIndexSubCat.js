@@ -95,6 +95,7 @@ $(document).ready(function() {
 		return false;
 	});
 
+
 	$("#ProductAddProductForm").ajaxForm({
 		url: path+'products/addProduct',	
 		dataType:  'json',			
@@ -134,12 +135,14 @@ $(document).ready(function() {
 		resetForm: true
 			
 	});
+
+	
 	$('.newProduct').click(function(){
 		$('#ProductFileError ,#ProductNameError').empty();
 		$('.productItemAdd').removeClass('error');
 		if($('#ProductUserfile').val() == '' ) {
 			$('#ProductFileError').text('Это поле должно быть заполнено');
-			$('.productItemAdd').addClass('error');
+			$('.productItemAdd').addClass('error').css({'padding':'20px 0 20px 40px'});
 			return false;
 		} else if ($('#ProductName').val() == '' ) {
 			$('#ProductNameError').text('Это поле должно быть заполнено');
@@ -190,6 +193,62 @@ $(document).ready(function() {
 	});
 
 
+
+	$('.productEdit').click(function(){
+			
+			//$(this).parents('.productItem').css({'background-color':'red'});
+			$('.productItem').removeClass('prodEdBG');
+			$(this).parents('.productItem').addClass('prodEdBG').css({'border-color':'red'});
+			
+			$("#productEditForm").hide();
+		  var pos = $(this).offset();  
+		  $("#productEditForm").css( { "left": (pos.left - 220) + "px", "top":(pos.top - 200) + "px" } );
+		  $("#productEditForm").fadeIn('fast');
+		  $("#ProductNameEdit").attr('value', 'test');
+
+	
+
+	});
+
+
+
+
+		$('.subb').click( function(){
+
+			
+			
+				$(this).ajaxForm({
+					
+					//tagret: '#newProdEdit',
+					url: path+'products/editProduct',	
+					dataType:  'json',
+					type: 'post',			
+					success: 
+							function(data) {
+									//console.log(data);
+									if( data.img != null) {
+										flashMessage('Изменения сохранены','message');
+										$('.brandShadow').hide().attr('src',path+"img/catalog/"+data.img).fadeIn();
+										$('.brandFrom').hide();
+									} else if (data.error != null) {
+										flashMessage('Изменения не были сохранены','er');
+										$('.brandShadow').hide().attr('src',oldImg).fadeIn();
+										$('.brandFormError').html('<div class="error">'+data.error+'</div>');
+										//console.log(data.error);
+									}
+													
+							},
+					
+					resetForm: true
+					
+						
+				});
+			
+			
+			
+			//return false;
+		});
+			
 
 
 

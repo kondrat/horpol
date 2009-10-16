@@ -8,7 +8,7 @@ class ProductsController extends AppController {
 	var $uses = array('Product', 'Brand','Category', 'SubCategory');
 //--------------------------------------------------------------------	
   function beforeFilter() {
-        //$this->Auth->allow('view', 'index');
+        //$this->Auth->allow('view', 'index','addProduct');
         parent::beforeFilter();  
         $this->set('headerName','Товары');
     }
@@ -123,6 +123,14 @@ class ProductsController extends AppController {
 		Configure::write('debug', 0);			
 				//saving module
 				if ( isset($this->data['Product']['name'])&& $this->data['Product']['name']!=null ) {
+					
+					$cropType = 'crop';
+					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
+						$cropType = 'resizecrop';
+					}
+					
+					
+					
 					$prodName = $this->data['Product']['name'];
 						//unset($this->data['Product']['id']);
 						/**
@@ -151,7 +159,7 @@ class ProductsController extends AppController {
 								for ( $i=0; $i<=1; $i++) {
 									switch($i) {
 										case(0):
-											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'crop', 'size' => array('150', '100') ) ); 
+											$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
 
 											if ($result != 1) {
 												$this->data['Product']['logo1'] = $this->Upload->result;
@@ -200,6 +208,103 @@ class ProductsController extends AppController {
 						}												
 											
 				}	
+
+			
+
+	}
+//--------------------------------------------------------------------
+	function editProduct() {
+		$prodName = null;
+		//$prodName = trim($this->data['Product']['name']);
+		Configure::write('debug', 0);			
+				//saving module
+			echo 'hi';
+			exit;
+					
+					$cropType = 'crop';
+					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
+						$cropType = 'resizecrop';
+					}
+					
+					
+					
+					$prodName = $this->data['Product']['name'];
+						//unset($this->data['Product']['id']);
+						/**
+						 * We uploading the product photo first
+						 *
+						 */
+
+						$file = array();
+						// set the upload destination folder
+						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+						
+						$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
+						$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
+						// grab the file
+						$file = $this->data['Product']['userfile'];
+
+				
+						if ($file['error'] == 4) {
+							$this->data['Product']['logo1'] = null;
+							echo json_encode(array('error'=>'Файл не загружен'));
+							$this->autoRender = false;
+							exit();									
+						} else {
+
+								// upload the image using the upload component
+								for ( $i=0; $i<=1; $i++) {
+									switch($i) {
+										case(0):
+											$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
+
+											if ($result != 1) {
+												$this->data['Product']['logo1'] = $this->Upload->result;
+											}
+											break;
+										case(1):
+											$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+											break;
+									}
+									if ( $result == 1 ) {
+										// display error
+										$errors = $this->Upload->errors;
+										// piece together errors
+										if( is_array($errors) ) { 
+											$errors = implode("<br />",$errors); 
+										}
+						   
+										echo json_encode(array('error'=>$errors));											
+										$this->autoRender = false;
+									 	exit();	
+									}					
+								}
+
+						}								
+
+											
+						$this->Product->create();
+						if ($this->Product->save($this->data)) {						
+										
+									$prodId = $this->Product->id;						
+									$arr = array ( 'img'=> $this->data['Product']['logo1'],'prodId'=> $prodId,'prodName'=> $prodName );
+									echo json_encode($arr);											
+									$this->autoRender = false;
+					 				exit();									
+							
+						} else {
+									if (  isset($this->Upload->result) && $this->Upload->result != null) {
+										@unlink($destinationB.$this->Upload->result);
+										@unlink($destinationS.$this->Upload->result);
+									}
+									
+									$arr = array ( 'error'=> 'Ошибка при сохранении товара' );
+									echo json_encode($arr);												
+									$this->autoRender = false;
+					 				exit();														
+						}												
+											
+	
 
 			
 

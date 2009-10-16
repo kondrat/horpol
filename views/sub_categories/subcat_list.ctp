@@ -108,15 +108,60 @@
 
 <div class="span-24" >
 	<?php if(isset($products)): ?>
+
+
+
+
+								<div id="productEditForm" class="span-8 hide" >
+									<div class="span-7"><?php echo $form->create('Product',array('action'=>'editProduct', 'type' => 'file'));?></div>
+										<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
+										<?php echo $form->hidden('Product.id',array('value'=> '','id'=>'ProductIdEdit'));?>
+										<?php echo $form->label('Product.userfile','[Логотип:]');?>
+										<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
+										<div id="ProductFileError" ></div>
+										<div style="position:relative;height:0%;">
+											<?php echo $form->input('photoType',array('options' => array('Текстура','Фото'),'label'=>false,'div'=>false) );?>
+											<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
+										</div>
+										<?php echo $form->label('Product.name','[Название:]');?>
+										<?php echo $form->input('Product.name',array('style'=>'width:250px;','id'=>'ProductNameEdit','label'=>false));?>
+										<?php echo $form->error('Pruduct.name', 'text error');?>
+										<div id="ProductNameError" ></div>
+										<div id="SubCategoryNameError" style="padding:5px;"></div>
+										<div class="span-3">
+											<?php echo $form->submit('Сохранить',array('class'=>'span-3 subb'));?>
+										</div>
+										<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
+										<div class="span-4"><?php echo $form->end();?></div>
+										<div class="test">
+											<div class="fancy_bg fancy_bg_e"></div>
+											<div class="fancy_bg fancy_bg_se"></div>
+											<div class="fancy_bg fancy_bg_s"></div>
+											<div class="fancy_bg fancy_bg_sw"></div>
+											<div class="fancy_bg fancy_bg_w"></div>
+										</div>
+								</div>
+
+
+
+
+
+		
+
+
+
 	
 	<div class="span-24 productAddWrapper">
-		
 			<div class="span-9 productItemAdd hide">
 			<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
 				<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
 				<?php echo $form->label('Product.userfile','[Логотип:]');?>
 				<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
 				<div id="ProductFileError" ></div>
+				<div style="position:relative;height:0%;">
+					<?php echo $form->input('photoType',array('options' => array('Текстура','Фото'),'label'=>false,'div'=>false) );?>
+					<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
+				</div>
 				<?php echo $form->label('Product.name','[Название:]');?>
 				<?php echo $form->input('Product.name',array('style'=>'width:250px;','label'=>false));?>
 				<?php echo $form->error('Pruduct.name', 'text error');?>
@@ -125,17 +170,14 @@
 				<div class="span-3">
 					<?php echo $form->submit('Сохранить',array('class'=>'span-3 newProduct'));?>
 				</div>
-				<?php echo $form->button('Отменить',array('class'=>'span-3 productAddCancel'));?>
+				<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
 			<?php echo $form->end();?>
 				<div class="test">
-					<!--<div class="fancy_bg fancy_bg_n"></div>
-					<div class="fancy_bg fancy_bg_ne"></div>-->
 					<div class="fancy_bg fancy_bg_e"></div>
 					<div class="fancy_bg fancy_bg_se"></div>
 					<div class="fancy_bg fancy_bg_s"></div>
 					<div class="fancy_bg fancy_bg_sw"></div>
-					<div class="fancy_bg fancy_bg_w"></div>
-					<!--<div class="fancy_bg fancy_bg_nw"></div>-->
+					<div class="fancy_bg fancy_bg_w"></div>				
 				</div>
 			</div>				
 		
@@ -173,10 +215,14 @@
 					<?php foreach($products as $product): ?>
 					
 						<?php
-									$logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
+									$cameraClass = $logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
 									if($product['Product']['logo1'] != null) {
 										$imagePathS = 'catalog/s/'.$product['Product']['logo1'];
 										$imagePathB = '/img/catalog/b/'.$product['Product']['logo1'];	
+										if($product['Product']['logo'] != null) {
+											$cameraClass = 'oldPict';
+										}
+										
 																		
 									} elseif($product['Product']['logo'] != null) {
 										$imagePathS = 'catalog/'.$product['Product']['logo'];
@@ -195,9 +241,10 @@
 									<?php echo $html->link( $html->image($imagePathS,array('alt'=>$product['Product']['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );?>
 							</div>
 							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
-							<div class="span-1 productEdit"></div>
+							<div class="span-1 productEdit" id="<?php echo $product['Product']['id'];?>"></div>
 							<div class="span-1" style="padding:3px 3px 3px 7px;"><?php echo $logoWarring;?></div>
-							<div class="" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>
+							<div class="span-1 <?php echo $cameraClass;?>"></div>
+							<div class="productNameVal" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>																		
 						</div>
 						<?php $i++;?>
 					<?php endforeach ?>
