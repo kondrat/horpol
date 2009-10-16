@@ -112,12 +112,12 @@
 
 
 
-								<div id="productEditForm" class="span-8 hide" >
-									<div class="span-7"><?php echo $form->create('Product',array('action'=>'editProduct', 'type' => 'file'));?></div>
+								<div id="productEditWrapper" class="span-8 hide" >
+									<?php echo $form->create('Product',array('action'=>'editProduct', 'type' => 'file','id'=>"productEditForm"));?>
 										<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
 										<?php echo $form->hidden('Product.id',array('value'=> '','id'=>'ProductIdEdit'));?>
-										<?php echo $form->label('Product.userfile','[Логотип:]');?>
-										<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
+										<?php echo $form->label('Product.userfile1','[Логотип:]');?>
+										<?php echo $form->input('Product.userfile1', array('type'=>'file', 'label'=>false ) ); ?>
 										<div id="ProductFileError" ></div>
 										<div style="position:relative;height:0%;">
 											<?php echo $form->input('photoType',array('options' => array('Текстура','Фото'),'label'=>false,'div'=>false) );?>
@@ -132,7 +132,7 @@
 											<?php echo $form->submit('Сохранить',array('class'=>'span-3 subb'));?>
 										</div>
 										<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
-										<div class="span-4"><?php echo $form->end();?></div>
+										<?php echo $form->end();?>
 										<div class="test">
 											<div class="fancy_bg fancy_bg_e"></div>
 											<div class="fancy_bg fancy_bg_se"></div>

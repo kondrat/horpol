@@ -200,12 +200,12 @@ $(document).ready(function() {
 			$('.productItem').removeClass('prodEdBG');
 			$(this).parents('.productItem').addClass('prodEdBG').css({'border-color':'red'});
 			
-			$("#productEditForm").hide();
+			$("#productEditWrapper").hide();
 		  var pos = $(this).offset();  
-		  $("#productEditForm").css( { "left": (pos.left - 220) + "px", "top":(pos.top - 200) + "px" } );
-		  $("#productEditForm").fadeIn('fast');
-		  $("#ProductNameEdit").attr('value', 'test');
-
+		  $("#productEditWrapper").css( { "left": (pos.left - 220) + "px", "top":(pos.top - 200) + "px" } );
+		  $("#productEditWrapper").fadeIn('fast');
+		  $("#ProductNameEdit").attr('value', $(this).siblings('.productNameVal').text() );
+		  $("#ProductIdEdit").attr('value', $(this).attr('id') );
 	
 
 	});
@@ -213,11 +213,10 @@ $(document).ready(function() {
 
 
 
-		$('.subb').click( function(){
+
 
 			
-			
-				$(this).ajaxForm({
+				$('#productEditForm').ajaxForm({
 					
 					//tagret: '#newProdEdit',
 					url: path+'products/editProduct',	
@@ -244,10 +243,6 @@ $(document).ready(function() {
 						
 				});
 			
-			
-			
-			//return false;
-		});
 			
 
 

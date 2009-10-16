@@ -460,7 +460,7 @@ a.categoryEditButton:hover {
 	padding:5px;
 	width:210px;
 }
-#productEditForm {	
+#productEditWrapper {	
 	position:absolute;
 	background-color:white;
 	z-index:200;

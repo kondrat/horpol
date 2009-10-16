@@ -218,8 +218,7 @@ class ProductsController extends AppController {
 		//$prodName = trim($this->data['Product']['name']);
 		Configure::write('debug', 0);			
 				//saving module
-			echo 'hi';
-			exit;
+
 					
 					$cropType = 'crop';
 					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
@@ -229,7 +228,6 @@ class ProductsController extends AppController {
 					
 					
 					$prodName = $this->data['Product']['name'];
-						//unset($this->data['Product']['id']);
 						/**
 						 * We uploading the product photo first
 						 *
@@ -242,7 +240,7 @@ class ProductsController extends AppController {
 						$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
 						$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
 						// grab the file
-						$file = $this->data['Product']['userfile'];
+						$file = $this->data['Product']['userfile1'];
 
 				
 						if ($file['error'] == 4) {
