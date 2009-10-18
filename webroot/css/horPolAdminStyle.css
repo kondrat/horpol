@@ -443,6 +443,7 @@ a.categoryEditButton:hover {
 }
 .productItemAdd{
 		left:250px;
+		top:-110px;
 		padding:20px 0 20px 40px;
 }
 
@@ -778,6 +779,9 @@ a.tagBanner {
 a.tagBanner:hover {
 	background-position: 130px -32px;
 	color:#911B3B;
+}
+textarea#BannerUrl {
+	height: 1em;
 }
 /*info */
 .infoTip{

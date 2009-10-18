@@ -124,9 +124,9 @@ class ProductsController extends AppController {
 				//saving module
 				if ( isset($this->data['Product']['name'])&& $this->data['Product']['name']!=null ) {
 					
-					$cropType = 'crop';
+					$cropType = 'resizecrop';
 					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
-						$cropType = 'resizecrop';
+						$cropType = 'crop';
 					}
 					
 					
@@ -220,66 +220,67 @@ class ProductsController extends AppController {
 				//saving module
 
 					
-					$cropType = 'crop';
+					
+					
+					
+					$cropType = 'resizecrop';
 					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
-						$cropType = 'resizecrop';
+						$cropType = 'crop';
 					}
-					
-					
 					
 					$prodName = $this->data['Product']['name'];
 						/**
 						 * We uploading the product photo first
 						 *
 						 */
-
-						$file = array();
-						// set the upload destination folder
-						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+						if( isset($this->data['Product']['userfile1']) && $this->data['Product']['userfile1'] != null ) {
+								$file = array();
+								// set the upload destination folder
+								$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+								
+								$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
+								$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
+								// grab the file
+								$file = $this->data['Product']['userfile1'];
+		
 						
-						$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
-						$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
-						// grab the file
-						$file = $this->data['Product']['userfile1'];
-
-				
-						if ($file['error'] == 4) {
-							$this->data['Product']['logo1'] = null;
-							echo json_encode(array('error'=>'Файл не загружен'));
-							$this->autoRender = false;
-							exit();									
-						} else {
-
-								// upload the image using the upload component
-								for ( $i=0; $i<=1; $i++) {
-									switch($i) {
-										case(0):
-											$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
-
-											if ($result != 1) {
-												$this->data['Product']['logo1'] = $this->Upload->result;
+								if ($file['error'] == 4) {
+									$this->data['Product']['logo1'] = null;
+									echo json_encode(array('error'=>'Файл не загружен'));
+									$this->autoRender = false;
+									exit();									
+								} else {
+		
+										// upload the image using the upload component
+										for ( $i=0; $i<=1; $i++) {
+											switch($i) {
+												case(0):
+													$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
+		
+													if ($result != 1) {
+														$this->data['Product']['logo1'] = $this->Upload->result;
+													}
+													break;
+												case(1):
+													$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+													break;
 											}
-											break;
-										case(1):
-											$result = $this->Upload->upload($file, $destinationB, null, array( ) );
-											break;
-									}
-									if ( $result == 1 ) {
-										// display error
-										$errors = $this->Upload->errors;
-										// piece together errors
-										if( is_array($errors) ) { 
-											$errors = implode("<br />",$errors); 
+											if ( $result == 1 ) {
+												// display error
+												$errors = $this->Upload->errors;
+												// piece together errors
+												if( is_array($errors) ) { 
+													$errors = implode("<br />",$errors); 
+												}
+								   
+												echo json_encode(array('error'=>$errors));											
+												$this->autoRender = false;
+											 	exit();	
+											}					
 										}
-						   
-										echo json_encode(array('error'=>$errors));											
-										$this->autoRender = false;
-									 	exit();	
-									}					
-								}
-
-						}								
-
+		
+								}								
+						}
 											
 						$this->Product->create();
 						if ($this->Product->save($this->data)) {						

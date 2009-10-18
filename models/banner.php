@@ -5,7 +5,12 @@ class Banner extends AppModel {
 	var $actsAs = array('Containable');
 	var $validate = array(
 		'id' => array('notempty'),
-		'logo' => array('notempty')
+		'logo' => array('notempty'),
+		'url' => array(
+										'rule' =>array('url',true),
+										'message'=>'Неправильный формат ссылки',
+										'allowEmpty' => true,
+									)
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

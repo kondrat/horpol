@@ -213,7 +213,7 @@ class BannersController extends AppController {
 			
 			if ($file['error'] == 4) {
 				$this->data['Banner']['logo'] = null;
-				$this->Session->setFlash('Файл не загружен');
+				$this->Session->setFlash('Файл не загружен','default',array('class'=>'er'));
 				
 			}else {
 									
@@ -240,7 +240,7 @@ class BannersController extends AppController {
 					$this->Session->setFlash('Баннер был сохранен');
 					$this->redirect(array('action'=>'index'));
 				} else {
-						$this->Session->setFlash('Баннер не был сохранен');
+						$this->Session->setFlash('Баннер не был сохранен','default',array('class'=>'er'));
 						if (  isset($this->Upload->result) && $this->Upload->result != null) {
 							@unlink($destination.$this->Upload->result);
 						}
@@ -342,6 +342,32 @@ class BannersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
+//--------------------------------------------------------------------
+	function bannerEditUrl() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Banner->id = (int)$this->data['Banner']['id'];
+						
+						$this->Banner->set($this->data);
+						$errors = $this->Banner->invalidFields();
+						if($errors['url'] != null) {
+							echo null;
+							exit;
+						}
+						
+						
+						if($this->Banner->saveField('url',trim($this->data['Banner']['url']),true ) ) {
+								echo trim($this->data['Banner']['url']);
+						} else {
+							//echo 	$this->data['Brand']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
 }
 ?>

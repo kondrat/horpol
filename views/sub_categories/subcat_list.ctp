@@ -120,7 +120,7 @@
 										<?php echo $form->input('Product.userfile1', array('type'=>'file', 'label'=>false ) ); ?>
 										<div id="ProductFileError" ></div>
 										<div style="position:relative;height:0%;">
-											<?php echo $form->input('photoType',array('options' => array('Текстура','Фото'),'label'=>false,'div'=>false) );?>
+											<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
 											<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
 										</div>
 										<?php echo $form->label('Product.name','[Название:]');?>
@@ -131,7 +131,7 @@
 										<div class="span-3">
 											<?php echo $form->submit('Сохранить',array('class'=>'span-3 subb'));?>
 										</div>
-										<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
+										<?php echo $form->button('Закрыть',array('class'=>'span-3 productEditCancel'));?>
 										<?php echo $form->end();?>
 										<div class="test">
 											<div class="fancy_bg fancy_bg_e"></div>
@@ -159,7 +159,7 @@
 				<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
 				<div id="ProductFileError" ></div>
 				<div style="position:relative;height:0%;">
-					<?php echo $form->input('photoType',array('options' => array('Текстура','Фото'),'label'=>false,'div'=>false) );?>
+					<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
 					<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
 				</div>
 				<?php echo $form->label('Product.name','[Название:]');?>
@@ -242,8 +242,8 @@
 							</div>
 							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
 							<div class="span-1 productEdit" id="<?php echo $product['Product']['id'];?>"></div>
-							<div class="span-1" style="padding:3px 3px 3px 7px;"><?php echo $logoWarring;?></div>
-							<div class="span-1 <?php echo $cameraClass;?>"></div>
+							<div class="span-1 logWarring" style="padding:3px 3px 3px 7px;"><?php echo $logoWarring;?></div>
+							<div class="span-1 oldPictPlace <?php echo $cameraClass;?>"></div>
 							<div class="productNameVal" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>																		
 						</div>
 						<?php $i++;?>
