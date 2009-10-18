@@ -33,7 +33,7 @@
 				
 		});
 
-			var plHold = 'Нет Ссылки';
+			var plHold = 'Нет Ссылки. Формат: http://example.com';
 			var oldUrl = '';
 			if ($('.edit_url').text() != '') {
 				oldUrl = $('.edit_url').text();

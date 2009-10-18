@@ -201,7 +201,7 @@ class subCategoriesController extends AppController {
 				$subCategories = $this->SubCategory->BrandsCategory->find('first',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat'],'BrandsCategory.brand_id'=>$this->params['named']['brand']),
 																															//'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id','SubCategory.product_count'),
 																															'contain'=>	array('SubCategory'=>array('fields'=>array('id','name','product_count') ),
-																																								'Category'=>array('fields'=>array('id','name') ),
+																																								'Category'=>array('fields'=>array('id','name','type') ),
 																																								'Brand'=>array('fields'=>array('id','name','logo') ) ) 
 																															)
 																								);

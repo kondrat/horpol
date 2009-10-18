@@ -455,11 +455,29 @@ a.categoryEditButton:hover {
 	position:relative;
 	background-color:#eee;
 	border:1px solid #eee;
-	float:left;
+	/*float:left;*/
+	display: -moz-inline-stack­;
+	display:inline-block;
+	vertical-align: text-top;
 	margin-bottom:5px;
 	margin-right:15px;
 	padding:5px;
-	width:210px;
+	width :207px;
+	*width:147px;
+	zoom:1;
+  *display:inline;
+}
+.productNameVal{
+	width:205px;
+	*width:147px;
+	float:left;
+}
+.logWarring{
+	left:-5px;
+	padding:2px 6px 2px 0;
+	position:absolute;
+	top:-5px;
+	width:16px;
 }
 #productEditWrapper {	
 	position:absolute;
@@ -504,10 +522,10 @@ a.categoryEditButton:hover {
 	cursor:pointer;
 }
 .oldPictPlace {
-	left:190px;
+	left:185px;
 	position:absolute;
-	top:-45px;
-	z-index:100;	
+	top:-50px;
+	z-index:100;
 }
 
 

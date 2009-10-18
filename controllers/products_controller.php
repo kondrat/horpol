@@ -2,9 +2,9 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
-	//var $helpers = array('Html', 'Form');
 	var $paginate = array('limit' => 5);
 	var $components = array('Upload');
+	var $helpers = array('Fck');
 	var $uses = array('Product', 'Brand','Category', 'SubCategory');
 //--------------------------------------------------------------------	
   function beforeFilter() {
@@ -43,8 +43,8 @@ class ProductsController extends AppController {
 	function admin_view($id = null) {
 		if ( (!$id) ||  ($this->Product->read(null, $id) == false ) ) {
 			$this->Session->setFlash(__('Invalid Product.', true));
-			$this->redirect(array('action'=>'index'));			
-		} else {
+			$this->redirect($this->referer());			
+		} else {		
 			$this->set('product', $this->Product->read(null, $id));
 		}
 	}
@@ -320,55 +320,72 @@ class ProductsController extends AppController {
 			$this->Session->write('editPage',$pageParam['named']['page']);
 		}
 
-		if (!empty($this->data)) {		
-			$file = array();
-			// set the upload destination folder
-			$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
-			//debug($destination );
-			// grab the file
-			$file = $this->data['Product']['userfile'];
-			//debug($file);
+		if (!empty($this->data)) {	
 			
-			if ($file['error'] == 4) {
-				unset($this->data['Product']['logo']);
-				//$this->Session->setFlash('Файл не загружен');
+			
 				
-			}else {				
-					// upload the image using the upload component
-					$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('150', '100') ) );
-					
-					if ( $result != 1 ){
-						if ( isset($this->data['Product']['logo']) && $this->data['Product']['logo'] != null) {
-							$oldFile = $this->data['Product']['logo'];
-							
+						if( isset($this->data['Product']['userfile1']) && $this->data['Product']['userfile1'] != null ) {
+								$file = array();
+								// set the upload destination folder
+								$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+								
+								$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
+								$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
+								// grab the file
+								$file = $this->data['Product']['userfile1'];
+		
+						
+								if ($file['error'] == 4) {
+									$this->data['Product']['logo1'] = null;
+									echo json_encode(array('error'=>'Файл не загружен'));
+									$this->autoRender = false;
+									exit();									
+								} else {
+		
+										// upload the image using the upload component
+										for ( $i=0; $i<=1; $i++) {
+											switch($i) {
+												case(0):
+													$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
+		
+													if ($result != 1) {
+														$this->data['Product']['logo1'] = $this->Upload->result;
+													}
+													break;
+												case(1):
+													$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+													break;
+											}
+											if ( $result == 1 ) {
+												// display error
+												$errors = $this->Upload->errors;
+												// piece together errors
+												if( is_array($errors) ) { 
+													$errors = implode("<br />",$errors); 
+												}
+								   
+												echo json_encode(array('error'=>$errors));											
+												$this->autoRender = false;
+											 	exit();	
+											}					
+										}
+		
+								}								
 						}
-						$this->data['Product']['logo'] = $this->Upload->result;
-					} else {
-						// display error
-						$errors = $this->Upload->errors;
-						// piece together errors
-						if( is_array($errors) ) { 
-							$errors = implode("<br />",$errors); 
-						}	   
-							$this->Session->setFlash($errors);
-							$this->redirect(array('action' => 'edit'), null, true);
-					}
-			}		
 		
 		
 
 			if ($this->Product->save($this->data)) {
 				$this->Session->setFlash('Изменения сохранены');
-				@unlink($destination.$oldFile);
-				if ( $this->Session->check('editPage') ) {
-					$this->redirect( array('action'=>'index',$this->data['Product']['subcategory_id'],'page:'.$this->Session->read('editPage') ) );
-				} else {
-					$this->redirect(array('action'=>'index',$this->data['Product']['subcategory_id']));
-				}
+				//@unlink($destination.$oldFile);
+
+					//$this->redirect( array('action'=>'index',$this->data['Product']['subcategory_id'],'page:'.$this->Session->read('editPage') ) );
+					$this->redirect( $this->referer());
 				
 			} else {
 				$this->Session->setFlash('Изменения не были сохранены. Попробуйте еще раз');
-						$this->data['Product']['logo'] = $oldFile;
+
+						$this->redirect( $this->referer());
 						if (  isset($this->Upload->result) && $this->Upload->result != null) {
 							@unlink($destination.$this->Upload->result);
 						}
@@ -391,7 +408,7 @@ class ProductsController extends AppController {
 		}
 		if ($this->Product->del($id)) {
 			$this->Session->setFlash('Товар удален');
-			$this->redirect(array('action'=>'index',$del['Product']['subcategory_id']));
+			$this->redirect(array('controller'=>'sub_categories','action'=>'index',$del['Product']['subcategory_id']));
 		}
 	}
 //--------------------------------------------------------------------
@@ -418,5 +435,122 @@ class ProductsController extends AppController {
 		}
 	}
 //--------------------------------------------------------------------
+
+	function prodEditName() {
+		Configure::write('debug', 0);
+		$this->layout = 'ajax';
+		$this->autorender = false;
+		if ($this->data) {
+			if ($this->RequestHandler->isAjax()) {		
+									
+						$this->Product->id = (int)$this->data['Product']['id'];
+						if($this->Product->saveField('name',trim($this->data['Product']['name']) ) ) {
+								echo trim($this->data['Product']['name']);
+						} else {
+							//echo 	$this->data['Product']['id'];
+						}			
+						exit;		
+			}	
+		}		
+	}
+//--------------------------------------------------------------------	
+	function prodEditLogo() {
+		Configure::write('debug', 0);
+		if (!empty($this->data)) {
+			
+					$cropType = 'resizecrop';
+					if( isset($this->data['Product']['photoType']) && $this->data['Product']['photoType'] == 1 ) {
+						$cropType = 'crop';
+					}
+					
+					$prodName = $this->data['Product']['name'];
+						/**
+						 * We uploading the product photo first
+						 *
+						 */
+						if( isset($this->data['Product']['userfile1']) && $this->data['Product']['userfile1'] != null ) {
+								$file = array();
+								// set the upload destination folder
+								$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+								
+								$destinationB = WWW_ROOT.'img'.DS.'catalog'.DS.'b'.DS;
+								$destinationS = WWW_ROOT.'img'.DS.'catalog'.DS.'s'.DS;
+								// grab the file
+								$file = $this->data['Product']['userfile1'];
+		
+						
+								if ($file['error'] == 4) {
+									$this->data['Product']['logo1'] = null;
+									echo json_encode(array('error'=>'Файл не загружен'));
+									$this->autoRender = false;
+									exit();									
+								} else {
+		
+										// upload the image using the upload component
+										for ( $i=0; $i<=1; $i++) {
+											switch($i) {
+												case(0):
+													$result = $this->Upload->upload($file, $destinationS, null, array('type' => $cropType, 'size' => array('150', '100') ) ); 
+		
+													if ($result != 1) {
+														$this->data['Product']['logo1'] = $this->Upload->result;
+													}
+													break;
+												case(1):
+													$result = $this->Upload->upload($file, $destinationB, null, array( ) );
+													break;
+											}
+											if ( $result == 1 ) {
+												// display error
+												$errors = $this->Upload->errors;
+												// piece together errors
+												if( is_array($errors) ) { 
+													$errors = implode("<br />",$errors); 
+												}
+								   
+												echo json_encode(array('error'=>$errors));											
+												$this->autoRender = false;
+											 	exit();	
+											}					
+										}
+		
+								}								
+						}
+			
+					
+			if ( isset($this->data['Product']['logo1']) && $this->data['Product']['logo1'] != null ) {							
+					$this->Product->create();
+					if ($this->Product->save($this->data)) {
+									
+									$arr = array ( 'img'=> $this->data['Product']['logo1'] );
+									echo json_encode($arr);											
+									$this->autoRender = false;
+					 				exit();
+					} else {
+						if (  isset($this->Upload->result) && $this->Upload->result != null) {
+							@unlink($destination.$this->Upload->result);
+						}
+									echo json_encode('error');											
+									$this->autoRender = false;
+					 				exit();					
+						
+					}
+			}
+
+		}
+	}	
+//--------------------------------------------------------------------
+	function prodEditBody() {
+			Configure::write('debug', 0);
+			$this->layout = 'ajax'; 
+	
+				if ($this->RequestHandler->isAjax()) {	
+					$this->data = $this->Product->read(null, $this->data['Product']['id']);				
+				} else {
+					exit;
+				}
+					
+		}
+			
 }
 ?>

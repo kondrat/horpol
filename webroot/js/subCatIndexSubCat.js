@@ -113,9 +113,8 @@ $(document).ready(function() {
 									'</div>'+
 									'<input type="hidden" value="0" id="ProductId'+data.prodId+'_" name="data[Product][id]['+data.prodId+']"/>'+
 									'<input type="checkbox" id="ProductId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Product][id]['+data.prodId+']"/>'+
-									'<div class="span-6 last">'+data.prodName+'</div>'+
-								'</div>'							
-							
+									'<div class="productNameVal">'+data.prodName+'</div>'+
+								'</div>'													
 							);
 							
 							
@@ -242,7 +241,7 @@ $(document).ready(function() {
 									if( data.img != null) {
 										flashMessage('Изменения сохранены','message');
 										currProdEd.find('img:first').hide().attr('src',path+"img/catalog/s/"+data.img).fadeIn('slow');
-										currProdEd.find('a').attr('href',path+"img/catalog/b/"+data.img);
+										currProdEd.find('a:first').attr('href',path+"img/catalog/b/"+data.img);
 										currProdEd.find('.productNameVal').text(data.prodName);
 										currProdEd.removeClass('oldLogo').find('.logWarring').remove();
 									}else if (data.img == null && data.prodName != null) {

@@ -109,9 +109,6 @@
 <div class="span-24" >
 	<?php if(isset($products)): ?>
 
-
-
-
 								<div id="productEditWrapper" class="span-8 hide" >
 									<?php echo $form->create('Product',array('action'=>'editProduct', 'type' => 'file','id'=>"productEditForm"));?>
 										<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
@@ -143,43 +140,38 @@
 								</div>
 
 
-
-
-
-		
-
-
-
 	
 	<div class="span-24 productAddWrapper">
-			<div class="span-9 productItemAdd hide">
-			<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
-				<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
-				<?php echo $form->label('Product.userfile','[Логотип:]');?>
-				<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
-				<div id="ProductFileError" ></div>
-				<div style="position:relative;height:0%;">
-					<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
-					<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
-				</div>
-				<?php echo $form->label('Product.name','[Название:]');?>
-				<?php echo $form->input('Product.name',array('style'=>'width:250px;','label'=>false));?>
-				<?php echo $form->error('Pruduct.name', 'text error');?>
-				<div id="ProductNameError" ></div>
-				<div id="SubCategoryNameError" style="padding:5px;"></div>
-				<div class="span-3">
-					<?php echo $form->submit('Сохранить',array('class'=>'span-3 newProduct'));?>
-				</div>
-				<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
-			<?php echo $form->end();?>
-				<div class="test">
-					<div class="fancy_bg fancy_bg_e"></div>
-					<div class="fancy_bg fancy_bg_se"></div>
-					<div class="fancy_bg fancy_bg_s"></div>
-					<div class="fancy_bg fancy_bg_sw"></div>
-					<div class="fancy_bg fancy_bg_w"></div>				
-				</div>
-			</div>				
+		
+		
+								<div class="span-9 productItemAdd hide">
+								<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
+									<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
+									<?php echo $form->label('Product.userfile','[Логотип:]');?>
+									<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
+									<div id="ProductFileError" ></div>
+									<div style="position:relative;height:0%;">
+										<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
+										<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
+									</div>
+									<?php echo $form->label('Product.name','[Название:]');?>
+									<?php echo $form->input('Product.name',array('style'=>'width:250px;','label'=>false));?>
+									<?php echo $form->error('Pruduct.name', 'text error');?>
+									<div id="ProductNameError" ></div>
+									<div id="SubCategoryNameError" style="padding:5px;"></div>
+									<div class="span-3">
+										<?php echo $form->submit('Сохранить',array('class'=>'span-3 newProduct'));?>
+									</div>
+									<?php echo $form->button('Закрыть',array('class'=>'span-3 productAddCancel'));?>
+								<?php echo $form->end();?>
+									<div class="test">
+										<div class="fancy_bg fancy_bg_e"></div>
+										<div class="fancy_bg fancy_bg_se"></div>
+										<div class="fancy_bg fancy_bg_s"></div>
+										<div class="fancy_bg fancy_bg_sw"></div>
+										<div class="fancy_bg fancy_bg_w"></div>				
+									</div>
+								</div>				
 		
 		
 	</div>	
@@ -189,7 +181,7 @@
 		<?php echo $form->create(null, array('url' => array('controller' => 'products', 'action' => 'delall'),'name'=>'form2' ) ); ?>			
 		<div class="span-24">
 			<div class="span-4">
-				<h3 style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
+				<h3  style="margin-bottom:1em;"><?php echo $html->link('Добавить товар',array('controller'=>'products','action'=>'add'),array('class'=>'productAdd') );?></h3>
 			</div>
 			<div class="span-4">		
 				<input type="button" class="span-4" id="selectall" value="Выбрать все" name="sel" />
@@ -199,53 +191,54 @@
 			
 			</div>
 		</div>
-		<div class="span-24" style="margin-bottom:.5em;">
+		<div class="span-5" style="margin-bottom:.5em;">
 			<?php echo $html->image('icons/warning.png');?> - отсутствует большое фото
 		</div>
-	
-			
-
-		
+		<div class="span-19 last" style="margin-bottom:.5em;">
+			<?php echo $html->image('icons/camera1.png');?> - "старое" фото (для контроля)
+		</div>	
 
 	
 				<div class="span-24 productItemWrapper">
 				<?php if($products != array()):?>
-					<?php $i = 0;?>
 				
 					<?php foreach($products as $product): ?>
 					
 						<?php
 									$logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
 									if($product['Product']['logo1'] != null) {
-										$imagePathS = 'catalog/s/'.$product['Product']['logo1'];
+										$imagePathS = '/img/catalog/s/'.$product['Product']['logo1'];
 										$imagePathB = '/img/catalog/b/'.$product['Product']['logo1'];	
 
 																		
 									} elseif($product['Product']['logo'] != null) {
-										$imagePathS = 'catalog/'.$product['Product']['logo'];
+										$imagePathS = '/img/catalog/'.$product['Product']['logo'];
 										$imagePathB = '/img/catalog/b/product_logo.jpg';
 										$logoClass = 'oldLogo';
 										$logoWarring = $html->image('icons/warning.png');
 									} else {
-										$imagePath = 'catalog/s/product_logo.jpg';
+										$imagePath = '/img/catalog/s/product_logo.jpg';
 									}
 						?>
 					
 					
-					<?php $class = ($i%4 == 0)?'clear':null;?>
-						<div class="productItem <?php echo $class.' '.$logoClass;?>" >
+					
+						<div class="productItem <?php echo $logoClass;?>" >
 							<div class="span-4">							
 									<?php echo $html->link( $html->image($imagePathS,array('alt'=>$product['Product']['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );?>
 							</div>
 							<div class="span-1 last"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
-							<div class="span-1 last logWarring" style="width:16px"><?php echo $logoWarring;?></div>
+							<div class="span-1 last logWarring" style=""><?php echo $logoWarring;?></div>
 							<div class="span-1 productEdit" id="<?php echo $product['Product']['id'];?>"></div>
-							<?php if($product['Product']['logo'] != null):?>
-								<div class="span-1 oldPict"><div class="oldPictPlace hide" style=""><?php echo $html->image('/img/catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?></div></div>
+							<?php if($subCategories['Category']['type'] == 3):?>
+								<div class="span-1"><?php echo $html->link($html->image('icons/3_type.png'),array('controller'=>'products','action'=>'view',$product['Product']['id']),false,false,false);?></div>
 							<?php endif ?>
-							<div class="productNameVal" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>																		
+							<?php if($product['Product']['logo'] != null):?>
+								<div class="span-1 oldPict"><div class="oldPictPlace hide"><?php echo $html->image('catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?></div></div>
+							<?php endif ?>
+							<div class="productNameVal"><?php echo $product['Product']['name'];?></div>																		
 						</div>
-						<?php $i++;?>
+						
 					<?php endforeach ?>
 				
 					
