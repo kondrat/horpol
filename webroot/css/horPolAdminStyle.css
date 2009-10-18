@@ -473,7 +473,7 @@ a.categoryEditButton:hover {
 
 .prodEdBG {
 		background-color:darkGray;	
-			border:1px solid red;
+		border:1px solid red;
 }
 .oldLogo {
 	background-color:#FBE3E4;	
@@ -503,6 +503,13 @@ a.categoryEditButton:hover {
 	width:16px;
 	cursor:pointer;
 }
+.oldPictPlace {
+	left:190px;
+	position:absolute;
+	top:-45px;
+	z-index:100;	
+}
+
 
 .subCategoryAdd label{
 	color:gray;
@@ -564,7 +571,11 @@ a.categoryEditButton:hover {
 	padding:2px 5px 5px 0;
 	text-align:center;
 }
-
+.prodShadow {
+	background:transparent url(../img/157x100.png) no-repeat scroll 0 0;
+	padding:2px 7px 7px 0;
+	text-align:center;
+}
 
 .nextStep a{
 	color:silver;

@@ -1,8 +1,12 @@
 <?php $this->pageTitle = $cat['Category']['title']; ?>
 
 <div>	
-	<?php if(isset($cat['Banner']['0']['logo'])&&$cat['Banner']['0']['logo']!= null):?>
-		<?php echo $html->image('banner/'.$cat['Banner']['0']['logo']); ?>
+	<?php if(isset($cat['Banner']['0']['logo'])&&$cat['Banner']['0']['logo']!= null):?>	
+		<?php if($cat['Banner']['0']['url'] != null ):?>
+			<?php echo $html->link($html->image('banner/'.$cat['Banner']['0']['logo'],array('class'=>'','style'=>'border:none')),$cat['Banner']['0']['url'],array(),false,false)  ; ?>
+		<?php else: ?>
+			<?php echo $html->image('banner/'.$cat['Banner']['0']['logo']); ?>
+		<?php endif ?>		
 	<?php endif ?>	
 </div>	
 

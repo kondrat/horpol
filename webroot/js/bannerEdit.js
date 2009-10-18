@@ -33,6 +33,13 @@
 				
 		});
 
+			var plHold = 'Нет Ссылки';
+			var oldUrl = '';
+			if ($('.edit_url').text() != '') {
+				oldUrl = $('.edit_url').text();
+				
+			}
+			
      $('.edit_url').editable(
      	path + "banners/bannerEditUrl",      
     	{    	 
@@ -45,11 +52,14 @@
          submit    : '<div class="clear" /><div class="span-2"><input type="submit" class="clear span-2" value="OK" /></div>',
          indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать ссылку',
-         placeholder : 'Редактировать ссылку',
+         placeholder : plHold,
          callback : function(value, settings) {
-  					if(value != 0 ){
+  					if(value != 1 ){
+  						oldUrl = value;
+  						$('.brandLogo a').attr({href:value,target:'_blank'});
         	 		flashMessage('Ссылка изменена','message');
         	 	} else {
+        	 		$('.edit_url').text(oldUrl);
         	 		flashMessage('Неверный формат ссылки','er');
         	 	}	
         }

@@ -265,7 +265,13 @@ $(document).ready(function() {
 				});
 			
 			
-
+			$('.oldPict').hover(function(){
+				$(this).css({'background-position':'5px -28px'});
+				$(this).children().show();
+			},function() {
+				$(this).css({'background-position':'5px 4px'});
+				$(this).children().hide();
+			});
 
 
 

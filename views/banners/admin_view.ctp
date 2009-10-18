@@ -18,7 +18,8 @@
 					<?php if($banner['Banner']['url'] != null ):?>
 						<?php echo $html->link($html->image('banner/'.$banner['Banner']['logo'],array('class'=>'bannerLogo')),$banner['Banner']['url'],array('target'=>'_blank'),false,false)  ; ?>
 					<?php else: ?>
-						<?php echo $html->image('banner/'.$banner['Banner']['logo'],array('class'=>'bannerLogo'));?>
+						<?php //echo $html->image('banner/'.$banner['Banner']['logo'],array('class'=>'bannerLogo'));?>
+						<?php echo $html->link($html->image('banner/'.$banner['Banner']['logo'],array('class'=>'bannerLogo')),'',array('target'=>''),false,false)  ; ?>
 					<?php endif ?>
 				</div>
 				<div class="span-10  brandFrom hide" style="margin-bottom:1em;">

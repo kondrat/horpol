@@ -215,14 +215,11 @@
 					<?php foreach($products as $product): ?>
 					
 						<?php
-									$cameraClass = $logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
+									$logoClass = $logoWarring = $imagePathS = $imagePathB  = null;
 									if($product['Product']['logo1'] != null) {
 										$imagePathS = 'catalog/s/'.$product['Product']['logo1'];
 										$imagePathB = '/img/catalog/b/'.$product['Product']['logo1'];	
-										if($product['Product']['logo'] != null) {
-											$cameraClass = 'oldPict';
-										}
-										
+
 																		
 									} elseif($product['Product']['logo'] != null) {
 										$imagePathS = 'catalog/'.$product['Product']['logo'];
@@ -240,10 +237,12 @@
 							<div class="span-4">							
 									<?php echo $html->link( $html->image($imagePathS,array('alt'=>$product['Product']['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );?>
 							</div>
-							<div class="span-1"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
+							<div class="span-1 last"><?php echo $form->checkbox('Product.id.'.$product['Product']['id'], array('class' => 'selectable', 'value' =>$product['Product']['id']) ); ?></div>
+							<div class="span-1 last logWarring" style="width:16px"><?php echo $logoWarring;?></div>
 							<div class="span-1 productEdit" id="<?php echo $product['Product']['id'];?>"></div>
-							<div class="span-1 logWarring" style="padding:3px 3px 3px 7px;"><?php echo $logoWarring;?></div>
-							<div class="span-1 oldPictPlace <?php echo $cameraClass;?>"></div>
+							<?php if($product['Product']['logo'] != null):?>
+								<div class="span-1 oldPict"><div class="oldPictPlace hide" style=""><?php echo $html->image('/img/catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?></div></div>
+							<?php endif ?>
 							<div class="productNameVal" style="width:212px;float:left;"><?php echo $product['Product']['name'];?></div>																		
 						</div>
 						<?php $i++;?>

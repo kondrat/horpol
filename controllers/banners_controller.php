@@ -31,7 +31,7 @@ class BannersController extends AppController {
 			$this->redirect(array('controller'=>'pages','action'=>'index'));
 		}
 		if (isset($this->params['requested'])) {
-			$banner = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>$id),'fields'=>array('StaticPage.id'),'contain'=>array('Banner'=>array('fields'=>array('Banner.logo'),'order'=> array('BannersStaticPage.id'=>'DESC') )) ) );
+			$banner = $this->Banner->StaticPage->find('first',array('conditions'=>array('StaticPage.id'=>$id),'fields'=>array('StaticPage.id'),'contain'=>array('Banner'=>array('fields'=>array('Banner.logo','Banner.url'),'order'=> array('BannersStaticPage.id'=>'DESC') )) ) );
 			return $banner;
 		} else {
 			exit();
@@ -355,7 +355,7 @@ class BannersController extends AppController {
 						$this->Banner->set($this->data);
 						$errors = $this->Banner->invalidFields();
 						if($errors['url'] != null) {
-							echo null;
+							echo 1;						
 							exit;
 						}
 						
