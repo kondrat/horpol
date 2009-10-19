@@ -265,14 +265,18 @@ $(document).ready(function() {
 			
 			
 			$('.oldPict').hover(function(){
-				$(this).css({'background-position':'5px -28px'});
-				$(this).children().show();
+				
+				var pos2 = $(this).offset();  
+				$(".oldPictPlace").css( { "left": (pos2.left - 0) + "px", "top":(pos2.top - 110) + "px" } );
+					$(".oldPictPlace").show();
+				var pp = $(this).children().attr('src');
+				$(".oldPictPlace img").attr('src',pp).show();		  				
+				//$(this).css({'background-position':'5px -28px'});
+				//$('.oldPictPlace').show();
 			},function() {
 				$(this).css({'background-position':'5px 4px'});
-				$(this).children().hide();
+				$('.oldPictPlace').hide();
 			});
-
-
 
 
 	

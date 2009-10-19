@@ -108,7 +108,12 @@
 
 <div class="span-24" >
 	<?php if(isset($products)): ?>
-
+	
+								<div class="oldPictPlace hide">
+									<?php //echo $html->image('catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?>
+									<?php echo $html->image('catalog/s/product_logo.jpg',array('class'=>'prodShadow'));?>
+								</div>
+								
 								<div id="productEditWrapper" class="span-8 hide" >
 									<?php echo $form->create('Product',array('action'=>'editProduct', 'type' => 'file','id'=>"productEditForm"));?>
 										<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
@@ -234,7 +239,9 @@
 								<div class="span-1"><?php echo $html->link($html->image('icons/3_type.png'),array('controller'=>'products','action'=>'view',$product['Product']['id']),false,false,false);?></div>
 							<?php endif ?>
 							<?php if($product['Product']['logo'] != null):?>
-								<div class="span-1 oldPict"><div class="oldPictPlace hide"><?php echo $html->image('catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?></div></div>
+								<div class="span-1 oldPict">
+									<?php echo $html->image('catalog/'.$product['Product']['logo'],array('class'=>'hide'));?>
+								</div>
 							<?php endif ?>
 							<div class="productNameVal"><?php echo $product['Product']['name'];?></div>																		
 						</div>

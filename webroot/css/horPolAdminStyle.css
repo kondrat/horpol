@@ -466,6 +466,7 @@ a.categoryEditButton:hover {
 	*width:207px;
 	zoom:1;
   *display:inline;
+  z-index:0;
 }
 .productNameVal{
 	width:205px;
@@ -478,6 +479,7 @@ a.categoryEditButton:hover {
 	position:absolute;
 	top:-5px;
 	width:16px;
+	z-index:0;
 }
 #productEditWrapper {	
 	position:absolute;
@@ -521,11 +523,12 @@ a.categoryEditButton:hover {
 	width:16px;
 	cursor:pointer;
 }
-.oldPictPlace {
+
+.oldPictPlace{
 	left:185px;
 	position:absolute;
 	top:-50px;
-	z-index:100;
+	z-index:200;
 }
 
 
@@ -613,6 +616,13 @@ a.categoryEditButton:hover {
 	border-top:1px solid silver;
 	padding-top:.5em;
 }
+
+.stepIcon{
+	width:20px;
+	height:20px;
+	margin:0 60px;
+}
+
 #stepIcon1 {
 	background:transparent url(../img/icons/steps.png) no-repeat scroll 0 0px;
 }
@@ -623,11 +633,7 @@ a.categoryEditButton:hover {
 	background:transparent url(../img/icons/steps.png) no-repeat scroll 40px 0px;
 }
 
-.stepIcon{
-	width:20px;
-	height:20px;
-	margin:0 60px;
-}
+
 
 
 .activeStep div#stepIcon1{
@@ -639,6 +645,7 @@ a.categoryEditButton:hover {
 .activeStep div#stepIcon3 {
 	background-position: -40px -40px;
 }
+
 .prevStep div#stepIcon1{
 	background-position: 0 -20px;
 }
@@ -649,9 +656,7 @@ a.categoryEditButton:hover {
 	background-position: -40px -20px;
 }
 
-.nextStep div#stepIcon2,.nextStep div#stepIcon3 {
-	background-position: 0 -40px;	
-}
+
 .disableStep div#stepIcon2 {
 	background-position: -20px -60px;
 }
