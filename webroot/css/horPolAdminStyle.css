@@ -463,13 +463,13 @@ a.categoryEditButton:hover {
 	margin-right:15px;
 	padding:5px;
 	width :207px;
-	*width:147px;
+	*width:207px;
 	zoom:1;
   *display:inline;
 }
 .productNameVal{
 	width:205px;
-	*width:147px;
+	*width:205px;
 	float:left;
 }
 .logWarring{

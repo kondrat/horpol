@@ -116,7 +116,7 @@
 										<?php echo $form->label('Product.userfile1','[Логотип:]');?>
 										<?php echo $form->input('Product.userfile1', array('type'=>'file', 'label'=>false ) ); ?>
 										<div id="ProductFileError" ></div>
-										<div style="position:relative;height:0%;">
+										<div style="position:relative;height:30px;">
 											<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
 											<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
 										</div>
@@ -150,7 +150,7 @@
 									<?php echo $form->label('Product.userfile','[Логотип:]');?>
 									<?php echo $form->input('Product.userfile', array('type'=>'file', 'label'=>false ) ); ?>
 									<div id="ProductFileError" ></div>
-									<div style="position:relative;height:0%;">
+									<div style="position:relative;height:30px;">
 										<?php echo $form->input('photoType',array('options' => array('Фото','Текстура'),'label'=>false,'div'=>false) );?>
 										<div class="infoTip16" style="left:95px;position:absolute;top:8px;"></div>
 									</div>
