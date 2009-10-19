@@ -6,7 +6,7 @@ class ImagesController extends AppController {
 
 //--------------------------------------------------------------------	
 	function beforeFilter() {
-        $this->Auth->allow('index');
+        //$this->Auth->allow('index');
         parent::beforeFilter();
         $this->Auth->autoRedirect = false;
     }
@@ -130,7 +130,7 @@ class ImagesController extends AppController {
 				if ( $this->Session->check('Album.Id') ) {
 					$this->data['Image']['album_id'] = $this->Session->read('Album.Id');
 				} else {
-					$this->data['Image']['album_id'] = $this->data['Image']['Album'];
+					$this->data['Image']['album_id'] = $this->data['Image']['album_id'];
 				}
 				
 				$this->Image->create();
@@ -214,6 +214,101 @@ class ImagesController extends AppController {
 	}
 
 //--------------------------------------------------------------------
+	function ttt() {
+		$prodName = null;
+		
+		Configure::write('debug', 0);			
+				//saving module
+				if ( isset($this->data['Image']['name'])&& $this->data['Image']['name']!=null ) {
+					
+
+					
+					
+					
+					$prodName = $this->data['Image']['name'];
+						
+						/**
+						 * We uploading the image photo first
+						 *
+						 */
+
+						$file = array();
+						// set the upload destination folder
+						$destination = WWW_ROOT.'img'.DS.'catalog'.DS;
+						
+						$destinationB = WWW_ROOT.'img'.DS.'gallery'.DS.'b'.DS;
+						$destinationS = WWW_ROOT.'img'.DS.'gallery'.DS.'s'.DS;
+						// grab the file
+						$file = $this->data['Image']['userfile'];
+
+				
+						if ($file['error'] == 4) {
+							$this->data['Image']['logo1'] = null;
+							echo json_encode(array('error'=>'Файл не загружен'));
+							$this->autoRender = false;
+							exit();									
+						} else {
+
+								// upload the image using the upload component
+								for ( $i=0; $i<=1; $i++) {
+									switch($i) {
+										case(0): 
+											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'resizecrop', 'size' => array('100', '100') ) ); 
+											if ($result != 1) {
+												$this->data['Image']['image'] = $this->Upload->result;
+											}
+											break;
+										case(1):
+											$result = $this->Upload->upload($file, $destinationB, null, array('type' => 'resize', 'size' => '600' ) );
+											break;
+									}
+									if ( $result == 1 ) {
+										// display error
+										$errors = $this->Upload->errors;
+										// piece together errors
+										if( is_array($errors) ) { 
+											$errors = implode("<br />",$errors); 
+										}
+						   
+										echo json_encode(array('error'=>$errors));											
+										$this->autoRender = false;
+									 	exit();	
+									}					
+								}
+
+						}								
+
+											
+						$this->Image->create();
+						if ($this->Image->save($this->data)) {						
+										
+									$prodId = $this->Image->id;						
+									$arr = array ( 'img'=> $this->data['Image']['image'],'prodId'=> $prodId,'prodName'=> $prodName );
+									echo json_encode($arr);											
+									$this->autoRender = false;
+					 				exit();									
+							
+						} else {
+									if (  isset($this->Upload->result) && $this->Upload->result != null) {
+										@unlink($destinationB.$this->Upload->result);
+										@unlink($destinationS.$this->Upload->result);
+									}
+									
+									$arr = array ( 'error'=> 'Ошибка при сохранении фотографии' );
+									echo json_encode($arr);												
+									$this->autoRender = false;
+					 				exit();														
+						}												
+											
+				}	else {
+					exit;
+				}
+
+			
+
+	}
+	
+	
 }
 
 ?>

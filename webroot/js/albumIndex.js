@@ -41,6 +41,55 @@
 	});	
 
 
+	$('.subCatAdd, .subCategoryAddCancel').click(function(){
+		$('.photoAdd').toggle();
+		return false;
+	});
+
+	$("#ImageAddForm").ajaxForm({
+		url: path+'images/ttt',	
+		dataType:  'json',			
+		success: 
+				function(data) {
+						//console.log(data);
+						
+						if( data.img != null) {
+							flashMessage('Товар сохранен','message');
+							$('.imageItemWrapper').prepend(
+								'<div class="photoItem" style="">'+
+									'<div class="span-4">'+
+										'<a href="">'+
+										'<img alt="newOn" src="'+path+'img/gallery/s/'+data.img+'"/></a>'+
+									'</div>'+
+									'<input type="hidden" value="0" id="ProductId'+data.prodId+'_" name="data[Product][id]['+data.prodId+']"/>'+
+									'<input type="checkbox" id="ProductId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Product][id]['+data.prodId+']"/>'+
+									'<div class="photoNameVal">'+data.prodName+'</div>'+
+								'</div>'													
+							);
+							
+							
+							$('.noProductYet').remove();
+							//$('.brandFrom').hide();
+						} else if (data.error != null) {
+							flashMessage('Изменения не были сохранены','er');
+							//$('.brandShadow').hide().attr('src',oldImg).fadeIn();
+							//$('.brandFormError').html('<div class="error">'+data.error+'</div>');
+	
+							console.log(data.error);
+						}
+						
+										
+				},
+		
+		resetForm: true
+			
+	});
+
+
+
+
+
+
 
 
 		

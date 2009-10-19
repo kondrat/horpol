@@ -35,7 +35,8 @@
 <div class="span-24 subCategoryWrapper" style="margin-bottom:1em;">
 	<?php if(!isset($products)): ?>	
 	<div class="span-24 subCategoryAddWrapper" style="margin-bottom:1em;">		
-		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>		
+		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>	
+			
 		<div class="span-13 subCategoryAdd hide">
 		<?php echo $form->create('SubCategory',array('action'=>'addInline'));?>
 			<?php echo $form->input('brand_category_id', array( 'type' => 'hidden','value'=> $brandsCatVal) );?>
@@ -62,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<?php endif ?>
 	<?php if(isset($subCategories) && $subCategories != array()):?>
 	<div class="subCategory span-24">
@@ -110,7 +112,6 @@
 	<?php if(isset($products)): ?>
 	
 								<div class="oldPictPlace hide">
-									<?php //echo $html->image('catalog/'.$product['Product']['logo'],array('class'=>'prodShadow'));?>
 									<?php echo $html->image('catalog/s/product_logo.jpg',array('class'=>'prodShadow'));?>
 								</div>
 								

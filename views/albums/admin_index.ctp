@@ -26,15 +26,10 @@
 		</div>
 	</div>
 </div>
-	<?php $i = 1;?>		
+	
 	<?php foreach($albums as $album): ?>
-		<?php if( $i%6 == 0 ) {
-						 $last = 'last';
-					}else {
-						$last = null;
-					}
-		?>
-		<div class="span-4 thumbAdmin <?php echo $last;?> ">
+
+		<div class="thumbAdmin">
 			<div style="text-align:center;">
 			<?php if( isset($album['Image']['0']['image']) && $album['Image']['0']['image'] != null): ?>
 				<?php echo $html->link( $html->image( 'gallery/s/'.$album['Image']['0']['image'], array('class'=>'thumbImg','alt'=>$album['Album']['name'])), array('controller' => 'albums', 'action' => 'view',$album['Album']['id']),null, null, false ); ?>
@@ -49,6 +44,5 @@
 				Кол-во фото:&nbsp;<?php echo $album['Album']['image_count']; ?>
 			</div>
 		</div>
-		<?php $i++;?>
 	<?php endforeach ?>	
 	<div style="clear:both"></div>

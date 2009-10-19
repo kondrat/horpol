@@ -17,26 +17,17 @@
 
 
 
-<?php $i = 0;?>
-<?php foreach ($br as $brand):
-	$class = null;
-	if($i%6 == 0){
-		$class = 'clear';
-	}
-	$background = null;
-?>
-		<div class="brand <?php echo $class;?>">
+
+<?php foreach ($br as $brand):?>
+		<div class="brand">
 			<div style="text-align:center;border:1px solid #eee;padding:3px;">
 				<?php echo $html->link($html->image( 'catalog/'.$brand['Brand']['logo'], array('alt'=>$brand['Brand']['name'],'title'=>$brand['Brand']['name']) ), array('action'=>'view',$brand['Brand']['id']), false, false,false); ?>
 			</div>
-			<div class="lens"></div><?php //echo $html->image('icons/lens.png',array('class'=>'lens'));?>
+			<div class="lens"></div>
 			<div style="font-weight:bold;text-align:center;"><?php echo $brand['Brand']['name']; ?></div>
 		</div>
-<?php $i++;?>
 <?php endforeach; ?>
 
-	<?php //echo $paginator->sort('Бренд','name');?>
-	<?php //echo $paginator->sort('Логотип','logo');?>
 
 
 
