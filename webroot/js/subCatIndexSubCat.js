@@ -197,7 +197,7 @@ $(document).ready(function() {
 					$('.productEdit').click(function(){
 				
 							if (currProdEd != null) {
-								currProdEd.css({'background-color':null});
+								currProdEd.removeAttr("style");
 							}				
 							currProdEd = $(this).parents('.productItem');				
 						 	currProdEd.css({'background-color':'#ccc'});
@@ -215,7 +215,7 @@ $(document).ready(function() {
 					$('.productEditCancel').click(function(){
 						$('#productEditWrapper').hide();
 						if (currProdEd != null) {
-							currProdEd.css({'background-color':null});
+							currProdEd.removeAttr("style");
 						}			
 						return false;
 					});
