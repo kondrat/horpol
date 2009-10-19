@@ -193,8 +193,7 @@
 				<input type="button" class="span-4" id="selectall" value="Выбрать все" name="sel" />
 			</div>
 			<div class="span-10">
-					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-5','onclick' => 'return confirm("Удалить выбранные товары?")') );?>
-			
+					<?php echo $form->submit('Удалить выбранное', array('class'=>'span-5','onclick' => 'return confirm("Удалить выбранные товары?")') );?>		
 			</div>
 		</div>
 		<div class="span-5" style="margin-bottom:.5em;">

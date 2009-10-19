@@ -133,10 +133,8 @@ class AlbumsController extends AppController {
 			$this->Session->setFlash(__('Invalid Album.', true));
 			$this->redirect( $this->Auth->redirect() );			
 		} else {
-			//$images = $this->Album->Image->find('all', array('conditions'=>array('Image.album_id' => $id), 'contain' => false ) );
-			//$this->set('images', $images);
-			
-			$album = $this->Album->find('first',array('conditions'=>array('Album.id' => $id)));						
+
+			$album = $this->Album->find('first',array('conditions'=>array('Album.id' => $id),'contain'=>array('Image'=>array('order'=>array('Image.id'=>'DESC') ) ) ) );						
 			$this->set('album', $album);
 		}
 	}

@@ -162,8 +162,7 @@ $(document).ready(function() {
 	$('.productEdit').hover(function(){
 		$(this).css({'background-position':'5px -28px','border-color':'silver'});
 	},function(){
-		$(this).css({'background-position':'5px 4px','border-color':'#eee'});
-		
+		$(this).css({'background-position':'5px 4px','border-color':'#eee'});		
 	});
 
 

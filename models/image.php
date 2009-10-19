@@ -13,12 +13,12 @@ class Image extends AppModel {
 																		'required' => true,
 																		'message' => 'Только буквы и цифры'
 																		),
-												*/
+												
 												'betweenRus' => array(
 																	'rule' => array( 'betweenRus', 2, 150, 'name'),
 																	'message' => 'От 2 до 150 знаков',
 																	),
-												/*
+												
 												'checkUnique' => array( 
 																		'rule' =>  array('checkUnique', 'name'),
 																		'message' => 'Это имя уже существует'

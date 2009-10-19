@@ -214,18 +214,15 @@ class ImagesController extends AppController {
 	}
 
 //--------------------------------------------------------------------
-	function ttt() {
+	function imageAdd() {
 		$prodName = null;
 		
 		Configure::write('debug', 0);			
 				//saving module
-				if ( isset($this->data['Image']['name'])&& $this->data['Image']['name']!=null ) {
-					
-
-					
-					
-					
-					$prodName = $this->data['Image']['name'];
+					if(isset($this->data['Image']['name']) && $this->data['Image']['name'] != null) {
+						$prodName = $this->data['Image']['name'] = trim($this->data['Image']['name']);
+						
+					}
 						
 						/**
 						 * We uploading the image photo first
@@ -243,7 +240,7 @@ class ImagesController extends AppController {
 
 				
 						if ($file['error'] == 4) {
-							$this->data['Image']['logo1'] = null;
+							$this->data['Image']['image'] = null;
 							echo json_encode(array('error'=>'Файл не загружен'));
 							$this->autoRender = false;
 							exit();									
@@ -269,10 +266,11 @@ class ImagesController extends AppController {
 										if( is_array($errors) ) { 
 											$errors = implode("<br />",$errors); 
 										}
-						   
-										echo json_encode(array('error'=>$errors));											
-										$this->autoRender = false;
-									 	exit();	
+						   			if ( !isset($this->data['Image']['id']) || $this->data['Image']['id'] == null) {
+											echo json_encode(array('error'=>$errors));											
+											$this->autoRender = false;
+										 	exit();	
+										}
 									}					
 								}
 
@@ -299,15 +297,31 @@ class ImagesController extends AppController {
 									$this->autoRender = false;
 					 				exit();														
 						}												
-											
-				}	else {
-					exit;
-				}
-
-			
 
 	}
-	
+//--------------------------------------------------------------------
+	function admin_delall() {
+		if ( isset($this->data['Image']) ) {
+			$count = 0;
+			foreach($this->data['Image']['id'] as $value) {  
+				if($value != 0) { 
+					if($this->Image->delete($value) ){
+						$count = 1; 
+					} 
+				}  
+			}
+			if ($count == 0) {
+				$this->Session->setFlash('Вы не выбрали Фотографии','default',array('class'=>'er'));
+			} else {
+				$this->Session->setFlash('Фотографии удалены');
+			}
+			$this->redirect($this->referer());
+			$this->Session->setFlash('here');
+		} else {
+			$this->Session->setFlash('Удаление невозможно','default',array('class'=>'er'));
+			$this->redirect($this->referer());
+		}
+	}	
 	
 }
 

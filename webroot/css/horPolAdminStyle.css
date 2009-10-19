@@ -104,9 +104,7 @@ div.footer a:hover{
 	background-color:#F3F3F3;
 	margin-bottom:1em;
 	padding:6px 0;
-	position:relative;
-	
-	
+	position:relative;	
 	display: -moz-inline-stack­;
 	display:inline-block;
 	vertical-align: text-top;
@@ -117,15 +115,7 @@ div.footer a:hover{
 	*width:150px;
 	zoom:1;
   *display:inline;
-  z-index:0;	
-	
-	
-	
-	
-	
-	
-	
-	
+  z-index:0;		
 }
 .thumbAdmin .lens{
 	top:85px;
@@ -293,10 +283,11 @@ z-index:70;
 	display:inline-block;
 	vertical-align: text-top;
 	margin-bottom:5px;
-	margin-right:15px;
+	margin-right:10px;
 	padding:5px;
-	width :150px;
-	*width:150px;
+	width :153px;
+
+	*width:153px;
 	zoom:1;
   *display:inline;
   z-index:0;
@@ -311,8 +302,23 @@ z-index:70;
 	padding:10px 0 20px 20px;
 }
 
-
-	
+.imageEdit{
+	background:transparent url(../img/icons/edit_inline_16x16.png) no-repeat scroll 5px 4px;
+	border:1px solid #eee;
+	padding:0 0 3px;
+	height:22px;
+	width:16px;
+	cursor:pointer;
+}
+#imageEditWrapper {	
+	position:absolute;
+	background-color:white;
+	z-index:200;
+	top:200px;
+	left:30px;
+	border:1px solid silver;
+	padding:10px 0 20px 20px;			
+}	
 	
 	
 /*flash message*/
@@ -480,7 +486,7 @@ a.categoryEditButton:hover {
 /*subCategory*/
 .subCategoryWrapper {
 }
-.subCategoryAddWrapper, .productAddWrapper{
+.subCategoryAddWrapper, .productAddWrapper,.imageAddWrapper{
 	position:relative;
 	height:100%;
 	z-index:100;
@@ -541,7 +547,7 @@ a.categoryEditButton:hover {
 	width:16px;
 	z-index:0;
 }
-#productEditWrapper {	
+#productEditWrapper{	
 	position:absolute;
 	background-color:white;
 	z-index:200;
