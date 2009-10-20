@@ -1,3 +1,4 @@
+<?php echo $javascript->link(array('jquery/jquery.fancybox-1.2.1.pack','horpol'),false);?>
 <?php 
 	if( isset($products) ) {
 		$this->pageTitle = $subCats['Category']['name'].' '.$brand['Brand']['name'].' | '.$products['SubCategory']['name']; 
@@ -34,12 +35,19 @@
 		<?php //debug($products);?>
 			<?php foreach($products['Product'] as $product): ?>
 			<div class="cl">
-				<?php 
-					if($product['logo'] == null) {
-						$product['logo'] = 'default.jpg';
-					}
-				?>
-				<?php echo  $html->image( 'catalog/'.$product['logo'], array('alt' => $product['name'] ) ); ?>
+				<?php
+							$imagePathS = $imagePathB  = null;
+							if($product['logo1'] != null) {
+								$imagePathS = 'catalog/s/'.$product['logo1'];
+								$imagePathB = '/img/catalog/b/'.$product['logo1'];								
+								echo $html->link( $html->image($imagePathS,array('alt'=> $product['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );
+																
+							} elseif($product['logo'] != null) {
+								echo  $html->image( 'catalog/'.$product['logo'], array('alt' => $product['name'] ) );							
+							} else {
+								echo  $html->image( 'catalog/s/product_logo.jpg', array('alt' => $product['name'] ) );
+							}
+				?>										
 				<b> <?php echo $product['name'];?></b>
 				       <br><br>
 				       <?php echo $product['content1'];?>

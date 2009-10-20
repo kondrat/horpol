@@ -1,3 +1,4 @@
+<?php echo $javascript->link(array('jquery/jquery.fancybox-1.2.1.pack','horpol'),false);?>
 <?php $this->pageTitle = $cat['Category']['title']; ?>
 
 <div>	

@@ -41,7 +41,7 @@ class CategoriesController extends AppController {
 			
 			case 2:
 	
-				$products = $this->Category->BrandsCategory->find('first', array('conditions' => array('category_id'=>$id),'fields'=>array('id'),'contain'=>array('SubCategory'=>array('fields'=>array('id'),'Product'=>array('name','logo') ) ) ) );
+				$products = $this->Category->BrandsCategory->find('first', array('conditions' => array('category_id'=>$id),'fields'=>array('id'),'contain'=>array('SubCategory'=>array('fields'=>array('id'),'Product'=>array('name','logo','logo1') ) ) ) );
 
 				$this->set('cat', $cat);
 				$this->set('products', $products);
