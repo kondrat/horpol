@@ -6,7 +6,7 @@ class ImagesController extends AppController {
 
 //--------------------------------------------------------------------	
 	function beforeFilter() {
-        //$this->Auth->allow('index');
+        $this->Auth->allow('index');
         parent::beforeFilter();
         $this->Auth->autoRedirect = false;
     }
