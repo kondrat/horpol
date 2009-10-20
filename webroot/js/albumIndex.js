@@ -63,7 +63,7 @@
 
 								'<div class="photoItem">'+
 									'<div class="span-3">'+
-										'<a href="">'+
+										'<a  href="">'+
 										'<img src="'+path+'img/gallery/s/'+data.img+'"/></a>'+
 									'</div>'+
 									'<input type="hidden" value="0" id="ImageId'+data.prodId+'_" name="data[Image][id]['+data.prodId+']"/>'+
@@ -80,7 +80,7 @@
 						} else if (data.error != null) {
 							flashMessage(data.error,'er');
 	
-							console.log(data.error);
+							//console.log(data.error);
 						}
 						
 										
@@ -89,6 +89,7 @@
 		resetForm: true
 			
 	});
+
 
 
 	$("#selectall").click(function(){	
@@ -171,7 +172,7 @@
 					type: 'post',			
 					success: 
 							function(data) {
-									console.log(data);
+									//console.log(data);
 									if( data.img != null) {
 										flashMessage('Изменения сохранены','message');
 										currProdEd.find('img:first').hide().attr('src',path+"img/gallery/s/"+data.img).fadeIn('slow');
