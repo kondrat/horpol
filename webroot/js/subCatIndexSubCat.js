@@ -121,11 +121,7 @@ $(document).ready(function() {
 							$('.noProductYet').remove();
 							//$('.brandFrom').hide();
 						} else if (data.error != null) {
-							flashMessage('Изменения не были сохранены','er');
-							//$('.brandShadow').hide().attr('src',oldImg).fadeIn();
-							//$('.brandFormError').html('<div class="error">'+data.error+'</div>');
-	
-							console.log(data.error);
+							flashMessage('Изменения не были сохранены','er');	
 						}
 						
 										

@@ -48,9 +48,7 @@
          indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
-         		//console.log(this);
-         		//console.log(value);
-        	 	//console.log(settings);
+
         	 	flashMessage('Бренд <span style="color:#911B3B;">'+value+'</span> переименован','message');	
         }
 

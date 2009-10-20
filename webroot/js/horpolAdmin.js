@@ -1,5 +1,3 @@
-
-
 $(document).ready( function(){
 		var $alert = $('#flashMessage');
 		if($alert.length) {
@@ -16,16 +14,7 @@ $(document).ready( function(){
 		}
 	
 });
-//------------------------------------------------------------------------------------
-/*
-$(document).ready(function() {
-	$("div.test1 a").fancybox({	'hideOnContentClick': true,
-								'zoomSpeedIn': 0, 'zoomSpeedOut': 0,
-								'overlayShow': true,
-								'overlayOpacity': 0.9
-								});
-}); 
-*/
+
 
 
 

@@ -28,9 +28,7 @@
          indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
-         		//console.log(this);
-         		//console.log(value);
-        	 	//console.log(settings);
+
         	 	flashMessage('Альбом <span style="color:#911B3B;">'+value+'</span> переименован','message');	
         }
 
@@ -78,8 +76,6 @@
 							//$('.brandFrom').hide();
 						} else if (data.error != null) {
 							flashMessage(data.error,'er');
-	
-							//console.log(data.error);
 						}
 						
 										
@@ -125,11 +121,9 @@
 				
 				$("#imageEditWrapper").hide();
 			  var pos = $(this).offset(); 
-			  //console.log(pos); 
 			  $("#imageEditWrapper").css( { "left": (pos.left - 180) + "px", "top":(pos.top - 170) + "px" } );
 			  $("#imageEditWrapper").fadeIn('fast');
 			 	var textVal = jQuery.trim($(this).siblings('.photoNameVal').text());
-			 	//console.log(textVal);
 			  $("#imageNameEdit").attr('value', textVal );
 			  $("#imageIdEdit").attr('value', $(this).attr('id') );
 		

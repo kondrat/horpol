@@ -20,9 +20,7 @@
          indicator : '<img src="'+path +'img/icons/ajax-loader.gif">',
          tooltip   : 'Редактировать название',
          callback : function(value, settings) {
-         		//console.log(this);
-         		//console.log(value);
-        	 	//console.log(settings);
+
         	 	flashMessage('заголовок новости изменен','message');	
         }
 
