@@ -35,11 +35,9 @@ class AlbumsController extends AppController {
 //--------------------------------------------------------------------
     function admin_index(){
     	$this->set('headerName','Фотоальбомы');
-    	if($this->Session->check('Album')){
-    		$this->Session->del('Album');
-    	}
-			$this->Album->recursive = 1;
-			$this->set('albums', $this->paginate());
+
+			$albums = $this->Album->find('all',array('order'=>array('Album.id'=>'DESC'),'contain'=>'Image.image'));
+			$this->set('albums', $albums);
     }
 //--------------------------------------------------------------------
 	function admin_add() {
@@ -48,13 +46,11 @@ class AlbumsController extends AppController {
 			$this->Album->create();
 			if ($this->Album->save($this->data)) {
 				$this->Session->setFlash( 'Новый альбом был создан' );
-				if($this->Session->check('Album')){
-					$this->Session->del('Album');
-				}
 				$this->redirect( array('action' => 'index') );
 			} else {
 				
-				$this->Session->setFlash('Новый альбом не был создан');
+				$this->Session->setFlash('Новый альбом не был создан','default',array('class'=>'er'));
+				$this->redirect( $this->referer() );
 			}
 		}
 	}
@@ -130,7 +126,7 @@ class AlbumsController extends AppController {
 		$this->set('headerName','Фотоальбомы');
 		$this->data = $this->Album->read(null, $id);
 		if ( (!$id) ||  ( $this->data = $this->Album->read(null, $id) == false ) ) {
-			$this->Session->setFlash(__('Invalid Album.', true));
+			//$this->Session->setFlash(__('Invalid Album1.', true));
 			$this->redirect( $this->Auth->redirect() );			
 		} else {
 

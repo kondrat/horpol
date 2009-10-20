@@ -130,11 +130,10 @@ div.footer a:hover{
 	position:absolute;
 	top:0px;
 	left:5px;
-	z-index:200;
 }
 .albumAdd {
 	background-color:#fff;
-	display:none;
+	z-index:200;
 }
 .albumAddFormWrapper{
 	padding:10px 0 10px 20px;

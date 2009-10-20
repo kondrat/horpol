@@ -4,14 +4,17 @@
 <div class="actions span-24">
 		<h3><?php echo $html->link('Добавить новый Фотоальбом', array('action'=>'add'),array('id'=>'albumNew')); ?></h3>
 </div>
-<div class="span-24" style="position:relative;">
-	<div class="span-8  albumAdd" id="albumAddForm">
+<div class="span-24" style="position:relative; z-index:400;">
+	<div class="span-8  albumAdd hide" id="albumAddForm">
 		<div class="albumAddFormWrapper">
 		<?php echo $form->create('Album');?>
 			<?php
 				echo $form->input('name', array('label' => 'Заголовок альбома', 'style' => 'width: 259px') );
 			?>
-		<?php echo $form->submit('Сохранить',array('class'=>'span-3'));?>
+		<div class="span-3">
+				<?php echo $form->submit('Сохранить',array('class'=>'span-3'));?>
+		</div>
+		<?php echo $form->button('Закрыть',array('class'=>'span-3 albumNewCancel'));?>
 		<?php echo $form->end();?>
 		</div>
 		<div class="test">
@@ -26,7 +29,7 @@
 		</div>
 	</div>
 </div>
-	
+<div class="span-24">	
 	<?php foreach($albums as $album): ?>
 
 		<div class="thumbAdmin">
@@ -45,4 +48,4 @@
 			</div>
 		</div>
 	<?php endforeach ?>	
-	<div style="clear:both"></div>
+</div>

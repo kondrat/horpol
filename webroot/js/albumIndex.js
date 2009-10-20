@@ -1,14 +1,13 @@
  $(document).ready(function() {
-		$('#albumNew').click(function() {
-  				if ( $("#albumAddForm").is(":hidden") ) {
-            $("#albumAddForm").fadeIn();
-						//$(".projectTitle").text('close id').css({'color' : 'sienna'});
-          } else {
-            $("#albumAddForm").fadeOut();
-						//$(".projectTitle").text('switch projects').css({'color' : '#000'});
-          }
-			return false;
-		});
+
+	$('#albumNew, .albumNewCancel').click(function(){
+		$('#albumAddForm').toggle();
+		return false;
+	});
+
+
+
+
 		
 		$('.thumbAdmin').hover(function(){
 			$(this).find('.lens').css({'background-position':'0 -32px'});
@@ -63,11 +62,11 @@
 
 								'<div class="photoItem">'+
 									'<div class="span-3">'+
-										'<a  href="">'+
+										'<a  href="" onClick="location.reload();">'+
 										'<img src="'+path+'img/gallery/s/'+data.img+'"/></a>'+
 									'</div>'+
-									'<input type="hidden" value="0" id="ImageId'+data.prodId+'_" name="data[Image][id]['+data.prodId+']"/>'+
-									'<input type="checkbox" id="ImageId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Image][id]['+data.prodId+']"/>'+
+									'<input type="hidden" value="0" id="ImageId'+data.prodId+'_" name="data[Image][id]['+data.prodId+']" />'+
+									'<input type="checkbox" id="ImageId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Image][id]['+data.prodId+']" />'+
 									'<div id="'+data.prodId+'" class="span-1 last imageEdit"/>'+
 									'<div class="span-4 last photoNameVal">'+data.prodName+'</div>'+
 									'<div class="span-4 last photoNoNameVal" style="color:red;">'+noName+'</div>'+

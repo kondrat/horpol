@@ -6,7 +6,7 @@
 
 <div class="">
 
-	<div class="actions span-24 subCategoryAddWrapper">
+	<div class="actions span-24" style="position:relative;z-index:20;">
 		
 			<h3 style="z-index:0;"><?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add','album:'.$album['Album']['id']),array('class'=>'subCatAdd')); ?></h3>
 	
@@ -108,7 +108,9 @@
 							</div>
 						</div>
 						
-					<?php endforeach ?>	
+					<?php endforeach ?>
+					
+						
 				</div>
 				</dd>
 				<dt>[Дата создания:]</dt>
