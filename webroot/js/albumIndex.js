@@ -52,10 +52,11 @@
 		success: 
 				function(data) {
 						//console.log(data);
-						
+						var noName = '';
 						if( data.img != null) {
-							if( data.prodName == '') {
-								data.prodName = null;//'Нет подписи';
+							if( data.prodName == null) {
+								noName = 'Нет названия';
+								data.prodName = '';
 							}
 							flashMessage('Фото сохранено','message');
 							$('.imageItemWrapper').prepend(
@@ -69,6 +70,7 @@
 									'<input type="checkbox" id="ImageId'+data.prodId+'" value="'+data.prodId+'" class="selectable" name="data[Image][id]['+data.prodId+']"/>'+
 									'<div id="'+data.prodId+'" class="span-1 last imageEdit"/>'+
 									'<div class="span-4 last photoNameVal">'+data.prodName+'</div>'+
+									'<div class="span-4 last photoNoNameVal" style="color:red;">'+noName+'</div>'+
 								'</div>'													
 							);
 							
@@ -76,9 +78,7 @@
 							$('.noProductYet').remove();
 							//$('.brandFrom').hide();
 						} else if (data.error != null) {
-							flashMessage('Изменения не были сохранены','er');
-							//$('.brandShadow').hide().attr('src',oldImg).fadeIn();
-							//$('.brandFormError').html('<div class="error">'+data.error+'</div>');
+							flashMessage(data.error,'er');
 	
 							console.log(data.error);
 						}
@@ -115,7 +115,7 @@
 	});
 	
 		var currProdEd = null;
-		$('.imageEdit').click(function(){
+		$('.imageEdit').live('click',function(){
 	
 				if (currProdEd != null) {
 					currProdEd.removeAttr("style");
@@ -124,11 +124,13 @@
 			 	currProdEd.css({'background-color':'#ccc'});
 				
 				$("#imageEditWrapper").hide();
-			  var pos = $(this).offset();  
-			  $("#imageEditWrapper").css( { "left": (pos.left - 400) + "px", "top":(pos.top - 330) + "px" } );
+			  var pos = $(this).offset(); 
+			  //console.log(pos); 
+			  $("#imageEditWrapper").css( { "left": (pos.left - 180) + "px", "top":(pos.top - 170) + "px" } );
 			  $("#imageEditWrapper").fadeIn('fast');
-			 
-			  $("#imageNameEdit").attr('value', $(this).siblings('.photoNameVal').text() );
+			 	var textVal = jQuery.trim($(this).siblings('.photoNameVal').text());
+			 	//console.log(textVal);
+			  $("#imageNameEdit").attr('value', textVal );
 			  $("#imageIdEdit").attr('value', $(this).attr('id') );
 		
 	
@@ -169,22 +171,33 @@
 					type: 'post',			
 					success: 
 							function(data) {
-									//console.log(data);
+									console.log(data);
 									if( data.img != null) {
 										flashMessage('Изменения сохранены','message');
 										currProdEd.find('img:first').hide().attr('src',path+"img/gallery/s/"+data.img).fadeIn('slow');
 										currProdEd.find('a:first').attr('href',path+"img/gallery/b/"+data.img);
 										if(data.prodName != null) {
 											currProdEd.find('.photoNameVal').text(data.prodName);
+											currProdEd.find('.photoNoNameVal').text('');
+											$("#imageNameEdit").attr('value', data.prodName );
+										} else {
+											currProdEd.find('.photoNameVal').text('');
+											currProdEd.find('.photoNoNameVal').text('Нет названия');
 										}
-									} else if(data.img == null && data.prodName != null) {
+									}else if (data.error != null) {
+										flashMessage(data.error,'er');
+										currProdEd.find('img:first').attr('src',oldLogo);																	
+									}else if(data.img == null && data.prodName != null) {
+										flashMessage('Изменения сохранены','message');
 										currProdEd.find('img:first').attr('src',oldLogo);										
-										currProdEd.find('.photoNameVal').text(data.prodName);									
-									} else if (data.error != null) {
-										flashMessage('Изменения не были сохранены','er');
+										currProdEd.find('.photoNameVal').text(data.prodName);
+										currProdEd.find('.photoNoNameVal').text('');
+										$("#imageNameEdit").attr('value', data.prodName );							
+									} else if(data.img == null && data.prodName == null) {
+										flashMessage('Изменения сохранены','message');
 										currProdEd.find('img:first').attr('src',oldLogo);
-										//$('.brandFormError').html('<div class="error">'+data.error+'</div>');
-										//console.log(data.error);
+										currProdEd.find('.photoNameVal').text('');										
+										currProdEd.find('.photoNoNameVal').text('Нет названия');
 									}
 													
 							},

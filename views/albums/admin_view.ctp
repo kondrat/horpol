@@ -6,35 +6,36 @@
 
 <div class="">
 
-<div class="actions span-24 subCategoryAddWrapper">
-	<h3 style="z-index:0;"><?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add','album:'.$album['Album']['id']),array('class'=>'subCatAdd')); ?></h3>
-
-		<div class="span-8 photoAdd hide">
-		<?php echo $form->create('Image',array('action'=>'add', 'type' => 'file'));?>
-			<?php echo $form->input('album_id', array( 'type' => 'hidden','value'=> $album['Album']['id'] ) );?>
-			<?php echo $form->label('Image.userfile','[Логотип:]');?>
-			<?php echo $form->input('Image.userfile', array('type'=>'file', 'label'=>false ) ); ?>
-			<div id="ProductFileError" ></div>
-			<?php echo $form->label('name','[Название:]');?><br />
-			<?php echo $form->input('name',array('style'=>'width:250px;','label'=>false));?>
-			<div id="ProductNameError" ></div>
-			<div id="SubCategoryNameError" style="padding:5px;"></div>
-			<div class="span-3">
-				<?php echo $form->submit('Сохранить',array('class'=>'span-3 newSubCat'));?>
+	<div class="actions span-24 subCategoryAddWrapper">
+		
+			<h3 style="z-index:0;"><?php echo $html->link('Добавить Фотографию', array('controller' => 'images', 'action'=>'add','album:'.$album['Album']['id']),array('class'=>'subCatAdd')); ?></h3>
+	
+			<div class="span-8 photoAdd hide">
+			<?php echo $form->create('Image',array('action'=>'add', 'type' => 'file'));?>
+				<?php echo $form->input('album_id', array( 'type' => 'hidden','value'=> $album['Album']['id'] ) );?>
+				<?php echo $form->label('Image.userfile','[Логотип:]');?>
+				<?php echo $form->input('Image.userfile', array('type'=>'file', 'label'=>false ) ); ?>
+				<div id="ProductFileError" ></div>
+				<?php echo $form->label('name','[Название:]');?><br />
+				<?php echo $form->input('name',array('style'=>'width:250px;','label'=>false));?>
+				<div id="ProductNameError" ></div>
+				<div id="SubCategoryNameError" style="padding:5px;"></div>
+				<div class="span-3">
+					<?php echo $form->submit('Сохранить',array('class'=>'span-3 newSubCat'));?>
+				</div>
+				<?php echo $form->button('Закрыть',array('class'=>'span-3 subCategoryAddCancel'));?>
+			<?php echo $form->end();?>
+				<div class="test">
+					<div class="fancy_bg fancy_bg_e"></div>
+					<div class="fancy_bg fancy_bg_se"></div>
+					<div class="fancy_bg fancy_bg_s"></div>
+					<div class="fancy_bg fancy_bg_sw"></div>
+					<div class="fancy_bg fancy_bg_w"></div>
+				</div>
 			</div>
-			<?php echo $form->button('Закрыть',array('class'=>'span-3 subCategoryAddCancel'));?>
-		<?php echo $form->end();?>
-			<div class="test">
-				<div class="fancy_bg fancy_bg_e"></div>
-				<div class="fancy_bg fancy_bg_se"></div>
-				<div class="fancy_bg fancy_bg_s"></div>
-				<div class="fancy_bg fancy_bg_sw"></div>
-				<div class="fancy_bg fancy_bg_w"></div>
-			</div>
-		</div>
 	</div>
 	
-	<div class="span-24 imageAddWrapper">	
+	<div class="span-24">	
 		<div id="imageEditWrapper" class="span-8 hide" >
 		<?php echo $form->create('Image',array('action'=>'add', 'type' => 'file','id'=>'imageEditForm'));?>
 		<?php echo $form->input('id', array('id'=>'imageIdEdit', 'type' => 'hidden','value'=> '' ) );?>
@@ -58,8 +59,7 @@
 				<div class="fancy_bg fancy_bg_w"></div>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 </div>
 
 
@@ -98,10 +98,13 @@
 							<div class="span-3"><?php echo $html->link( $html->image( 'gallery/s/'.$image['image'], array('alt' => $image['name'])), '/img/gallery/b/'.$image['image'],array('class'=>'bigImage'), null, false ); ?></div>
 							<div class="span-1 last" style="margin: 0  0 5px 2px;"><?php echo $form->checkbox('Image.id.'.$image['id'], array('class' => 'selectable', 'value' =>$image['id']) ); ?></div>							
 							<div class="span-1 last imageEdit" id="<?php echo $image['id'];?>"></div>
-							<div class="span-4 last photoNameVal">
-								<?php if($image['name'] != null):?>
-									<?php echo $image['name'];?>
-								<?php endif ?>
+	
+							
+							<div class="span-4 last photoNameVal">								
+									<?php echo (trim($image['name']) != null)?trim($image['name']):null;?>
+							</div>
+							<div class="span-4 last photoNoNameVal" style="color:red;">	
+									<?php echo (trim($image['name']) == null)?'Нет названия':null;?>
 							</div>
 						</div>
 						

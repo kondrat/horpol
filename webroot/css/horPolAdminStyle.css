@@ -319,7 +319,13 @@ z-index:70;
 	border:1px solid silver;
 	padding:10px 0 20px 20px;			
 }	
-	
+.imageAddWrapper{
+	position:relative;
+	height:100%;
+	z-index:100;
+}	
+
+
 	
 /*flash message*/
 #flashMessage {
@@ -486,7 +492,7 @@ a.categoryEditButton:hover {
 /*subCategory*/
 .subCategoryWrapper {
 }
-.subCategoryAddWrapper, .productAddWrapper,.imageAddWrapper{
+.subCategoryAddWrapper, .productAddWrapper{
 	position:relative;
 	height:100%;
 	z-index:100;

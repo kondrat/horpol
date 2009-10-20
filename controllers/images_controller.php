@@ -223,7 +223,11 @@ class ImagesController extends AppController {
 						$prodName = $this->data['Image']['name'] = trim($this->data['Image']['name']);
 						
 					}
-						
+					if ( $this->data['Image']['id'] == null && $this->data['Image']['userfile'] == null ) {
+												echo json_encode(array('error'=>'Фото не загружено'));											
+												$this->autoRender = false;
+											 	exit();						
+					}	
 						/**
 						 * We uploading the image photo first
 						 *
@@ -238,42 +242,43 @@ class ImagesController extends AppController {
 						// grab the file
 						$file = $this->data['Image']['userfile'];
 
-				
-						if ($file['error'] == 4) {
-							$this->data['Image']['image'] = null;
-							echo json_encode(array('error'=>'Файл не загружен'));
-							$this->autoRender = false;
-							exit();									
-						} else {
-
-								// upload the image using the upload component
-								for ( $i=0; $i<=1; $i++) {
-									switch($i) {
-										case(0): 
-											$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'resizecrop', 'size' => array('100', '100') ) ); 
-											if ($result != 1) {
-												$this->data['Image']['image'] = $this->Upload->result;
-											}
-											break;
-										case(1):
-											$result = $this->Upload->upload($file, $destinationB, null, array('type' => 'resize', 'size' => '600' ) );
-											break;
+						if(isset($this->data['Image']['userfile'])&& $this->data['Image']['userfile']!= null ) {
+							if ($file['error'] == 4) {
+								$this->data['Image']['image'] = null;
+								echo json_encode(array('error'=>'Файл не загружен'));
+								$this->autoRender = false;
+								exit();									
+							} else {
+	
+									// upload the image using the upload component
+									for ( $i=0; $i<=1; $i++) {
+										switch($i) {
+											case(0): 
+												$result = $this->Upload->upload($file, $destinationS, null, array('type' => 'resizecrop', 'size' => array('100', '100') ) ); 
+												if ($result != 1) {
+													$this->data['Image']['image'] = $this->Upload->result;
+												}
+												break;
+											case(1):
+												$result = $this->Upload->upload($file, $destinationB, null, array('type' => 'resize', 'size' => '600' ) );
+												break;
+										}
+										if ( $result == 1 ) {
+												// display error
+												$errors = $this->Upload->errors;
+												// piece together errors
+												if( is_array($errors) ) { 
+													$errors = implode("<br />",$errors); 
+												}
+							   			
+												echo json_encode(array('error'=>$errors));											
+												$this->autoRender = false;
+											 	exit();	
+											
+										}					
 									}
-									if ( $result == 1 ) {
-										// display error
-										$errors = $this->Upload->errors;
-										// piece together errors
-										if( is_array($errors) ) { 
-											$errors = implode("<br />",$errors); 
-										}
-						   			if ( !isset($this->data['Image']['id']) || $this->data['Image']['id'] == null) {
-											echo json_encode(array('error'=>$errors));											
-											$this->autoRender = false;
-										 	exit();	
-										}
-									}					
-								}
-
+	
+							}
 						}								
 
 											
