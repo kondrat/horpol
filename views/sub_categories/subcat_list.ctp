@@ -72,7 +72,7 @@
 			<?php $class=(($i%2) == 0)?"clear":null;?>		
 					<div class="span-10 <?php echo $class;?> subCatItem" >
 						<div style="float:left;margin-right:.5em;">
-							<?php echo $html->link($subCategory['name'],array('action'=>'index',$catId,$brandId,'subcat:'.$subCategory['id']),false,false,false);?>
+							<?php echo $html->link($subCategory['name'],array('action'=>'index',$catId,$brandId,'subcat:'.$subCategory['id']),array('class'=>'subCatChoise'),false,false);?>
 							<span style="font-size:smaller;">товаров:&nbsp;</span><span style="font-weight:bold;color:maroon;"><?php echo $pc = (isset($subCategory['product_count'])?$subCategory['product_count']:'0');?></span>
 						</div>
 						<?php if(!isset($products)): ?>

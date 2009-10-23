@@ -3,8 +3,8 @@ $(document).ready(function() {
 
 //changing name of the subCategory and url of the link
 		var prev = null;
-		$('.subCategory div a').click(function() {
-			
+		$('a.subCatChoise').click(function() {
+			alert('fix me');
 			var liContent = $(this).text();
 			
 			if (prev != null) {
@@ -25,11 +25,7 @@ $(document).ready(function() {
 			return false;
 		});
 	
-	$('span a.subCatDel').click(function(){
-		alert('fix me');
-		$('.subCatDel').unbind();
-		return true;
-	});	
+
 		
 		
 		
