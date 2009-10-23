@@ -79,56 +79,7 @@ class subCategoriesController extends AppController {
 
 	}
 //--------------------------------------------------------------------
-/*
-	function admin_index() {
-		$this->set('headerName','Товары');
-		
-		
-		
-		
-		
-			if ( isset($this->params['named']['category']) && $this->params['named']['category'] != null ) {
-				
-				$cond['Category.id'] = $this->params['named']['category'];
-				
-				if ( isset( $this->params['named']['brand'] ) && $this->params['named']['brand'] != null) {
-					$cond['Brand.id'] = $this->params['named']['brand'];
-					$this->data['SubCategory']['brand'] = $this->params['named']['brand'];
-				} elseif( isset( $this->params['url']['brand'] ) && $this->params['url']['brand'] != null) {
-					$cond['Brand.id'] = $this->params['url']['brand'];
-					$this->data['SubCategory']['brand'] = $this->params['url']['brand'];
-					$this->params['named']['brand'] = $this->params['url']['brand'];
-				}
-			$this->paginate['SubCategory'] = array(
-													'limit' => 12,
-													'conditions' => $cond,
-													'order' => array('Brand.name' => 'desc'),
-													'fields' => array('id', 'category_id', 'brand_id','name','product_count'),
-													'contain' => array('Category' => array('fields'=>array('id','name')), 'Brand.logo', 'Brand.id' ),
-													);
-			
-			if( $this->paginate() == array() ) {
-				$this->redirect( array('action'=>'index'), null, true);
-			}
-			$this->set('subCat', $this->paginate());
-			
-			$brands = $this->SubCategory->find('all',array('conditions' => array('category_id'=> $this->params['named']['category'] ) ,'contain' => false) );
-			$a = $this->SubCategory->query("SELECT DISTINCT `Brand`.`id` ,`Brand`.`name`, `Brand`.`logo` FROM `sub_categories` AS `SubCategory` LEFT JOIN `brands` AS `Brand` ON (`SubCategory`.`brand_id` = `Brand`.`id`) WHERE `SubCategory`.`category_id` =". $this->params['named']['category'] );
-			//$this->set( 'brands', $a );
-			
-		} else {			
-			$categories = $this->SubCategory->Category->find('all');
-			$this->set( 'categories', $categories );
-			$this->render('catlist');
-		}
-		
-		
-	}
-	
-	
-	
-*/	
-//--------------------------------------------------------------------
+
 	function admin_index() {		
 		$this->set('headerName','Товары');
 
@@ -148,9 +99,7 @@ class subCategoriesController extends AppController {
 			$case = 2;
 		}	
 		
-		
-			
-		//debug($case);
+
 		switch($case) {
 			case 1:
 									
@@ -194,9 +143,7 @@ class subCategoriesController extends AppController {
 			break;
 			
 			
-			case 2:
-				//echo 'two';
-				
+			case 2:				
 						
 				$subCategories = $this->SubCategory->BrandsCategory->find('first',array('conditions'=>array('BrandsCategory.category_id'=>$this->params['named']['cat'],'BrandsCategory.brand_id'=>$this->params['named']['brand']),
 																															//'fields'=>array('SubCategory.id','SubCategory.name','SubCategory.category_id','SubCategory.brand_id','SubCategory.product_count'),
@@ -260,12 +207,11 @@ class subCategoriesController extends AppController {
 			
 			
 			default:
-				//echo 'default';				
+			
 				$categories = $this->SubCategory->BrandsCategory->Category->find('all',array('fields'=>array('Category.id','Category.type','Category.name'),'contain'=>false));
 				$this->set('categories',$categories);
 				
 				$categoriesLast = array();
-//				$categoriesLast = $this->SubCategory->BrandsCategory->find('all',array('fields'=>array('SubCategory.id','SubCategory.name','SubCategory.modified','Category.name','Brand.name','Brand.logo'),'contain'=> array('Brand','Category'),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
 				$categoriesLast = $this->SubCategory->find('all',array('fields'=>array('SubCategory.id','SubCategory.brand_category_id','SubCategory.name','SubCategory.modified'),'contain'=> array( 'BrandsCategory'=>array('Brand'=>array('id','name','logo'),'Category'=>array('id','name') ) ),'limit'=>'5','order'=>array('SubCategory.modified'=>'DESC') ) );
 
 				$this->set('categoriesLast',$categoriesLast);				
@@ -280,9 +226,6 @@ class subCategoriesController extends AppController {
 	}
 
 
-
-	
-	
 //--------------------------------------------------------------------
 	function admin_view($id = null) {
 		$this->set('headerName','Подразделы');
@@ -522,9 +465,9 @@ class subCategoriesController extends AppController {
 			$this->Session->setFlash('Подраздел не найден');
 			$this->redirect(array('action'=>'index'), null, true);
 		}
-		if ($this->SubCategory->del($id)) {
+		if ($this->SubCategory->delete($id)) {
 			$this->Session->setFlash('Подраздел удален');
-			$this->redirect(array('action'=>'index'), null, true);
+			$this->redirect($this->referer(), null, true);
 		}
 	}
 //--------------------------------------------------------------------

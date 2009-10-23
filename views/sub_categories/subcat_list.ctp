@@ -67,11 +67,7 @@
 	<?php endif ?>
 	<?php if(isset($subCategories) && $subCategories != array()):?>
 	<div class="subCategory span-24">
-		<?php 
-			$i = 0;
-			
-		
-		?>
+		<?php $i = 0;?>
 		<?php foreach ($subCategories['SubCategory'] as $subCategory):?>	
 			<?php $class=(($i%2) == 0)?"clear":null;?>		
 					<div class="span-10 <?php echo $class;?> subCatItem" >
@@ -81,6 +77,7 @@
 						</div>
 						<?php if(!isset($products)): ?>
 							<span id="<?php echo $subCategory['id'];?>_name" class="subCategoryEdit"></span>
+							<span><?php echo $html->link('Del',array('action'=>'delete', $subCategory['id']), array('class'=>'subCatDel'), sprintf('Удалть товар %s?', $subCategory['name']) );?></span>
 						<?php endif ?>
 						<div class="span-10 edit_name"></div>
 					</div>
