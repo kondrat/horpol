@@ -505,12 +505,46 @@ a.categoryEditButton:hover {
 	border:1px solid silver;
 	padding:10px 0 20px 20px;
 }
+
+#subCategoryEditWrapper{	
+	position:absolute;
+
+	/*z-index:200;*/
+	top:100px;
+	left:30px;
+	/*border:1px solid silver;
+	padding:10px 0 20px 20px;	*/		
+}
 .subCategoryEdit{
+	position:relative;
+	z-index:100;
+	background-color:white;
+	padding:1em;
+	border:1px solid;	
+}
+
+
+
+
+
+
+.subCatEdit{
 		background:transparent url(../img/icons/edit_inline_16x16.png) no-repeat scroll 0 0;
 		width:16px;
 		height:16px;
 		display:block;
 		float:left;
+}
+.subCatDel {	
+		background:transparent url(../img/icons/delete_inline_16x16_2.png) no-repeat scroll 0 0;
+		width:16px;
+		height:16px;
+		display:block;
+		float:left;
+		margin-left:.5em;
+}
+a.subCatDel:hover {	
+		background-position: 0 -32px;
 }
 .productItemAdd{
 		left:250px;

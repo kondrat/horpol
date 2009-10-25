@@ -35,7 +35,7 @@
 <div class="span-24 subCategoryWrapper" style="margin-bottom:1em;">
 	<?php if(!isset($products)): ?>	
 	<div class="span-24 subCategoryAddWrapper" style="margin-bottom:1em;">		
-		<div class="span-24"><h3 style="margin-bottom:0em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>	
+
 			
 		<div class="span-13 subCategoryAdd hide">
 		<?php echo $form->create('SubCategory',array('action'=>'addInline'));?>
@@ -62,7 +62,34 @@
 				<!--<div class="fancy_bg fancy_bg_nw"></div>-->
 			</div>
 		</div>
+		
+		
+	</div>	
+	
+	<div id="subCategoryEditWrapper" class="span-24  hide" style="margin-bottom:1em;">	
+		<div class="span-13 subCategoryEdit">
+		<?php echo $form->create('SubCategory',array('action'=>'edit'));?>
+			<?php echo $form->input('id', array('id'=>'SubCategoryIdEdit', 'type' => 'hidden','value'=> '' ) );?>
+			<?php echo $form->label('name','[Название:]');?><br />
+			<?php echo $form->input('name',array('id'=>'SubCategoryNameEdit','style'=>'width:450px;','label'=>false));?>
+			<?php echo $form->error('name', 'text error');?>
+			<div id="SubCategoryNameEditError" style="padding:5px;"></div>
+			<div class="span-3">
+				<?php echo $form->submit('Сохранить',array('class'=>'span-3 SubCatEditSubmit'));?>
+			</div>
+			<?php echo $form->button('Отменить',array('class'=>'span-3 subCategoryEditCancel'));?>
+		<?php echo $form->end();?>
+			<div class="test">
+				<div class="fancy_bg fancy_bg_e"></div>
+				<div class="fancy_bg fancy_bg_se"></div>
+				<div class="fancy_bg fancy_bg_s"></div>
+				<div class="fancy_bg fancy_bg_sw"></div>
+				<div class="fancy_bg fancy_bg_w"></div>
+			</div>
+		</div>	
 	</div>
+			
+	<div class="span-24"><h3 style="z-index:0;margin-bottom:1em;"><?php echo $html->link('Создать новый подраздел',array('action'=>'add'),array('class'=>'subCatAdd') );?></h3></div>	
 	
 	<?php endif ?>
 	<?php if(isset($subCategories) && $subCategories != array()):?>
@@ -76,8 +103,8 @@
 							<span style="font-size:smaller;">товаров:&nbsp;</span><span style="font-weight:bold;color:maroon;"><?php echo $pc = (isset($subCategory['product_count'])?$subCategory['product_count']:'0');?></span>
 						</div>
 						<?php if(!isset($products)): ?>
-							<span id="<?php echo $subCategory['id'];?>_name" class="subCategoryEdit"></span>
-							<span><?php echo $html->link('Del',array('action'=>'delete', $subCategory['id']), array('class'=>'subCatDel'), sprintf('Удалть товар %s?', $subCategory['name']) );?></span>
+							<span id="<?php echo $subCategory['id'];?>_name" class="subCatEdit"></span>
+							<span><?php echo $html->link('',array('action'=>'delete', $subCategory['id']), array('class'=>'subCatDel'), sprintf('Удалть Подраздел %s и ВСЕ ТОВАРЫ подраздела!?', $subCategory['name']) );?></span>
 						<?php endif ?>
 						<div class="span-10 edit_name"></div>
 					</div>
@@ -146,7 +173,6 @@
 	
 	<div class="span-24 productAddWrapper">
 		
-		
 								<div class="span-9 productItemAdd hide">
 								<?php echo $form->create('Product',array('action'=>'addProduct', 'type' => 'file'));?>
 									<?php echo $form->hidden('Product.subcategory_id',array('value'=> $subcatIdVal));?>
@@ -175,8 +201,7 @@
 										<div class="fancy_bg fancy_bg_w"></div>				
 									</div>
 								</div>				
-		
-		
+			
 	</div>	
 		
 <div class="span-24">

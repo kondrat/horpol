@@ -4,7 +4,7 @@ $(document).ready(function() {
 //changing name of the subCategory and url of the link
 		var prev = null;
 		$('a.subCatChoise').click(function() {
-			alert('fix me');
+
 			var liContent = $(this).text();
 			
 			if (prev != null) {
@@ -20,19 +20,58 @@ $(document).ready(function() {
 			
 			$("#step3").removeClass('prevStep').addClass('activeStep');
 			$(".activeStep div#stepIcon3").css({'background-position':'-40px -40px'});			
-			
-			
+						
 			return false;
 		});
 	
-
-		
-		
 		
 	$('.subCatAdd, .subCategoryAddCancel').click(function(){
 		$('.subCategoryAdd').toggle();
 		return false;
 	});
+
+
+	$('.subCatEdit').click(function(){
+		$('#subCategoryEditWrapper').show();
+		return false;
+	});
+
+
+	$('.subCategoryEditCancel').click(function(){
+		$('#subCategoryEditWrapper').hide();
+		return false;
+	});
+	
+		var currSubEd = null;
+		$('.subCatEdit').click(function(){
+				
+				if (currSubEd != null) {
+					currSubEd.removeAttr("style");
+				}				
+				currSubEd = $(this).parents('.productItem');				
+			 	currSubEd.css({'background-color':'#ccc'});
+				
+			  var pos = $(this).offset();  
+			  $(".subCategoryEdit").css( { "left": (pos.left - 210) + "px", "top":(pos.top - 210) + "px" } );
+
+			  $("#SubCategoryNameEdit").attr('value', $(this).parents('.subCatItem').find('a.subCatChoise').text() );
+			  $("#SubCategoryIdEdit").attr('value', parseInt($(this).attr('id')) );
+		
+	
+		});
+
+	$('.SubCatEditSubmit').click(function(){
+		if($('#SubCategoryNameEdit').val() == '' ) {
+			$('#SubCategoryNameEditError').text('Это поле должно быть заполнено');
+			$('.subCategoryEdit').addClass('error');
+			return false;
+		}		
+	});
+
+
+
+
+
 
 	$('.newSubCat').click(function(){
 		//alert($('#SubCategoryName').val());
@@ -45,13 +84,11 @@ $(document).ready(function() {
 
 	$('.subCatItem').hover(function(){
 		$(this).addClass('act');
-		//$('.act a').css({'background-color':'#ccc'});
 	},function(){
-		//$('.act a').css({'background-color':'#fff'});
 		$(this).removeClass('act');
 	});
 	
-	$('.subCategoryEdit').hover(function(){
+	$('.subCatEdit').hover(function(){
 		$(this).css({'background-position':'0px -32px','border-color':'silver'});
 	},function(){
 		$(this).css({'background-position':'0px 0px','border-color':'#eee'});		
@@ -88,6 +125,13 @@ $(document).ready(function() {
 			return false;
 		}		
 	});
+
+
+
+
+
+
+
 
 
 

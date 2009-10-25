@@ -448,10 +448,10 @@ class subCategoriesController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->SubCategory->save($this->data)) {
-				$this->Session->setFlash('Название подраздела было сохранено');
+				$this->Session->setFlash('Название подраздела было сохранено1');
 				$this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash('Подраздел не был создан. Попробйте еще раз');
+				$this->Session->setFlash('Подраздел не был изменен. Попробйте еще раз');
 				$this->redirect($this->referer());
 			}
 		}
