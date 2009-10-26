@@ -10,8 +10,8 @@
 <div class="cat">
 
 	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>
-	<?php if( isset($subCats['Banner']['0']['logo']) ): ?>
 	
+	<?php if( isset($subCats['Banner']['0']['logo']) ): ?>	
 		<?php if($subCats['Banner']['0']['url'] != null ):?>
 			<?php echo $html->link($html->image('banner/'.$subCats['Banner']['0']['logo'],array('class'=>'catimg','style'=>'margin-left:35px;border:none')),$subCats['Banner']['0']['url'],array(),false,false)  ; ?>
 		<?php else: ?>

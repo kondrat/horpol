@@ -9,17 +9,28 @@
 <div class="cat">
 
 	<?php echo $html->image('catalog/'.$brand['Brand']['logo'], array('class'=> 'catimg')); ?>
-	<?php echo $html->image('banner/banner_test20.png', array('class'=> 'catimg','style'=>'margin-left:35px;')); ?>
+	<?php if( isset($subCats['Banner']['0']['logo']) ): ?>	
+		<?php if($subCats['Banner']['0']['url'] != null ):?>
+			<?php echo $html->link($html->image('banner/'.$subCats['Banner']['0']['logo'],array('class'=>'catimg','style'=>'margin-left:35px;border:none')),$subCats['Banner']['0']['url'],array(),false,false)  ; ?>
+		<?php else: ?>
+			<?php echo $html->image('banner/'.$subCats['Banner']['0']['logo'], array('class'=> 'catimg','style'=>'margin-left:35px;')); ?>
+		<?php endif ?>		
+	<?php endif ?>
 	<br />
 
 	<ul>
 		<?php foreach( $subCats['SubCategory'] as $sub ): ?>
-		<li><?php echo $html->image('point.gif');?>&nbsp;&nbsp;
+		<li>
+			<div class='newsubcat'>
+			
 			<?php if( isset($products) && $sub['name'] == $products['SubCategory']['name']): ?>
-				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu', 'id' => 'catalog-link') ); ?>
+				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu2', 'id' => 'catalog-link2') ); ?>
+			
 			<?php else: ?>
-				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu') ); ?>			
+				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu2', 'id' => 'catalog-link2') ); ?>			
 			<?php endif ?> 
+			
+			</div>
 		</li>
 		<?php endforeach ?>
 	</ul>
