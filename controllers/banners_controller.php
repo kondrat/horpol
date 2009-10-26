@@ -194,7 +194,7 @@ class BannersController extends AppController {
 	function admin_add() {
 		if (!empty($this->data)) {
 			
-			$bannerSize = array('700', '70');
+			$bannerSize = array('700', '120');
 			
 			
 			if( !empty($this->data['Banner']['type']) ) {
@@ -256,6 +256,17 @@ class BannersController extends AppController {
 	function bannerEditLogo() {
 		Configure::write('debug', 0);
 		if (!empty($this->data)) {
+
+			$bannerSize = array('700', '120');
+			
+			
+			if( !empty($this->data['Banner']['type']) ) {
+				if ($this->data['Banner']['type'] == 2 ) {
+					$bannerSize = array('500', '70');
+				}
+			} 
+
+
 			
 			$file = array();
 			// set the upload destination folder
@@ -271,7 +282,7 @@ class BannersController extends AppController {
 			}else {
 									
 				// upload the image using the upload component
-				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => array('700', '70') ) );
+				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => $bannerSize ) );
 					if ( $result != 1 ){
 						$this->data['Banner']['logo'] = $this->Upload->result;
 					} else {
@@ -350,24 +361,27 @@ class BannersController extends AppController {
 		if ($this->data) {
 			if ($this->RequestHandler->isAjax()) {		
 									
-						$this->Banner->id = (int)$this->data['Banner']['id'];
+						
 						
 						$this->Banner->set($this->data);
 						$errors = $this->Banner->invalidFields();
 						if($errors['url'] != null) {
+							//echo $errors['url'];
 							echo 1;						
 							exit;
 						}
 						
-						
-						if($this->Banner->saveField('url',trim($this->data['Banner']['url']),true ) ) {
+						$this->Banner->id = (int)$this->data['Banner']['id'];
+						if( $this->Banner->saveField('url',trim($this->data['Banner']['url']),true ) ) {
 								echo trim($this->data['Banner']['url']);
 						} else {
 							//echo 	$this->data['Brand']['id'];
+							echo $this->Banner->id;
 						}			
 						exit;		
 			}	
 		}		
 	}
+//--------------------------------------------------------------------
 }
 ?>

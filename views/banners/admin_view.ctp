@@ -13,8 +13,7 @@
 		<dd>			
 			<div class="span-24 brandLogo" style="margin-bottom:1em;">
 				<div style="padding:8px;background-color:#eee;float:left;">
-					<?php echo $form->input('Banner.id',array('value'=>$banner['Banner']['id']));?>
-					<?php echo $form->input('Banner.type',array('type'=>'hidden','value'=>$banner['Banner']['type']));?>
+					
 					<?php if($banner['Banner']['url'] != null ):?>
 						<?php echo $html->link($html->image('banner/'.$banner['Banner']['logo'],array('class'=>'bannerLogo')),$banner['Banner']['url'],array('target'=>'_blank'),false,false)  ; ?>
 					<?php else: ?>
@@ -25,6 +24,7 @@
 				<div class="span-10  brandFrom hide" style="margin-bottom:1em;">
 				<?php echo $form->create('Banner', array('action'=>'edit','id'=>'storyEditForm', 'type' => 'file'));?>
 					<?php echo $form->input('Banner.id',array('value'=>$banner['Banner']['id']));?>
+					<?php echo $form->input('Banner.type',array('type'=>'hidden','value'=>$banner['Banner']['type']));?>
 					<?php echo $form->input('Banner.userfile', array('type'=>'file', 'label'=>false ) ); ?>
 					<div style="margin:.5em;">
 						<?php echo $form->submit('OK',array('id'=>'tuda','class'=>'span-3','div'=>false,'style'=>'margin-right:1em;'));?>
