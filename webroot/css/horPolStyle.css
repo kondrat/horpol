@@ -426,15 +426,36 @@ h1 {
 	text-decoration: none;
 	font-size: 12px;
 	color: #000000;
+	margin: 0px 0px 0px 10px;
 }
 .catalogmenu:hover {
 	text-decoration: none;
 	color: #901c3b;
 }
-
+.catalogmenu2 {
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+	color: #ffffff;
+	margin: 0px 0px 0px 10px;
+}
+.catalogmenu2:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+.newsubcat{
+	width: 295px;
+	height: 20px;
+	margin: 0px 0px 10px 0px;
+	color: #ffffff;
+	background-image: url(../img/submenufon.jpg);
+}
 
 #catalog-link {
 	color: #901c3b;
+}
+#catalog-link2 {
+	color: #ffffff;
 }
 div.tumb {
 
