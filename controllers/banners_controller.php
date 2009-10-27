@@ -218,7 +218,8 @@ class BannersController extends AppController {
 			}else {
 									
 				// upload the image using the upload component
-				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => $bannerSize ) );
+				//old $result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => $bannerSize ) );
+				$result = $this->Upload->upload($file, $destination, null, array() );
 					if ( $result != 1 ){
 						$this->data['Banner']['logo'] = $this->Upload->result;
 					} else {
@@ -282,7 +283,8 @@ class BannersController extends AppController {
 			}else {
 									
 				// upload the image using the upload component
-				$result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => $bannerSize ) );
+				// old $result = $this->Upload->upload($file, $destination, null, array('type' => 'resizecrop', 'size' => $bannerSize ) );
+				$result = $this->Upload->upload($file, $destination, null, array() );
 					if ( $result != 1 ){
 						$this->data['Banner']['logo'] = $this->Upload->result;
 					} else {
