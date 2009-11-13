@@ -28,6 +28,7 @@ class ImagesController extends AppController {
     	$this->paginate['Image'] = array(
     										'conditions' => array('Image.album_id' => $id ),
     										'contain' => array('Album.name'),
+    										'order'=> array('Image.id'=>'DESC'),
     										'limit' => 12
     									);
     	$images = $this->paginate();

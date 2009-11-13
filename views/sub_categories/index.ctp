@@ -53,7 +53,7 @@
 							if($product['logo1'] != null) {
 								$imagePathS = 'catalog/s/'.$product['logo1'];
 								$imagePathB = '/img/catalog/b/'.$product['logo1'];								
-								echo $html->link( $html->image($imagePathS,array('alt'=> $product['name']) ),$imagePathB,array('class'=>'bigProd'),false,false );
+								echo $html->link( $html->image($imagePathS,array('alt'=> $product['name']) ),$imagePathB,array('class'=>'bigProd','title'=>$product['name']),false,false );
 																
 							} elseif($product['logo'] != null) {
 								echo  $html->image( 'catalog/'.$product['logo'], array('alt' => $product['name'] ) );							
