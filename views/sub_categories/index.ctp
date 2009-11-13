@@ -23,8 +23,7 @@
 	<ul>
 		<?php foreach( $subCats['SubCategory'] as $sub ): ?>
 		<li>
-			<div class='newsubcat'>
-			
+						
 			<?php if( isset($products) && $sub['name'] == $products['SubCategory']['name']): ?>
 				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu2', 'id' => 'catalog-link2') ); ?>
 			
@@ -32,7 +31,7 @@
 				<?php echo $html->link($sub['name'], array('action' => 'index','category:'.$this->params['named']['category'],'brand:'.$brand['Brand']['id'],'subcat:'.$sub['id']), array('class' => 'catalogmenu2', 'id' => 'catalog-link2') ); ?>			
 			<?php endif ?> 
 			
-			</div>
+			
 		</li>
 		<?php endforeach ?>
 	</ul>

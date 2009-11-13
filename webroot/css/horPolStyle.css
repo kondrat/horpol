@@ -373,7 +373,7 @@ h1 {
 }
 .cat {
 	position: relative;
-	left: -30px;
+	left: 0px;
 	top: 10px;
 	text-align: left;
 	
@@ -382,11 +382,12 @@ h1 {
 .catimg {
 	position: relative;
 	top: -5px;
-	left: 40px;
+	left: 0px;
 }
 
 .cat ul {
 	list-style: none;
+	padding: 0px 0px 0px 0px;
 }
 
 .cat ul li a {
@@ -399,7 +400,11 @@ h1 {
 
 .cat ul li {
 	float: left;	
-	width: 330px;
+	width: 340px;
+	height: 20px;
+	margin: 0px 5px 10px 0px;
+	color: #ffffff;
+	background-image: url(../img/submenufon.jpg);
 }
 
 .cat ul li a:hover {
@@ -409,7 +414,16 @@ h1 {
 	font-size: 12px;
 	color: #901c3b;
 }
+
 /*
+.newsubcat{
+	width: 340px;
+	height: 20px;
+	margin: 0px 0px 10px 0px;
+	color: #ffffff;
+	background-image: url(../img/submenufon.jpg);
+}
+
 .cat img {
 	position: relative;
 	top: 10px;
@@ -443,13 +457,7 @@ h1 {
 	text-decoration: none;
 	color: #ffffff;
 }
-.newsubcat{
-	width: 295px;
-	height: 20px;
-	margin: 0px 0px 10px 0px;
-	color: #ffffff;
-	background-image: url(../img/submenufon.jpg);
-}
+
 
 #catalog-link {
 	color: #901c3b;
