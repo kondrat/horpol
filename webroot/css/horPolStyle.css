@@ -5,11 +5,7 @@ body {
 	margin-right: 0px;
 	background-image: url(../img/fon.jpg);
 	background-repeat: repeat;
-	
-	
-	
 }
-
 .img {
 	position: relative;
 	top: 25px;
@@ -376,7 +372,7 @@ h1 {
 	left: 0px;
 	top: 10px;
 	text-align: left;
-	
+	width: 700px;
 }
 
 .catimg {
@@ -387,7 +383,9 @@ h1 {
 
 .cat ul {
 	list-style: none;
-	padding: 0px 0px 0px 0px;
+	position: relative;
+	top: -5px;
+	left: 0px;
 }
 
 .cat ul li a {
@@ -400,7 +398,7 @@ h1 {
 
 .cat ul li {
 	float: left;	
-	width: 340px;
+	width: 320px;
 	height: 20px;
 	margin: 0px 5px 10px 0px;
 	color: #ffffff;
@@ -433,8 +431,8 @@ h1 {
 	display: inline;
 	margin-right: 20px;
 }
-*/
 
+*/
 .catalogmenu {
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
