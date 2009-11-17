@@ -51,7 +51,7 @@ class CategoriesController extends AppController {
 			default:			
 			
 			//old $brands = $this->Category->SubCategory->find('all',array('conditions'=>array('SubCategory.category_id'=>$id),'fields'=>array('Brand.id','Brand.logo','Brand.name'),'group' => array('SubCategory.brand_id') ,'contain'=>array('Brand') ) );
-			$brands = $this->Category->find('first',array('conditions'=>array('Category.id'=>$id),'fields'=>array(),'contain'=>array('Brand') ) );
+			$brands = $this->Category->find('first',array('conditions'=>array('Category.id'=>$id),'fields'=>array(),'contain'=>array('Brand'=>array('conditions'=>array('BrandsCategory.sub_category_count <>'=>0) ) ) ) );
 
 
 			if ( $brands == array() ) {

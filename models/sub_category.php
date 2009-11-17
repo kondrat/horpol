@@ -65,7 +65,9 @@ class SubCategory extends AppModel {
 											
 							'BrandsCategory' => array( 
 											'className' => 'BrandsCategory',
-											'foreignKey' => 'brand_category_id')
+											'foreignKey' => 'brand_category_id',
+											'counterCache' => true
+											)
 							);
 
 //--------------------------------------------------------------------	
