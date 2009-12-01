@@ -1,6 +1,6 @@
 <?php $this->pageTitle = 'Главная страница'; ?>
 
-<div class="span-21 push-1 error">
+<div class="span-21 push-1 error" style="display:none">
 	<h3>Панель в стадии разработки</h3>
 </div>
 
