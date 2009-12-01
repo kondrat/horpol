@@ -21,3 +21,4 @@ webroot/js/fck/*
 webroot/js/ckeditor/*
 !empty
 !.gitignore
+*~
