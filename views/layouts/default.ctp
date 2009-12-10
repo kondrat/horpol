@@ -14,7 +14,7 @@
 		echo $html->css('jquery.fancybox');
 		echo $javascript->codeBlock('var path = "'.Configure::read('path').'";' );
 	?>
-
+	<meta name='yandex-verification' content='7ba21a7928c47a4d' />
 	<?php
 		echo $javascript->link( array('jquery/jquery-1.3.2.min','jquery/jquery.easing.1.3', 'cookie', 'jquery/jquery.pngFix.pack') , true);
 	?>
